@@ -1,0 +1,2 @@
+class Temperament < ApplicationRecord
+end
