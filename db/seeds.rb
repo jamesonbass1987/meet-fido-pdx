@@ -1,21 +1,28 @@
-# AGE COLUMNS
+# AGE DATA
 Age.create(name: 'Puppy')
 Age.create(name: 'Young')
 Age.create(name: 'Adult')
 Age.create(name: 'Senior')
 
-# SIZE COLUMNS
+# SIZE DATA
 Size.create(name: 'Miniature')
 Size.create(name: 'Small')
 Size.create(name: 'Medium')
 Size.create(name: 'Large')
 Size.create(name: 'Extra Large')
 
-# BREED COLUMNS
+# BREED DATA
 breeds_list = ["Affenpinscher", "Afghan", "Airedale", "Akbash", "Akita", "Alaskan", "American", "Anatolian", "Appenzell", "Australian", "Basenji", "Basset", "Beagle", "Bearded", "Beauceron", "Bedlington", "Belgian", "Bernese", "Bichon", "Black", "Bloodhound", "Blue", "Bluetick", "Boerboel", "Bolognese", "Border", "Borzoi", "Boston", "Bouvier", "Boxer", "Boykin", "Briard", "Brittany", "Brussels", "Bull", "Bullmastiff", "Cairn", "Canaan", "Cane", "Carolina", "Catahoula", "Cattle", "Caucasian", "Cavalier", "Chesapeake", "Chihuahua", "Chinese", "Chinook", "Chocolate", "Chow", "Cirneco", "Clumber", "Cockapoo", "Cocker", "Collie", "Coonhound", "Corgi", "Coton", "Curly-Coated", "Dachshund", "Dalmatian", "Dandi", "Doberman", "Dogo", "Dogue", "Dutch", "English", "Entlebucher", "Eskimo", "Feist", "Field", "Fila", "Finnish", "Flat-Coated", "Fox", "Foxhound", "French", "Galgo", "German", "Giant", "Glen", "Golden", "Gordon", "Great", "Greater", "Greyhound", "Hamiltonstovare", "Harrier", "Havanese", "Hound", "Hovawart", "Husky", "Ibizan", "Icelandic", "Illyrian", "Irish", "Italian", "Jack", "Japanese", "Jindo", "Kai", "Karelian", "Keeshond", "Kerry", "Kishu", "Klee", "Komondor", "Kuvasz", "Kyi", "Labrador", "Lakeland", "Lancashire", "Leonberger", "Lhasa", "Lowchen", "Maltese", "Manchester", "Maremma", "Mastiff", "McNab", "Miniature", "Mixed", "Mountain", "Munsterlander", "Neapolitan", "New", "Newfoundland", "Norfolk", "Norwegian", "Norwich", "Nova", "Old", "Otterhound", "Papillon", "Patterdale", "Pekingese", "Peruvian", "Petit", "Pharaoh", "Pit", "Plott", "Podengo", "Pointer", "Polish", "Pomeranian", "Poodle", "Portuguese", "Presa", "Pug", "Puli", "Pumi", "Rat", "Redbone", "Retriever", "Rhodesian", "Rottweiler", "Rough", "Saint", "Saluki", "Samoyed", "Sarplaninac", "Schipperke", "Schnauzer", "Scottish", "Sealyham", "Setter", "Shar", "Sheep", "Shepherd", "Shetland", "Shiba", "Shih", "Siberian", "Silky", "Skye", "Sloughi", "Smooth", "South", "Spaniel", "Spanish", "Spitz", "Staffordshire", "Standard", "Sussex", "Swedish", "Terrier", "Thai", "Tibetan", "Tosa", "Toy", "Treeing", "Vizsla", "Weimaraner", "Welsh", "West", "Wheaten", "Whippet", "White", "Wire", "Wirehaired", "Xoloitzcuintle", "Yellow", "Yorkshire"]
 
 breeds_list.each do |breed|
     Breed.create(name: breed)
+end
+
+# NEIGHBORHOOD DATA
+neighborhood_array = ['Alberta', 'Beaumont/Wilshire', 'Downtown Portland', 'Goose Hollow', 'Hawthorne District', 'Hollywood', "John's Landing", "Ladd's Addition", "Laurelhurst", "Lloyd District", "Mississippi Avenue", "Mount Tabor", "Murrayhill", "Northwest", "Orenco Station", "Pearl District", "Riverplace", "Multnomah Village", "Sellwood", "South Waterfront", "St. Johns", "University Park", "Woodstock"]
+
+neighborhood_array.each do |neighborhood|
+    Neighborhood.create(name: neighborhood)
 end
 
 # PARKS DATA
@@ -317,3 +324,7 @@ parksObj = {
         hours_close: Time.new(1, 1, 1, 24)
     },
 }
+
+parksObj.each do |park|
+    Park.create(name: park.name, description: park.description, address_1: park.address_1, address_2: (park.address_2 if park.key?("address_2"), fenced: park.fenced, hours_open: park.hours_open, hours_close: park.hourse_close)
+end
