@@ -34,7 +34,7 @@ class Api::V1::DogsController < ApiController
     if @dog.destroy
       render status: 204
     else
-      render json: { message: "Unable to remove dog." }, status: 404
+      render json: { message: "Something went wrong. Unable to remove dog." }, status: 404
     end
   end
 
