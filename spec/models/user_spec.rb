@@ -10,10 +10,9 @@ describe User do
     @user = User.create!(username: "testuser", password: "password", neighborhood: @neighborhood, email: 'test@email.com')
     
     @dog_1 = Dog.create!(name: 'Fido',  neighborhood: @neighborhood,  description: 'dog', age: @age, temperament: @temperament, size: @size, user: @user, breed: @breed )
-
     @dog_2 = Dog.create!(name: 'Fido',  neighborhood: @neighborhood,  description: 'dog',age: @age, temperament: @temperament, size: @size, user: @user, breed: @breed )
 
-    end
+  end
 
   it 'can be created' do
     expect(@user).to be_valid
