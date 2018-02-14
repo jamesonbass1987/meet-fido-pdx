@@ -32,7 +32,7 @@ describe Api::V1::DogsController, :type => :api do
         get ("/api/v1/dogs/#{@dog2.id}")
 
         dog = json['dog']
-        expect(dog['name']).to eq('Rex')
+        expect(dog['name']).to eq(@dog2.name)
     end
 
 end

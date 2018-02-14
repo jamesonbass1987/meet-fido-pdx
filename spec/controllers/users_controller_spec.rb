@@ -29,7 +29,7 @@ describe Api::V1::UsersController, :type => :api do
     it 'returns a single JSON user object from show route' do
         get ("/api/v1/users/#{@user.id}")
         user_instance = json['user']
-        expect(user_instance['username']).to eq('testuser')
+        expect(user_instance['username']).to eq(@user.username)
     end
 
     it 'returns a list of the users dogs' do
