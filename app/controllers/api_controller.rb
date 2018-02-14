@@ -1,3 +1,3 @@
 class ApiController < ActionController::API
-  include ActionController::Serialization
+      include ActionController::Serialization
 end

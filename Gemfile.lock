@@ -151,7 +151,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers (~> 0.9.3)
+  active_model_serializers
   bcrypt (~> 3.1.7)
   byebug
   database_cleaner
