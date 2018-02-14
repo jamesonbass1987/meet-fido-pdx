@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180213232658) do
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
-    t.integer "owner_id"
+    t.integer "user_id"
     t.integer "breed_id"
     t.integer "temperament_id"
     t.integer "age_id"
