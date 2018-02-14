@@ -329,3 +329,25 @@ parksObj.each do |park|
     Park.create(name: park[:name], description: park[:description], address_1: park[:address_1], address_2: park[:address_2], fenced: park[:fenced], hours_open: park[:hours_open], hours_close: park[:hours_close])
 end
 
+# USER DATA
+
+neighborhood = Neighborhood.find_by(name: 'St. Johns')
+user_1 = User.create(username: 'testuser', email:'test@email.com', password: 'password', neighborhood: neighborhood)
+
+park = Park.find_by(name: 'Chimney Park')
+breed = Breed.find_by(name: 'Labrador')
+size = Size.find_by(name: 'Large')
+age = Age.find_by(name: 'Young')
+
+dog_1 = Dog.create(name: 'Rex', breed: breed, size: size, age: age, sex: 'Male', user: user_1, neighborhood: neighborhood, preferred_park: park, description: 'Fun energetic dog who loves to play!')
+
+
+neighborhood_2 = Neighborhood.find_by(name: 'Alberta')
+user_2 = User.create(username: 'testuser_2', password: 'password', email: 'test2@email.com', neighborhood: neighborhood)
+
+park_2 = Park.find_by(name: 'Alberta Park')
+breed_2 = Breed.find_by(name: 'Terrier')
+size_2 = Size.find_by(name: 'Medium')
+age_2 = Age.find_by(name: 'Adult')
+
+dog_2 = Dog.create(name: 'Ella', breed: breed_2, size: size_2, age: age_2, sex: 'Female', user: user_2, neighborhood: neighborhood_2, preferred_park: park_2, description: 'Mellow dog who is a big people person but loves to play!')
