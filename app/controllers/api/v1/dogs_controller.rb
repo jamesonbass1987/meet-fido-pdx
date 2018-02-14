@@ -40,7 +40,7 @@ class Api::V1::DogsController < ApiController
 
   private
     def dog_params
-      params.permit(:name, :user_id, :breed_id, :temperament_id, :age_id, :size_id, :description, :preferred_park_id, :neighborhood_id)
+      params.permit(:name, :user_id, :breed_id, :age_id, :size_id, :description, :preferred_park_id, :neighborhood_id)
     end
 
     def set_dog

@@ -1,10 +1,9 @@
 class DogSerializer < ActiveModel::Serializer
-    attributes :name, :user, :breed, :temperament, :age, :size, :description, :preferred_park, :neighborhood, :dog_images
+    attributes :name, :user, :breed, :age, :size, :description, :preferred_park, :neighborhood, :dog_images
 
 
     belongs_to :user
     belongs_to :breed
-    belongs_to :temperament
     belongs_to :age
     belongs_to :size
     belongs_to :neighborhood
