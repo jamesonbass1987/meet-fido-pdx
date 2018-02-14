@@ -27,7 +27,7 @@ end
 
 # PARKS DATA
 
-parksObj = {
+parksObj = [
     {
         name: 'Brentwood Park',
         description: 'Includes dog off-leash area – fenced paths – paved, picnic tables, playground, soccer field, softball field, tennis court, and volleyball court.',
@@ -322,9 +322,10 @@ parksObj = {
         fenced: false,
         hours_open: Time.new(1, 1, 1, 5),
         hours_close: Time.new(1, 1, 1, 24)
-    },
-}
+    }
+]
 
 parksObj.each do |park|
-    Park.create(name: park.name, description: park.description, address_1: park.address_1, address_2: (park.address_2 if park.key?("address_2"), fenced: park.fenced, hours_open: park.hours_open, hours_close: park.hourse_close)
+    Park.create(name: park[:name], description: park[:description], address_1: park[:address_1], address_2: park[:address_2], fenced: park[:fenced], hours_open: park[:hours_open], hours_close: park[:hours_close])
 end
+
