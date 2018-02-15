@@ -17,17 +17,19 @@ const navigationItems = props => {
                 activeItem={props.activeItem} 
                 name="home" 
                 clicked={props.clicked}
-                link="/">Home</NavigationItem>
+                link="/"/>
             <NavigationItem
                 activeItem={props.activeItem} 
-                name="dogSearch" 
+                name="dogSearch"
+                content="Find Dogs" 
                 clicked={props.clicked}
-                link="/dogs">Search Dogs</NavigationItem>
+                link="/dogs"/>
             <NavigationItem
                 activeItem={props.activeItem} 
+                content="Search Parks" 
                 name="parkSearch" 
                 clicked={props.clicked}
-                link="/parks">Find A Park</NavigationItem>
+                link="/parks"/>
         </Menu>
     )
 }
