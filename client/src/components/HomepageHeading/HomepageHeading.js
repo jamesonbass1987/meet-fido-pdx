@@ -12,6 +12,7 @@ const homepageHeading = props => {
                 <source src={DogParkVideo}
                 type="video/mp4" />
             </video>
+            <div className={classes.BackgroundOverlay} />
             <HeadingContent />
         </Container>
     );
