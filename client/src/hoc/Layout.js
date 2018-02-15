@@ -12,7 +12,9 @@ class Layout extends Component {
         return(
             <React.Fragment>
                 <Navbar />
-                {this.props.children}
+                <main className={classes.Content}>
+                    {this.props.children}
+                </main>
             </React.Fragment>
         )
     }

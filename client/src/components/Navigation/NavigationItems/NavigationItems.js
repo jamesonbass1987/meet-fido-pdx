@@ -1,13 +1,18 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import classes from './NavigationItems.css';
+
+
 import NavigationItem from './NavigationItem/NavigationItem';
+import Logo from '../../Logo/Logo'
 
 const navigationItems = props => {
     return (
-        <Menu 
+        <Menu
+            size="large" 
             fixed="top"
             position="right">
+            <Logo height="50px"/>
             <NavigationItem
                 activeItem={props.activeItem} 
                 name="home" 

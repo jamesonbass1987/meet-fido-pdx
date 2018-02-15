@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react'
+
 import NavigationItems from './NavigationItems/NavigationItems'
 
 class Navbar extends Component {
@@ -16,11 +18,11 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
+            <Menu stackable>
                 <NavigationItems 
                     activeItem={this.state.activeItem} 
                     clicked={ this.handleItemClick }/>
-            </div>
+            </Menu>
         );
     }
 }
