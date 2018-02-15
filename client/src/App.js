@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout';
 import Home from './containers/Home/Home';
 import Dog from './containers/Dog/Dog';
-import Park from './containers/Park/Park';
+import Parks from './containers/Parks/Parks';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/dogs" component={Dog} />
-        <Route path="/parks" component={Park} />
+        <Route path="/parks" component={Parks} />
         <Redirect to="/" />
       </Switch>
     )

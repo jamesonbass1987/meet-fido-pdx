@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-orders';
+import axios from '../../shared/axios-api';
 
 export const fetchParksSuccess = (parks) => {
     return {
@@ -33,7 +33,7 @@ export const fetchParks = () => {
                         id: key
                     });
                 }
-                dispatch(fetchParksSuccess(fetchedOrders));
+                dispatch(fetchParksSuccess(fetchedParks));
             })
             .catch(err => {
                 dispatch(fetchParksFail(err));
