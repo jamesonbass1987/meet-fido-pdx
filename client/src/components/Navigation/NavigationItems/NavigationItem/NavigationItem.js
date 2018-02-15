@@ -7,9 +7,9 @@ import classes from './NavigationItem.css'
 const navigationItem = props => (
         <MenuItem
             as={ Link } 
+            active={props.activeItem === props.link}
             to={props.link}
             content={props.content}
-            active={props.activeItem === props.name} 
             name={props.name} 
             onClick={props.clicked}
             className={classes.NavigationItem}

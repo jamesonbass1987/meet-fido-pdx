@@ -9,7 +9,6 @@ function headingContent(props) {
             <Header
                 as='h1'
                 content='MeetFidoPDX'
-                dividing
                 size='large'
                 className={classes.HeaderContent}
                 inverted

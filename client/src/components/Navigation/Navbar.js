@@ -6,13 +6,13 @@ import NavigationItems from './NavigationItems/NavigationItems'
 class Navbar extends Component {
 
     state = {
-        activeItem: 'home'
+        activeItem: window.location.pathname
     }
 
-    handleItemClick = (event, { name } ) => {
+    handleItemClick = (event, { to } ) => {
         this.setState({
             ...this.state,
-            activeItem: name
+            activeItem: to
         })
     }
 
