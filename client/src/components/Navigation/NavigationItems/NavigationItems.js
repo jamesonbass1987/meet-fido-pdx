@@ -12,7 +12,7 @@ const navigationItems = props => {
             stackable
             size="large" 
             position="right">
-            <Logo height="50px"/>
+            <Logo height="50px" />
             <NavigationItem
                 activeItem={props.activeItem} 
                 name="home" 
@@ -27,7 +27,7 @@ const navigationItems = props => {
                 activeItem={props.activeItem} 
                 name="parkSearch" 
                 clicked={props.clicked}
-                link="parks">Find A Park</NavigationItem>
+                link="/parks">Find A Park</NavigationItem>
         </Menu>
     )
 }
