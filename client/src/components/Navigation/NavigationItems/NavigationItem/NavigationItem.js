@@ -13,6 +13,7 @@ const navigationItem = props => (
             name={props.name} 
             onClick={props.clicked}
             className={classes.NavigationItem}
+            children={props.children}
             >
         </MenuItem>
 )

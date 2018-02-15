@@ -1,6 +1,6 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-// import classes from './NavigationItems.css';
+import { Menu, MenuItem, Button } from 'semantic-ui-react';
+import classes from './NavigationItems.css';
 
 
 import NavigationItem from './NavigationItem/NavigationItem';
@@ -11,7 +11,9 @@ const navigationItems = props => {
         <Menu
             stackable
             size="large" 
-            position="right">
+            position="right"
+            className={classes.Menu}
+            >
             <Logo height="50px" />
             <NavigationItem
                 activeItem={props.activeItem} 
@@ -30,6 +32,10 @@ const navigationItems = props => {
                 name="parkSearch" 
                 clicked={props.clicked}
                 link="/parks"/>
+            <MenuItem position='right'>
+                <Button color="google plus" as='a' >Log in</Button>
+                <Button color="twitter" as='a' style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+            </MenuItem>
         </Menu>
     )
 }
