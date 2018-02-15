@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-
 import axios from '../../shared/axios-api';
+
 import * as actions from '../../store/actions/index';
-import Spinner from '../../components/UI/Spinner/Spinner';
+
+import { Container } from 'semantic-ui-react';
+import ParkList from '../../components/ParkList/ParkList';
+
 
 class Parks extends Component {
 
@@ -11,25 +14,12 @@ class Parks extends Component {
     this.props.onFetchParks();
   }
 
+
   render() {
-    let parks = <Spinner />
-
-    if (!this.props.loading) {
-      console.log(this.props.parks)
-
-      parks = this.props.parks.map(park => (
-        <li key={park.name}>{park.name}</li>
-      ))
-
-    }
-    
     return (
-      <div>
-        <h1>Find Parks</h1>
-        <ul>
-          {parks}
-        </ul>
-      </div>
+      <Container>
+        <ParkList parks={this.props.parks}/>
+      </Container>
     )
   }
 }
