@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
+import Layout from './hoc/Layout';
 
 class App extends Component {
   render() {
     return (
       <div >
-        <header>
-          <h1>Welcome to React</h1>
-        </header>
+      <Layout>
+          <header>
+            <h1>Welcome to React</h1>
+          </header>
+      </Layout>
       </div>
     );
   }
