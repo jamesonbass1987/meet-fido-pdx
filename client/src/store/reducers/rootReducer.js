@@ -3,7 +3,7 @@ import dogReducer from './dog';
 import parkReducer from './park';
 
 export const rootReducer = combineReducers({
-    parkReducer,
-    dogReducer
+    park: parkReducer,
+    dog: dogReducer
 });
 

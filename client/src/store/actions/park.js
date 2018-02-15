@@ -24,7 +24,7 @@ export const fetchParksStart = () => {
 export const fetchParks = () => {
     return dispatch => {
         dispatch(fetchParksStart());
-        axios.get('/parks.json')
+        axios.get('/parks')
             .then(res => {
                 const fetchedParks = [];
                 for (let key in res.data) {
