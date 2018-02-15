@@ -26,13 +26,7 @@ export const fetchParks = () => {
         dispatch(fetchParksStart());
         axios.get('/parks')
             .then(res => {
-                const fetchedParks = [];
-                for (let key in res.data) {
-                    fetchedParks.push({
-                        ...res.data[key],
-                        id: key
-                    });
-                }
+                const fetchedParks = [...res.data.parks];
                 dispatch(fetchParksSuccess(fetchedParks));
             })
             .catch(err => {

@@ -15,15 +15,20 @@ class Parks extends Component {
     let parks = <Spinner />
 
     if (!this.props.loading) {
-      parks = this.props.parks.map(park => (
-        <li>{park}</li>
-      ))
-    }
+      console.log(this.props.parks)
 
+      parks = this.props.parks.map(park => (
+        <li key={park.name}>{park.name}</li>
+      ))
+
+    }
+    
     return (
       <div>
         <h1>Find Parks</h1>
-        {parks}
+        <ul>
+          {parks}
+        </ul>
       </div>
     )
   }
