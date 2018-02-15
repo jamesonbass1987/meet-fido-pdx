@@ -9,8 +9,8 @@ import Logo from '../../Logo/Logo'
 const navigationItems = props => {
     return (
         <Menu
+            stackable
             size="large" 
-            fixed="top"
             position="right">
             <Logo height="50px"/>
             <NavigationItem
