@@ -5,18 +5,20 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = props => {
     return (
-        <Menu fixed="top">
-            <NavigationItem 
+        <Menu 
+            fixed="top"
+            position="right">
+            <NavigationItem
                 activeItem={props.activeItem} 
                 name="home" 
                 clicked={props.clicked}
                 link="/">Home</NavigationItem>
-            <NavigationItem 
+            <NavigationItem
                 activeItem={props.activeItem} 
                 name="dogSearch" 
                 clicked={props.clicked}
                 link="/dogs">Search Dogs</NavigationItem>
-            <NavigationItem 
+            <NavigationItem
                 activeItem={props.activeItem} 
                 name="parkSearch" 
                 clicked={props.clicked}
