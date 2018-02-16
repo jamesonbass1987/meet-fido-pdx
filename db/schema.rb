@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215232814) do
+ActiveRecord::Schema.define(version: 20180216003451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20180215232814) do
     t.boolean "fenced"
     t.string "hours_open"
     t.string "hours_close"
+    t.decimal "loc_latitude"
+    t.decimal "loc_longitude"
   end
 
   create_table "sizes", force: :cascade do |t|

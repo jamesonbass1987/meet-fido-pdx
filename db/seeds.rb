@@ -35,7 +35,9 @@ parksObj = [
         address_2: 'Duke',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.474847,
+        loc_longitude: -122.606113,
     },
     {
         name: 'Chimney Park',
@@ -43,7 +45,9 @@ parksObj = [
         address_1: '9360 N Columbia Blvd',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.607636,
+        loc_longitude: -122.759246
     },
     {
         name: 'Delta Park',
@@ -51,7 +55,9 @@ parksObj = [
         address_1: 'N Denver Avenue',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude:  45.598901,
+        loc_longitude: -122.680928
     },
     {
         name: 'The Fields',
@@ -60,7 +66,9 @@ parksObj = [
         address_2: 'Overton Street',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.532826,
+        loc_longitude: -122.682495
     },
     {
         name: 'Gabriel Park',
@@ -69,7 +77,9 @@ parksObj = [
         address_2: 'Vermont Street',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude:  45.474297,
+        loc_longitude: -122.719109
     },
     {
         name: 'Lynchwood Park',
@@ -78,7 +88,9 @@ parksObj = [
         address_2: 'Haig Street',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.497999,
+        loc_longitude: -122.485928
     },
     {
         name: 'Normandale Park',
@@ -87,7 +99,9 @@ parksObj = [
         address_2: 'Halsey Street',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.532056,
+        loc_longitude: -122.606141
     },
     {
         name: 'Sacajawea Park',
@@ -96,7 +110,9 @@ parksObj = [
         address_2: 'Alberta Street',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.559474,
+        loc_longitude: -122.585858
     },
     {
         name: 'Wallace Park',
@@ -105,7 +121,9 @@ parksObj = [
         address_2: 'Raleigh',
         fenced: true,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.533308,
+        loc_longitude: -122.703689
     },
     # UNFENCED AREAS
     {
@@ -115,7 +133,9 @@ parksObj = [
         address_2: 'Delaware Avenue',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.572801,
+        loc_longitude: -122.693768
     },
     {
         name: 'Cathedral Park',
@@ -124,7 +144,9 @@ parksObj = [
         address_2: 'Pittsburg Avenue',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.58749,
+        loc_longitude: -122.762478 
     },
     {
         name: 'Overlook Park',
@@ -133,7 +155,9 @@ parksObj = [
         address_2: 'Interstate Avenue',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.548522,
+        loc_longitude: -122.682562
     },
     {
         name: 'Portland International Raceway',
@@ -142,7 +166,9 @@ parksObj = [
         address_2: 'Victory Blvd',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.593085,
+        loc_longitude: -122.688131
     },
     {
         name: 'Alberta Park',
@@ -151,16 +177,9 @@ parksObj = [
         address_2: 'Killingsworth Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
-    },
-    {
-        name: 'Argay Park',
-        description: 'Includes accessible play area, basketball court, dog off-leash area, paths – paved, paths – unpaved, picnic tables, playground, soccer field, softball field, tennis backboard, tennis court, and tennis court – lighted.',
-        address_1: 'NE 141st Avenue',
-        address_2: 'Falling Street',
-        fenced: false,
-        hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.564475,
+        loc_longitude: -122.645104
     },
     {
         name: 'East Holladay Park',
@@ -169,7 +188,9 @@ parksObj = [
         address_2: 'Wasco Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.53071,
+        loc_longitude: -122.529188
     },
     {
         name: 'Fernhill Park',
@@ -178,7 +199,9 @@ parksObj = [
         address_2: 'Ainsworth Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude:  45.566154,
+        loc_longitude: -122.623416
     },
     {
         name: 'Frazer Park',
@@ -187,7 +210,9 @@ parksObj = [
         address_2: 'Hassalo Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.53051,
+        loc_longitude: -122.610657
     },
     {
         name: 'Grant Park',
@@ -196,7 +221,9 @@ parksObj = [
         address_2: 'U.S. Grant Place',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.539047,
+        loc_longitude: -122.628984
     },
     {
         name: 'Irving Park',
@@ -205,7 +232,9 @@ parksObj = [
         address_2: 'Freemont Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.548266,
+        loc_longitude: -122.658617
     },
     {
         name: 'Wilshire Park',
@@ -214,7 +243,9 @@ parksObj = [
         address_2: 'Skidmore Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.552839,
+        loc_longitude: -122.627935
     },
     {
         name: 'Couch Park',
@@ -223,16 +254,20 @@ parksObj = [
         address_2: 'Glisan Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 36.106935,
+        loc_longitude: -97.045139
     },
     {
         name: 'Cherry Park',
         description: 'Includes dog off-leash area.',
-        address_1: 'NW 19th Avenue',
-        address_2: 'Glisan Street',
+        address_1: 'SE 110th Avenue',
+        address_2: 'Stephens Street',
         fenced: false,
-        hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_open: "5:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 33.838764,
+        loc_longitude: -118.168021
     },
     {
         name: 'Creston Park',
@@ -241,7 +276,9 @@ parksObj = [
         address_2: 'Powell Blvd',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.496132,
+        loc_longitude: -122.618089
     },
     {
         name: 'Laurelhurst Park',
@@ -250,7 +287,9 @@ parksObj = [
         address_2: 'Stark Stret',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.521176,
+        loc_longitude: -122.627141
     },
     {
         name: 'Lents Park',
@@ -259,7 +298,9 @@ parksObj = [
         address_2: 'Holgate Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.48729,
+        loc_longitude: -122.570407
     },
     {
         name: 'Mt. Tabor Park',
@@ -268,7 +309,9 @@ parksObj = [
         address_2: 'SE 64th Avenue',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.514005,
+        loc_longitude: -122.597686
     },
     {
         name: 'Sellwood Riverfront Park',
@@ -277,7 +320,9 @@ parksObj = [
         address_2: 'Oaks Parkway',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.465045,
+        loc_longitude: -122.661905
     },
     {
         name: 'Sewallcrest Park',
@@ -286,7 +331,9 @@ parksObj = [
         address_2: 'Market Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.509742,
+        loc_longitude: -122.633058
     },
     {
         name: 'Woodstock Park',
@@ -295,7 +342,9 @@ parksObj = [
         address_2: 'Steele Street',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.483602,
+        loc_longitude: -122.612516
     },
     {
         name: 'Council Crest Park',
@@ -303,7 +352,9 @@ parksObj = [
         address_1: 'SW Council Crest Drive',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.498619,
+        loc_longitude: -122.707909
     },
     {
         name: 'Hillsdale Park',
@@ -312,7 +363,9 @@ parksObj = [
         address_2: 'Hillsdale Highway',
         fenced: false,
         hours_open: "8:00 A.M.",
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.498619,
+        loc_longitude: -122.707909
     },
     {
         name: 'Wilamette Park',
@@ -321,7 +374,9 @@ parksObj = [
         address_2: 'Nebraska Street',
         fenced: false,
         hours_open: 8,
-        hours_close: "Midnight"
+        hours_close: "Midnight",
+        loc_latitude: 45.477469,
+        loc_longitude: -122.67085
     }
 ]
 
