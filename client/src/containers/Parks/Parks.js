@@ -7,7 +7,7 @@ import * as actions from '../../store/actions/index';
 import { Container } from 'semantic-ui-react';
 import { Header, Modal, Image } from 'semantic-ui-react';
 import TreeImage from '../../assets/images/trees.png'
-import ParkList from './ParksList/ParksList';
+import ParksList from '../../components/ParksList/ParksList';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import MapComponent from '../../components/Map/Map'
 import ParkModal from '../../components/UI//Modal/Modal'
@@ -16,7 +16,7 @@ class Parks extends Component {
 
   state = {
     showModal: false,
-    showInfoWindow: false
+    showInfoWindow: false,
   }
 
   componentDidMount(){
@@ -86,7 +86,10 @@ class Parks extends Component {
           content={this.props.parks}
           markerClicked={this.handleMarkerClick}
           />
-        {/* <ParkList parks={this.props.parks}/> */}
+        <ParksList 
+          parks={this.props.parks}
+          onSearchQueryUpdate={this.onSearchQueryUpdate} 
+        />
         {parkModal}
       </Container>
     )

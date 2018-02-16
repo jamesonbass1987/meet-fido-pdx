@@ -1,0 +1,12 @@
+.Form {
+    height: 100px !important;
+    margin-bottom: 10px;
+}
+
+.FormInput {
+    padding-bottom: 15px;
+}
+
+.FormCheckbox {
+    padding-right: 15px;
+}

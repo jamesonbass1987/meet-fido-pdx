@@ -4,5 +4,6 @@ export {
 
 export {
     fetchParks,
-    fetchPark
+    fetchPark,
+    updateParkFilter
 } from './park'

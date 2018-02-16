@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
 
-import ParkItem from '../../../components/ParkItem/ParkItem'
-import Spinner from '../../../components/UI/Spinner/Spinner';
+import { Grid } from 'semantic-ui-react'
 
+import ParkItem from '../ParkItem/ParkItem'
+import Spinner from '../UI/Spinner/Spinner'
 
-const parkList = props => {
+const parks = props => {
 
     let parks = <Spinner />
 
@@ -13,7 +13,7 @@ const parkList = props => {
         const parkNodeList = props.parks.map(park => (
             <ParkItem key={park.id} park={park} />
         ))
-
+        
         parks = <Grid celled>{parkNodeList}</Grid>
     }
 
@@ -22,7 +22,6 @@ const parkList = props => {
             {parks}
         </Grid>
     );
-}
+};
 
-
-export default parkList;
+export default parks;

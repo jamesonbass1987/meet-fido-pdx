@@ -74,3 +74,13 @@ export const fetchPark = id => {
             });
     };
 };
+
+// Park filter functions
+
+export const updateParkFilter = (type, value) => {
+    console.log(type, value)
+    return {
+        type: actionTypes.UPDATE_PARK_FILTER,
+        payload: { type, value }
+    };
+}
