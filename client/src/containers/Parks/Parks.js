@@ -49,7 +49,7 @@ class Parks extends Component {
       const isFenced = this.props.selectedPark.fenced ? "Fenced" : "Open Off Leash Area"
       const parkAddress = !this.props.selectedPark.address_2 ? `${this.props.selectedPark.address_1}` : `${this.props.selectedPark.address_1} and ${this.props.selectedPark.address_2}`
       const hours = `${this.props.selectedPark.hours_open} A.M. to ${this.props.selectedPark.hours_close}`      
-
+      const directionsURL = `https://www.google.com/maps/search/?api=1&query=${this.props.selectedPark.loc_latitude},${this.props.selectedPark.loc_longitude}`
       parkModal = (<ParkModal
           park={this.props.selectedPark}
           show={this.state.showModal}
@@ -61,7 +61,7 @@ class Parks extends Component {
             <Modal.Description>
               <Header>About The Park:</Header>
               <p>{this.props.selectedPark.description}</p>
-              <p><strong>Address: </strong>{parkAddress}</p>
+              <p><strong>Address: </strong>{parkAddress} <a target="_blank" href={directionsURL}>(Get Directions)</a></p>
               <p><strong>Park Hours: </strong>{hours}</p>
               <p><strong><em>{isFenced}</em></strong></p>
             </Modal.Description>
