@@ -6,6 +6,10 @@ import Parks from '../Parks/Parks';
 
 const parksList = props => {
 
+    const parks = props.parks.filter(park => {
+        return park.name.toLowerCase().includes(props.filterParams.searchQuery.trim().toLowerCase())
+    })
+
     return (
             <Segment>
                 <ParkForm 
@@ -17,7 +21,7 @@ const parksList = props => {
                     onFilterCheckboxUpdate={props.updateParksFilter}
                     onSearchQueryUpdate={props.onSearchQueryUpdate}
                 />
-                <Parks parks={props.parks} />
+                <Parks parks={parks} />
             </Segment>
         )
 }

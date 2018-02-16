@@ -88,7 +88,8 @@ class Parks extends Component {
           />
         <ParksList 
           parks={this.props.parks}
-          onSearchQueryUpdate={this.onSearchQueryUpdate} 
+          onSearchQueryUpdate={this.onSearchQueryUpdate}
+          filterParams={this.props.filterParams} 
         />
         {parkModal}
       </Container>
@@ -101,6 +102,7 @@ const mapStateToProps = state => {
     parks: state.park.parks,
     loading: state.park.loading,
     selectedPark: state.park.selectedPark,
+    filterParams: state.park.parkFilter,
   }
 }
 
