@@ -5,11 +5,12 @@ import axios from '../../shared/axios-api';
 import * as actions from '../../store/actions/index';
 
 import { Container } from 'semantic-ui-react';
+import { Header, Modal, Image } from 'semantic-ui-react';
+import TreeImage from '../../assets/images/trees.png'
 // import ParkList from '../../components/ParkList/ParkList';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import MapComponent from '../../components/Map/Map'
-import Modal from '../../components/UI/Modal/Modal'
-
+import ParkModal from '../../components/UI//Modal/Modal'
 
 class Parks extends Component {
 
@@ -38,6 +39,33 @@ class Parks extends Component {
   }
 
   render() {
+
+    let parkModal;
+
+    if (this.props.selectedPark && !this.props.loading && this.state.showModal) {
+      const isFenced = this.props.selectedPark.fenced ? "Fenced" : "Open Off Leash Area"
+      const parkAddress = !this.props.selectedPark.address_2 ? `${this.props.selectedPark.address_1}` : `${this.props.selectedPark.address_1} and ${this.props.selectedPark.address_2}`
+      const hours = `${this.props.selectedPark.hours_open} A.M. to ${this.props.selectedPark.hours_close}`      
+
+      parkModal = (<ParkModal
+          park={this.props.selectedPark}
+          show={this.state.showModal}
+          handleClose={this.handleModalClose}
+        >
+        <Modal.Header>{this.props.selectedPark.name}</Modal.Header>
+          <Modal.Content image>
+          <Image wrapped size='medium' src={TreeImage} />
+            <Modal.Description>
+              <Header>About The Park:</Header>
+              <p>{this.props.selectedPark.description}</p>
+              <p><strong>Address: </strong>{parkAddress}</p>
+              <p><strong>Park Hours: </strong>{hours}</p>
+              <p><strong><em>{isFenced}</em></strong></p>
+            </Modal.Description>
+          </Modal.Content>
+        </ParkModal>)
+    }
+
     return (
       <Container>
         <PageHeading
@@ -56,7 +84,7 @@ class Parks extends Component {
           markerClicked={this.handleMarkerClick}
           />
         {/* <ParkList parks={this.props.parks}/> */}
-        <Modal show={this.state.showModal} handleClose={this.handleModalClose} />
+        {parkModal}
       </Container>
     )
   }
