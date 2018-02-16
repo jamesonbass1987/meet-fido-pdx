@@ -7,7 +7,7 @@ import * as actions from '../../store/actions/index';
 import { Container } from 'semantic-ui-react';
 import { Header, Modal, Image } from 'semantic-ui-react';
 import TreeImage from '../../assets/images/trees.png'
-// import ParkList from '../../components/ParkList/ParkList';
+import ParkList from './ParksList/ParksList';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import MapComponent from '../../components/Map/Map'
 import ParkModal from '../../components/UI//Modal/Modal'
@@ -15,7 +15,8 @@ import ParkModal from '../../components/UI//Modal/Modal'
 class Parks extends Component {
 
   state = {
-    showModal: false
+    showModal: false,
+    showInfoWindow: false
   }
 
   componentDidMount(){
@@ -26,19 +27,21 @@ class Parks extends Component {
     this.props.onFetchPark(id)
 
     this.setState({
-      ...this.state,
       showModal: true
     })
   }
 
   handleModalClose = () => {
     this.setState({
-      ...this.state,
       showModal: false
     })
   }
 
   render() {
+
+
+    // Set park modal to selected park once one is clicked on map, pass in modal props to ParkModal
+    // as children to display on page.
 
     let parkModal;
 
@@ -80,7 +83,7 @@ class Parks extends Component {
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `400px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-          parks={this.props.parks}
+          content={this.props.parks}
           markerClicked={this.handleMarkerClick}
           />
         {/* <ParkList parks={this.props.parks}/> */}

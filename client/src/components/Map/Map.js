@@ -4,15 +4,14 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 // import classes from './Map.css'
 
 const mapComponent = props => {
-    
-    const parkMarkerList = props.parks.map((park, i) => (
+
+    const contentMarkerList = props.content.map((park, i) => (
             <Marker
                 position={{lat: parseFloat(park.loc_latitude), lng: parseFloat(park.loc_longitude)}}
                 key={i}
                 clickable
                 onClick={() => props.markerClicked(park.id)}
-                >
-            </Marker>
+                />
     ))
 
     return (
@@ -21,7 +20,7 @@ const mapComponent = props => {
                 defaultZoom={11}
                 defaultCenter={{ lat: 45.523062, lng: -122.676482 }}
             >
-                {parkMarkerList}
+                {contentMarkerList}
             </GoogleMap>
         </div>
     )

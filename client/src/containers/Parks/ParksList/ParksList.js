@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
-import ParkItem from './ParkItem/ParkItem'
-import Spinner from '../../components/UI/Spinner/Spinner';
+import ParkItem from '../../../components/ParkItem/ParkItem'
+import Spinner from '../../../components/UI/Spinner/Spinner';
 
 
 const parkList = props => {
