@@ -1,28 +1,26 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
+import classes from './Map.css'
+
 const mapComponent = props => {
     
-
-    const parkMarkerList = props.parks.map((park, i) => {
-        debugger;
-
-        return (
+    const parkMarkerList = props.parks.map((park, i) => (
             <Marker
-                position={{lat: park.loc_latitude, lng: park.loc_longitude}}
-                key={i}
-            />
-        )
-    }
-    )
+                position={{lat: parseFloat(park.loc_latitude), lng: parseFloat(park.loc_longitude)}}
+                key={i}>
+            </Marker>
+    ))
 
     return (
-        <GoogleMap
-            defaultZoom={11}
-            defaultCenter={{ lat: 45.523062, lng: -122.676482 }}
-        >
-        {parkMarkerList}
-        </GoogleMap>
+        <div>
+            <GoogleMap
+                defaultZoom={11}
+                defaultCenter={{ lat: 45.523062, lng: -122.676482 }}
+            >
+                {parkMarkerList}
+            </GoogleMap>
+        </div>
     )
 }
 

@@ -4,7 +4,7 @@ import axios from '../../shared/axios-api';
 
 import * as actions from '../../store/actions/index';
 
-import { Container, Header, Icon } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import ParkList from '../../components/ParkList/ParkList';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import MapComponent from '../../components/Map/Map'
