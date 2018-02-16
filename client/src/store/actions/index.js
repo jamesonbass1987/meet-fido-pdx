@@ -1,5 +1,6 @@
 export {
-
+    fetchDogs,
+    fetchDog,
 } from './dog'
 
 export {
