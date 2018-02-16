@@ -381,7 +381,7 @@ parksObj = [
 ]
 
 parksObj.each do |park|
-    Park.create(name: park[:name], description: park[:description], address_1: park[:address_1], address_2: park[:address_2], fenced: park[:fenced], hours_open: park[:hours_open], hours_close: park[:hours_close])
+    Park.create(name: park[:name], description: park[:description], address_1: park[:address_1], address_2: park[:address_2], fenced: park[:fenced], hours_open: park[:hours_open], hours_close: park[:hours_close], loc_latitude: park[:loc_latitude], loc_longitude: park[:loc_longitude])
 end
 
 # # USER DATA
