@@ -85,6 +85,7 @@ class Parks extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           content={this.props.parks}
           markerClicked={this.handleMarkerClick}
+          filterParams={this.props.filterParams} 
           />
         <ParksList 
           parks={this.props.parks}

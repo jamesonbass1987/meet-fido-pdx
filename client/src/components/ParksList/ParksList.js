@@ -2,13 +2,11 @@ import React from 'react';
 import { Segment } from 'semantic-ui-react';
 import ParkForm from '../ParkForm/ParkForm';
 import Parks from '../Parks/Parks';
-
+import { parkFilter } from '../../shared/parkFilter'
 
 const parksList = props => {
 
-    const parks = props.parks.filter(park => {
-        return park.name.toLowerCase().includes(props.filterParams.searchQuery.trim().toLowerCase())
-    })
+    const parks = parkFilter(props.parks, props.filterParams)
 
     return (
             <Segment>

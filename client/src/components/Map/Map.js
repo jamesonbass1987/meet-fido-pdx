@@ -1,11 +1,13 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { parkFilter } from '../../shared/parkFilter'
 
 // import classes from './Map.css'
 
 const mapComponent = props => {
+    const parks = parkFilter(props.content, props.filterParams)
 
-    const contentMarkerList = props.content.map((park, i) => (
+    const contentMarkerList = parks.map((park, i) => (
             <Marker
                 position={{lat: parseFloat(park.loc_latitude), lng: parseFloat(park.loc_longitude)}}
                 key={i}
