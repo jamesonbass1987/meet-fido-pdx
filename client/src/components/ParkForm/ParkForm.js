@@ -13,8 +13,7 @@ class ParkForm extends Component{
             this.props.onSearchFilterUpdate(event.target.name, event.target.value)
         } else {
             const name = event.target.id
-            const value = !this.props.parkFilter[event.name.key]
-            debugger;
+            const value = !this.props.parkFilter[name]
             this.props.onSearchFilterUpdate(name, value)
         }
     }

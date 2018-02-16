@@ -5,8 +5,9 @@ import { parkFilter } from '../../shared/parkFilter'
 // import classes from './Map.css'
 
 const mapComponent = props => {
-    const parks = parkFilter(props.content, props.filterParams)
 
+    const parks = parkFilter(props.content, props.filterParams)
+    
     const contentMarkerList = parks.map((park, i) => (
             <Marker
                 position={{lat: parseFloat(park.loc_latitude), lng: parseFloat(park.loc_longitude)}}
