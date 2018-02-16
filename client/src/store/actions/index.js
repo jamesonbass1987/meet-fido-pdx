@@ -3,5 +3,6 @@ export {
 } from './dog'
 
 export {
-    fetchParks
+    fetchParks,
+    fetchPark
 } from './park'
