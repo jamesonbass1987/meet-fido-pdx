@@ -15,7 +15,10 @@ function dogs(props) {
             <Dog key={uuidv1()} dog={dog} />
         ))
 
-        dogs = <Card.Group itemsPerRow={4}>{dogNodeList}</Card.Group>
+        dogs = <Card.Group 
+            itemsPerRow={4}
+            doubling
+        >{dogNodeList}</Card.Group>
     }
 
     return dogs
