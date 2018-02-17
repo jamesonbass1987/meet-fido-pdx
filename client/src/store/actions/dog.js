@@ -76,9 +76,10 @@ export const fetchDog = id => {
 
 //DOG ATTRIBUTE INDEX ACTIONS
 
-export const fetchDogAttributeSuccess = (attribute) => {
+export const fetchDogAttributeSuccess = (attributes, attribute) => {
     return {
         type: actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS,
+        attributes,
         attribute
     };
 };
@@ -101,8 +102,8 @@ export const fetchDogAttribute = attribute => {
         dispatch(fetchDogAttributeStart());
         axios.get(`/${attribute}`)
             .then(res => {
-                const fetchedAttribute = res.data.dog;
-                dispatch(fetchDogAttributeSuccess(fetchedAttribute));
+                const fetchedAttribute = res.data;
+                dispatch(fetchDogAttributeSuccess(fetchedAttribute, attribute));
             })
             .catch(err => {
                 dispatch(fetchDogAttributeFail(err));

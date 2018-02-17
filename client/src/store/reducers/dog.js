@@ -57,7 +57,10 @@ const fetchDogAttributeStart = state => {
 
 const fetchDogAttributeSuccess = (state, action) => {
     return updateObject(state, {
-        attributes: action.attributes,
+        attributes: {
+            ...state.attributes,
+            [action.attribute]: action.attributes
+        },
         loading: false
     });
 };
@@ -74,9 +77,9 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.FETCH_DOG_START: return fetchDogStart(state);
         case actionTypes.FETCH_DOG_SUCCESS: return fetchDogSuccess(state, action);
         case actionTypes.FETCH_DOG_FAIL: return fetchDogFail(state);
-        case actionTypes.FETCH_DOG_ATTRIBUTE_START: return fetchDogStart(state);
-        case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogSuccess(state, action);
-        case actionTypes.FETCH_DOG_ATTRIBUTE_FAIL: return fetchDogFail(state);
+        case actionTypes.FETCH_DOG_ATTRIBUTE_START: return fetchDogAttributeStart(state);
+        case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogAttributeSuccess(state, action);
+        case actionTypes.FETCH_DOG_ATTRIBUTE_FAIL: return fetchDogAttributeFail(state);
         default: return state
     }
 }
