@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid, Image } from 'semantic-ui-react';
-import classes from './ParkItem.css';
+import classes from './Park.css';
 
-import TreesImage from '../../assets/images/trees.png'
+import TreesImage from '../../../assets/images/trees.png'
 
-const parkItem = props => {
+const park = props => {
     const isFenced = props.park.fenced ? "Fenced" : "Open Off Leash Area"
     const parkAddress = !props.park.address_2 ? `${props.park.address_1}` : `${props.park.address_1} and ${props.park.address_2}`    
 
@@ -30,4 +30,4 @@ const parkItem = props => {
     );
 };
 
-export default parkItem;
+export default park;

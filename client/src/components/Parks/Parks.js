@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Grid } from 'semantic-ui-react'
 
-import ParkItem from '../ParkItem/ParkItem'
+import Park from './Park/Park'
 import Spinner from '../UI/Spinner/Spinner'
 
 const parks = props => {
@@ -11,7 +11,7 @@ const parks = props => {
 
     if (!props.loading) {
         const parkNodeList = props.parks.map(park => (
-            <ParkItem key={park.id} park={park} />
+            <Park key={park.id} park={park} />
         ))
         
         parks = <Grid celled>{parkNodeList}</Grid>

@@ -2,7 +2,9 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
-
+    dogs: [],
+    loading: false,
+    selectedDog: null,
 }
 const fetchDogsStart = state => {
     return updateObject(state, { loading: true });

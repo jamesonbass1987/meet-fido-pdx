@@ -7,7 +7,7 @@ import * as actions from '../../store/actions/index';
 import { Container } from 'semantic-ui-react';
 import { Header, Modal, Image } from 'semantic-ui-react';
 import TreeImage from '../../assets/images/trees.png'
-import ParksList from '../../components/ParksList/ParksList';
+import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import MapComponent from '../../components/Map/Map'
 import ParkModal from '../../components/UI//Modal/Modal'
@@ -87,7 +87,7 @@ class Parks extends Component {
           markerClicked={this.handleMarkerClick}
           filterParams={this.props.filterParams} 
           />
-        <ParksList 
+        <ParksComponent 
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
           filterParams={this.props.filterParams} 
