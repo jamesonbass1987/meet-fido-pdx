@@ -6,6 +6,9 @@ Rails.application.routes.draw do
         resources :dogs
         resources :users
         resources :parks, only: [:show, :index]
+        resources :ages, only: [:index]
+        resources :sizes, only: [:index]
+        resources :breeds, only: [:index]
       end
   end
 end
