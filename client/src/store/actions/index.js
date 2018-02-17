@@ -2,7 +2,8 @@ export {
     fetchDogs,
     fetchDog,
     fetchDogAttribute,
-    updateDogFilter
+    updateDogFilter,
+    resetDogFilter
 } from './dog'
 
 export {

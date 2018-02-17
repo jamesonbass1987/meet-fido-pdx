@@ -74,6 +74,16 @@ const fetchDogAttributeFail = state => {
     return updateObject(state, { loading: false });
 };
 
+const resetDogFilter = state => {
+    return updateObject(state, {
+        currentFilter: {
+            age: '',
+            size: '',
+            breed: '' 
+        }
+    })
+}
+
 const dogReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_DOGS_START: return fetchDogsStart(state);
@@ -86,6 +96,7 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogAttributeSuccess(state, action);
         case actionTypes.FETCH_DOG_ATTRIBUTE_FAIL: return fetchDogAttributeFail(state);
         case actionTypes.UPDATE_DOG_FILTER: return updateDogFilter(state, action);
+        case actionTypes.RESET_DOG_FILTER: return resetDogFilter(state);
         default: return state
     }
 }

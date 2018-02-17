@@ -119,3 +119,9 @@ export const updateDogFilter = (type, value) => {
         payload: { type, value }
     };
 }
+
+export const resetDogFilter = () => {
+    return {
+        type: actionTypes.RESET_DOG_FILTER
+    }
+}

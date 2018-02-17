@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index';
-import { Dropdown, Segment } from 'semantic-ui-react'
+import { Dropdown, Segment, Button, Icon } from 'semantic-ui-react'
 
 import classes from './DogsForm.css'
 
@@ -85,6 +85,18 @@ class DogForm extends Component {
                     onChange={this.handleFilterUpdate.bind(this)}
                     value={this.props.dogFilter.size}
                 />
+                <Button 
+                    animated='vertical'
+                    onClick={() => this.props.onFormReset()}
+                    color="twitter"
+                    floated="right"
+                    className={classes.Button}
+                >
+                    <Button.Content hidden>Reset</Button.Content>
+                    <Button.Content visible>
+                        <Icon name='repeat' />
+                    </Button.Content>
+                </Button>
             </Segment>
         );
     }
@@ -104,6 +116,7 @@ const mapDispatchToProps = dispatch => {
         onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value)),
         onFetchAttribute: (attribute) => dispatch(actions.fetchDogAttribute(attribute)),
         onDogFilterUpdate: (attribute, value) => dispatch(actions.updateDogFilter(attribute, value)),
+        onFormReset: () => dispatch(actions.resetDogFilter())
     }
 }
 
