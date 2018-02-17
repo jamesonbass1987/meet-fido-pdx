@@ -1,4 +1,4 @@
-class Api::V1::BreedController < ApiController
+class Api::V1::BreedsController < ApiController
 
     def index
         render json: Breed.all, status: 200

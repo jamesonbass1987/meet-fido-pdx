@@ -72,3 +72,40 @@ export const fetchDog = id => {
             });
     };
 };
+
+
+//DOG ATTRIBUTE INDEX ACTIONS
+
+export const fetchDogAttributeSuccess = (attribute) => {
+    return {
+        type: actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS,
+        attribute
+    };
+};
+
+export const fetchDogAttributeFail = (error) => {
+    return {
+        type: actionTypes.FETCH_DOG_ATTRIBUTE_FAIL,
+        error
+    };
+};
+
+export const fetchDogAttributeStart = () => {
+    return {
+        type: actionTypes.FETCH_DOG_ATTRIBUTE_START
+    };
+};
+
+export const fetchDogAttribute = attribute => {
+    return dispatch => {
+        dispatch(fetchDogAttributeStart());
+        axios.get(`/${attribute}`)
+            .then(res => {
+                const fetchedAttribute = res.data.dog;
+                dispatch(fetchDogAttributeSuccess(fetchedAttribute));
+            })
+            .catch(err => {
+                dispatch(fetchDogAttributeFail(err));
+            });
+    };
+};

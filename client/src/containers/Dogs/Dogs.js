@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchDogs: () => dispatch(actions.fetchDogs()),
-        onFetchDog: (id) => dispatch(actions.fetchDog(id))
+        onFetchDog: (id) => dispatch(actions.fetchDog(id)),
     };
 };
 

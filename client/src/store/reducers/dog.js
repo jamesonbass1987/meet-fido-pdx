@@ -5,6 +5,11 @@ const initialState = {
     dogs: [],
     loading: false,
     selectedDog: null,
+    attributes: {
+        ages: [],
+        breeds: [],
+        sizes: []
+    }
 }
 const fetchDogsStart = state => {
     return updateObject(state, { loading: true });
@@ -45,6 +50,22 @@ const fetchDogFail = state => {
 //     })
 // }
 
+
+const fetchDogAttributeStart = state => {
+    return updateObject(state, { loading: true });
+};
+
+const fetchDogAttributeSuccess = (state, action) => {
+    return updateObject(state, {
+        attributes: action.attributes,
+        loading: false
+    });
+};
+
+const fetchDogAttributeFail = state => {
+    return updateObject(state, { loading: false });
+};
+
 const dogReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_DOGS_START: return fetchDogsStart(state);
@@ -53,6 +74,9 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.FETCH_DOG_START: return fetchDogStart(state);
         case actionTypes.FETCH_DOG_SUCCESS: return fetchDogSuccess(state, action);
         case actionTypes.FETCH_DOG_FAIL: return fetchDogFail(state);
+        case actionTypes.FETCH_DOG_ATTRIBUTE_START: return fetchDogStart(state);
+        case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogSuccess(state, action);
+        case actionTypes.FETCH_DOG_ATTRIBUTE_FAIL: return fetchDogFail(state);
         default: return state
     }
 }
