@@ -29,7 +29,7 @@ export const fetchParks = () => {
         dispatch(fetchParksStart());
         axios.get('/parks', { key })
             .then(res => {
-                const fetchedParks = [...res.data.parks];
+                const fetchedParks = [...res.data];
                 dispatch(fetchParksSuccess(fetchedParks));
             })
             .catch(err => {
