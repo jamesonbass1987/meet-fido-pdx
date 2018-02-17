@@ -9,12 +9,12 @@ const uuidv1 = require('uuid/v1');
 function dogs(props) {
 
     let dogs = <Spinner />
-
+    
     if (!props.loading) {
         const dogNodeList = props.dogs.map(dog => (
             <Dog key={uuidv1()} dog={dog} />
         ))
-
+        
         dogs = <Card.Group 
             itemsPerRow={4}
             doubling

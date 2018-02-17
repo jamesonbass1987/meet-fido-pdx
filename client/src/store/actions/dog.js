@@ -28,7 +28,7 @@ export const fetchDogs = () => {
         dispatch(fetchDogsStart());
         axios.get('/dogs')
             .then(res => {
-                const fetchedDogs = [...res.data.dogs];
+                const fetchedDogs = [...res.data];
                 dispatch(fetchDogsSuccess(fetchedDogs));
             })
             .catch(err => {

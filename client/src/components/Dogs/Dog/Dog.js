@@ -6,17 +6,17 @@ import DogImage from '../../../assets/images/dog.png'
 const dog = props => {
 
     let icon;
-
     if (props.dog.preferred_park){
         icon = <Popup 
                 trigger={<Icon
-                    color="yellow"
+                    color="green"
                     corner
                     size="small"
+                    name="tree"
+                    position="top right"
                 />}
-                content="I have a favorite park!"
+                content={`My favorite park is ${props.dog.preferred_park.name}!`}
                 />
-        
     }
 
     console.log(props)
@@ -24,8 +24,7 @@ const dog = props => {
         <Card id={props.id}>
             <Image src={DogImage} />
             <Card.Content>
-                <Card.Header>{props.dog.name}</Card.Header>
-                {icon}
+                <Card.Header>{props.dog.name} {icon}</Card.Header>
                 <Card.Meta>{props.dog.breed.name} | {props.dog.age.name} | {props.dog.size.name} </Card.Meta>
                 <Card.Description>
                     <p>{props.dog.description}</p>
@@ -34,7 +33,7 @@ const dog = props => {
             <Card.Content extra>
                 <a>
                     <Icon name='user' />
-                    10 Friends
+                    Owner: {props.dog.user.username}
                 </a>
             </Card.Content>
         </Card>
