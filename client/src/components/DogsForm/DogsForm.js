@@ -1,26 +1,76 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index';
-import { Form, Input, Checkbox } from 'semantic-ui-react'
+import { Form, Input, Dropdown, Segment } from 'semantic-ui-react'
 
 import classes from './DogsForm.css'
 
 class DogForm extends Component {
 
     componentWillMount(){
-        this.props.ages.length === 0 ? this.props.onFetchAttribute("ages") : null;
-        this.props.breeds.length === 0 ? this.props.onFetchAttribute("breeds") : null;
-        this.props.sizes.length === 0 ? this.props.onFetchAttribute("sizes") : null;
+        if (this.props.breeds.length === 0){
+            this.props.onFetchAttribute("ages")
+            this.props.onFetchAttribute("breeds")
+            this.props.onFetchAttribute("sizes")
+        }
     }
 
     render() {
+
+        let breedsDropdownItems = this.props.breeds.map((breed, i) => {
+            return {
+                text: breed.name,
+                key: i + breed.name,
+                value: breed.id
+            }
+        })
+
+        let sizesDropdownItems = this.props.sizes.map((size, i) => {
+            return {
+                text: size.name,
+                key: i + size.name,
+                value: size.id
+            }
+        })
+
+        let agesDropdownItems = this.props.ages.map((age, i) => {
+            return {
+                text: age.name,
+                key: i + age.name,
+                value: age.id
+            }
+        })
+
         return (
-            <Form className={classes.Form}>
-                <Input 
-                    icon='search'
-                    placeholder="Search dogs by name..."
+            <Segment className={classes.InputContainer}>
+                <Dropdown
+                    placeholder='Breed'
+                    button
+                    fluid
+                    multiple
+                    className={classes.InputDropdowns}
+                    selection
+                    options={breedsDropdownItems}
                 />
-            </Form>
+                <Dropdown
+                    placeholder='Age'
+                    button
+                    fluid
+                    multiple
+                    className={classes.InputDropdowns}
+                    selection
+                    options={agesDropdownItems}
+                />
+                <Dropdown
+                    placeholder='Size'
+                    button
+                    fluid
+                    multiple
+                    className={classes.InputDropdowns}
+                    selection
+                    options={sizesDropdownItems}
+                />
+            </Segment>
         );
     }
 }
