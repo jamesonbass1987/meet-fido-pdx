@@ -23,7 +23,7 @@ class DogForm extends Component {
         } else if (this.props.sizes.includes(value)){
             attribute = 'size'
         } else {
-            attribute = 'breeds'
+            attribute = 'breed'
         }
 
         this.props.onDogFilterUpdate(attribute, value)
@@ -59,9 +59,9 @@ class DogForm extends Component {
             <Segment className={classes.InputContainer}>
                 <Dropdown
                     placeholder='Breed'
-                    onChange={this.handleFilterUpdate}
+                    onChange={this.handleFilterUpdate.bind(this)}
                     fluid
-                    multiple
+                    search
                     className={classes.InputDropdowns}
                     selection
                     options={breedsDropdownItems}
@@ -81,8 +81,8 @@ class DogForm extends Component {
                     fluid
                     className={classes.InputDropdowns}
                     selection
-                    options={agesDropdownItems}
-                    onChange={this.handleFilterUpdate}
+                    options={sizesDropdownItems}
+                    onChange={this.handleFilterUpdate.bind(this)}
                     value={this.props.dogFilter.size}
                 />
             </Segment>

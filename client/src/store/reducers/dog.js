@@ -13,7 +13,7 @@ const initialState = {
     currentFilter: {
         age: '',
         size: '',
-        breeds: [] 
+        breed: '' 
     }
 }
 const fetchDogsStart = state => {
