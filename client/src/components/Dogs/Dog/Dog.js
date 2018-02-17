@@ -4,14 +4,14 @@ import { Card, Icon, Image } from 'semantic-ui-react';
 import DogImage from '../../../assets/images/dog.png'
 
 const dog = props => {
-
+    console.log(props)
     return (
-        <Card>
+        <Card id={props.id}>
             <Image src={DogImage} />
             <Card.Content>
-                <Card.Header>Daniel</Card.Header>
-                <Card.Meta>Joined in 2016</Card.Meta>
-                <Card.Description>Daniel is a comedian living in Nashville.</Card.Description>
+                <Card.Header>{props.dog.name}</Card.Header>
+                <Card.Meta>{props.dog.breed.name} | {props.dog.age.name}</Card.Meta>
+                <Card.Description>{props.dog.description}</Card.Description>
             </Card.Content>
             <Card.Content extra>
                 <a>

@@ -36,14 +36,14 @@ const fetchDogFail = state => {
     return updateObject(state, { loading: false });
 };
 
-const updateDogFilter = (state, action) => {
-    return updateObject(state, {
-        dogFilter: {
-            ...state.dogFilter,
-            [action.payload.type]: action.payload.value
-        }
-    })
-}
+// const updateDogFilter = (state, action) => {
+//     return updateObject(state, {
+//         dogFilter: {
+//             ...state.dogFilter,
+//             [action.payload.type]: action.payload.value
+//         }
+//     })
+// }
 
 const dogReducer = (state = initialState, action) => {
     switch (action.type) {
