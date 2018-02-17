@@ -10,15 +10,7 @@ function dogsList(props) {
                 as='h3'
                 textAlign='center'
             >Use the menu to search for the perfect furry friend!</Header>
-            <DogForm
-                // handleInputChanged={props.handleInputChanged}
-                // searchText={props.searchText}
-                // onChecked={props.onChecked}
-                // fencedChecked={props.fencedChecked}
-                // unfencedChecked={props.unfencedChecked}
-                // onFilterCheckboxUpdate={props.updateParksFilter}
-                // onSearchQueryUpdate={props.onSearchQueryUpdate}
-            />
+            <DogForm />
             <Divider />
             <Dogs dogs={props.dogs} />
         </Segment>

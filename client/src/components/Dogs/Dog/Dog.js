@@ -19,7 +19,6 @@ const dog = props => {
                 />
     }
 
-    console.log(props)
     return (
         <Card id={props.id}>
             <Image src={DogImage} />

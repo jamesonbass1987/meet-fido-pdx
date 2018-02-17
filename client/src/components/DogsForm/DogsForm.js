@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index';
-import { Form, Input, Dropdown, Segment } from 'semantic-ui-react'
+import { Dropdown, Segment } from 'semantic-ui-react'
 
 import classes from './DogsForm.css'
 
@@ -15,21 +15,27 @@ class DogForm extends Component {
         }
     }
 
+    handleFilterUpdate = (event, { value }) => {
+        const attribute = value.toString()
+        const val = event.target.innerText
+        this.props.onDogFilterUpdate(attribute, val)
+    }
+
     render() {
 
         let breedsDropdownItems = this.props.breeds.map((breed, i) => {
             return {
                 text: breed.name,
                 key: i + breed.name,
-                value: breed.id
-            }
+                value: 'breed',
+                }
         })
 
         let sizesDropdownItems = this.props.sizes.map((size, i) => {
             return {
                 text: size.name,
                 key: i + size.name,
-                value: size.id
+                value: 'size',
             }
         })
 
@@ -37,7 +43,7 @@ class DogForm extends Component {
             return {
                 text: age.name,
                 key: i + age.name,
-                value: age.id
+                value: 'age',
             }
         })
 
@@ -45,6 +51,7 @@ class DogForm extends Component {
             <Segment className={classes.InputContainer}>
                 <Dropdown
                     placeholder='Breed'
+                    onChange={this.handleFilterUpdate}
                     button
                     fluid
                     multiple
@@ -60,6 +67,7 @@ class DogForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={agesDropdownItems}
+                    onChange={this.handleFilterUpdate}
                 />
                 <Dropdown
                     placeholder='Size'
@@ -69,6 +77,7 @@ class DogForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={sizesDropdownItems}
+                    onChange={this.handleFilterUpdate}
                 />
             </Segment>
         );
@@ -87,7 +96,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value)),
-        onFetchAttribute: (attribute) => dispatch(actions.fetchDogAttribute(attribute))
+        onFetchAttribute: (attribute) => dispatch(actions.fetchDogAttribute(attribute)),
+        onDogFilterUpdate: (attribute, value) => dispatch(actions.updateDogFilter(attribute, value)),
     }
 }
 

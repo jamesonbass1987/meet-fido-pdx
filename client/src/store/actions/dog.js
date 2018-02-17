@@ -110,3 +110,12 @@ export const fetchDogAttribute = attribute => {
             });
     };
 };
+
+// Dog filter functions
+
+export const updateDogFilter = (type, value) => {
+    return {
+        type: actionTypes.UPDATE_DOG_FILTER,
+        payload: { type, value }
+    };
+}

@@ -9,6 +9,11 @@ const initialState = {
         ages: [],
         breeds: [],
         sizes: []
+    },
+    currentFilter: {
+        age: null,
+        size: null,
+        breeds: [] 
     }
 }
 const fetchDogsStart = state => {
@@ -41,14 +46,14 @@ const fetchDogFail = state => {
     return updateObject(state, { loading: false });
 };
 
-// const updateDogFilter = (state, action) => {
-//     return updateObject(state, {
-//         dogFilter: {
-//             ...state.dogFilter,
-//             [action.payload.type]: action.payload.value
-//         }
-//     })
-// }
+const updateDogFilter = (state, action) => {
+    return updateObject(state, {
+        currentFilter: {
+            ...state.currentFilter,
+            [action.payload.type]: action.payload.value
+        }
+    })
+}
 
 
 const fetchDogAttributeStart = state => {
@@ -80,6 +85,7 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.FETCH_DOG_ATTRIBUTE_START: return fetchDogAttributeStart(state);
         case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogAttributeSuccess(state, action);
         case actionTypes.FETCH_DOG_ATTRIBUTE_FAIL: return fetchDogAttributeFail(state);
+        case actionTypes.UPDATE_DOG_FILTER: return updateDogFilter(state, action);
         default: return state
     }
 }
