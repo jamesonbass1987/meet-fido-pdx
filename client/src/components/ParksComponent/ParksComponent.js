@@ -6,7 +6,7 @@ import { parkFilter } from '../../shared/parkFilter'
 
 const parksList = props => {
 
-    const parks = parkFilter(props.parks, props.filterParams)
+    const parks = parkFilter(props.parks, props.filterParams);
 
     return (
             <Segment>

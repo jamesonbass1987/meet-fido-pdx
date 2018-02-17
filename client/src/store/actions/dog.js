@@ -102,8 +102,8 @@ export const fetchDogAttribute = attribute => {
         dispatch(fetchDogAttributeStart());
         axios.get(`/${attribute}`)
             .then(res => {
-                const fetchedAttribute = res.data;
-                dispatch(fetchDogAttributeSuccess(fetchedAttribute, attribute));
+                const fetchedAttributeList = res.data.map(obj => (obj.name))
+                dispatch(fetchDogAttributeSuccess(fetchedAttributeList, attribute));
             })
             .catch(err => {
                 dispatch(fetchDogAttributeFail(err));

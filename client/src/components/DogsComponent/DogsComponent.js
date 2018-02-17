@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment, Divider, Header } from 'semantic-ui-react';
 import Dogs from '../Dogs/Dogs';
 import DogForm from '../DogsForm/DogsForm'
-import { dogFilter } from '../../shared/dogFilter'
+import dogFilter from '../../shared/dogFilter'
 
 function dogsComponent(props) {
 
@@ -16,7 +16,7 @@ function dogsComponent(props) {
             >Use the menu to search for the perfect furry friend!</Header>
             <DogForm />
             <Divider />
-            <Dogs dogs={props.dogs} />
+            <Dogs dogs={dogs} />
         </Segment>
     )
 }

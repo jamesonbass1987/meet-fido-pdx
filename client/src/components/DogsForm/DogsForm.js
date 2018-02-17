@@ -16,34 +16,42 @@ class DogForm extends Component {
     }
 
     handleFilterUpdate = (event, { value }) => {
-        const attribute = value.toString()
-        const val = event.target.innerText
-        this.props.onDogFilterUpdate(attribute, val)
+        let attribute;
+
+        if (this.props.ages.includes(value)){
+            attribute = 'age'
+        } else if (this.props.sizes.includes(value)){
+            attribute = 'size'
+        } else {
+            attribute = 'breeds'
+        }
+
+        this.props.onDogFilterUpdate(attribute, value)
     }
 
     render() {
 
-        let breedsDropdownItems = this.props.breeds.map((breed, i) => {
+        let breedsDropdownItems = this.props.breeds.map( (breed, i) => {
             return {
-                text: breed.name,
-                key: i + breed.name,
-                value: 'breed',
+                text: breed,
+                value: breed,
+                key: i + breed
                 }
         })
 
-        let sizesDropdownItems = this.props.sizes.map((size, i) => {
+        let sizesDropdownItems = this.props.sizes.map( (size, i)  => {
             return {
-                text: size.name,
-                key: i + size.name,
-                value: 'size',
+                text: size,
+                value: size,
+                key: i + size
             }
         })
 
-        let agesDropdownItems = this.props.ages.map((age, i) => {
+        let agesDropdownItems = this.props.ages.map( (age, i) => {
             return {
-                text: age.name,
-                key: i + age.name,
-                value: 'age',
+                value: age,
+                text: age,
+                key: i + age
             }
         })
 
@@ -57,24 +65,25 @@ class DogForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={breedsDropdownItems}
+                    value={this.props.dogFilter.breeds}
                 />
                 <Dropdown
                     placeholder='Age'
                     fluid
-                    multiple
                     className={classes.InputDropdowns}
                     selection
                     options={agesDropdownItems}
-                    onChange={this.handleFilterUpdate}
+                    onChange={this.handleFilterUpdate.bind(this)}
+                    value={this.props.dogFilter.age}
                 />
                 <Dropdown
                     placeholder='Size'
                     fluid
-                    multiple
                     className={classes.InputDropdowns}
                     selection
-                    options={sizesDropdownItems}
+                    options={agesDropdownItems}
                     onChange={this.handleFilterUpdate}
+                    value={this.props.dogFilter.size}
                 />
             </Segment>
         );
@@ -83,7 +92,7 @@ class DogForm extends Component {
 
 const mapStateToProps = state => {
     return {
-        dogFilter: state.dog.dogFilter,
+        dogFilter: state.dog.currentFilter,
         ages: state.dog.attributes.ages,
         breeds: state.dog.attributes.breeds,
         sizes: state.dog.attributes.sizes

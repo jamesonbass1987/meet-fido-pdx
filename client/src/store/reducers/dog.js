@@ -11,8 +11,8 @@ const initialState = {
         sizes: []
     },
     currentFilter: {
-        age: null,
-        size: null,
+        age: '',
+        size: '',
         breeds: [] 
     }
 }
