@@ -28,3 +28,4 @@ const app = (
 
 ReactDOM.render(app, document.getElementById('global'));
 registerServiceWorker();
+

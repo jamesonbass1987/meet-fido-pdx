@@ -52,7 +52,6 @@ class DogForm extends Component {
                 <Dropdown
                     placeholder='Breed'
                     onChange={this.handleFilterUpdate}
-                    button
                     fluid
                     multiple
                     className={classes.InputDropdowns}
@@ -61,7 +60,6 @@ class DogForm extends Component {
                 />
                 <Dropdown
                     placeholder='Age'
-                    button
                     fluid
                     multiple
                     className={classes.InputDropdowns}
@@ -71,7 +69,6 @@ class DogForm extends Component {
                 />
                 <Dropdown
                     placeholder='Size'
-                    button
                     fluid
                     multiple
                     className={classes.InputDropdowns}

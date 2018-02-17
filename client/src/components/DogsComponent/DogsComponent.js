@@ -2,8 +2,12 @@ import React from 'react';
 import { Segment, Divider, Header } from 'semantic-ui-react';
 import Dogs from '../Dogs/Dogs';
 import DogForm from '../DogsForm/DogsForm'
+import { dogFilter } from '../../shared/dogFilter'
 
-function dogsList(props) {
+function dogsComponent(props) {
+
+    const dogs = dogFilter(props.dogs, props.filterParams)
+
     return (
         <Segment>
             <Header 
@@ -17,5 +21,5 @@ function dogsList(props) {
     )
 }
 
-export default dogsList
+export default dogsComponent
 

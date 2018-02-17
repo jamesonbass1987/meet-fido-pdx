@@ -23,7 +23,7 @@ class Dogs extends Component {
                     iconName="search"
                     headingText="Search For Dogs"
                     subheadingText="Find the perfect playtime pal for you best friend." />
-                <DogsComponent dogs={this.props.dogs} />
+                <DogsComponent dogs={this.props.dogs} filterParams={this.props.currentFilter} />
             </Container>
         )
     }
@@ -34,6 +34,7 @@ const mapStateToProps = state => {
         dogs: state.dog.dogs,
         loading: state.dog.loading,
         selectedDog: state.dog.selectedDog,
+        currentFilter: state.dog.currentFilter
     }
 }
 const mapDispatchToProps = dispatch => {

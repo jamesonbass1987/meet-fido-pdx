@@ -39,7 +39,6 @@ class Parks extends Component {
 
   render() {
 
-
     // Set park modal to selected park once one is clicked on map, pass in modal props to ParkModal
     // as children to display on page.
 

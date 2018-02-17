@@ -25,9 +25,9 @@ export const fetchParksStart = () => {
 
 export const fetchParks = () => {
     return dispatch => {
-        const key = process.env.GOOGLE_MAPS_API_KEY
+
         dispatch(fetchParksStart());
-        axios.get('/parks', { key })
+        axios.get('/parks')
             .then(res => {
                 const fetchedParks = [...res.data];
                 dispatch(fetchParksSuccess(fetchedParks));
@@ -62,11 +62,10 @@ export const fetchParkStart = () => {
 
 export const fetchPark = id => {
     return dispatch => {
-        const key = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
         dispatch(fetchParksStart());
-        axios.get(`/parks/${id}`, { params: { key } })
+        axios.get(`/parks/${id}`)
             .then(res => {
-                const fetchedPark = res.data.park;
+                const fetchedPark = res.data;
                 dispatch(fetchParkSuccess(fetchedPark));
             })
             .catch(err => {
