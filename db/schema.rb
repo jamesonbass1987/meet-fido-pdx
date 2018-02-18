@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20180218191622) do
   end
 
   create_table "user_parks", force: :cascade do |t|
-    t.string "user_id"
-    t.string "park_id"
+    t.integer "user_id"
+    t.integer "park_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
