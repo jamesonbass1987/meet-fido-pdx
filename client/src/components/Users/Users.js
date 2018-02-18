@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
 import User from './User/User';
 import Spinner from '../UI/Spinner/Spinner'
 

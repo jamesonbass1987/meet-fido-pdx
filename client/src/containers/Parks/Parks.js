@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/index';
 
-import { Header, Modal, Image, Segment, Container } from 'semantic-ui-react';
+import { Header, Modal, Image, Container } from 'semantic-ui-react';
 import TreeImage from '../../assets/images/trees.png';
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading';
