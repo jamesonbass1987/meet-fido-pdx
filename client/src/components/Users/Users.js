@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import User from './User/User';
-import Spinner from '../UI/Spinner/Spinner'
+import Spinner from '../UI/Spinner/Spinner';
+
+import { Item } from 'semantic-ui-react';
 
 const users = props => {
 
@@ -9,15 +11,14 @@ const users = props => {
 
     if (!props.loading) {
         usersList = props.users.map(user => (
-            <User key={user.username} username={user.username} />
+            <User key={user.username} user={user} />
         ))
     }
 
     return (
-        <div>
-            <h4>Users List</h4>
+        <Item.Group divided>
             {usersList}
-        </div>
+        </Item.Group>
     );
 }
 
