@@ -6,7 +6,7 @@ import Spinner from '../UI/Spinner/Spinner'
 
 const uuidv1 = require('uuid/v1');
 
-function dogs(props) {
+const dogs = props => {
 
     let dogs = <Spinner />
     

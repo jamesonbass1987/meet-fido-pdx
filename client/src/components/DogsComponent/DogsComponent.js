@@ -4,7 +4,7 @@ import Dogs from '../Dogs/Dogs';
 import DogForm from '../DogsForm/DogsForm'
 import dogFilter from '../../shared/dogFilter'
 
-function dogsComponent(props) {
+const dogsComponent = props => {
 
     const dogs = dogFilter(props.dogs, props.filterParams)
 
@@ -16,7 +16,7 @@ function dogsComponent(props) {
             >Use the menu to search for the perfect furry friend!</Header>
             <DogForm />
             <Divider />
-            <Dogs dogs={dogs} />
+            <Dogs dogs={dogs} loading={props.loading} />
         </Segment>
     )
 }

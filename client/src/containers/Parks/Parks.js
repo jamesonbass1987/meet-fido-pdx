@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import axios from '../../shared/axios-api';
 
 import * as actions from '../../store/actions/index';
 
-import { Container } from 'semantic-ui-react';
-import { Header, Modal, Image } from 'semantic-ui-react';
-import TreeImage from '../../assets/images/trees.png'
+import { Header, Modal, Image, Segment, Container } from 'semantic-ui-react';
+import TreeImage from '../../assets/images/trees.png';
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
-import PageHeading from '../../components/PageHeading/PageHeading'
-import MapComponent from '../../components/Map/Map'
-import ParkModal from '../../components/UI//Modal/Modal'
+import PageHeading from '../../components/PageHeading/PageHeading';
+import MapComponent from '../../components/Map/Map';
+import ParkModal from '../../components/UI//Modal/Modal';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Parks extends Component {
 
@@ -68,6 +68,28 @@ class Parks extends Component {
         </ParkModal>)
     }
 
+    let parksContent = <Spinner />
+
+    if (!this.props.loading){
+      parksContent = <Segment>
+        <MapComponent
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          content={this.props.parks}
+          markerClicked={this.handleMarkerClick}
+          filterParams={this.props.filterParams}
+        />
+        <ParksComponent
+          parks={this.props.parks}
+          onSearchQueryUpdate={this.onSearchQueryUpdate}
+          filterParams={this.props.filterParams}
+        />
+      </Segment>
+    }
+
     return (
       <Container>
         <PageHeading
@@ -77,21 +99,7 @@ class Parks extends Component {
           iconColor="green"
           headingText="Search Parks Near You"
           subheadingText="Find the perfect park for you furry friend." />
-        <MapComponent 
-          isMarkerShown 
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          content={this.props.parks}
-          markerClicked={this.handleMarkerClick}
-          filterParams={this.props.filterParams} 
-          />
-        <ParksComponent 
-          parks={this.props.parks}
-          onSearchQueryUpdate={this.onSearchQueryUpdate}
-          filterParams={this.props.filterParams} 
-        />
+        {parksContent}
         {parkModal}
       </Container>
     )

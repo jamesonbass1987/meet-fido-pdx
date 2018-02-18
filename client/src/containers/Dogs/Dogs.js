@@ -24,7 +24,11 @@ class Dogs extends Component {
                     iconColor="blue"
                     headingText="Search For Dogs"
                     subheadingText="Find the perfect playtime pal for you best friend." />
-                <DogsComponent dogs={this.props.dogs} filterParams={this.props.currentFilter} />
+                <DogsComponent 
+                    dogs={this.props.dogs} 
+                    loading={this.props.loading} 
+                    filterParams={this.props.currentFilter} 
+                />
             </Container>
         )
     }
