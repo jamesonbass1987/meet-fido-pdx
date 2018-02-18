@@ -52,6 +52,7 @@ class Parks extends Component {
       parkModal = (<ParkModal
           park={this.props.selectedPark}
           show={this.state.showModal}
+          size="large"
           handleClose={this.handleModalClose}
         >
         <Modal.Header>{this.props.selectedPark.name}</Modal.Header>
@@ -71,23 +72,13 @@ class Parks extends Component {
     let parksContent = <Spinner />
 
     if (!this.props.loading){
-      parksContent = <Segment>
-        <MapComponent
-          isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          content={this.props.parks}
-          markerClicked={this.handleMarkerClick}
-          filterParams={this.props.filterParams}
-        />
+      parksContent = <React.Fragment>
         <ParksComponent
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
           filterParams={this.props.filterParams}
         />
-      </Segment>
+      </React.Fragment>
     }
 
     return (
@@ -99,6 +90,16 @@ class Parks extends Component {
           iconColor="green"
           headingText="Search Parks Near You"
           subheadingText="Find the perfect park for you furry friend." />
+        <MapComponent
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          content={this.props.parks}
+          markerClicked={this.handleMarkerClick}
+          filterParams={this.props.filterParams}
+        />
         {parksContent}
         {parkModal}
       </Container>

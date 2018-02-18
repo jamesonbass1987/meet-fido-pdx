@@ -19,12 +19,6 @@
     color: white !important;
 }
 
-body > div,
-      body > div > div,
-      body > div > div > .AuthForm {
-        height: 100% !important;
-}
-
 .BackgroundVideo {
   position: fixed;
   right: 0; 
