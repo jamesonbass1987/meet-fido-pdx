@@ -10,11 +10,11 @@ const park = props => {
 
     return (
         <Grid.Row className={classes.Content}>
-            <Grid.Column verticalAlign="middle" width={3}>
-                <Image src={props.park.image_url} />
+            <Grid.Column verticalAlign="middle" width={4}>
+                <Image rounded src={props.park.image_url} />
             </Grid.Column>
             <Grid.Column 
-                width={13}
+                width={12}
                 >
                 <h3>{props.park.name}</h3>
                 <h4>About The Park:</h4>

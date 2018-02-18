@@ -6,3 +6,9 @@
 .Content p {
     margin-bottom: 10px;
 }
+
+.Content img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
