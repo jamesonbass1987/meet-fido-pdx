@@ -6,7 +6,7 @@ import { Header, Icon } from 'semantic-ui-react';
 const pageHeading = props => {
     return (
         <Header as={props.as} textAlign={props.textAlignment} className={classes.Header} icon>
-            <Icon name={props.iconName} />
+            <Icon name={props.iconName} color={props.iconColor} />
                 {props.headingText}
             <Header.Subheader>
                 {props.subheadingText}

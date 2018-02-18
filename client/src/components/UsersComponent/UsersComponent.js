@@ -12,6 +12,7 @@ const usersComponent = props => {
                 as="h1"
                 textAlignment="center"
                 iconName="users"
+                iconColor="blue"
                 headingText="Search Users"
                 subheadingText="Find others looking to meet up for a puppy playdate in PDX." />
             <Users />

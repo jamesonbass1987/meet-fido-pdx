@@ -11,3 +11,9 @@ export {
     fetchPark,
     updateParkFilter
 } from './park'
+
+export {
+    fetchUsers,
+    fetchUser,
+    updateUserFilter
+} from './user'
