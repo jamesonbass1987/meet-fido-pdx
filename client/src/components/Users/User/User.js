@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Popup, Item } from 'semantic-ui-react'
+import { Image, Popup, Item, Label } from 'semantic-ui-react'
 
 import classes from './User.css'
 
@@ -9,13 +9,17 @@ import DogImage from '../../../assets/images/dog.png';
 const user = props => {
     console.log(props)
 
-    let dogsPopup = props.user.dogs.map(dog => (
+    const dogsPopup = props.user.dogs.map(dog => (
         <Popup
             key={dog.name + dog.id}
             trigger={<Image src={DogImage} avatar />}
             header={dog.name}
             content={dog.description}
         />
+    ))
+
+    const parksList = props.user.parks.map((park, i) => (
+        <Label key={park.id + i} size="small" content={park.name} />
     ))
 
     return (
@@ -28,7 +32,7 @@ const user = props => {
                 </Item.Meta>
                 <Item.Description>{props.user.bio}</Item.Description>
                 <Item.Extra>
-                    <strong>My favorite parks:</strong>{dogsPopup}<br />
+                    <strong>My favorite parks:</strong>{parksList}<br />
                     <strong>My dogs:</strong>{dogsPopup}
                 </Item.Extra>
             </Item.Content>

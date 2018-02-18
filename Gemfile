@@ -49,3 +49,5 @@ gem 'rack-cors'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jwt'
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

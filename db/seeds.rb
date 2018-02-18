@@ -443,7 +443,6 @@
 User.create(username: 'jamesonbass', email:'jameson@email.com', password: 'password', profile_image_url: 'https://i.imgur.com/gsUiwCM.jpg', neighborhood: Neighborhood.all[rand(0...Neighborhood.all.length)],
 bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut odio consequat dolor blandit congue. Pellentesque sit amet posuere nibh. Nunc dapibus mauris felis, sit amet luctus velit maximus nec.")
 
-
 User.create(username: 'janesmith', email:'test@email.com', password: 'password', profile_image_url: 'https://i.imgur.com/3nUcu7Th.jpg', neighborhood: Neighborhood.all[rand(0...Neighborhood.all.length)],
 bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere, ex consectetur dignissim suscipit, tellus est viverra ex, eu ultricies enim felis non diam. In gravida egestas erat, sit amet ornare urna faucibus quis.")
 
@@ -459,3 +458,5 @@ bio: "Aenean accumsan imperdiet erat et sagittis. Quisque at tellus quis lectus 
 User.create(username: 'stephaniepeters', email:'test@email.com', password: 'password', profile_image_url: 'https://i.imgur.com/dcYuS7Eh.jpg', neighborhood: Neighborhood.all[rand(0...Neighborhood.all.length)],
 bio: "Phasellus est odio, feugiat eu mi in, luctus molestie orci. In laoreet, nibh nec scelerisque maximus, diam tellus iaculis lacus, at ornare ligula lorem non nunc. Cras luctus libero neque, condimentum congue ante rutrum eget.")
 
+user = User.all[rand(0...User.all.length)].parks << Park.all[rand(0...Park.all.length)]
+user.save
