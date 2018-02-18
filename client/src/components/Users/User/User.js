@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Image, Popup, Item } from 'semantic-ui-react'
+import { Image, Popup, Item } from 'semantic-ui-react'
 
 // TEMPORARY IMAGE
 import DogImage from '../../../assets/images/dog.png';

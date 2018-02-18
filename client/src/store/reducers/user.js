@@ -6,7 +6,8 @@ const initialState = {
     loading: false,
     selectedUser: null,
     userFilter: {
-        searchQuery: ''
+        searchQuery: '',
+        selectedParks: []
     }
 }
 

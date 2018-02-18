@@ -31,7 +31,7 @@ class DogForm extends Component {
 
     render() {
 
-        let breedsDropdownItems = this.props.breeds.map( (breed, i) => {
+        const breedsDropdownItems = this.props.breeds.map( (breed, i) => {
             return {
                 text: breed,
                 value: breed,
@@ -39,7 +39,7 @@ class DogForm extends Component {
                 }
         })
 
-        let sizesDropdownItems = this.props.sizes.map( (size, i)  => {
+        const sizesDropdownItems = this.props.sizes.map( (size, i)  => {
             return {
                 text: size,
                 value: size,
@@ -47,7 +47,7 @@ class DogForm extends Component {
             }
         })
 
-        let agesDropdownItems = this.props.ages.map( (age, i) => {
+        const agesDropdownItems = this.props.ages.map( (age, i) => {
             return {
                 value: age,
                 text: age,
