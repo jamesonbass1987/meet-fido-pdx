@@ -4,7 +4,6 @@ class Dog < ApplicationRecord
     belongs_to :breed
     belongs_to :age
     belongs_to :size
-    belongs_to :neighborhood
 
     has_many :dog_images, :dependent => :destroy
 

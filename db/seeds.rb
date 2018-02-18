@@ -440,6 +440,101 @@
 # dog_2 = Dog.create(name: 'Ella', breed: breed_2, size: size_2, age: age_2, sex: 'Female', user: user_2, neighborhood: neighborhood_2, preferred_park: park_2, description: 'Mellow dog who is a big people person but loves to play!')
 
 
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40791869/1/?bust=1517096291',
+description: 'Smol heckin good boys and girls long bois doggo, I am bekom fat tungg. Waggy wags wow very biscit big ol pupper wow such tempt snoot clouds, shoober ruff many pats what a nice floof.'
+)
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40798769/1/?bust=1517176288',
+description: 'Bork doggo extremely cuuuuuute, blep. Noodle horse heck corgo you are doing me a frighten, doge.'
+)
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40007320/5/?bust=1511741779',
+description: 'Doggorino long water shoob borking doggo, very jealous pupper. Stop it fren noodle horse most angery pupper I have ever seen you are doing me a frighten much ruin diet.'
+)
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/39260983/1/?bust=1504136012',
+description: 'Woofer wow such tempt heckin good boys stop it fren ur givin me a spook doge, woofer vvv thicc puggorino. I am bekom fat ur givin me a spook he made many woofs very taste wow, mlem.'
+)
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40970902/1/?bust=1518811120',
+description: 'Doggorino puggo long bois such treat smol very jealous pupper stop it fren doge, heckin angery woofer woofer h*ck shoob blep boof. '
+)
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/39933945/1/?bust=1510878719',
+description: 'Dat tungg tho adorable doggo noodle horse long water shoob, shibe doggo snoot, shibe you are doing me the shock. Mlem borkdrive very hand that feed shibe long doggo.'
+)
+
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40985611/1/?bust=1518988036',
+description: 'Corgo he made many woofs you are doing me the shock doing me a frighten pupperino many pats mlem, borking doggo smol borking doggo with a long snoot for pats puggo fat boi such treat.'
+)
+
+
+Dog.create(
+name: Faker::Dog.name, 
+breed: Breed.all[rand(0...Breed.all.length)], 
+size: Size.all[rand(0...Size.all.length)],
+age: Age.all[rand(0...Age.all.length)],
+sex: Faker::Dog.gender,
+user: User.all[rand(0...User.all.length)],
+profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40981974/1/?bust=1518936963',
+description: 'Pats heckin angery woofer heck bork h*ck snoot, bork you are doing me a frighten the neighborhood pupper adorable doggo. '
+)
+
+
+
+
+
+
 User.create(username: 'jamesonbass', email:'jameson@email.com', password: 'password', profile_image_url: 'https://i.imgur.com/gsUiwCM.jpg', neighborhood: Neighborhood.all[rand(0...Neighborhood.all.length)],
 bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut odio consequat dolor blandit congue. Pellentesque sit amet posuere nibh. Nunc dapibus mauris felis, sit amet luctus velit maximus nec.")
 
