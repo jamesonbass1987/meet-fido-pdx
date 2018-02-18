@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Icon, Image, Popup } from 'semantic-ui-react';
 
-import DogImage from '../../../assets/images/dog.png'
+import classes from './Dog.css'
 
 const dog = props => {
 
@@ -20,8 +20,8 @@ const dog = props => {
     }
 
     return (
-        <Card id={props.id}>
-            <Image src={DogImage} />
+        <Card id={props.id} className={classes.Dog}>
+            <Image centered circular src={props.dog.profile_image_url} />
             <Card.Content>
                 <Card.Header>{props.dog.name} {icon}</Card.Header>
                 <Card.Meta>{props.dog.breed.name} | {props.dog.age.name} | {props.dog.size.name} </Card.Meta>
