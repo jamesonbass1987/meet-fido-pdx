@@ -5,3 +5,15 @@
     height: 160px;
     object-fit: cover;
 }
+
+.Popup {
+    text-align: center;
+}
+
+.Popup img {
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}

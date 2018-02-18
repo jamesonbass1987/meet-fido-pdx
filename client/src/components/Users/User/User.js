@@ -3,20 +3,24 @@ import { Image, Popup, Item, Label } from 'semantic-ui-react'
 
 import classes from './User.css'
 
-// TEMPORARY IMAGE
-import DogImage from '../../../assets/images/dog.png';
 
 const user = props => {
-    console.log(props)
 
-    const dogsPopup = props.user.dogs.map(dog => (
-        <Popup
+    const dogsPopup = props.user.dogs.map(dog => {
+        
+        const popupHeader = <Popup.Header>
+                                <Image src={dog.profile_image_url} verticalAlign='middle' circular /> <br />
+                                {dog.name}
+                            </Popup.Header>
+        
+        return <Popup
             key={dog.name + dog.id}
-            trigger={<Image src={DogImage} avatar />}
-            header={dog.name}
+            trigger={<Image src={dog.profile_image_url} avatar />}
+            header={popupHeader}
+            className={classes.Popup}
             content={dog.description}
         />
-    ))
+    })
 
     const parksList = props.user.parks.map((park, i) => (
         <Label key={park.id + i} size="small" content={park.name} />
