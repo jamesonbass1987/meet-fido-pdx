@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { MenuItem } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 import classes from './NavigationItem.css'
 
 const navigationItem = props => (
-        <MenuItem
+        <Menu.Item
             as={ Link } 
             active={props.activeItem === props.link}
             to={props.link}
@@ -15,7 +15,7 @@ const navigationItem = props => (
             className={classes.NavigationItem}
             children={props.children}
             >
-        </MenuItem>
+        </Menu.Item>
 )
 
 export default navigationItem

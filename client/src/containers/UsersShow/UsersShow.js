@@ -1,11 +1,11 @@
 import React from 'react';
 
-const user = props => {
+const userShow = props => {
     return (
         <div>
-            
+            User Show Page
         </div>
     );
 };
 
-export default user;
+export default userShow;

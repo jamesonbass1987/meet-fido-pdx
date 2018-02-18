@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, MenuItem, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import classes from './NavigationItems.css';
 
 
@@ -32,9 +33,15 @@ const navigationItems = props => {
                 name="parkSearch" 
                 clicked={props.clicked}
                 link="/parks"/>
+            <NavigationItem
+                activeItem={props.activeItem}
+                content="View Users"
+                name="userSearch"
+                clicked={props.clicked}
+                link="/users" />
             <MenuItem position='right'>
-                <Button color="google plus" as='a' >Log in</Button>
-                <Button color="twitter" as='a' style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+                <Button as={ Link } color="google plus" to="/auth">Log in</Button>
+                <Button as={ Link } color="twitter" to="/auth">Sign Up</Button>
             </MenuItem>
         </Menu>
     )

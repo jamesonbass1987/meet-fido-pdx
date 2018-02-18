@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-class Users extends Component {
-    render() {
-        return (
+import UsersComponent from '../../components/UsersComponent/UsersComponent';
+import UsersShow from '../UsersShow/UsersShow';
+
+const users = ({match, users}) => {
+    return (
             <div>
-                Users Container
+                <Switch>
+                    <Route path={`${match.url}/:userId`} component={UsersShow} />
+                    <Route exact path={match.url} component={UsersComponent} />
+                </Switch>
             </div>
         );
-    }
 }
 
-export default Users;
+export default users;
