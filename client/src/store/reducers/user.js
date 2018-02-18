@@ -7,7 +7,7 @@ const initialState = {
     selectedUser: null,
     userFilter: {
         searchQuery: '',
-        selectedParks: []
+        selectedPark: ''
     }
 }
 
@@ -50,6 +50,15 @@ const updateUserFilter = (state, action) => {
     })
 }
 
+const resetUserFilter = (state, action) => {
+    return updateObject(state, {
+        userFilter: {
+            searchQuery: '',
+            selectedPark: ''
+        }
+    })
+}
+
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_USERS_START: return fetchUsersStart(state);
@@ -59,6 +68,7 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.FETCH_USER_SUCCESS: return fetchUserSuccess(state, action);
         case actionTypes.FETCH_USER_FAIL: return fetchUserFail(state);
         case actionTypes.UPDATE_USER_FILTER: return updateUserFilter(state, action);
+        case actionTypes.RESET_USER_FILTER: return resetUserFilter(state, action);
         default: return state
     }
 }

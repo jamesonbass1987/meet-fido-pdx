@@ -83,3 +83,9 @@ export const updateUserFilter = (type, value) => {
         payload: { type, value }
     };
 }
+
+export const resetUserFilter = (type, value) => {
+    return {
+        type: actionTypes.RESET_USER_FILTER
+    };
+}

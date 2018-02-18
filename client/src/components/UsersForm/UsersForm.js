@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-import { Form, Dropdown, Input } from 'semantic-ui-react';
+import classes from './UsersForm.css';
+
+import { Form, Dropdown, Input, Button, Icon } from 'semantic-ui-react';
 
 class UsersForm extends Component {
 
@@ -10,6 +12,14 @@ class UsersForm extends Component {
 
         if (this.props.parks.length === 0){
             this.props.fetchParks();
+        }
+    }
+
+    handleFilterUpdate = (event, { value }) => {
+        if (event.target.name === 'searchQuery') {
+            this.props.onSearchFilterUpdate(event.target.name, event.target.value)
+        } else {
+            this.props.onSearchFilterUpdate('selectedPark', value)
         }
     }
 
@@ -24,7 +34,7 @@ class UsersForm extends Component {
         })
 
         return (
-            <Form size="large">
+            <Form className={classes.UsersForm} size="large">
                 <Input
                     name="searchQuery"
                     fluid
@@ -32,15 +42,30 @@ class UsersForm extends Component {
                     placeholder='Search for users by name...'
                     value={this.props.searchQuery}
                     onChange={this.handleFilterUpdate}
+                    className={classes.InputDropdowns}
                 />
                 <Dropdown
-                    placeholder='Filter by the parks a user visits...'
-                    multiple
+                    placeholder='Filter by the park a user visits...'
                     fluid
                     search
                     selection
                     options={parksDropdownItems}
+                    onChange={this.handleFilterUpdate}
+                    className={classes.InputDropdowns}
+                    value={this.props.selectedPark}
                 />
+                <Button
+                    animated='vertical'
+                    onClick={() => this.props.onFormReset()}
+                    color="twitter"
+                    floated="right"
+                    className={classes.Button}
+                >
+                    <Button.Content hidden>Reset</Button.Content>
+                    <Button.Content visible>
+                        <Icon name='repeat' />
+                    </Button.Content>
+                </Button>
             </Form>
         );
     }
@@ -49,11 +74,13 @@ class UsersForm extends Component {
 const mapStateToProps = state => ({
     parks: state.park.parks,
     searchQuery: state.user.userFilter.searchQuery,
-    selectedParks: state.user.userFilter.selectedParks
+    selectedPark: state.user.userFilter.selectedPark
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchParks: () => dispatch(actions.fetchParks())
+    fetchParks: () => dispatch(actions.fetchParks()),
+    onSearchFilterUpdate: (type, value) => dispatch(actions.updateUserFilter(type, value)),
+    onFormReset: () => dispatch(actions.resetUserFilter())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersForm)

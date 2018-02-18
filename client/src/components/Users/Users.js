@@ -5,12 +5,15 @@ import Spinner from '../UI/Spinner/Spinner';
 
 import { Item } from 'semantic-ui-react';
 
+import { userFilter } from '../../shared/userFilter';
+
 const users = props => {
 
     let usersList = <Spinner />
 
     if (!props.loading) {
-        usersList = props.users.map(user => (
+        const usersArray = userFilter(props.users, props.currentFilter);
+        usersList = usersArray.map(user => (
             <User key={user.username} user={user} />
         ))
     }

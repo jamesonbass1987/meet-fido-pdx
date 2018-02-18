@@ -65,7 +65,7 @@ class DogForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={breedsDropdownItems}
-                    value={this.props.dogFilter.breeds}
+                    value={this.props.dogFilter.breed}
                 />
                 <Dropdown
                     placeholder='Age'

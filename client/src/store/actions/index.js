@@ -15,5 +15,6 @@ export {
 export {
     fetchUsers,
     fetchUser,
-    updateUserFilter
+    updateUserFilter,
+    resetUserFilter
 } from './user'
