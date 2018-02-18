@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218040021) do
+ActiveRecord::Schema.define(version: 20180218191622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180218040021) do
     t.integer "preferred_park_id"
     t.integer "neighborhood_id"
     t.string "sex"
+    t.string "profile_image_url"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20180218040021) do
     t.string "hours_close"
     t.decimal "loc_latitude"
     t.decimal "loc_longitude"
+    t.string "image_url"
   end
 
   create_table "sizes", force: :cascade do |t|
@@ -76,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180218040021) do
     t.string "email"
     t.string "profile_image_url", default: "https://i.imgur.com/jNNT4LE.jpg"
     t.integer "neighborhood_id"
+    t.string "bio"
   end
 
 end
