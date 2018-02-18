@@ -2,8 +2,6 @@ import React from 'react';
 import { Grid, Image } from 'semantic-ui-react';
 import classes from './Park.css';
 
-import TreesImage from '../../../assets/images/trees.png'
-
 const park = props => {
     const isFenced = props.park.fenced ? "Fenced" : "Open Off Leash Area"
     const parkAddress = !props.park.address_2 ? `${props.park.address_1}` : `${props.park.address_1} and ${props.park.address_2}`    
@@ -12,8 +10,8 @@ const park = props => {
 
     return (
         <Grid.Row className={classes.Content}>
-            <Grid.Column width={3}>
-                <Image src={TreesImage} />
+            <Grid.Column verticalAlign="middle" width={3}>
+                <Image src={props.park.image_url} />
             </Grid.Column>
             <Grid.Column 
                 width={13}

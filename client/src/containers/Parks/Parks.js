@@ -56,8 +56,8 @@ class Parks extends Component {
           handleClose={this.handleModalClose}
         >
         <Modal.Header>{this.props.selectedPark.name}</Modal.Header>
-          <Modal.Content image>
-          <Image wrapped size='medium' src={TreeImage} />
+          <Modal.Content verticalAlign="middle" image>
+          <Image size='medium' src={this.props.selectedPark.image_url} />
             <Modal.Description>
               <Header>About The Park:</Header>
               <p>{this.props.selectedPark.description}</p>

@@ -27,382 +27,414 @@
 
 # PARKS DATA
 
-# parksObj = [
-#     {
-#         name: 'Brentwood Park',
-#         description: 'Includes dog off-leash area – fenced paths – paved, picnic tables, playground, soccer field, softball field, tennis court, and volleyball court.',
-#         address_1: 'SE 60th Avenue',
-#         address_2: 'Duke',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.474847,
-#         loc_longitude: -122.606113,
-#     },
-#     {
-#         name: 'Chimney Park',
-#         description: "Includes dog off-leash area – fenced.",
-#         address_1: '9360 N Columbia Blvd',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.607636,
-#         loc_longitude: -122.759246
-#     },
-#     {
-#         name: 'Delta Park',
-#         description: "Includes dog off-leash area – fenced, football field, paths – paved, picnic tables, playground, soccer field, softball field, synthetic turf, and volleyball court.",
-#         address_1: 'N Denver Avenue',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude:  45.598901,
-#         loc_longitude: -122.680928
-#     },
-#     {
-#         name: 'The Fields',
-#         description: 'N/A',
-#         address_1: 'NW 11th Avenue',
-#         address_2: 'Overton Street',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.532826,
-#         loc_longitude: -122.682495
-#     },
-#     {
-#         name: 'Gabriel Park',
-#         description: "Includes accessible picnic area, accessible play area, accessible restroom, baseball field, basketball court, BEECN – basic earthquake emergency communication node, dog off-leash area – fenced, paths – paved, paths – unpaved, picnic site – reservable, picnic tables, playground, skatepark, soccer field, softball field, tennis court, tennis court – lighted, and volleyball court.",
-#         address_1: 'SW 45th Avenue',
-#         address_2: 'Vermont Street',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude:  45.474297,
-#         loc_longitude: -122.719109
-#     },
-#     {
-#         name: 'Lynchwood Park',
-#         description: 'Includes dog off-leash area – fenced, and paths – unpaved.',
-#         address_1: 'SE 170th Avenue',
-#         address_2: 'Haig Street',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.497999,
-#         loc_longitude: -122.485928
-#     },
-#     {
-#         name: 'Normandale Park',
-#         description: 'Includes accessible play area, accessible restroom, basketball court, dog off-leash area – fenced, football field, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, and volleyball court.',
-#         address_1: 'NE 57th Avenue',
-#         address_2: 'Halsey Street',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.532056,
-#         loc_longitude: -122.606141
-#     },
-#     {
-#         name: 'Sacajawea Park',
-#         description: 'Includes dog off-leash area – fenced, and paths – unpaved.',
-#         address_1: 'NE 75th Avenue',
-#         address_2: 'Alberta Street',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.559474,
-#         loc_longitude: -122.585858
-#     },
-#     {
-#         name: 'Wallace Park',
-#         description: 'Includes accessible picnic area, accessible play area, accessible restroom, basketball court, dog off-leash area – fenced, paths – paved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, statue or public art, and tennis court.',
-#         address_1: 'NW 25th Avenue',
-#         address_2: 'Raleigh',
-#         fenced: true,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.533308,
-#         loc_longitude: -122.703689
-#     },
-#     # UNFENCED AREAS
-#     {
-#         name: 'Arbor Lodge Park',
-#         description: 'Includes accessible restroom, baseball field, BEECN – basic earthquake emergency communication node, dog off-leash area, horseshoe pit, paths – paved, picnic tables, playground, soccer field, softball field, statue or public art, tennis court, tennis court – lighted, and universal access play area.',
-#         address_1: 'N Bryant Street',
-#         address_2: 'Delaware Avenue',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.572801,
-#         loc_longitude: -122.693768
-#     },
-#     {
-#         name: 'Cathedral Park',
-#         description: 'Includes accessible restroom, boat dock, boat ramp, canoe launch, dog off-leash area, paths – paved, picnic tables, Plaza, riverfront views, and stage – outdoor.',
-#         address_1: 'N Edison Street',
-#         address_2: 'Pittsburg Avenue',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.58749,
-#         loc_longitude: -122.762478 
-#     },
-#     {
-#         name: 'Overlook Park',
-#         description: 'Includes accessible picnic area, accessible restroom, baseball field, basketball court, dog off-leash area, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, track, and volleyball court.',
-#         address_1: 'N Fremont Street',
-#         address_2: 'Interstate Avenue',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.548522,
-#         loc_longitude: -122.682562
-#     },
-#     {
-#         name: 'Portland International Raceway',
-#         description: 'Includes dog off-leash area, raceway, and visitor attraction.',
-#         address_1: 'N Denver Avenue',
-#         address_2: 'Victory Blvd',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.593085,
-#         loc_longitude: -122.688131
-#     },
-#     {
-#         name: 'Alberta Park',
-#         description: 'Includes accessible play area, accessible restroom, basketball court, BEECN – basic earthquake emergency communication node, dog off-leash area, paths – paved, paths – unpaved, picnic tables, playground, soccer field, softball field, and tennis court.',
-#         address_1: 'NE 22nd Avenue',
-#         address_2: 'Killingsworth Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.564475,
-#         loc_longitude: -122.645104
-#     },
-#     {
-#         name: 'East Holladay Park',
-#         description: 'Includes accessible play area, dog off-leash area, paths – paved, and playground.',
-#         address_1: 'NE 130th Avenue',
-#         address_2: 'Wasco Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.53071,
-#         loc_longitude: -122.529188
-#     },
-#     {
-#         name: 'Fernhill Park',
-#         description: 'Includes baseball field, dog off-leash area, horseshoe pit, paths – paved, picnic tables, playground, soccer field, softball field, tennis court, track, and volleyball court.',
-#         address_1: 'NE 37th Avenue',
-#         address_2: 'Ainsworth Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude:  45.566154,
-#         loc_longitude: -122.623416
-#     },
-#     {
-#         name: 'Frazer Park',
-#         description: 'Includes basketball court, dog off-leash area, picnic tables, and playground.',
-#         address_1: 'NE 52nd Avenue',
-#         address_2: 'Hassalo Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.53051,
-#         loc_longitude: -122.610657
-#     },
-#     {
-#         name: 'Grant Park',
-#         description: 'Includes accessible play area, accessible restroom, baseball field, basketball court, dog off-leash area, football field, fountain, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, splash pad, statue or public art, synthetic turf, tennis court, tennis court – lighted, and track.',
-#         address_1: 'NE 33rd Avenue',
-#         address_2: 'U.S. Grant Place',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.539047,
-#         loc_longitude: -122.628984
-#     },
-#     {
-#         name: 'Irving Park',
-#         description: 'Includes accessible restroom, baseball field, basketball court, dog off-leash area, Fountain - Interactive, horseshoe pit, paths – paved, picnic site – reservable, picnic tables, playground, soccer field, softball field, tennis backboard, tennis court, tennis court – lighted, and volleyball court.',
-#         address_1: 'NE 7th Avenue',
-#         address_2: 'Freemont Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.548266,
-#         loc_longitude: -122.658617
-#     },
-#     {
-#         name: 'Wilshire Park',
-#         description: 'Includes accessible picnic area, accessible restroom, dog off-leash area, horseshoe pit, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, and volleyball court.',
-#         address_1: 'NE 33rd Avenue',
-#         address_2: 'Skidmore Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.552839,
-#         loc_longitude: -122.627935
-#     },
-#     {
-#         name: 'Couch Park',
-#         description: 'Includes accessible restroom, basketball court, dog off-leash area, paths – paved, playground, Plaza, and statue or public art.',
-#         address_1: 'NW 19th Avenue',
-#         address_2: 'Glisan Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 36.106935,
-#         loc_longitude: -97.045139
-#     },
-#     {
-#         name: 'Cherry Park',
-#         description: 'Includes dog off-leash area.',
-#         address_1: 'SE 110th Avenue',
-#         address_2: 'Stephens Street',
-#         fenced: false,
-#         hours_open: "5:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 33.838764,
-#         loc_longitude: -118.168021
-#     },
-#     {
-#         name: 'Creston Park',
-#         description: 'Includes accessible picnic area, accessible play area, accessible restroom, dog off-leash area, horseshoe pit, paths – paved, picnic site – reservable, picnic tables, playground, softball field, and tennis backboard.',
-#         address_1: 'SE 110th Avenue',
-#         address_2: 'Powell Blvd',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.496132,
-#         loc_longitude: -122.618089
-#     },
-#     {
-#         name: 'Laurelhurst Park',
-#         description: 'Includes accessible picnic area, accessible play area, accessible restroom, basketball court, dog off-leash area, historical site, horseshoe pit, paths – paved, paths – unpaved, picnic site – reservable, picnic tables, playground, soccer field, statue or public art, tennis backboard, tennis court, and volleyball court.',
-#         address_1: 'SE 39th Avenue',
-#         address_2: 'Stark Stret',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.521176,
-#         loc_longitude: -122.627141
-#     },
-#     {
-#         name: 'Lents Park',
-#         description: 'Includes accessible picnic area, accessible play area, accessible restroom, baseball field, basketball court, BEECN – basic earthquake emergency communication node, dog off-leash area, football field, horseshoe pit, paths – paved, paths – unpaved, picnic site – reservable, picnic tables, playground, soccer field, softball field, stage – outdoor, synthetic turf, tennis backboard, tennis court, and tennis court – lighted.',
-#         address_1: 'SE 92nd Avenue',
-#         address_2: 'Holgate Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.48729,
-#         loc_longitude: -122.570407
-#     },
-#     {
-#         name: 'Mt. Tabor Park',
-#         description: 'Includes accessible picnic area, accessible play area, accessible restroom, basketball court, dog off-leash area, horseshoe pit, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, Plaza, stage – outdoor, statue or public art, tennis court, tennis court – lighted, volleyball court, and wedding site – reservable.',
-#         address_1: 'SE Lincoln Street',
-#         address_2: 'SE 64th Avenue',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.514005,
-#         loc_longitude: -122.597686
-#     },
-#     {
-#         name: 'Sellwood Riverfront Park',
-#         description: 'Includes accessible restroom, boat dock, canoe launch, dog off-leash area, paths – paved, paths – unpaved, picnic tables, and riverfront views.',
-#         address_1: 'SE Spokane Street',
-#         address_2: 'Oaks Parkway',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.465045,
-#         loc_longitude: -122.661905
-#     },
-#     {
-#         name: 'Sewallcrest Park',
-#         description: 'Includes accessible play area, basketball court, dog off-leash area, paths – paved, picnic tables, playground, soccer field, and softball field.',
-#         address_1: 'SE 31st Avenue',
-#         address_2: 'Market Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.509742,
-#         loc_longitude: -122.633058
-#     },
-#     {
-#         name: 'Woodstock Park',
-#         description: 'Includes accessible play area, accessible restroom, BEECN – basic earthquake emergency communication node, dog off-leash area, horseshoe pit, paths – paved, picnic site – reservable, picnic tables, playground, soccer field, softball field, statue or public art, and tennis court.',
-#         address_1: 'SE 47th Avenue',
-#         address_2: 'Steele Street',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.483602,
-#         loc_longitude: -122.612516
-#     },
-#     {
-#         name: 'Council Crest Park',
-#         description: 'Includes dog off-leash area, paths – paved, paths – unpaved, picnic tables, Plaza, statue or public art, vista point, and wedding site – reservable.',
-#         address_1: 'SW Council Crest Drive',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.498619,
-#         loc_longitude: -122.707909
-#     },
-#     {
-#         name: 'Hillsdale Park',
-#         description: ' Includes dog off-leash area, and picnic tables.',
-#         address_1: 'SW 27th Avenue',
-#         address_2: 'Hillsdale Highway',
-#         fenced: false,
-#         hours_open: "8:00 A.M.",
-#         hours_close: "Midnight",
-#         loc_latitude: 45.498619,
-#         loc_longitude: -122.707909
-#     },
-#     {
-#         name: 'Wilamette Park',
-#         description: 'Includes accessible picnic area, accessible restroom, boat dock, boat ramp, canoe launch, dog off-leash area, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, riverfront views, soccer field, tennis court, and tennis court – lighted.',
-#         address_1: 'SW Macadam Avenue',
-#         address_2: 'Nebraska Street',
-#         fenced: false,
-#         hours_open: 8,
-#         hours_close: "Midnight",
-#         loc_latitude: 45.477469,
-#         loc_longitude: -122.67085
-#     }
-# ]
+parksObj = [
+    {
+        name: 'Brentwood Park',
+        description: 'Includes dog off-leash area – fenced paths – paved, picnic tables, playground, soccer field, softball field, tennis court, and volleyball court.',
+        address_1: 'SE 60th Avenue',
+        address_2: 'Duke',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.474847,
+        loc_longitude: -122.606113,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=706'
+    },
+    {
+        name: 'Chimney Park',
+        description: "Includes dog off-leash area – fenced.",
+        address_1: '9360 N Columbia Blvd',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.607636,
+        loc_longitude: -122.759246,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=71'
+    },
+    {
+        name: 'Delta Park',
+        description: "Includes dog off-leash area – fenced, football field, paths – paved, picnic tables, playground, soccer field, softball field, synthetic turf, and volleyball court.",
+        address_1: 'N Denver Avenue',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude:  45.598901,
+        loc_longitude: -122.680928,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=196'
+    },
+    {
+        name: 'The Fields Park',
+        description: 'Includes accessible picnic area, accessible play area, accessible restroom, BEECN – basic earthquake emergency communication node, dog off-leash area – fenced, paths – paved, picnic tables, playground, and statue or public art.',
+        address_1: 'NW 11th Avenue',
+        address_2: 'Overton Street',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.532826,
+        loc_longitude: -122.682495,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=844'
+    },
+    {
+        name: 'Gabriel Park',
+        description: "Includes accessible picnic area, accessible play area, accessible restroom, baseball field, basketball court, BEECN – basic earthquake emergency communication node, dog off-leash area – fenced, paths – paved, paths – unpaved, picnic site – reservable, picnic tables, playground, skatepark, soccer field, softball field, tennis court, tennis court – lighted, and volleyball court.",
+        address_1: 'SW 45th Avenue',
+        address_2: 'Vermont Street',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude:  45.474297,
+        loc_longitude: -122.719109,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=203'
+    },
+    {
+        name: 'Lynchwood Park',
+        description: 'Includes dog off-leash area – fenced, and paths – unpaved.',
+        address_1: 'SE 170th Avenue',
+        address_2: 'Haig Street',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.497999,
+        loc_longitude: -122.485928,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=234'
+    },
+    {
+        name: 'Normandale Park',
+        description: 'Includes accessible play area, accessible restroom, basketball court, dog off-leash area – fenced, football field, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, and volleyball court.',
+        address_1: 'NE 57th Avenue',
+        address_2: 'Halsey Street',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.532056,
+        loc_longitude: -122.606141,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=126'
+    },
+    {
+        name: 'Sacajawea Park',
+        description: 'Includes dog off-leash area – fenced, and paths – unpaved.',
+        address_1: 'NE 75th Avenue',
+        address_2: 'Alberta Street',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.559474,
+        loc_longitude: -122.585858,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=140'
+    },
+    {
+        name: 'Wallace Park',
+        description: 'Includes accessible picnic area, accessible play area, accessible restroom, basketball court, dog off-leash area – fenced, paths – paved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, statue or public art, and tennis court.',
+        address_1: 'NW 25th Avenue',
+        address_2: 'Raleigh',
+        fenced: true,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.533308,
+        loc_longitude: -122.703689,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=158'
+    },
+    # UNFENCED AREAS
+    {
+        name: 'Arbor Lodge Park',
+        description: 'Includes accessible restroom, baseball field, BEECN – basic earthquake emergency communication node, dog off-leash area, horseshoe pit, paths – paved, picnic tables, playground, soccer field, softball field, statue or public art, tennis court, tennis court – lighted, and universal access play area.',
+        address_1: 'N Bryant Street',
+        address_2: 'Delaware Avenue',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.572801,
+        loc_longitude: -122.693768,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=876'
+    },
+    {
+        name: 'Cathedral Park',
+        description: 'Includes accessible restroom, boat dock, boat ramp, canoe launch, dog off-leash area, paths – paved, picnic tables, Plaza, riverfront views, and stage – outdoor.',
+        address_1: 'N Edison Street',
+        address_2: 'Pittsburg Avenue',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.58749,
+        loc_longitude: -122.762478 ,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=69'
+    },
+    {
+        name: 'Overlook Park',
+        description: 'Includes accessible picnic area, accessible restroom, baseball field, basketball court, dog off-leash area, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, track, and volleyball court.',
+        address_1: 'N Fremont Street',
+        address_2: 'Interstate Avenue',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.548522,
+        loc_longitude: -122.682562,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=250'
+    },
+    {
+        name: 'Portland International Raceway',
+        description: 'Includes dog off-leash area, raceway, and visitor attraction.',
+        address_1: 'N Denver Avenue',
+        address_2: 'Victory Blvd',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.593085,
+        loc_longitude: -122.688131,
+        image_url: ''
+    },
+    {
+        name: 'Alberta Park',
+        description: 'Includes accessible play area, accessible restroom, basketball court, BEECN – basic earthquake emergency communication node, dog off-leash area, paths – paved, paths – unpaved, picnic tables, playground, soccer field, softball field, and tennis court.',
+        address_1: 'NE 22nd Avenue',
+        address_2: 'Killingsworth Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.564475,
+        loc_longitude: -122.645104,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=676'
+    },
+    {
+        name: 'East Holladay Park',
+        description: 'Includes accessible play area, dog off-leash area, paths – paved, and playground.',
+        address_1: 'NE 130th Avenue',
+        address_2: 'Wasco Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.53071,
+        loc_longitude: -122.529188,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=258'
+    },
+    {
+        name: 'Fernhill Park',
+        description: 'Includes baseball field, dog off-leash area, horseshoe pit, paths – paved, picnic tables, playground, soccer field, softball field, tennis court, track, and volleyball court.',
+        address_1: 'NE 37th Avenue',
+        address_2: 'Ainsworth Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude:  45.566154,
+        loc_longitude: -122.623416,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=90'
+    },
+    {
+        name: 'Frazer Park',
+        description: 'Includes basketball court, dog off-leash area, picnic tables, and playground.',
+        address_1: 'NE 52nd Avenue',
+        address_2: 'Hassalo Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.53051,
+        loc_longitude: -122.610657,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=95'
+    },
+    {
+        name: 'Grant Park',
+        description: 'Includes accessible play area, accessible restroom, baseball field, basketball court, dog off-leash area, football field, fountain, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, splash pad, statue or public art, synthetic turf, tennis court, tennis court – lighted, and track.',
+        address_1: 'NE 33rd Avenue',
+        address_2: 'U.S. Grant Place',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.539047,
+        loc_longitude: -122.628984,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=214'
+    },
+    {
+        name: 'Irving Park',
+        description: 'Includes accessible restroom, baseball field, basketball court, dog off-leash area, Fountain - Interactive, horseshoe pit, paths – paved, picnic site – reservable, picnic tables, playground, soccer field, softball field, tennis backboard, tennis court, tennis court – lighted, and volleyball court.',
+        address_1: 'NE 7th Avenue',
+        address_2: 'Freemont Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.548266,
+        loc_longitude: -122.658617,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=100'
+    },
+    {
+        name: 'Wilshire Park',
+        description: 'Includes accessible picnic area, accessible restroom, dog off-leash area, horseshoe pit, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, soccer field, softball field, and volleyball court.',
+        address_1: 'NE 33rd Avenue',
+        address_2: 'Skidmore Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.552839,
+        loc_longitude: -122.627935,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=289'
+    },
+    {
+        name: 'Couch Park',
+        description: 'Includes accessible restroom, basketball court, dog off-leash area, paths – paved, playground, Plaza, and statue or public art.',
+        address_1: 'NW 19th Avenue',
+        address_2: 'Glisan Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 36.106935,
+        loc_longitude: -97.045139,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=76'
+    },
+    {
+        name: 'Cherry Park',
+        description: 'Includes dog off-leash area.',
+        address_1: 'SE 110th Avenue',
+        address_2: 'Stephens Street',
+        fenced: false,
+        hours_open: "5:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 33.838764,
+        loc_longitude: -118.168021,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=184'
+    },
+    {
+        name: 'Creston Park',
+        description: 'Includes accessible picnic area, accessible play area, accessible restroom, dog off-leash area, horseshoe pit, paths – paved, picnic site – reservable, picnic tables, playground, softball field, and tennis backboard.',
+        address_1: 'SE 110th Avenue',
+        address_2: 'Powell Blvd',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.496132,
+        loc_longitude: -122.618089,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=816'
+    },
+    {
+        name: 'Laurelhurst Park',
+        description: 'Includes accessible picnic area, accessible play area, accessible restroom, basketball court, dog off-leash area, historical site, horseshoe pit, paths – paved, paths – unpaved, picnic site – reservable, picnic tables, playground, soccer field, statue or public art, tennis backboard, tennis court, and volleyball court.',
+        address_1: 'SE 39th Avenue',
+        address_2: 'Stark Stret',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.521176,
+        loc_longitude: -122.627141,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=115'
+    },
+    {
+        name: 'Lents Park',
+        description: 'Includes accessible picnic area, accessible play area, accessible restroom, baseball field, basketball court, BEECN – basic earthquake emergency communication node, dog off-leash area, football field, horseshoe pit, paths – paved, paths – unpaved, picnic site – reservable, picnic tables, playground, soccer field, softball field, stage – outdoor, synthetic turf, tennis backboard, tennis court, and tennis court – lighted.',
+        address_1: 'SE 92nd Avenue',
+        address_2: 'Holgate Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.48729,
+        loc_longitude: -122.570407,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=893'
+    },
+    {
+        name: 'Mt. Tabor Park',
+        description: 'Includes accessible picnic area, accessible play area, accessible restroom, basketball court, dog off-leash area, horseshoe pit, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, Plaza, stage – outdoor, statue or public art, tennis court, tennis court – lighted, volleyball court, and wedding site – reservable.',
+        address_1: 'SE Lincoln Street',
+        address_2: 'SE 64th Avenue',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.514005,
+        loc_longitude: -122.597686,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=31'
+    },
+    {
+        name: 'Sellwood Riverfront Park',
+        description: 'Includes accessible restroom, boat dock, canoe launch, dog off-leash area, paths – paved, paths – unpaved, picnic tables, and riverfront views.',
+        address_1: 'SE Spokane Street',
+        address_2: 'Oaks Parkway',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.465045,
+        loc_longitude: -122.661905,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=267'
+    },
+    {
+        name: 'Sewallcrest Park',
+        description: 'Includes accessible play area, basketball court, dog off-leash area, paths – paved, picnic tables, playground, soccer field, and softball field.',
+        address_1: 'SE 31st Avenue',
+        address_2: 'Market Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.509742,
+        loc_longitude: -122.633058,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=268'
+    },
+    {
+        name: 'Woodstock Park',
+        description: 'Includes accessible play area, accessible restroom, BEECN – basic earthquake emergency communication node, dog off-leash area, horseshoe pit, paths – paved, picnic site – reservable, picnic tables, playground, soccer field, softball field, statue or public art, and tennis court.',
+        address_1: 'SE 47th Avenue',
+        address_2: 'Steele Street',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.483602,
+        loc_longitude: -122.612516,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=292'
+    },
+    {
+        name: 'Council Crest Park',
+        description: 'Includes dog off-leash area, paths – paved, paths – unpaved, picnic tables, Plaza, statue or public art, vista point, and wedding site – reservable.',
+        address_1: 'SW Council Crest Drive',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.498619,
+        loc_longitude: -122.707909,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=80'
+    },
+    {
+        name: 'Hillsdale Park',
+        description: ' Includes dog off-leash area, and picnic tables.',
+        address_1: 'SW 27th Avenue',
+        address_2: 'Hillsdale Highway',
+        fenced: false,
+        hours_open: "8:00 A.M.",
+        hours_close: "Midnight",
+        loc_latitude: 45.498619,
+        loc_longitude: -122.707909,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=799'
+    },
+    {
+        name: 'Wilamette Park',
+        description: 'Includes accessible picnic area, accessible restroom, boat dock, boat ramp, canoe launch, dog off-leash area, paths – paved, paths – unpaved, picnic shelter, picnic site – reservable, picnic tables, playground, riverfront views, soccer field, tennis court, and tennis court – lighted.',
+        address_1: 'SW Macadam Avenue',
+        address_2: 'Nebraska Street',
+        fenced: false,
+        hours_open: 8,
+        hours_close: "Midnight",
+        loc_latitude: 45.477469,
+        loc_longitude: -122.67085,
+        image_url: 'https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewFile&PolPhotosID=287'
+    }
+]
 
-# parksObj.each do |park|
-#     Park.create(name: park[:name], description: park[:description], address_1: park[:address_1], address_2: park[:address_2], fenced: park[:fenced], hours_open: park[:hours_open], hours_close: park[:hours_close], loc_latitude: park[:loc_latitude], loc_longitude: park[:loc_longitude])
-# end
+parksObj.each do |park|
+    Park.create(name: park[:name], description: park[:description], address_1: park[:address_1], address_2: park[:address_2], fenced: park[:fenced], hours_open: park[:hours_open], hours_close: park[:hours_close], loc_latitude: park[:loc_latitude], loc_longitude: park[:loc_longitude], image_url: park[:image_url])
+end
 
 # # USER DATA
 
-neighborhood = Neighborhood.find_by(name: 'St. Johns')
-user_1 = User.create(username: 'testuser', email:'test@email.com', password: 'password', neighborhood: neighborhood)
+# neighborhood = Neighborhood.find_by(name: 'St. Johns')
+# user_1 = User.create(username: 'testuser', email:'test@email.com', password: 'password', neighborhood: neighborhood)
 
-park = Park.find_by(name: 'Chimney Park')
-breed = Breed.find_by(name: 'Labrador')
-size = Size.find_by(name: 'Large')
-age = Age.find_by(name: 'Young')
+# park = Park.find_by(name: 'Chimney Park')
+# breed = Breed.find_by(name: 'Labrador')
+# size = Size.find_by(name: 'Large')
+# age = Age.find_by(name: 'Young')
 
-dog_1 = Dog.create(name: 'Rex', breed: breed, size: size, age: age, sex: 'Male', user: user_1, neighborhood: neighborhood, preferred_park: park, description: 'Fun energetic dog who loves to play!')
+# dog_1 = Dog.create(name: 'Rex', breed: breed, size: size, age: age, sex: 'Male', user: user_1, neighborhood: neighborhood, preferred_park: park, description: 'Fun energetic dog who loves to play!')
 
 
-neighborhood_2 = Neighborhood.find_by(name: 'Alberta')
-user_2 = User.create(username: 'testuser_2', password: 'password', email: 'test2@email.com', neighborhood: neighborhood)
+# neighborhood_2 = Neighborhood.find_by(name: 'Alberta')
+# user_2 = User.create(username: 'testuser_2', password: 'password', email: 'test2@email.com', neighborhood: neighborhood)
 
-park_2 = Park.find_by(name: 'Alberta Park')
-breed_2 = Breed.find_by(name: 'Terrier')
-size_2 = Size.find_by(name: 'Medium')
-age_2 = Age.find_by(name: 'Adult')
+# park_2 = Park.find_by(name: 'Alberta Park')
+# breed_2 = Breed.find_by(name: 'Terrier')
+# size_2 = Size.find_by(name: 'Medium')
+# age_2 = Age.find_by(name: 'Adult')
 
-dog_2 = Dog.create(name: 'Ella', breed: breed_2, size: size_2, age: age_2, sex: 'Female', user: user_2, neighborhood: neighborhood_2, preferred_park: park_2, description: 'Mellow dog who is a big people person but loves to play!')
+# dog_2 = Dog.create(name: 'Ella', breed: breed_2, size: size_2, age: age_2, sex: 'Female', user: user_2, neighborhood: neighborhood_2, preferred_park: park_2, description: 'Mellow dog who is a big people person but loves to play!')
