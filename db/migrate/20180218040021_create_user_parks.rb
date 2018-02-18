@@ -1,0 +1,9 @@
+class CreateUserParks < ActiveRecord::Migration[5.1]
+  def change
+    create_table :user_parks do |t|
+      t.string :user_id
+      t.string :park_id
+      t.timestamps
+    end
+  end
+end

@@ -2,7 +2,11 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :dogs
+
     belongs_to :neighborhood
+
+    has_many :user_parks
+    has_many :parks, through: :user_parks
 
     validates :username, presence: true
     validates :password, length: { minimum: 6,
