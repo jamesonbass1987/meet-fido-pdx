@@ -49,7 +49,7 @@ class Auth extends Component {
                             </Segment>
                         </Form>
                         <Message>
-                            New to us? <a href='#'>Sign Up</a>
+                            New to us? <Button>Signup</Button>
                         </Message>
                     </Grid.Column>
                 </Grid>

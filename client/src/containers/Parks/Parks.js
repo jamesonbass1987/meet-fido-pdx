@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import axios from '../../shared/axios-api';
+// import axios from '../../shared/axios-api';
 
 import * as actions from '../../store/actions/index';
 
@@ -114,4 +114,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Parks, axios)
+export default connect(mapStateToProps, mapDispatchToProps)(Parks)
