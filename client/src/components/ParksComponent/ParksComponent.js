@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Segment } from 'semantic-ui-react';
 import ParkForm from '../ParkForm/ParkForm';
 import Parks from '../Parks/Parks';
 
+const parksComponent = props => (
+    <Segment>
+        <ParkForm
+            handleInputChanged={props.handleInputChanged}
+            searchText={props.searchText}
+            onChecked={props.onChecked}
+            fencedChecked={props.fencedChecked}
+            unfencedChecked={props.unfencedChecked}
+            onFilterCheckboxUpdate={props.updateParksFilter}
+            onSearchQueryUpdate={props.onSearchQueryUpdate}
+        />
+        <Parks 
+            parks={props.parks}
+            loading={props.loading}
+            currentFilter={props.currentFilter}
+        />
+    </Segment>
+)
 
-const parksList = props => {
-    return (
-            <Segment>
-                <ParkForm 
-                    handleInputChanged={props.handleInputChanged}
-                    searchText={props.searchText}
-                    onChecked={props.onChecked}
-                    fencedChecked={props.fencedChecked}
-                    unfencedChecked={props.unfencedChecked}
-                    onFilterCheckboxUpdate={props.updateParksFilter}
-                    onSearchQueryUpdate={props.onSearchQueryUpdate}
-                />
-                <Parks />
-            </Segment>
-        )
-}
-
-
-export default parksList;
+export default parksComponent

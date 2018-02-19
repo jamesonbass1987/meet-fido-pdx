@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-import { Header, Modal, Image, Container } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 import classes from './Parks.css';
 
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading';
 import MapComponent from '../../components/Map/Map';
-import ParkModal from '../../components/UI//Modal/Modal';
+import ParkModal from '../../components/ParkModal/ParkModal';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Parks extends Component {
@@ -39,43 +39,21 @@ class Parks extends Component {
 
   render() {
 
-    // Set park modal to selected park once one is clicked on map, pass in modal props to ParkModal
-    // as children to display on page.
-
     let parkModal;
-
     if (this.props.selectedPark && !this.props.loading && this.state.showModal) {
-      const isFenced = this.props.selectedPark.fenced ? "Fenced" : "Open Off Leash Area"
-      const parkAddress = !this.props.selectedPark.address_2 ? `${this.props.selectedPark.address_1}` : `${this.props.selectedPark.address_1} and ${this.props.selectedPark.address_2}`
-      const hours = `${this.props.selectedPark.hours_open} A.M. to ${this.props.selectedPark.hours_close}`      
-      const directionsURL = `https://www.google.com/maps/search/?api=1&query=${this.props.selectedPark.loc_latitude},${this.props.selectedPark.loc_longitude}`
-      parkModal = (<ParkModal
-          park={this.props.selectedPark}
-          show={this.state.showModal}
-          size="large"
-          handleClose={this.handleModalClose}
-        >
-        <Modal.Header>{this.props.selectedPark.name}</Modal.Header>
-          <Modal.Content verticalAlign="middle" image>
-          <Image size='medium' src={this.props.selectedPark.image_url} />
-            <Modal.Description>
-              <Header>About The Park:</Header>
-              <p>{this.props.selectedPark.description}</p>
-              <p><strong>Address: </strong>{parkAddress} <a target="_blank" href={directionsURL}>(Get Directions)</a></p>
-              <p><strong>Park Hours: </strong>{hours}</p>
-              <p><strong><em>{isFenced}</em></strong></p>
-            </Modal.Description>
-          </Modal.Content>
-        </ParkModal>)
+      parkModal = <ParkModal 
+                      selectedPark={this.props.selectedPark} 
+                      showModal={this.state.showModal}
+                      handleModalClose={this.handleModalClose} />
     }
 
     let parksContent = <Spinner />
-
     if (!this.props.loading){
       parksContent = <ParksComponent
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
-          filterParams={this.props.filterParams}
+          currentFilter={this.props.filterParams}
+          loading={this.props.loading}
         />
     }
 
