@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
@@ -7,21 +7,32 @@ import { Container } from 'semantic-ui-react';
 import classes from './Home.css';
 
 import LoginForm from '../../components/Login/Login';
-import Modal from '../../components/UI/Modal/Modal'
+import SignupForm from '../../components/Signup/Signup';
+import Modal from '../../components/UI/Modal/Modal';
 import MainHeading from '../../components/MainHeading/MainHeading';
 
-import DogParkVideo from '../../assets/videos/dog-park-homepage.mp4'
+import DogParkVideo from '../../assets/videos/dog-park-homepage.mp4';
 
-class Home extends Component {
+const home = props => {
 
-    render() {
-        
         let headingContent = <MainHeading />; 
 
-        if (this.props.isAuthenticating){
+        if (props.isSigningUp) {
+
+            headingContent = <Modal
+                show={props.isSigningUp}
+                handleClose={props.changeSignUpState}
+                basic
+            >
+                <SignupForm />
+            </Modal>
+        }
+
+        if (props.isAuthenticating){
+            console.log('show login form')
             headingContent =  <Modal 
-                                show={this.props.isAuthenticating}
-                                handleClose={this.props.changeAuthState}
+                                show={props.isAuthenticating}
+                                handleClose={props.changeAuthState}
                                 basic
                                 >
                                 <LoginForm />
@@ -39,17 +50,16 @@ class Home extends Component {
             </Container>
 
         );
-    }
 }
 
 const mapStateToProps = state => ({
-    isAuthenticating: state.auth.isAuthenticating
+    isAuthenticating: state.auth.isAuthenticating,
+    isSigningUp: state.auth.isSigningUp
 })
 
 const mapDispatchToProps = dispatch => ({
-    changeAuthState: () => dispatch(actions.updateAuthenticatingState())
+    changeAuthState: () => dispatch(actions.updateAuthenticatingState()),
+    changeSignUpState: () => dispatch(actions.updateSignUpState())
 })
 
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(home)

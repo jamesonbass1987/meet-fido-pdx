@@ -1,0 +1,19 @@
+.SignUpHeading {
+    color: rgb(233, 233, 233) !important;
+}
+
+.SignUpGridColumn {
+    max-width: 450px;
+}
+
+.SignUpButton {
+    background: rgb(71, 143, 255) !important;
+    color: white !important;
+}
+
+.Heading {
+    font-size: 4em;
+    font-weight: normal;
+    margin-bottom: 0;
+    margin-top: 3em;
+}

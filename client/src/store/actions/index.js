@@ -20,5 +20,7 @@ export {
 } from './user'
 
 export {
-    updateAuthenticatingState
+    updateAuthenticatingState,
+    updateSignUpState,
+    swapAuthSignUpStates
 } from './auth'

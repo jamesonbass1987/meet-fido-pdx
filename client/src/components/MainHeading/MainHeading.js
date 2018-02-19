@@ -1,10 +1,12 @@
 import React from 'react'
-import { Header, Button, Icon } from 'semantic-ui-react';
+import { Header, Button, Image } from 'semantic-ui-react';
 
 import classes from './MainHeading.css'
+import Logo from '../../assets/images/paw-print.png'
 
 const mainHeading = props => (
         <div className={classes.HeadingContent}>
+            <Image src={Logo} className={classes.LogoImage} centered size="small"/>
             <Header
                 as='h1'
                 content='MeetFidoPDX'
@@ -20,13 +22,6 @@ const mainHeading = props => (
                 textAlign="center"
                 className={classes.HeaderSubContent}
             />
-            <Button
-                primary size='huge'
-                className={classes.Button}
-            >
-                Get Started
-            <Icon name='right arrow' />
-            </Button>
         </div>
     )
 

@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Navbar from '../components/Navigation/Navbar'
 
 import classes from './Layout.css';
 
-
-class Layout extends Component {
-
-
-    render(){
-        return(
+const layout = props => (
             <React.Fragment>
                 <Navbar />
                 <main className={classes.Content}>
-                    {this.props.children}
+                    {props.children}
                 </main>
             </React.Fragment>
-        )
-    }
-}
+)
 
-export default Layout;
+export default layout;

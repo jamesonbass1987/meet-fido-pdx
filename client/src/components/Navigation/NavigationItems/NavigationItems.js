@@ -1,6 +1,5 @@
 import React from 'react';
 import { Menu, MenuItem, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import classes from './NavigationItems.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
@@ -42,15 +41,16 @@ const navigationItems = props => {
                 clicked={props.clicked}
                 link="/users" />
             <MenuItem position='right'>
-                <Button onClick={props.changeAuthState} color="google plus">Log in</Button>
-                <Button as={ Link } color="twitter" to="/auth">Sign Up</Button>
+                <Button onClick={props.changeAuthState} color="google plus" className={classes.MenuButton}>Log in</Button>
+                <Button onClick={props.changeSignUpState} color="twitter" className={classes.MenuButton}>Sign Up</Button>
             </MenuItem>
         </Menu>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
-    changeAuthState: () => dispatch(actions.updateAuthenticatingState())
+    changeAuthState: () => dispatch(actions.updateAuthenticatingState()),
+    changeSignUpState: () => dispatch(actions.updateSignUpState())
 })
 
 
