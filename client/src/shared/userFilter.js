@@ -1,5 +1,3 @@
-const _ = require('lodash')
-
 export const userFilter = (users, filterParams) => {
     let filterUsersArray = [...users]
 

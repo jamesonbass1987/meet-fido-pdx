@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
 import { Header, Modal, Image, Container } from 'semantic-ui-react';
-import TreeImage from '../../assets/images/trees.png';
+
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading';
 import MapComponent from '../../components/Map/Map';
@@ -19,7 +19,7 @@ class Parks extends Component {
     showInfoWindow: false,
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.onFetchParks();
   }
 
@@ -72,13 +72,11 @@ class Parks extends Component {
     let parksContent = <Spinner />
 
     if (!this.props.loading){
-      parksContent = <React.Fragment>
-        <ParksComponent
+      parksContent = <ParksComponent
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
           filterParams={this.props.filterParams}
         />
-      </React.Fragment>
     }
 
     return (
