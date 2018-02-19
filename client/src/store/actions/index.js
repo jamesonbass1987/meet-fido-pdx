@@ -18,3 +18,7 @@ export {
     updateUserFilter,
     resetUserFilter
 } from './user'
+
+export {
+    updateAuthenticatingState
+} from './auth'

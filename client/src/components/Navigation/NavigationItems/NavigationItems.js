@@ -2,6 +2,8 @@ import React from 'react';
 import { Menu, MenuItem, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import classes from './NavigationItems.css';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 
 import NavigationItem from './NavigationItem/NavigationItem';
@@ -40,11 +42,18 @@ const navigationItems = props => {
                 clicked={props.clicked}
                 link="/users" />
             <MenuItem position='right'>
-                <Button as={ Link } color="google plus" to="/auth">Log in</Button>
+                <Button onClick={props.changeAuthState} color="google plus">Log in</Button>
                 <Button as={ Link } color="twitter" to="/auth">Sign Up</Button>
             </MenuItem>
         </Menu>
     )
 }
 
-export default navigationItems; 
+const mapDispatchToProps = dispatch => ({
+    changeAuthState: () => dispatch(actions.updateAuthenticatingState())
+})
+
+
+
+
+export default connect(null, mapDispatchToProps)(navigationItems)

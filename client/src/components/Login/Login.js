@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 
-import classes from './Auth.css'
+import classes from './Login.css'
 import Icon from '../../assets/images/paw-print.png';
 import DogParkVideo from '../../assets/videos/dog-park-homepage.mp4'
 
@@ -15,14 +15,13 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <div className={[classes.AuthForm, classes.AuthParentDiv].join(' ')}>
                 <Grid
                     textAlign='center'
-                    className={classes.AuthForm}
+                    className={classes.LoginForm}
                     verticalAlign='middle'
                 >
-                    <Grid.Column className={classes.AuthGridColumn}>
-                        <Header as='h2' className={classes.AuthHeading} textAlign='center'>
+                    <Grid.Column className={classes.LoginGridColumn}>
+                        <Header as='h2' className={classes.LoginHeading} textAlign='center'>
                             <Image src={Icon} />
                             {' '}Log-in to your account
                         </Header>
@@ -42,7 +41,7 @@ class LoginForm extends Component {
                                     type='password'
                                 />
 
-                                <Button className={classes.AuthButton} fluid size='large'>Login</Button>
+                                <Button className={classes.LoginButton} fluid size='large'>Login</Button>
                             </Segment>
                         </Form>
                         <Message>
@@ -50,7 +49,6 @@ class LoginForm extends Component {
                         </Message>
                     </Grid.Column>
                 </Grid>
-            </div>
         );
     }
 }

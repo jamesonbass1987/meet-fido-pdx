@@ -1,10 +1,9 @@
 import React from 'react'
 import { Header, Button, Icon } from 'semantic-ui-react';
 
-import classes from  './HeadingContent.css'
+import classes from './MainHeading.css'
 
-function headingContent(props) {
-    return (
+const mainHeading = props => (
         <div className={classes.HeadingContent}>
             <Header
                 as='h1'
@@ -21,7 +20,7 @@ function headingContent(props) {
                 textAlign="center"
                 className={classes.HeaderSubContent}
             />
-            <Button 
+            <Button
                 primary size='huge'
                 className={classes.Button}
             >
@@ -30,6 +29,5 @@ function headingContent(props) {
             </Button>
         </div>
     )
-}
 
-export default headingContent
+export default mainHeading

@@ -1,20 +1,12 @@
-.AuthParentDiv {
-    height: 60vh !important;
-}
-
-.AuthHeading {
+.LoginHeading {
     color: rgb(233, 233, 233) !important;
 }
 
-.AuthForm {
-    height: 100%
-}
-
-.AuthGridColumn {
+.LoginGridColumn {
     max-width: 450px;
 }
 
-.AuthButton {
+.LoginButton {
     background: rgb(71, 143, 255) !important;
     color: white !important;
 }
@@ -24,5 +16,4 @@
     font-weight: normal;
     margin-bottom: 0;
     margin-top: 3em;
-    width: 100%;
 }
