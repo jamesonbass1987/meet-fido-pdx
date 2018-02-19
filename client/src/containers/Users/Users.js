@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import * as actions from '../../store/actions/index';
+import { bindActionCreators } from 'redux'
+import { fetchUsers } from '../../store/actions/index';
 
 import classes from './Users.css';
 
@@ -14,7 +15,7 @@ class Users extends Component {
 
     componentDidMount() {
         if (this.props.match.url === '/users'){
-            this.props.onFetchUsers();
+            this.props.fetchUsers();
         }
     }
 
@@ -31,14 +32,9 @@ class Users extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    
-})
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onFetchUsers: () => dispatch(actions.fetchUsers())
-    }
-}
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ fetchUsers }, dispatch)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(null, mapDispatchToProps)(Users)
