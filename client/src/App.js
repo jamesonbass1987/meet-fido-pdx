@@ -12,6 +12,11 @@ import Parks from './containers/Parks/Parks';
 import Users from './containers/Users/Users';
 
 class App extends Component {
+
+  componentWillMount() {
+    this.props.authCheckState();
+  }
+
   render() {
 
     let routes = (

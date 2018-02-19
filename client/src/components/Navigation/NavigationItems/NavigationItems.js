@@ -6,6 +6,25 @@ import NavigationItem from './NavigationItem/NavigationItem';
 import Logo from '../../Logo/Logo'
 
 const navigationItems = props => {
+
+    const navLinks = props.navLinks.map(navItem => (
+        <NavigationItem 
+            activeItem={props.activeItem}
+            name={navItem.name}
+            clicked={props.clicked}
+            link={navItem.link}
+        />
+    ))
+
+    const navButtons = props.navButtons.map((navButton, i) => (
+        <Button
+            onClick={navButton.clicked}
+            color={navButton.color}
+            className={classes.NavButton}
+            key={i + navButton.content}
+        >{navButton.content}</Button>
+    ))
+
     return (
         <Menu
             stackable
@@ -13,35 +32,10 @@ const navigationItems = props => {
             position="right"
             className={classes.Menu}
             >
-            <Logo height="50px" />
-            <NavigationItem
-                activeItem={props.activeItem} 
-                name="home" 
-                clicked={props.clicked}
-                link="/"/>
-            <NavigationItem
-                activeItem={props.activeItem} 
-                name="dogSearch"
-                content="Find Dogs" 
-                clicked={props.clicked}
-                link="/dogs"/>
-            <NavigationItem
-                activeItem={props.activeItem} 
-                content="Search Parks" 
-                name="parkSearch" 
-                clicked={props.clicked}
-                link="/parks"/>
-            <NavigationItem
-                activeItem={props.activeItem}
-                content="View Users"
-                name="userSearch"
-                clicked={props.clicked}
-                link="/users" />
+                <Logo height="50px" />
+                { navLinks }
             <MenuItem position='right'>
-                <Button onClick={props.changeAuthState} color="google plus" className={classes.MenuButton}>Log in</Button>
-                <Button onClick={props.changeSignUpState} color="twitter" className={classes.MenuButton}>Sign Up</Button>
-                <Button onClick={props.handleLogout} color="red" className={classes.MenuButton}>Logout</Button>
-
+                { navButtons }
             </MenuItem>
         </Menu>
     )

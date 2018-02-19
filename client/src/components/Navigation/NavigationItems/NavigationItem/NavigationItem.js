@@ -14,6 +14,7 @@ const navigationItem = props => (
             onClick={props.clicked}
             className={classes.NavigationItem}
             children={props.children}
+            key={props.link}
             >
         </Menu.Item>
 )

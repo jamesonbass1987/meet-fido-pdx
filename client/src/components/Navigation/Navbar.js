@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import { bindActionCreators } from 'redux';
+import { handleLogout, updateSignUpState, updateAuthenticatingState } from '../../store/actions/index';
 
 import { Menu } from 'semantic-ui-react'
 import NavigationItems from './NavigationItems/NavigationItems'
@@ -8,36 +9,94 @@ import NavigationItems from './NavigationItems/NavigationItems'
 class Navbar extends Component {
 
     state = {
-        activeItem: window.location.pathname
+        activeItem: window.location.pathname,
     }
+
 
     handleItemClick = (event, { to } ) => {
         this.setState({
-            ...this.state,
             activeItem: to
         })
     }
 
     render() {
+        
+        let navLinks = [
+            {
+                name: 'home',
+                link: '/',
+                content: 'Home'
+            }
+        ]
+
+        let navButtons = [
+            {
+                color: 'red',
+                content: 'Log In',
+                clicked: this.props.updateAuthenticatingState
+            },
+            {
+                color: 'twitter',
+                content: 'Sign Up',
+                clicked: this.props.updateSignUpState
+            }
+        ]
+
+        if (this.props.isAuthenticated) {
+            navButtons = [
+                    {
+                        color: 'red',
+                        content: 'Log Out',
+                        clicked: this.props.handleLogout
+                    }
+                ]
+            navLinks = [
+                     {
+                        name: 'home',
+                        link: '/',
+                        content: 'Home',
+                    },
+                    {
+                        name: 'dogSearch',
+                        content: 'Find Dogs',
+                        link: '/dogs',
+                    },
+                    {
+                        name: 'parkSearch',
+                        content: 'Search Parks',
+                        link: '/parks',
+                    },
+                    {
+                        name: 'userSearch',
+                        content: 'View Users',
+                        link: "/users",
+                    }
+                ]
+        }
+
+
         return (
             <Menu stackable>
                 <NavigationItems 
-                    activeItem={this.state.activeItem} 
-                    clicked={ this.handleItemClick }
-                    changeAuthState={this.props.updateAuthenticatingState}
-                    changeSignUpState={this.props.updateSignUpState}
-                    handleLogout={this.props.handleLogout}
+                    navLinks={navLinks}
+                    navButtons={navButtons}
+                    activeItem={this.state.activeItem}
+                    clicked={this.handleItemClick}
                     />
             </Menu>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    updateAuthenticatingState: () => dispatch(actions.updateAuthenticatingState()),
-    updateSignUpState: () => dispatch(actions.updateSignUpState()),
-    handleLogout: () => dispatch(actions.handleLogout())
-})
 
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token
+    };
+};
 
-export default connect(null, mapDispatchToProps)(Navbar)
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
