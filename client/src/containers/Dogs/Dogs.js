@@ -4,6 +4,8 @@ import axios from '../../shared/axios-api';
 
 import * as actions from '../../store/actions/index';
 
+import classes from './Dogs.css'
+
 import { Container } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import DogsComponent from '../../components/DogsComponent/DogsComponent'
@@ -16,7 +18,7 @@ class Dogs extends Component {
 
     render() {
         return (
-            <Container>
+            <Container className={classes.Container}>
                 <PageHeading
                     as="h1"
                     textAlignment="center"

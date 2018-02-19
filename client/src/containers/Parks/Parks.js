@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import axios from '../../shared/axios-api';
-
 import * as actions from '../../store/actions/index';
 
 import { Header, Modal, Image, Container } from 'semantic-ui-react';
+
+import classes from './Parks.css';
 
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading';
@@ -80,7 +80,7 @@ class Parks extends Component {
     }
 
     return (
-      <Container>
+      <Container className={classes.Container}>
         <PageHeading
           as="h1"
           textAlignment="center"
