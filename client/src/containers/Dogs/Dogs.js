@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux'
 import { fetchDogs } from '../../store/actions/index';
 
 import classes from './Dogs.css'
@@ -8,7 +8,6 @@ import classes from './Dogs.css'
 import { Container } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import DogsComponent from '../../components/DogsComponent/DogsComponent'
-import { bindActionCreators } from '../../../../../../../../../Library/Caches/typescript/2.7/node_modules/redux';
 
 class Dogs extends Component {
 
