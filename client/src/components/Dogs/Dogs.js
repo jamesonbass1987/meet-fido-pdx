@@ -4,7 +4,6 @@ import { Card } from 'semantic-ui-react'
 import Dog from './Dog/Dog'
 import Spinner from '../UI/Spinner/Spinner'
 
-const uuidv1 = require('uuid/v1');
 
 const dogs = props => {
 
@@ -12,7 +11,7 @@ const dogs = props => {
     
     if (!props.loading) {
         const dogNodeList = props.dogs.map(dog => (
-            <Dog key={uuidv1()} dog={dog} />
+            <Dog key={dog.name + dog.id} dog={dog} />
         ))
         
         dogs = <Card.Group 

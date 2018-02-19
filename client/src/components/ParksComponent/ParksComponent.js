@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Segment } from 'semantic-ui-react';
+import React from 'react';
+import { Segment, Divider } from 'semantic-ui-react';
 import ParkForm from '../ParkForm/ParkForm';
 import Parks from '../Parks/Parks';
 
@@ -15,6 +14,7 @@ const parksComponent = props => (
             onFilterCheckboxUpdate={props.updateParksFilter}
             onSearchQueryUpdate={props.onSearchQueryUpdate}
         />
+        <Divider />
         <Parks 
             parks={props.parks}
             loading={props.loading}

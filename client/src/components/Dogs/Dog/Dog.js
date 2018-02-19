@@ -6,7 +6,7 @@ import classes from './Dog.css'
 const dog = props => {
     return (
         <Card id={props.id} className={classes.Dog}>
-            <Image centered circular src={props.dog.profile_image_url} />
+            <Image centered src={props.dog.profile_image_url} />
             <Card.Content>
                 <Card.Header>{props.dog.name}</Card.Header>
                 <Card.Meta>{props.dog.breed.name} | {props.dog.age.name} | {props.dog.size.name} </Card.Meta>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Segment } from 'semantic-ui-react';
+import { Container, Segment, Divider } from 'semantic-ui-react';
 
 import PageHeading from '../PageHeading/PageHeading';
 import UsersForm from '../UsersForm/UsersForm'
@@ -27,6 +27,8 @@ const usersComponent = props => {
                     onFilterCheckboxUpdate={props.updateParksFilter}
                     onSearchQueryUpdate={props.onSearchQueryUpdate}
                 />
+                <Divider />
+
                 <Users />
             </Segment>
         </Container>
