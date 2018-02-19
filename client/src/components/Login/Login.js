@@ -11,8 +11,24 @@ import Icon from '../../assets/images/paw-print.png';
 class LoginForm extends Component {
 
     state = {
-        username: '',
-        password: ''
+        controls: {
+            username: '',
+            password: ''
+        }
+    }
+
+    handleFormInputChange = (event, key) => {
+        const updatedControls = {
+            ...this.state.controls,
+            [key]: event.target.value
+        }
+
+        this.setState({
+            controls: {
+                ...this.state.controls,
+                updatedControls
+            }
+        })
     }
 
     render() {
@@ -33,7 +49,9 @@ class LoginForm extends Component {
                                 fluid
                                 icon='user'
                                 iconPosition='left'
-                                placeholder='E-mail address'
+                                placeholder='Username'
+                                value={this.state.username}
+                                onChange={event => this.handleFormInputChange(event, 'username')}
                             />
                             <Form.Input
                                 fluid
@@ -41,6 +59,8 @@ class LoginForm extends Component {
                                 iconPosition='left'
                                 placeholder='Password'
                                 type='password'
+                                value={this.state.password}
+                                onChange={event => this.handleFormInputChange(event, 'password')}
                             />
 
                             <Button className={classes.LoginButton} fluid size='large'>Login</Button>
