@@ -12,3 +12,14 @@
     height: 180px;
     object-fit: cover;
 }
+
+.Popup {
+    text-align: center;
+}
+
+.Popup img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    text-align: center;
+}
