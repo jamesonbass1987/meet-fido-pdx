@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import { bindActionCreators } from 'redux';
+import { updateAuthenticatingState, updateSignUpState } from '../../store/actions/index';
 
 import { Container } from 'semantic-ui-react';
 
@@ -21,7 +22,7 @@ const home = props => {
 
             headingContent = <Modal
                 show={props.isSigningUp}
-                handleClose={props.changeSignUpState}
+                handleClose={props.updateSignUpState}
                 basic
             >
                 <SignupForm />
@@ -32,7 +33,7 @@ const home = props => {
             console.log('show login form')
             headingContent =  <Modal 
                                 show={props.isAuthenticating}
-                                handleClose={props.changeAuthState}
+                                handleClose={props.updateAuthenticatingState}
                                 basic
                                 >
                                 <LoginForm />
@@ -52,14 +53,19 @@ const home = props => {
         );
 }
 
-const mapStateToProps = state => ({
-    isAuthenticating: state.auth.isAuthenticating,
-    isSigningUp: state.auth.isSigningUp
-})
+const mapStateToProps = state => {
+    const { isAuthenticating, isSigningUp } = state.auth;
+    return {
+        isAuthenticating,
+        isSigningUp
+    }
+}
 
-const mapDispatchToProps = dispatch => ({
-    changeAuthState: () => dispatch(actions.updateAuthenticatingState()),
-    changeSignUpState: () => dispatch(actions.updateSignUpState())
-})
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ updateAuthenticatingState, updateSignUpState }, dispatch)
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(home)
+
+
+
