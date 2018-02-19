@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from '../../shared/axios-api';
 
-import * as actions from '../../store/actions/index';
+import { fetchDogs } from '../../store/actions/index';
 
 import classes from './Dogs.css'
 
 import { Container } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import DogsComponent from '../../components/DogsComponent/DogsComponent'
+import { bindActionCreators } from '../../../../../../../../../Library/Caches/typescript/2.7/node_modules/redux';
 
 class Dogs extends Component {
 
     componentDidMount() {
-        this.props.onFetchDogs();
+        this.props.fetchDogs();
     }
 
     render() {
@@ -37,18 +37,16 @@ class Dogs extends Component {
 }
 
 const mapStateToProps = state => {
+    const { dogs, loading, selectedDog, currentFilter } = state.dog
     return {
-        dogs: state.dog.dogs,
-        loading: state.dog.loading,
-        selectedDog: state.dog.selectedDog,
-        currentFilter: state.dog.currentFilter
+        dogs,
+        loading,
+        selectedDog,
+        currentFilter
     }
 }
 const mapDispatchToProps = dispatch => {
-    return {
-        onFetchDogs: () => dispatch(actions.fetchDogs()),
-        onFetchDog: (id) => dispatch(actions.fetchDog(id)),
-    };
+    return bindActionCreators({ fetchDogs }, dispatch)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dogs, axios)
+export default connect(mapStateToProps, mapDispatchToProps)(Dogs)
