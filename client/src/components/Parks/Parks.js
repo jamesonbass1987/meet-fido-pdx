@@ -1,27 +1,35 @@
 import React from 'react';
-
-import { Grid } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { Item } from 'semantic-ui-react'
 
 import Park from './Park/Park'
 import Spinner from '../UI/Spinner/Spinner'
 
+import { parkFilter } from '../../shared/parkFilter'
+
 const parks = props => {
 
-    let parks = <Spinner />
+    let parksList = <Spinner />
 
     if (!props.loading) {
-        const parkNodeList = props.parks.map(park => (
+        const parksArray = parkFilter(props.parks, props.currentFilter);
+        parksList = parksArray.map(park => (
             <Park key={park.id} park={park} />
         ))
-        
-        parks = <Grid celled>{parkNodeList}</Grid>
     }
 
     return (
-        <Grid>
-            {parks}
-        </Grid>
+        <Item.Group divided>
+            {parksList}
+        </Item.Group>
     );
 };
 
-export default parks;
+const mapStateToProps = state => ({
+    parks: state.park.parks,
+    loading: state.park.loading,
+    currentFilter: state.park.parkFilter,
+})
+
+
+export default connect(mapStateToProps)(parks)

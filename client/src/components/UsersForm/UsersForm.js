@@ -74,7 +74,7 @@ class UsersForm extends Component {
 const mapStateToProps = state => ({
     parks: state.park.parks,
     searchQuery: state.user.userFilter.searchQuery,
-    selectedPark: state.user.userFilter.selectedPark
+    selectedParknpm : state.user.userFilter.selectedPark
 })
 
 const mapDispatchToProps = dispatch => ({

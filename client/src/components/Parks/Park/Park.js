@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Image, Item } from 'semantic-ui-react';
 import classes from './Park.css';
 
 const park = props => {
