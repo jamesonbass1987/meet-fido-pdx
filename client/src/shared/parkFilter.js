@@ -7,6 +7,6 @@ export const parkFilter = (parks, filterParams) => {
             (park.fenced === filterParams.fencedPark || !park.fenced === filterParams.unfencedPark)
         ))
     } else {
-        return filterParksArray;
+        return [];
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Item } from 'semantic-ui-react';
+import { Image, Item } from 'semantic-ui-react';
 import classes from './Park.css';
 
 const park = props => {
@@ -9,23 +9,22 @@ const park = props => {
     const hours = `${props.park.hours_open} A.M. to ${props.park.hours_close}`
 
     return (
-        <Grid.Row className={classes.Content}>
-            <Grid.Column verticalAlign="middle" width={4}>
-                <Image rounded src={props.park.image_url} />
-            </Grid.Column>
-            <Grid.Column 
-                width={12}
-                >
-                <h3>{props.park.name}</h3>
-                <h4>About The Park:</h4>
-                <p>{props.park.description}</p>
-                <h4>Address:</h4>
-                <p>{parkAddress}</p>
-                <h4><em>{isFenced}</em></h4>
-                <p><strong>Park Hours: </strong>{hours}</p>
-            </Grid.Column>
-        </Grid.Row>
+        <Item className={classes.Content}>
+            <Image className={classes.ParkImage} rounded src={props.park.image_url} />
+            <Item.Content verticalAlign='middle'>
+                <Item.Header>{props.park.name}</Item.Header>
+                <Item.Meta>
+                    <span>{parkAddress}</span>
+                </Item.Meta>
+                <Item.Description>{props.park.description}</Item.Description>
+                <Item.Extra>
+                    <strong>{isFenced}</strong><br />
+                    <strong>Hours:</strong>{hours}
+                </Item.Extra>
+            </Item.Content>
+        </Item>
     );
 };
 
 export default park;
+
