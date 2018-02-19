@@ -91,7 +91,6 @@ class SignUpForm extends Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    swapAuthSignUpStates: () => dispatch(actions.swapAuthSignUpStates())
 })
 
 export default connect(null, mapDispatchToProps)(SignUpForm)

@@ -22,5 +22,5 @@ export {
 export {
     updateAuthenticatingState,
     updateSignUpState,
-    swapAuthSignUpStates
+    handleUserLogin
 } from './auth'

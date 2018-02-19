@@ -48,6 +48,8 @@ gem 'rack-cors'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# User auth via JSON Web Token Gems
+gem 'knock'
 gem 'jwt'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

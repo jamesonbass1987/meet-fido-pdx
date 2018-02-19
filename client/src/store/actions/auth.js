@@ -1,5 +1,26 @@
 import * as actionTypes from './actionTypes';
 
+export const authStart = () => {
+    return {
+        type: actionTypes.AUTH_START
+    };
+};
+
+export const authSuccess = (token, userId) => {
+    return {
+        type: actionTypes.AUTH_SUCCESS,
+        idToken: token,
+        userId: userId
+    };
+};
+
+export const authFail = (error) => {
+    return {
+        type: actionTypes.AUTH_FAIL,
+        error: error
+    };
+};
+
 
 export const updateAuthenticatingState = () => {
     return {
@@ -13,8 +34,9 @@ export const updateSignUpState = () => {
     }
 }
 
-export const swapAuthSignUpStates = () => {
+export const handleUserLogin = (payload) => {
     return {
-        type: actionTypes.SWAP_AUTH_SIGN_UP_STATES
+        type: actionTypes.HANDLE_USER_LOGIN,
+        payload
     }
 }

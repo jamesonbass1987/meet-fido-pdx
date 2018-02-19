@@ -1,4 +1,5 @@
 class Api::V1::ParksController < ApiController
+  before_action :authenticate_user
   before_action :set_park, only: [:show, :update, :destroy]
 
   def index

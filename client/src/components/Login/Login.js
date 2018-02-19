@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import { bindActionCreators } from 'redux';
+import { handleUserLogin } from '../../store/actions/index';
 
-import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Image, Segment, Input } from 'semantic-ui-react';
 
 import classes from './Login.css'
 import Icon from '../../assets/images/paw-print.png';
@@ -31,6 +32,13 @@ class LoginForm extends Component {
         })
     }
 
+    handleFormSubmit = event => {
+        const username = event.target.username.value
+        const password = event.target.password.value
+
+        this.props.handleUserLogin({username, password})
+    }
+
     render() {
         return (
             <Grid
@@ -43,21 +51,24 @@ class LoginForm extends Component {
                         <Image src={Icon} />
                         {' '}Log-in to your account
                         </Header>
-                    <Form size='large'>
+                    <Form size='large' onSubmit={this.handleFormSubmit}>
                         <Segment stacked>
-                            <Form.Input
+                            <Form.Field
                                 fluid
                                 icon='user'
                                 iconPosition='left'
-                                placeholder='Username'
+                                control={ Input }
+                                id='username'
                                 value={this.state.username}
                                 onChange={event => this.handleFormInputChange(event, 'username')}
                             />
-                            <Form.Input
+                            <Form.Field
                                 fluid
                                 icon='lock'
                                 iconPosition='left'
                                 placeholder='Password'
+                                control={Input}
+                                id='password'
                                 type='password'
                                 value={this.state.password}
                                 onChange={event => this.handleFormInputChange(event, 'password')}
@@ -73,8 +84,8 @@ class LoginForm extends Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-    swapAuthSignUpStates: () => dispatch(actions.swapAuthSignUpStates())
-})
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ handleUserLogin }, dispatch)
+)
 
 export default connect(null, mapDispatchToProps)(LoginForm)
