@@ -24,8 +24,9 @@ class Navbar extends Component {
                 <NavigationItems 
                     activeItem={this.state.activeItem} 
                     clicked={ this.handleItemClick }
-                    changeAuthState={this.props.changeAuthState}
-                    changeSignUpState={this.props.changeSignUpState}
+                    changeAuthState={this.props.updateAuthenticatingState}
+                    changeSignUpState={this.props.updateSignUpState}
+                    handleLogout={this.props.handleLogout}
                     />
             </Menu>
         );
@@ -33,8 +34,9 @@ class Navbar extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    changeAuthState: () => dispatch(actions.updateAuthenticatingState()),
-    changeSignUpState: () => dispatch(actions.updateSignUpState())
+    updateAuthenticatingState: () => dispatch(actions.updateAuthenticatingState()),
+    updateSignUpState: () => dispatch(actions.updateSignUpState()),
+    handleLogout: () => dispatch(actions.handleLogout())
 })
 
 

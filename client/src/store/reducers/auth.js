@@ -38,6 +38,10 @@ const authFail = (state, action) => {
     });
 };
 
+const authLogout = (state, action) => {
+    return updateObject(state, { token: null });
+};
+
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.UPDATE_AUTHENTICATING_STATE: return updateAuthenticatingState(state);

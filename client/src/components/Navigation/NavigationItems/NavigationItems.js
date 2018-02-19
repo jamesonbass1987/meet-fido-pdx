@@ -40,6 +40,8 @@ const navigationItems = props => {
             <MenuItem position='right'>
                 <Button onClick={props.changeAuthState} color="google plus" className={classes.MenuButton}>Log in</Button>
                 <Button onClick={props.changeSignUpState} color="twitter" className={classes.MenuButton}>Sign Up</Button>
+                <Button onClick={props.handleLogout} color="red" className={classes.MenuButton}>Logout</Button>
+
             </MenuItem>
         </Menu>
     )

@@ -21,6 +21,13 @@ export const authFail = (error) => {
     };
 };
 
+export const handleLogout = () => {
+    localStorage.removeItem('token');
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    };
+};
+
 
 export const updateAuthenticatingState = () => {
     return {
