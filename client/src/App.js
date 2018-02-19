@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 
-import Layout from './hoc/Layout';
+import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
 import Dogs from './containers/Dogs/Dogs';
 import Parks from './containers/Parks/Parks';
@@ -22,13 +22,9 @@ class App extends Component {
     )
 
     return (
-      <div >
-      <Layout>
-          <header>
-            {routes}
-          </header>
-      </Layout>
-      </div>
+        <Layout>
+              {routes}
+        </Layout>
     );
   }
 }

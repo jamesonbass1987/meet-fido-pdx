@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navbar from '../components/Navigation/Navbar'
+import Navbar from '../../components/Navigation/Navbar'
 
 import classes from './Layout.css';
 

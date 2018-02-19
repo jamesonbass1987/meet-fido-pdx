@@ -1,9 +1,6 @@
 import React from 'react';
 import { Menu, MenuItem, Button } from 'semantic-ui-react';
 import classes from './NavigationItems.css';
-import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
-
 
 import NavigationItem from './NavigationItem/NavigationItem';
 import Logo from '../../Logo/Logo'
@@ -48,12 +45,4 @@ const navigationItems = props => {
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    changeAuthState: () => dispatch(actions.updateAuthenticatingState()),
-    changeSignUpState: () => dispatch(actions.updateSignUpState())
-})
-
-
-
-
-export default connect(null, mapDispatchToProps)(navigationItems)
+export default navigationItems
