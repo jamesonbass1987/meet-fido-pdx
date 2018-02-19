@@ -60,3 +60,16 @@ export const handleUserLogin = (payload) => {
             });
     };
 }
+
+
+export const authCheckState = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(handleLogout());
+        } else {
+            const token = localStorage.getItem('userId');
+            dispatch(authSuccess(token))
+        }
+    };
+};

@@ -23,5 +23,6 @@ export {
     updateAuthenticatingState,
     updateSignUpState,
     handleUserLogin,
-    handleLogout
+    handleLogout,
+    authCheckState
 } from './auth'
