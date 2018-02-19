@@ -9,10 +9,26 @@ import Icon from '../../assets/images/paw-print.png';
 class SignUpForm extends Component {
 
     state = {
-        email: '',
-        username: '',
-        password: '',
-        password_confirmation: ''
+        controls: {
+            email: '',
+            username: '',
+            password: '',
+            password_confirmation: ''
+        }
+    }
+
+    handleFormInputChange = (event, key) => {
+        const updatedControls = {
+            ...this.state.controls,
+            [key]: event.target.value
+        }
+
+        this.setState({
+            controls: {
+                ...this.state.controls,
+                updatedControls
+            }
+        })
     }
 
     render() {
@@ -34,12 +50,16 @@ class SignUpForm extends Component {
                                 icon='user'
                                 iconPosition='left'
                                 placeholder='Username'
+                                value={this.state.username}
+                                onChange={event => this.handleFormInputChange(event, 'username')}
                             />
                             <Form.Input
                                 fluid
                                 icon='mail'
                                 iconPosition='left'
                                 placeholder='E-mail address'
+                                value={this.state.email}
+                                onChange={event => this.handleFormInputChange(event, 'email')}
                             />
                             <Form.Input
                                 fluid
@@ -47,6 +67,8 @@ class SignUpForm extends Component {
                                 iconPosition='left'
                                 placeholder='Password'
                                 type='password'
+                                value={this.state.password}
+                                onChange={event => this.handleFormInputChange(event, 'password')}
                             />
                             <Form.Input
                                 fluid
@@ -54,6 +76,8 @@ class SignUpForm extends Component {
                                 iconPosition='left'
                                 placeholder='Password Confirmation'
                                 type='password'
+                                value={this.state.password_confirmation}
+                                onChange={event => this.handleFormInputChange(event, 'password_confirmation')}
                             />
 
                             <Button className={classes.SignUpButton} fluid size='large'>Sign Up</Button>
