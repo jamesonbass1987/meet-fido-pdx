@@ -13,6 +13,7 @@ const navigationItems = props => {
             name={navItem.name}
             clicked={props.clicked}
             link={navItem.link}
+            key={navItem.name}
         />
     ))
 

@@ -30,7 +30,6 @@ const home = props => {
         }
 
         if (props.isAuthenticating){
-            console.log('show login form')
             headingContent =  <Modal 
                                 show={props.isAuthenticating}
                                 handleClose={props.updateAuthenticatingState}

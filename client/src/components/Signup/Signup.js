@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
-import * as actions from '../../store/actions/index';
+// import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 import classes from './Signup.css'

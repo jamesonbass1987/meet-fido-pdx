@@ -68,7 +68,6 @@ export const authCheckState = () => {
         if (!token) {
             dispatch(handleLogout());
         } else {
-            const token = localStorage.getItem('userId');
             dispatch(authSuccess(token))
         }
     };
