@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import { bindActionCreators } from 'redux'
+import { fetchParks, fetchPark } from '../../store/actions/index';
 
 import { Container } from 'semantic-ui-react';
 
@@ -20,11 +21,11 @@ class Parks extends Component {
   }
 
   componentWillMount(){
-    this.props.onFetchParks();
+    this.props.fetchParks();
   }
 
   handleMarkerClick = id => {
-    this.props.onFetchPark(id)
+    this.props.fetchPark(id)
 
     this.setState({
       showModal: true
@@ -52,7 +53,7 @@ class Parks extends Component {
       parksContent = <ParksComponent
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
-          currentFilter={this.props.filterParams}
+          currentFilter={this.props.parkFilter}
           loading={this.props.loading}
         />
     }
@@ -74,7 +75,7 @@ class Parks extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           content={this.props.parks}
           markerClicked={this.handleMarkerClick}
-          filterParams={this.props.filterParams}
+          filterParams={this.props.parkFilter}
         />
         {parksContent}
         {parkModal}
@@ -84,19 +85,17 @@ class Parks extends Component {
 }
 
 const mapStateToProps = state => {
+  const { parks, loading, selectedPark, parkFilter } = state.park;
   return {
-    parks: state.park.parks,
-    loading: state.park.loading,
-    selectedPark: state.park.selectedPark,
-    filterParams: state.park.parkFilter,
+    parks,
+    loading,
+    selectedPark,
+    parkFilter
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchParks: () => dispatch(actions.fetchParks()),
-    onFetchPark: (id) => dispatch(actions.fetchPark(id))
-  };
-};
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({fetchParks, fetchPark}, dispatch)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Parks)
+export default connect(mapStateToProps, mapDispatchToProps)(Parks);
