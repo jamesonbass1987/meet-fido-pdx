@@ -9,8 +9,10 @@ import DogParkVideo from '../../assets/videos/dog-park-homepage.mp4'
 class LoginForm extends Component {
 
     state = {
+        email: '',
         username: '',
-        password: ''
+        password: '',
+        password_confirmation: ''
     }
 
     render() {
@@ -23,13 +25,19 @@ class LoginForm extends Component {
                     <Grid.Column className={classes.LoginGridColumn}>
                         <Header as='h2' className={classes.LoginHeading} textAlign='center'>
                             <Image src={Icon} />
-                            {' '}Log-in to your account
+                            {' '}Sign up for a new account
                         </Header>
                         <Form size='large'>
                             <Segment stacked>
                                 <Form.Input
                                     fluid
                                     icon='user'
+                                    iconPosition='left'
+                                    placeholder='Username'
+                                />
+                                <Form.Input
+                                    fluid
+                                    icon='email'
                                     iconPosition='left'
                                     placeholder='E-mail address'
                                 />
@@ -40,12 +48,19 @@ class LoginForm extends Component {
                                     placeholder='Password'
                                     type='password'
                                 />
+                                <Form.Input
+                                    fluid
+                                    icon='lock'
+                                    iconPosition='left'
+                                    placeholder='Password Confirmation'
+                                    type='password'
+                                />
 
-                                <Button className={classes.LoginButton} fluid size='large'>Login</Button>
+                                <Button className={classes.LoginButton} fluid size='large'>Sign Up</Button>
                             </Segment>
                         </Form>
                         <Message>
-                            New to us? <Button>Signup</Button>
+                            Already have an account? <Button>Login</Button>
                         </Message>
                     </Grid.Column>
                 </Grid>
