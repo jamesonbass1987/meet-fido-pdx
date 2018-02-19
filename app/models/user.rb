@@ -13,4 +13,14 @@ class User < ApplicationRecord
     wrong_length: "Password must be at least 6 characters." }, allow_nil: true
     validates :email, presence: true
     validates :neighborhood_id, presence: true
+
+
+    def self.from_token_request request
+        username = request.params["auth"] && request.params["auth"]["username"]
+        self.find_by username: username
+    end
+
+    def to_token_payload
+        return {id: self.id}
+    end
 end

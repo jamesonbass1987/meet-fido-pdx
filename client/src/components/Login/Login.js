@@ -58,6 +58,7 @@ class LoginForm extends Component {
                                 icon='user'
                                 iconPosition='left'
                                 control={ Input }
+                                placeholder='Username'
                                 id='username'
                                 value={this.state.username}
                                 onChange={event => this.handleFormInputChange(event, 'username')}

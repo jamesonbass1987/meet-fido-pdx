@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import axios from '../../shared/axios-api';
 
 export const authStart = () => {
     return {
@@ -6,18 +7,17 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        idToken: token,
-        userId: userId
+        token
     };
 };
 
 export const authFail = (error) => {
     return {
         type: actionTypes.AUTH_FAIL,
-        error: error
+        error
     };
 };
 
@@ -35,8 +35,21 @@ export const updateSignUpState = () => {
 }
 
 export const handleUserLogin = (payload) => {
-    return {
-        type: actionTypes.HANDLE_USER_LOGIN,
-        payload
-    }
+    return dispatch => {
+        dispatch(authStart());
+        const authData = { "auth": {
+                username: payload.username,
+                password: payload.password
+            }
+        };
+
+        axios.post('/user_token', authData)
+            .then(response => {
+                localStorage.setItem('token', response.data.jwt);
+                dispatch(authSuccess(response.data.jwt));
+            })
+            .catch(err => {
+                dispatch(authFail(err.response.data.error));
+            });
+    };
 }

@@ -56,7 +56,6 @@ const updateDogFilter = (state, action) => {
     })
 }
 
-
 const fetchDogAttributeStart = state => {
     return updateObject(state, { loading: true });
 };

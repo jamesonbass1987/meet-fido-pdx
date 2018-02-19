@@ -62,7 +62,11 @@ export const fetchDogStart = () => {
 export const fetchDog = id => {
     return dispatch => {
         dispatch(fetchDogsStart());
-        axios.get(`/dogs/${id}`)
+        const token = localStorage.getItem('token');
+
+        axios.get(`/dogs/${id}`, {
+            headers: { Authorization: "Bearer " + token }
+        })
             .then(res => {
                 const fetchedDog = res.data.dog;
                 dispatch(fetchDogSuccess(fetchedDog));

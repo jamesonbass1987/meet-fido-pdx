@@ -1,11 +1,13 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
-import axios from '../../shared/axios-api';
+
 
 const initialState = {
     isAuthenticating: false,
     isSigningUp: false,
-    loading: false
+    loading: false,
+    error: null,
+    token: null
 }
 
 const updateAuthenticatingState = state => {
@@ -16,15 +18,14 @@ const updateSignUpState = state => {
     return updateObject(state, { isSigningUp: !state.isSigningUp })
 }
 
-
 const authStart = (state, action) => {
     return updateObject(state, { error: null, loading: true });
 };
 
 const authSuccess = (state, action) => {
     return updateObject(state, {
-        token: action.idToken,
-        userId: action.userId,
+        token: action.token,
+        isAuthenticating: false,
         error: null,
         loading: false
     });
