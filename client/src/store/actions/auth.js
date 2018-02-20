@@ -80,11 +80,9 @@ export const UserSignUpStart = () => {
     };
 };
 
-export const UserSignUpSuccess = (user, token) => {
+export const UserSignUpSuccess = () => {
     return {
         type: actionTypes.USER_SIGN_UP_SUCCESS,
-        user,
-        token
     };
 };
 
@@ -95,7 +93,7 @@ export const UserSignUpFail = (error) => {
     };
 };
 
-export const handleUserSignup = payload => {
+export const handleUserSignUp = payload => {
     return dispatch => {
         dispatch(authStart());
         const userData = {
@@ -109,10 +107,11 @@ export const handleUserSignup = payload => {
 
         axios.post('/api/v1/users', userData)
             .then(response => {
+                dispatch(UserSignUpSuccess())
                 handleUserLogin({username: payload.username, password: payload.password})
             })
             .catch(err => {
-                dispatch(SignUpFail(err.response.data.error));
+                dispatch(UserSignUpFail(err.response.data.error));
             });
     };
 }

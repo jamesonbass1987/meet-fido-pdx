@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
-import * as actions from '../../store/actions/index';
+import { handleUserSignUp } from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 import classes from './Signup.css'
@@ -15,6 +15,10 @@ class SignUpForm extends Component {
             password: '',
             password_confirmation: ''
         }
+    }
+
+    componentWillMount(){
+
     }
 
     handleFormInputChange = (event, key) => {
@@ -89,8 +93,13 @@ class SignUpForm extends Component {
     }
 }
 
-
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = state => ({
+    neighborhoods: this.neighborhood.neighborhoods
 })
 
-export default connect(null, mapDispatchToProps)(SignUpForm)
+
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ handleUserSignUp }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

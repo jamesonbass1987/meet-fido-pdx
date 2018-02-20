@@ -1,6 +1,4 @@
 class NeighborhoodSerializer < ActiveModel::Serializer
-    attributes :name
+    attributes :name, :id
 
-    has_many :dogs
-    has_many :users
 end

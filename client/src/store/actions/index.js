@@ -24,5 +24,10 @@ export {
     updateSignUpState,
     handleUserLogin,
     handleLogout,
-    authCheckState
+    authCheckState,
+    handleUserSignUp
+} from './auth'
+
+export {
+    fetchNeighborhoods
 } from './auth'
