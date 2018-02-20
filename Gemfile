@@ -49,8 +49,7 @@ gem 'rack-cors'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # User auth via JSON Web Token Gems
-gem 'knock'
 gem 'jwt'
 gem 'pry'
-
+gem 'simple_command'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

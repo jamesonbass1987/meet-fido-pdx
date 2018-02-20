@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :sizes, only: [:index]
         resources :breeds, only: [:index]
 
-        post 'user_token' => 'user_token#create'
+        post 'authenticate', to: 'authentication#authenticate'
       end
   end
 end

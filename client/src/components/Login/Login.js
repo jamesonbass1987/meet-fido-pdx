@@ -12,29 +12,24 @@ import Icon from '../../assets/images/paw-print.png';
 class LoginForm extends Component {
 
     state = {
-        controls: {
+        formData: {
             username: '',
             password: ''
         }
     }
 
     handleFormInputChange = (event, key) => {
-        const updatedControls = {
-            ...this.state.controls,
-            [key]: event.target.value
-        }
-
         this.setState({
-            controls: {
-                ...this.state.controls,
-                updatedControls
+            formData: {
+                ...this.state.formData,
+                [key]: event.target.value
             }
         })
     }
 
-    handleFormSubmit = event => {
-        const username = this.state.username;
-        const password = this.state.password;
+    handleFormSubmit = () => {
+        const username = this.state.formData.username;
+        const password = this.state.formData.password;
 
         this.props.handleUserLogin({username, password})
     }
@@ -51,7 +46,7 @@ class LoginForm extends Component {
                         <Image src={Icon} />
                         {' '}Log-in to your account
                         </Header>
-                    <Form size='large' onSubmit={this.handleFormSubmit}>
+                    <Form size='large' onSubmit={() => this.handleFormSubmit()}>
                         <Segment stacked>
                             <Form.Field
                                 fluid

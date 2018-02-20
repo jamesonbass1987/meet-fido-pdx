@@ -44,16 +44,15 @@ export const updateSignUpState = () => {
 export const handleUserLogin = (payload) => {
     return dispatch => {
         dispatch(authStart());
-        const authData = { "auth": {
+        const authData = {
                 username: payload.username,
                 password: payload.password
             }
-        };
-
-        axios.post('/user_token', authData)
+        
+        axios.post('/authenticate', authData)
             .then(response => {
-                localStorage.setItem('token', response.data.jwt);
-                dispatch(authSuccess(response.data.jwt));
+                localStorage.setItem('token', response.data.auth_token);
+                dispatch(authSuccess(response.data.auth_token));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));
@@ -108,7 +107,7 @@ export const handleUserSignUp = payload => {
         axios.post('/users', { user: userData})
             .then(response => {
                 dispatch(userSignUpSuccess())
-                handleUserLogin({username: payload.username, password: payload.password})
+                dispatch(handleUserLogin(userData))
             })
             .catch(err => {
                 console.log(err)

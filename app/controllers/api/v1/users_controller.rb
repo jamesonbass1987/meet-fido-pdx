@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApiController
+  skip_before_action :authenticate_request, only: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
@@ -6,7 +7,6 @@ class Api::V1::UsersController < ApiController
   end
 
   def create
-    binding.pry
     user = User.new(user_params)
 
     if user.save
