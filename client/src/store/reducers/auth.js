@@ -38,6 +38,26 @@ const authFail = (state, action) => {
     });
 };
 
+const userSignUpStart = (state, action) => {
+    return updateObject(state, { error: null, loading: true });
+};
+
+const userSignUpSuccess = (state, action) => {
+    return updateObject(state, {
+        token: action.token,
+        isSigningUp: false,
+        error: null,
+        loading: false
+    });
+};
+
+const userSignUpFail = (state, action) => {
+    return updateObject(state, {
+        error: action.error,
+        loading: false
+    });
+};
+
 const authLogout = (state, action) => {
     return updateObject(state, { token: null });
 };
@@ -50,6 +70,9 @@ export const authReducer = (state = initialState, action) => {
         case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
+        case actionTypes.USER_SIGN_UP_START: return userSignUpStart(state, action);       
+        case actionTypes.USER_SIGN_UP_FAIL: return userSignUpFail(state, action);
+        case actionTypes.USER_SIGN_UP_SUCCESS: return userSignUpSuccess(state, action);
         default: return state
     }
 }

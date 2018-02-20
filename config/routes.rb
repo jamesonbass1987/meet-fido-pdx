@@ -9,8 +9,6 @@ Rails.application.routes.draw do
         resources :ages, only: [:index]
         resources :sizes, only: [:index]
         resources :breeds, only: [:index]
-
-        post 'user_token' => 'user_token#create'
       end
   end
 end

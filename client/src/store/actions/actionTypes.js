@@ -12,7 +12,6 @@ export const FETCH_DOGS_START = 'FETCH_DOGS_START';
 export const FETCH_DOGS_SUCCESS = 'FETCH_DOGS_SUCCESS';
 export const FETCH_DOGS_FAIL = 'FETCH_DOGS_FAIL';
 
-
 export const FETCH_DOG_START = 'FETCH_DOG_START';
 export const FETCH_DOG_SUCCESS = 'FETCH_DOG_SUCCESS';
 export const FETCH_DOG_FAIL = 'FETCH_DOG_FAIL';
@@ -43,4 +42,8 @@ export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+export const USER_SIGN_UP_START = 'USER_SIGN_UP_START';
+export const USER_SIGN_UP_SUCCESS = 'USER_SIGN_UP_SUCCESS';
+export const USER_SIGN_UP_FAIL = 'USER_SIGN_UP_FAIL';
 

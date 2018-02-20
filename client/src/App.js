@@ -10,6 +10,7 @@ import Home from './containers/Home/Home';
 import Dogs from './containers/Dogs/Dogs';
 import Parks from './containers/Parks/Parks';
 import Users from './containers/Users/Users';
+import Logout from './components/Logout/Logout';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/dogs" component={Dogs} />
           <Route path="/parks" component={Parks} />
           <Route path="/users" component={Users} />
+          <Route path ="/logout" component={Logout} />
           <Redirect to="/" />
         </Switch>
 

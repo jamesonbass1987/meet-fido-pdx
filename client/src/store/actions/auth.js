@@ -72,3 +72,47 @@ export const authCheckState = () => {
         }
     };
 };
+
+
+export const UserSignUpStart = () => {
+    return {
+        type: actionTypes.USER_SIGN_UP_START
+    };
+};
+
+export const UserSignUpSuccess = (user, token) => {
+    return {
+        type: actionTypes.USER_SIGN_UP_SUCCESS,
+        user,
+        token
+    };
+};
+
+export const UserSignUpFail = (error) => {
+    return {
+        type: actionTypes.USER_SIGN_UP_FAIL,
+        error
+    };
+};
+
+export const handleUserSignup = payload => {
+    return dispatch => {
+        dispatch(authStart());
+        const userData = {
+            "user": {
+                username: payload.username,
+                password: payload.password,
+                email: payload.email,
+                neighborhood_id: payload.neighborhood_id
+            }
+        };
+
+        axios.post('/api/v1/users', userData)
+            .then(response => {
+                handleUserLogin({username: payload.username, password: payload.password})
+            })
+            .catch(err => {
+                dispatch(SignUpFail(err.response.data.error));
+            });
+    };
+}
