@@ -6,7 +6,9 @@ class Api::V1::UsersController < ApiController
   end
 
   def create
+    binding.pry
     user = User.new(user_params)
+
     if user.save
       render status: 200
     else
@@ -40,7 +42,7 @@ class Api::V1::UsersController < ApiController
 
   private
     def user_params
-      params.permit(:username, :email, :password, :bio, :park_ids, :neighborhood_id)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :bio, :park_ids, :neighborhood_id)
     end
 
     def set_user

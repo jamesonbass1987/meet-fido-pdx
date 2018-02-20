@@ -74,19 +74,19 @@ export const authCheckState = () => {
 };
 
 
-export const UserSignUpStart = () => {
+export const userSignUpStart = () => {
     return {
         type: actionTypes.USER_SIGN_UP_START
     };
 };
 
-export const UserSignUpSuccess = () => {
+export const userSignUpSuccess = () => {
     return {
         type: actionTypes.USER_SIGN_UP_SUCCESS,
     };
 };
 
-export const UserSignUpFail = (error) => {
+export const userSignUpFail = (error) => {
     return {
         type: actionTypes.USER_SIGN_UP_FAIL,
         error
@@ -95,23 +95,24 @@ export const UserSignUpFail = (error) => {
 
 export const handleUserSignUp = payload => {
     return dispatch => {
-        dispatch(authStart());
+        dispatch(userSignUpStart());
+
         const userData = {
-            "user": {
-                username: payload.username,
-                password: payload.password,
-                email: payload.email,
-                neighborhood_id: payload.neighborhood_id
-            }
+            username: payload.username,
+            password: payload.password,
+            password_confirmation: payload.password_confirmation,
+            email: payload.email,
+            neighborhood_id: payload.neighborhood_id
         };
 
-        axios.post('/api/v1/users', userData)
+        axios.post('/users', { user: userData})
             .then(response => {
-                dispatch(UserSignUpSuccess())
+                dispatch(userSignUpSuccess())
                 handleUserLogin({username: payload.username, password: payload.password})
             })
             .catch(err => {
-                dispatch(UserSignUpFail(err.response.data.error));
+                console.log(err)
+                dispatch(userSignUpFail(err.response.data.error));
             });
     };
 }
