@@ -19,6 +19,7 @@ class SignUpForm extends Component {
     }
 
     componentWillMount(){
+        debugger;
         this.props.fetchNeighborhoods()
     }
 
@@ -93,22 +94,12 @@ class SignUpForm extends Component {
                                 value={this.state.password_confirmation}
                                 onChange={event => this.handleFormInputChange(event, 'password_confirmation')}
                             />
-                            <Form.Input
-                                fluid
-                                icon='lock'
-                                iconPosition='left'
-                                placeholder='Password Confirmation'
-                                type='password'
-                                value={this.state.password_confirmation}
-                                onChange={event => this.handleFormInputChange(event, 'password_confirmation')}
-                            />
                             <Form.Dropdown 
-                                placeholder='Select neighborhood...'
+                                placeholder='Select your neighborhood...'
                                 fluid
                                 selection
                                 options={dropdownItems}
                             />
-
                             <Button className={classes.SignUpButton} fluid size='large'>Sign Up</Button>
                         </Segment>
                     </Form>

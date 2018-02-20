@@ -10,6 +10,6 @@ export const rootReducer = combineReducers({
     dog: dogReducer,
     auth: authReducer,
     user: userReducer,
-    neighborhood, neighborhoodReducer
+    neighborhood: neighborhoodReducer
 });
 

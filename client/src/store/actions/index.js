@@ -30,4 +30,4 @@ export {
 
 export {
     fetchNeighborhoods
-} from './auth'
+} from './neighborhood'
