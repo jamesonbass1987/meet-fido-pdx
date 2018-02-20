@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
-import { handleUserSignUp } from '../../store/actions/index';
+import { handleUserSignUp, fetchNeighborhoods } from '../../store/actions/index';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import classes from './Signup.css'
 import Icon from '../../assets/images/paw-print.png';
@@ -18,7 +19,7 @@ class SignUpForm extends Component {
     }
 
     componentWillMount(){
-
+        this.props.fetchNeighborhoods()
     }
 
     handleFormInputChange = (event, key) => {
@@ -36,6 +37,15 @@ class SignUpForm extends Component {
     }
 
     render() {
+
+        const dropdownItems = this.props.neighborhoods.map(neighborhood => {
+            return {
+                text: neighborhood.name,
+                value: neighborhood.id,
+                key: neighborhood.name + neighborhood.id
+            }
+        })
+
         return (
             <Grid
                 textAlign='center'
@@ -83,6 +93,21 @@ class SignUpForm extends Component {
                                 value={this.state.password_confirmation}
                                 onChange={event => this.handleFormInputChange(event, 'password_confirmation')}
                             />
+                            <Form.Input
+                                fluid
+                                icon='lock'
+                                iconPosition='left'
+                                placeholder='Password Confirmation'
+                                type='password'
+                                value={this.state.password_confirmation}
+                                onChange={event => this.handleFormInputChange(event, 'password_confirmation')}
+                            />
+                            <Form.Dropdown 
+                                placeholder='Select neighborhood...'
+                                fluid
+                                selection
+                                options={dropdownItems}
+                            />
 
                             <Button className={classes.SignUpButton} fluid size='large'>Sign Up</Button>
                         </Segment>
@@ -94,12 +119,12 @@ class SignUpForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    neighborhoods: this.neighborhood.neighborhoods
+    neighborhoods: state.neighborhood.neighborhoods
 })
 
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ handleUserSignUp }, dispatch)
+    bindActionCreators({ handleUserSignUp, fetchNeighborhoods }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
