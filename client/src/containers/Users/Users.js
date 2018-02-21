@@ -37,6 +37,7 @@ class Users extends Component {
                     iconName="users"
                     iconColor="blue"
                     headingText="Search Users"
+                    type="icon"
                     subheadingText="Find others looking to meet up for a puppy playdate in PDX." />
                 {users}
             </Container>

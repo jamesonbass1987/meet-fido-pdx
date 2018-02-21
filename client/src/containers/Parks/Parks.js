@@ -64,6 +64,7 @@ class Parks extends Component {
           textAlignment="center"
           iconName="tree"
           iconColor="green"
+          type='icon'
           headingText="Search Parks Near You"
           subheadingText="Find the perfect park for you furry friend." />
         <MapComponent

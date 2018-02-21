@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Popup, Item, Label } from 'semantic-ui-react'
 
 import classes from './User.css'
+import UserImage from '../../UserImage/UserImage'
 
 
 const user = props => {
@@ -25,14 +26,12 @@ const user = props => {
     const parksList = props.user.parks.map((park, i) => (
         <Label key={park.id + i} size="small" content={park.name} />
     ))
-
-
     
     const userProfileLink = `/users/${props.user.id}`;
 
     return (
         <Item className={classes.User}>
-            <Image className={classes.UserImage} circular src={props.user.profile_image_url} />
+            <UserImage src={props.user.profile_image_url} />
             <Item.Content verticalAlign='middle'>
                 <Item.Header as='a' href={userProfileLink}>{props.user.username}</Item.Header>
                 <Item.Meta>

@@ -1,12 +1,26 @@
 import React from 'react';
 
-const userProfile = props => {
-    
-    return (
+import classes from './UserProfile.css';
+import { Segment, Header } from 'semantic-ui-react';
+import PageHeading from '../PageHeading/PageHeading';
+import UserImage from '../UserImage/UserImage'
 
-        <div>  
-            Profile page for {props.user.username}
-        </div>
+const userProfile = props => {
+    console.log(props)
+    return (
+        <React.Fragment>
+        <Segment>
+                <UserImage size="medium" src={props.user.profile_image_url} />
+                <Header as='h1' size="huge" textAlign="center">
+                    <Header.Content>
+                        {props.user.username}
+                    </Header.Content>
+                </Header>
+        </Segment>  
+
+
+
+        </React.Fragment>
     )
 }
 

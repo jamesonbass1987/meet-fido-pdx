@@ -23,6 +23,7 @@ class Dogs extends Component {
                     textAlignment="center"
                     iconName="search"
                     iconColor="blue"
+                    type="icon"
                     headingText="Search For Dogs"
                     subheadingText="Find the perfect playtime pal for you best friend." />
                 <DogsComponent 

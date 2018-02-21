@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Segment, Divider } from 'semantic-ui-react';
 
-
 import UsersForm from '../UsersForm/UsersForm'
 import Users from '../Users/Users'
 

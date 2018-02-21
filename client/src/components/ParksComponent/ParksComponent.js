@@ -2,9 +2,10 @@ import React from 'react';
 import { Segment, Divider } from 'semantic-ui-react';
 import ParkForm from '../ParkForm/ParkForm';
 import Parks from '../Parks/Parks';
+import classes from './ParksComponent.css';
 
 const parksComponent = props => (
-    <Segment>
+    <Segment className={classes.ParksContent}>
         <ParkForm
             handleInputChanged={props.handleInputChanged}
             searchText={props.searchText}
