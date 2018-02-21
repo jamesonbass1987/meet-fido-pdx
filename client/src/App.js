@@ -3,14 +3,23 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { authCheckState } from './store/actions/index';
-
+import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
-import Dogs from './containers/Dogs/Dogs';
-import Parks from './containers/Parks/Parks';
-import Users from './containers/Users/Users';
 import Logout from './components/Logout/Logout';
+
+const asyncDogs = asyncComponent(() => {
+  return import('./containers/Dogs/Dogs');
+});
+
+const asyncParks = asyncComponent(() => {
+  return import('./containers/Parks/Parks');
+});
+
+const asyncUsers = asyncComponent(() => {
+  return import('./containers/Users/Users');
+});
 
 class App extends Component {
 
@@ -34,9 +43,9 @@ class App extends Component {
     )
 
     const routes = <Switch>
-          <PrivateRoute path="/dogs" component={Dogs} />
-          <PrivateRoute path="/parks" component={Parks} />
-          <PrivateRoute path="/users" component={Users} />
+          <PrivateRoute path="/dogs" component={asyncDogs} />
+          <PrivateRoute path="/parks" component={asyncParks} />
+          <PrivateRoute path="/users" component={asyncUsers} />
           <PrivateRoute path="/logout" component={Logout} />
           <Route path="/" exact component={Home} />
           <Redirect to="/" />
