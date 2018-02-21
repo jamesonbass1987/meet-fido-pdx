@@ -26,11 +26,13 @@ const user = props => {
         <Label key={park.id + i} size="small" content={park.name} />
     ))
 
+    const userProfileLink = `/users/${props.user.id}`;
+
     return (
         <Item className={classes.User}>
             <Image className={classes.UserImage} circular src={props.user.profile_image_url} />
             <Item.Content verticalAlign='middle'>
-                <Item.Header as='a'>{props.user.username}</Item.Header>
+                <Item.Header as='a' href={userProfileLink}>{props.user.username}</Item.Header>
                 <Item.Meta>
                     <span>{props.user.neighborhood.name}</span>
                 </Item.Meta>

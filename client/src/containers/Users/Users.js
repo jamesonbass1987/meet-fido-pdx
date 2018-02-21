@@ -21,7 +21,12 @@ class Users extends Component {
         let users = <Spinner />
 
         if (!this.props.loading) {
-            users = <UsersComponent users={this.props.users} loading={this.props.loading} currentFilter={this.props.currentFilter} parkFilter={this.props.parkFilter} />
+            users = <UsersComponent 
+                        users={this.props.users} 
+                        loading={this.props.loading} 
+                        currentFilter={this.props.currentFilter} 
+                        parkFilter={this.props.parkFilter} 
+                    />
         }
 
         return (
