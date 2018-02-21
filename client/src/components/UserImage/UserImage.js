@@ -7,7 +7,6 @@ import { Image } from 'semantic-ui-react';
 const userImage = props => {
     return (
         <Image 
-            circular
             centered
             src={props.src}
             size={props.size ? props.size : null}

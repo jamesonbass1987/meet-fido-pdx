@@ -7,7 +7,12 @@ import { parkFilter } from '../../shared/parkFilter'
 
 const parks = props => {
 
-    const parksArray = parkFilter(props.parks, props.currentFilter);
+    let parksArray;
+    if(props.currentFilter){
+        parksArray = parkFilter(props.parks, props.currentFilter);
+    } else {
+        parksArray = props.parks
+    }
     
     const parksList = parksArray.map(park => (
         <Park key={park.id} park={park} />

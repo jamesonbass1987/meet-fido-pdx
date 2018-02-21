@@ -7,19 +7,31 @@ const park = props => {
     const parkAddress = !props.park.address_2 ? `${props.park.address_1}` : `${props.park.address_1} and ${props.park.address_2}`    
     const hours = `${props.park.hours_open} A.M. to ${props.park.hours_close}`
 
-    const userPopups = props.park.users.map(user => {
+    let userPopups;
+    let parkVisitors;
+    if (props.park.users){
+        userPopups = props.park.users.map(user => {
             const popupHeader = <Popup.Header>
-                <Image src={user.profile_image_url} verticalAlign='middle' circular/>
+                <Image src={user.profile_image_url} verticalAlign='middle' circular />
             </Popup.Header>
 
-            return <Popup 
+            return <Popup
                 key={user.username}
                 trigger={<Image src={user.profile_image_url} avatar />}
                 header={popupHeader}
                 content={user.username}
                 className={classes.Popup}
             />
-    }) 
+        })
+
+        parkVisitors = (<React.Fragment>
+                            <strong>Visitors:</strong> {userPopups.length !== 0 ? userPopups : 'None yet. Be the first to visit!'}
+                        </React.Fragment>)
+
+        
+        
+    }
+
 
     return (
         <Item className={classes.Content}>
@@ -33,7 +45,7 @@ const park = props => {
                 <Item.Extra>
                     <strong>{isFenced}</strong><br />
                     <strong>Hours:</strong>{hours}<br />
-                    <strong>Visitors:</strong>{userPopups}
+                    {userPopups ? parkVisitors : null}
                 </Item.Extra>
             </Item.Content>
         </Item>

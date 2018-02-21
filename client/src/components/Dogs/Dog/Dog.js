@@ -4,6 +4,16 @@ import { Card, Icon, Image } from 'semantic-ui-react';
 import classes from './Dog.css'
 
 const dog = props => {
+
+    const ownerInfo = props.dog.user ? (
+                                        <Card.Content extra>
+                                                <a>
+                                                <Icon name='user' />
+                                                Owner: {props.dog.user.username}
+                                            </a>
+                                        </Card.Content>) : 
+                                        null
+
     return (
         <Card id={props.id} className={classes.Dog}>
             <Image centered src={props.dog.profile_image_url} />
@@ -14,12 +24,7 @@ const dog = props => {
                     <p>{props.dog.description}</p>
                 </Card.Description>
             </Card.Content>
-            <Card.Content extra>
-                <a>
-                    <Icon name='user' />
-                    Owner: {props.dog.user.username}
-                </a>
-            </Card.Content>
+            {ownerInfo}
         </Card>
     );
 };
