@@ -2,7 +2,6 @@ import React from 'react';
 import { Item } from 'semantic-ui-react'
 
 import Park from './Park/Park'
-import Spinner from '../UI/Spinner/Spinner'
 
 import { parkFilter } from '../../shared/parkFilter'
 

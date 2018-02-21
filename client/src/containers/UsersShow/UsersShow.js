@@ -4,20 +4,30 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchUser } from '../../store/actions/index';
 
+import { Container } from 'semantic-ui-react';
+
+import Spinner from '../../components/UI/Spinner/Spinner';
 import UserProfile from '../../components/UserProfile/UserProfile';
 
 class UsersShow extends Component {
 
     componentDidMount() {
-        this.props.fetchUsers();
+        const id = this.props.match.params.userId
+        this.props.fetchUser(id);
     }
 
     render() {
 
+        let userProfile = <Spinner />
+
+        if(!this.props.loading && this.props.selectedUser){
+            userProfile = <UserProfile user={this.props.selectedUser} loading={this.props.loading} />
+        }
+
         return (
-            <React.Fragment>
-                <UserProfile user={this.props.selectedUser}/>
-            </React.Fragment>
+            <Container>
+                {userProfile}
+            </Container>
         );
     }
 }

@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const userProfile = props => {
-
-    console.log(props)
-
+    
     return (
-        <div>
-            User Profile Page
+
+        <div>  
+            Profile page for {props.user.username}
         </div>
     )
 }

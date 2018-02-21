@@ -26,6 +26,8 @@ const user = props => {
         <Label key={park.id + i} size="small" content={park.name} />
     ))
 
+
+    
     const userProfileLink = `/users/${props.user.id}`;
 
     return (
