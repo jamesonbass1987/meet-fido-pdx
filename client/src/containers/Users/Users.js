@@ -1,40 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+
 import { bindActionCreators } from 'redux'
 import { fetchUsers } from '../../store/actions/index';
 
-import classes from './Users.css';
-
 import { Container } from 'semantic-ui-react';
 
+import PageHeading from '../../components/PageHeading/PageHeading';
 import UsersComponent from '../../components/UsersComponent/UsersComponent';
-import UsersShow from '../UsersShow/UsersShow';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Users extends Component {
 
     componentDidMount() {
-        if (this.props.match.url === '/users'){
-            this.props.fetchUsers();
-        }
+        this.props.fetchUsers();
     }
 
     render(){
 
+        let users = <Spinner />
+
+        if (!this.props.loading) {
+            users = <UsersComponent users={this.props.users} />
+        }
+
         return (
-            <Container className={classes.Container}>
-                <Switch>
-                    <Route path={`${this.props.match.url}/:userId`} exact component={UsersShow} />
-                    <Route path={this.props.match.url} component={UsersComponent} />
-                </Switch>
+            <Container>
+                <PageHeading
+                    as="h1"
+                    textAlignment="center"
+                    iconName="users"
+                    iconColor="blue"
+                    headingText="Search Users"
+                    subheadingText="Find others looking to meet up for a puppy playdate in PDX." />
+                {users}
             </Container>
         );
     }
 }
 
+const mapStateToProps = state => ({
+    users: state.user.users,
+    loading: state.user.loading,
+    currentFilter: state.user.userFilter,
+})
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ fetchUsers }, dispatch)
 );
 
-export default connect(null, mapDispatchToProps)(Users)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

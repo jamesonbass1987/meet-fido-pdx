@@ -18,7 +18,7 @@ const asyncParks = asyncComponent(() => {
 });
 
 const asyncUsers = asyncComponent(() => {
-  return import('./containers/Users/Users');
+  return import('./containers/UsersSubLayout/UsersSubLayout');
 });
 
 class App extends Component {

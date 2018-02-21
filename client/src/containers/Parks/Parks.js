@@ -48,13 +48,12 @@ class Parks extends Component {
                       handleModalClose={this.handleModalClose} />
     }
 
-    let parksContent = <Spinner />
+    let parks = <Spinner />
     if (!this.props.loading){
-      parksContent = <ParksComponent
+      parks = <ParksComponent
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
           currentFilter={this.props.parkFilter}
-          loading={this.props.loading}
         />
     }
 
@@ -77,7 +76,7 @@ class Parks extends Component {
           markerClicked={this.handleMarkerClick}
           filterParams={this.props.parkFilter}
         />
-        {parksContent}
+        {parks}
         {parkModal}
       </Container>
     )

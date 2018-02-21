@@ -17,7 +17,6 @@ const parksComponent = props => (
         <Divider />
         <Parks 
             parks={props.parks}
-            loading={props.loading}
             currentFilter={props.currentFilter}
         />
     </Segment>

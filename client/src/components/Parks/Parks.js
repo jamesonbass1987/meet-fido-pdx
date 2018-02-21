@@ -8,14 +8,11 @@ import { parkFilter } from '../../shared/parkFilter'
 
 const parks = props => {
 
-    let parksList = <Spinner />
-
-    if (!props.loading) {
-        const parksArray = parkFilter(props.parks, props.currentFilter);
-        parksList = parksArray.map(park => (
-            <Park key={park.id} park={park} />
-        ))
-    }
+    const parksArray = parkFilter(props.parks, props.currentFilter);
+    
+    const parksList = parksArray.map(park => (
+        <Park key={park.id} park={park} />
+    ))
 
     return (
         <Item.Group divided>
