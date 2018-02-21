@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         resources :neighborhoods, only: [:index]
         resources :sizes, only: [:index]
         resources :breeds, only: [:index]
-
+        get 'me', to: 'users#me'
         post 'authenticate', to: 'authentication#authenticate'
       end
   end

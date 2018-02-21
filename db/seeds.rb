@@ -555,3 +555,4 @@ bio: "Phasellus est odio, feugiat eu mi in, luctus molestie orci. In laoreet, ni
 
 user = User.all[rand(0...User.all.length)].parks << Park.all[rand(0...Park.all.length)]
 user.save
+

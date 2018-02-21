@@ -25,7 +25,8 @@ export {
     handleUserLogin,
     handleLogout,
     authCheckState,
-    handleUserSignUp
+    handleUserSignUp,
+    checkCurrentUser
 } from './auth'
 
 export {

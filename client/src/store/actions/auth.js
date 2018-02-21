@@ -7,10 +7,10 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token) => {
+export const authSuccess = payload => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token
+        payload
     };
 };
 
@@ -52,7 +52,7 @@ export const handleUserLogin = (payload) => {
         axios.post('/authenticate', authData)
             .then(response => {
                 localStorage.setItem('token', response.data.auth_token);
-                dispatch(authSuccess(response.data.auth_token));
+                dispatch(authSuccess({ token: response.data.auth_token }));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));
@@ -67,11 +67,44 @@ export const authCheckState = () => {
         if (!token) {
             dispatch(handleLogout());
         } else {
-            dispatch(authSuccess(token))
+            dispatch(authSuccess({ token }))
         }
     };
 };
 
+export const checkCurrentUser = () => {
+    return dispatch => {
+        dispatch(setCurrentUserStart());
+        const token = localStorage.getItem('token');
+        axios.get(`/me?token=${token}`)
+            .then(response => {
+                dispatch(setCurrentUserSuccess(response.data))
+            })
+            .catch(err => {
+                dispatch(setCurrentUserFail(err.response.data.error));
+            });
+    }
+}
+
+export const setCurrentUserStart = (user) => {
+    return {
+        type: actionTypes.SET_CURRENT_USER_START
+    };
+};
+
+export const setCurrentUserFail = (error) => {
+    return {
+        type: actionTypes.SET_CURRENT_USER_FAIL,
+        error
+    };
+};
+
+export const setCurrentUserSuccess = payload => {
+    return {
+        type: actionTypes.SET_CURRENT_USER_SUCCESS,
+        payload
+    };
+};
 
 export const userSignUpStart = () => {
     return {
