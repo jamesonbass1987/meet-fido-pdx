@@ -19,10 +19,12 @@ const navigationItems = props => {
 
     const navButtons = props.navButtons.map((navButton, i) => (
         <Button
-            onClick={navButton.clicked}
+            onClick={navButton.clicked ? navButton.clicked : null}
             color={navButton.color}
             className={classes.NavButton}
             key={i + navButton.content}
+            as={navButton.as ? navButton.as : null}
+            href={navButton.href ? navButton.href : null}
         >{navButton.content}</Button>
     ))
 

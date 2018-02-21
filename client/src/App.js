@@ -20,27 +20,27 @@ class App extends Component {
 
   render() {
 
-    let routes = (
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Redirect to="/" />
-      </Switch>
+    const authToken = localStorage.getItem('token')
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        authToken
+          ? <Component {...props} />
+          : <Redirect to={{
+            pathname: '/',
+            state: { from: props.location }
+          }} />
+      )} />
     )
 
-    if ( this.props.isAuthenticated ) {
-      routes = (
-        <Switch>
+    const routes = <Switch>
+          <PrivateRoute path="/dogs" component={Dogs} />
+          <PrivateRoute path="/parks" component={Parks} />
+          <PrivateRoute path="/users" component={Users} />
+          <PrivateRoute path="/logout" component={Logout} />
           <Route path="/" exact component={Home} />
-          <Route path="/dogs" component={Dogs} />
-          <Route path="/parks" component={Parks} />
-          <Route path="/users" component={Users} />
-          <Route path ="/logout" component={Logout} />
           <Redirect to="/" />
         </Switch>
-
-      )
-
-    }
 
     return (
         <Layout>
@@ -50,14 +50,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null
-  };
-};
-
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ authCheckState }, dispatch)
 )
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

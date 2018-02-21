@@ -9,7 +9,11 @@ import NavigationItems from './NavigationItems/NavigationItems'
 class Navbar extends Component {
 
     state = {
-        activeItem: window.location.pathname,
+        activeItem: ''
+    }
+
+    componentWillMount(){
+        this.setActiveItem();
     }
 
 
@@ -19,15 +23,14 @@ class Navbar extends Component {
         })
     }
 
+    setActiveItem = () => (
+        this.setState({
+            activeItem: window.location.pathname
+        })
+    )
+
     render() {
-        
-        let navLinks = [
-            {
-                name: 'home',
-                link: '/',
-                content: 'Home'
-            }
-        ]
+        let navLinks = []
 
         let navButtons = [
             {
@@ -47,7 +50,8 @@ class Navbar extends Component {
                     {
                         color: 'red',
                         content: 'Log Out',
-                        clicked: this.props.handleLogout
+                        as: 'a',
+                        href: '/logout'
                     }
                 ]
             navLinks = [
