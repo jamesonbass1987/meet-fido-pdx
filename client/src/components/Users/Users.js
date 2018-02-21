@@ -25,11 +25,4 @@ const users = props => {
     );
 }
 
-const mapStateToProps = state => ({
-    users: state.user.users,
-    loading: state.user.loading,
-    currentFilter: state.user.userFilter,
-})
-
-
-export default connect(mapStateToProps)(users)
+export default users

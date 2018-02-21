@@ -19,7 +19,7 @@ const usersComponent = props => {
                 onSearchQueryUpdate={props.onSearchQueryUpdate}
             />
             <Divider />
-            <Users />
+            <Users users={props.users} currentFilter={props.currentFilter} parkFilter={props.parkFilter} loading={props.loading}/>
         </Segment>
     );
 };
