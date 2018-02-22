@@ -18,7 +18,8 @@ export {
     updateUserFilter,
     resetUserFilter,
     deleteUser,
-    removeSelectedUser
+    removeSelectedUser,
+    updateUser
 } from './user'
 
 export {

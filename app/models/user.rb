@@ -14,6 +14,8 @@ class User < ApplicationRecord
     validates :email, presence: true
     validates :neighborhood_id, presence: true
 
+    accepts_nested_attributes_for :parks
+    accepts_nested_attributes_for :dogs
 
     def self.from_token_request request
         username = request.params["auth"] && request.params["auth"]["username"]

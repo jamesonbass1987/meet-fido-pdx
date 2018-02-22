@@ -133,3 +133,60 @@ export const removeSelectedUser = () => {
         type: actionTypes.REMOVE_SELECTED_USER
     }
 }
+
+
+// Update User Parks
+
+export const updateUserSuccess = user => {
+    return {
+        type: actionTypes.UPDATE_USER_SUCCESS,
+        user
+    };
+};
+
+export const updateUserFail = (error) => {
+    return {
+        type: actionTypes.UPDATE_USER_FAIL,
+        error: error
+    };
+};
+
+export const updateUserStart = () => {
+    return {
+        type: actionTypes.UPDATE_USER_START
+    };
+};
+
+export const updateUser = (user, attribute, value) => {
+    let updatedUser = {
+                        username: user.username,
+                        bio: user.bio,
+                        email: user.email,
+                        profile_image_url: user.profile_image_url,
+                        dog_ids: user.dogs.map(dog => (dog.id)),
+                        neighborhood_id: user.neighborhood.id,
+                        park_ids: user.parks.map(park => (park.id)),
+                    }
+
+
+    if (attribute === 'parksList') {
+        updatedUser.park_ids = updateParks(updatedUser.park_ids, value)
+    }
+    return dispatch => {
+        dispatch(updateUserStart())
+        axios.patch(`/users/${user.id}`, { id: user.id, user: {...updatedUser} })
+            .then(resp => {
+
+                dispatch(updateUserSuccess());
+            })
+            .catch(err => {
+                dispatch(updateUserFail(err));
+            })
+    }
+}
+
+const updateParks = (parkIds, value) => {
+    return parkIds.some(id => (id === value)) ? 
+        parkIds.filter(id => (id !== value)) :
+        parkIds.push(value)
+}

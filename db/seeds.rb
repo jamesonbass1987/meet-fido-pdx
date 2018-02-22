@@ -525,7 +525,6 @@ breed: Breed.all[rand(0...Breed.all.length)],
 size: Size.all[rand(0...Size.all.length)],
 age: Age.all[rand(0...Age.all.length)],
 sex: Faker::Dog.gender,
-user: User.all[rand(0...User.all.length)],
 profile_image_url: 'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/40981974/1/?bust=1518936963',
 description: 'Pats heckin angery woofer heck bork h*ck snoot, bork you are doing me a frighten the neighborhood pupper adorable doggo. '
 )

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
 import { bindActionCreators } from 'redux'
-import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser } from '../../store/actions/index';
+import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateUser } from '../../store/actions/index';
 
 import { Container } from 'semantic-ui-react';
 
@@ -14,7 +14,8 @@ import AdminControls from '../../components/AdminControls/AdminControls'
 class UsersShow extends Component {
 
     state = {
-        deleteClicked: false
+        deleteClicked: false,
+        isUpdating: false
     }
 
     componentWillMount(){
@@ -27,12 +28,12 @@ class UsersShow extends Component {
         this.props.removeSelectedUser();
     }
 
-    componentWillUpdate(nextProps){
-        if (this.props.match.path !== nextProps.match.path) {
+    componentWillUpdate(nextProps, nextState){
+        if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating){
             let id = nextProps.match.params.userId || nextProps.currentUserId
+            this.props.removeSelectedUser();
             this.props.fetchUser(id);
         }
-
     }
 
     show = () => this.setState({ deleteClicked: true })
@@ -45,8 +46,10 @@ class UsersShow extends Component {
         this.props.history.push("/logout")
     }
 
-    handleParkRemoval = () => {
-
+    handleParkRemoval = (parkId) => {
+        this.props.updateUser(this.props.selectedUser, 'parksList', parkId)
+        this.props.removeSelectedUser();
+        this.setState({isUpdating: true})
     }
 
     render() {
@@ -93,7 +96,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser }, dispatch)
+    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateUser }, dispatch)
 );
 
 

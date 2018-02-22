@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Item, Popup } from 'semantic-ui-react';
+import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
 
 const park = props => {
@@ -32,12 +32,21 @@ const park = props => {
         
     }
 
+    let removeParkIcon;
+    if (props.isProfileOwner) {
+        removeParkIcon = <Popup
+            trigger={<Icon name="remove" onClick={() => props.removePark(props.park.id)} size="large" color="red" className={classes.ParkCloseIcon} />}
+            content="Remove park from my favorites."
+            basic
+        />
+    }
+
 
     return (
         <Item className={classes.Content}>
             <Image className={classes.ParkImage} rounded src={props.park.image_url} />
             <Item.Content verticalAlign='middle'>
-                {props.icon}
+                {removeParkIcon}
                 <Item.Header>{props.park.name} </Item.Header>
                 <Item.Meta>
                     <span>{parkAddress}</span>

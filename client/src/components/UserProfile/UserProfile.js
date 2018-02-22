@@ -38,7 +38,7 @@ const userProfile = props => {
                         Parks I Like:
                     </Header.Content>
                 </Header>
-                <Parks parks={props.user.parks} isProfileOwner={props.isProfileOwner} removePark={props.handleParkRemoval} />
+                <Parks parks={props.user.parks} isProfileOwner={props.isProfileOwner} removePark={props.removePark} />
                 <Divider />
             </Segment>  
 

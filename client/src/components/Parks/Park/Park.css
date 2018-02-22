@@ -23,3 +23,7 @@
     object-fit: cover;
     text-align: center;
 }
+
+.ParkCloseIcon {
+    float: right !important;
+}

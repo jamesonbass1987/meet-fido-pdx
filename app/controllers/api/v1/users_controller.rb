@@ -43,8 +43,9 @@ class Api::V1::UsersController < ApiController
 
   private
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation, :bio, :park_ids, :neighborhood_id)
+      params.require(:user).permit(:username, :password, :password_confirmation, :email, :profile_image_url, :neighborhood_id, :bio, park_ids:[], dog_ids:[])
     end
+
 
     def set_user
       @user = User.find_by(id: params[:id])
