@@ -37,7 +37,8 @@ const park = props => {
         <Item className={classes.Content}>
             <Image className={classes.ParkImage} rounded src={props.park.image_url} />
             <Item.Content verticalAlign='middle'>
-                <Item.Header>{props.park.name}</Item.Header>
+                {props.icon}
+                <Item.Header>{props.park.name} </Item.Header>
                 <Item.Meta>
                     <span>{parkAddress}</span>
                 </Item.Meta>

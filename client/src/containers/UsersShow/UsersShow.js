@@ -14,8 +14,7 @@ import AdminControls from '../../components/AdminControls/AdminControls'
 class UsersShow extends Component {
 
     state = {
-        deleteClicked: false,
-        isPageOwner: false
+        deleteClicked: false
     }
 
     componentWillMount(){
@@ -23,11 +22,6 @@ class UsersShow extends Component {
         this.props.fetchUser(id);
     }
 
-    componentDidMount(){
-        if (this.props.currentUserId === this.props.selectedUser){
-            this.setState({ isPageOwner: true })
-        }
-    }
 
     componentWillUnmount(){
         this.props.removeSelectedUser();
@@ -51,12 +45,12 @@ class UsersShow extends Component {
         this.props.history.push("/logout")
     }
 
+    handleParkRemoval = () => {
+
+    }
+
     render() {
 
-        let userProfile = <Spinner />
-        if(!this.props.loading && this.props.selectedUser){
-            userProfile = <UserProfile user={this.props.selectedUser} loading={this.props.loading} />
-        };
 
         let adminControls;
         if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUserId){
@@ -72,6 +66,16 @@ class UsersShow extends Component {
                                 fluid    
                             />
         }
+
+        let userProfile = <Spinner />
+        if (!this.props.loading && this.props.selectedUser) {
+            userProfile = <UserProfile
+                user={this.props.selectedUser}
+                loading={this.props.loading}
+                removePark={this.handleParkRemoval}
+                isProfileOwner={!!adminControls}
+            />
+        };
 
         return (
             <Container>
