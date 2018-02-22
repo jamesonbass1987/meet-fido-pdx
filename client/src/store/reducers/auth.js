@@ -8,7 +8,6 @@ const initialState = {
     loading: false,
     error: null,
     token: null,
-    currentUserId: null
 }
 
 const updateAuthenticatingState = state => {
@@ -28,8 +27,9 @@ const authSuccess = (state, action) => {
         token: action.payload.token,
         isAuthenticating: false,
         error: null,
-        loading: false
+        loading: false,
     });
+    return state
 };
 
 const authFail = (state, action) => {
@@ -62,25 +62,6 @@ const authLogout = (state, action) => {
     return updateObject(state, { token: null, currentUserId: null });
 };
 
-const setCurrentUserStart = (state, action) => {
-    return updateObject(state, { error: null, loading: true });
-};
-
-const setCurrentUserSuccess = (state, action) => {
-    return updateObject(state, {
-        currentUserId: action.payload.user_id,
-        error: null,
-        loading: false
-    });
-};
-
-const setCurrentUserFail = (state, action) => {
-    return updateObject(state, {
-        error: action.error,
-        loading: false
-    });
-};
-
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.UPDATE_AUTHENTICATING_STATE: return updateAuthenticatingState(state);
@@ -92,9 +73,7 @@ export const authReducer = (state = initialState, action) => {
         case actionTypes.USER_SIGN_UP_START: return userSignUpStart(state, action);       
         case actionTypes.USER_SIGN_UP_FAIL: return userSignUpFail(state, action);
         case actionTypes.USER_SIGN_UP_SUCCESS: return userSignUpSuccess(state);
-        case actionTypes.SET_CURRENT_USER_START: return setCurrentUserStart(state);
-        case actionTypes.SET_CURRENT_USER_FAIL: return setCurrentUserFail(state, action);
-        case actionTypes.SET_CURRENT_USER_SUCCESS: return setCurrentUserSuccess(state, action);
+
         default: return state
     }
 }

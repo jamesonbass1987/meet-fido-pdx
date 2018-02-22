@@ -16,7 +16,9 @@ export {
     fetchUsers,
     fetchUser,
     updateUserFilter,
-    resetUserFilter
+    resetUserFilter,
+    fetchCurrentUser,
+    deleteUser
 } from './user'
 
 export {
@@ -25,8 +27,7 @@ export {
     handleUserLogin,
     handleLogout,
     authCheckState,
-    handleUserSignUp,
-    checkCurrentUser
+    handleUserSignUp
 } from './auth'
 
 export {

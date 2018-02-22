@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handleLogout, updateSignUpState, updateAuthenticatingState, checkCurrentUser } from '../../store/actions/index';
+import { handleLogout, updateSignUpState, updateAuthenticatingState } from '../../store/actions/index';
 
 import { Menu } from 'semantic-ui-react'
 import NavigationItems from './NavigationItems/NavigationItems'
@@ -12,13 +12,9 @@ class Navbar extends Component {
         activeItem: ''
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.setActiveItem();
-        if (this.props.isAuthenticated && !this.props.currentUserId){
-            this.props.checkCurrentUser()
-        }
     }
-
 
     handleItemClick = (event, { to } ) => {
         this.setState({
@@ -47,6 +43,7 @@ class Navbar extends Component {
                 clicked: this.props.updateSignUpState
             }
         ]
+
 
         if (this.props.isAuthenticated) {
             navButtons = [
@@ -78,14 +75,13 @@ class Navbar extends Component {
                         content: 'View Users',
                         link: "/users",
                     },
-                    {
-                        name: 'myProfile',
-                        content: 'My Profile',
-                        link: `/users/${this.props.currentUserId}`,
-                    }
+                    // {
+                    //     name: 'myProfile',
+                    //     content: 'My Profile',
+                    //     link: `/users/me`,
+                    // }
                 ]
         }
-
 
         return (
             <Menu stackable>
@@ -104,12 +100,12 @@ class Navbar extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token,
-        currentUserId: state.auth.currentUserId
+        currentUserId: state.user.currentUserId
     };
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState, checkCurrentUser }, dispatch)
+    bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

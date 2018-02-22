@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../shared/axios-api';
+import { handleLogout } from './auth'
 
 
 // USER INDEX ACTIONS
@@ -72,6 +73,81 @@ export const fetchUser = id => {
             .catch(err => {
                 dispatch(fetchUserFail(err));
             });
+    };
+};
+
+
+// USER DELETE ACTIONS
+
+export const deleteUserSuccess = () => {
+    return {
+        type: actionTypes.DELETE_USER_SUCCESS
+    };
+};
+
+export const deleteUserFail = (error) => {
+    return {
+        type: actionTypes.DELETE_USER_FAIL,
+        error: error
+    };
+};
+
+export const deleteUserStart = () => {
+    return {
+        type: actionTypes.DELETE_USER_START
+    };
+};
+
+export const deleteUser = (id) => {
+    return dispatch => {
+         dispatch(deleteUserStart())
+
+         axios.delete(`/users/${id}`)
+            .then(resp => {
+                dispatch(deleteUserSuccess());
+            })
+            .catch(err => {
+                dispatch(deleteUserFail(err));
+            })
+    }
+}
+
+export const fetchCurrentUser = () => {
+    console.log('coming from fetchCurrentUser')
+    return dispatch => {
+        dispatch(fetchCurrentUserStart());
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch(handleLogout());
+        } else {
+            axios.get(`/authed_user?token=${token}`)
+                .then(response => {
+                    dispatch(fetchCurrentUserSuccess(response.data))
+                })
+                .catch(err => {
+                    dispatch(fetchCurrentUserFail(err.response.data.error));
+                });
+        }
+    }
+}
+
+export const fetchCurrentUserStart = (user) => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_START
+    };
+};
+
+export const fetchCurrentUserFail = (error) => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_FAIL,
+        error
+    };
+};
+
+export const fetchCurrentUserSuccess = payload => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
+        payload
     };
 };
 

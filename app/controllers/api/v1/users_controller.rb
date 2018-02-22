@@ -40,16 +40,6 @@ class Api::V1::UsersController < ApiController
     end
   end
 
-  def me 
-      user_id = JsonWebToken.decode(params[:token])[:user_id]
-      
-      if user_id
-        render json: {user_id: user_id}, status: 200
-      else
-        render json: { error: "Resource not found." }, status: 404
-      end
-  end
-
   private
     def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation, :bio, :park_ids, :neighborhood_id)

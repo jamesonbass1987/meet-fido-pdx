@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { authCheckState } from './store/actions/index';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
+
+import { fetchCurrentUser, authCheckState } from './store/actions/index'
 
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
@@ -23,7 +24,7 @@ const asyncUsers = asyncComponent(() => {
 
 class App extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.authCheckState();
   }
 
@@ -31,36 +32,44 @@ class App extends Component {
 
     const authToken = localStorage.getItem('token')
 
-    const PrivateRoute = ({ component: Component, ...rest }) => (
-      <Route {...rest} render={(props) => (
-        authToken
-          ? <Component {...props} />
-          : <Redirect to={{
-            pathname: '/',
-            state: { from: props.location }
-          }} />
-      )} />
-    )
+    let routes = (<Switch>
+                    <Route path="/" exact component={Home} />
+                    <Redirect to="/" />
+                  </Switch>)
 
-    const routes = <Switch>
-          <PrivateRoute path="/dogs" component={asyncDogs} />
-          <PrivateRoute path="/parks" component={asyncParks} />
-          <PrivateRoute path="/users" component={asyncUsers} />
-          <PrivateRoute path="/logout" component={Logout} />
-          <Route path="/" exact component={Home} />
-          <Redirect to="/" />
-        </Switch>
+    if (this.props.isAuthenticated){
+      routes = <Switch>
+                <Route path="/dogs" component={asyncDogs} />
+                <Route path="/parks" component={asyncParks} />
+                <Route path="/users" component={asyncUsers} />
+                <Route path="/logout" component={Logout} />
+                <Route path="/" exact component={Home} />
+                <Redirect to="/" />
+              </Switch>
+    }
 
     return (
         <Layout>
-              {routes}
+          <Switch>
+            <Route path="/dogs" component={asyncDogs} />
+            <Route path="/parks" component={asyncParks} />
+            <Route path="/users" component={asyncUsers} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/" exact component={Home} />
+            <Redirect to="/" />
+          </Switch>
         </Layout>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  currentUserId: state.user.currentUserId,
+  isAuthenticated: state.auth.token
+})
+
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ authCheckState }, dispatch)
+    bindActionCreators({ authCheckState, fetchCurrentUser }, dispatch)
 )
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

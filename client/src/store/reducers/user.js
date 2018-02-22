@@ -5,6 +5,7 @@ const initialState = {
     users: [],
     loading: false,
     selectedUser: null,
+    currentUserId: null,
     userFilter: {
         searchQuery: '',
         selectedPark: ''
@@ -41,6 +42,21 @@ const fetchUserFail = state => {
     return updateObject(state, { loading: false });
 };
 
+const deleteUserStart = state => {
+    return updateObject(state, { loading: true });
+};
+
+const deleteUserSuccess = (state, action) => {
+    return updateObject(state, {
+        error: null,
+        loading: false,
+    });
+};
+
+const deleteUserFail = state => {
+    return updateObject(state, { loading: false });
+};
+
 const updateUserFilter = (state, action) => {
     return updateObject(state, {
         userFilter: {
@@ -59,6 +75,21 @@ const resetUserFilter = (state, action) => {
     })
 }
 
+const fetchCurrentUserStart = state => {
+    return updateObject(state, { loading: true });
+};
+
+const fetchCurrentUserSuccess = (state, action) => {
+    return updateObject(state, {
+        currentUserId: action.payload.user_id,
+        loading: false
+    });
+};
+
+const fetchCurrentUserFail = state => {
+    return updateObject(state, { loading: false });
+};
+
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_USERS_START: return fetchUsersStart(state);
@@ -69,6 +100,12 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.FETCH_USER_FAIL: return fetchUserFail(state);
         case actionTypes.UPDATE_USER_FILTER: return updateUserFilter(state, action);
         case actionTypes.RESET_USER_FILTER: return resetUserFilter(state, action);
+        case actionTypes.DELETE_USER_START: return deleteUserStart(state);
+        case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
+        case actionTypes.DELETE_USER_FAIL: return deleteUserFail(state);
+        case actionTypes.FETCH_CURRENT_USER_START: return fetchCurrentUserStart(state);
+        case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
+        case actionTypes.FETCH_CURRENT_USER_FAIL: return fetchCurrentUserFail(state);
         default: return state
     }
 }
