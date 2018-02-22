@@ -17,6 +17,7 @@ class Api::V1::UsersController < ApiController
   end
 
   def show
+
     if @user
       render json: @user, status: 200
     else

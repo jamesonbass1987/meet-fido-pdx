@@ -1,6 +1,5 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../shared/axios-api';
-import { handleLogout } from './auth'
 
 
 // USER INDEX ACTIONS
@@ -112,44 +111,7 @@ export const deleteUser = (id) => {
     }
 }
 
-export const fetchCurrentUser = () => {
-    console.log('coming from fetchCurrentUser')
-    return dispatch => {
-        dispatch(fetchCurrentUserStart());
-        const token = localStorage.getItem('token');
-        if (!token) {
-            dispatch(handleLogout());
-        } else {
-            axios.get(`/authed_user?token=${token}`)
-                .then(response => {
-                    dispatch(fetchCurrentUserSuccess(response.data))
-                })
-                .catch(err => {
-                    dispatch(fetchCurrentUserFail(err.response.data.error));
-                });
-        }
-    }
-}
 
-export const fetchCurrentUserStart = (user) => {
-    return {
-        type: actionTypes.FETCH_CURRENT_USER_START
-    };
-};
-
-export const fetchCurrentUserFail = (error) => {
-    return {
-        type: actionTypes.FETCH_CURRENT_USER_FAIL,
-        error
-    };
-};
-
-export const fetchCurrentUserSuccess = payload => {
-    return {
-        type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
-        payload
-    };
-};
 
 // User filter functions
 
@@ -164,4 +126,10 @@ export const resetUserFilter = (type, value) => {
     return {
         type: actionTypes.RESET_USER_FILTER
     };
+}
+
+export const removeSelectedUser = () => {
+    return {
+        type: actionTypes.REMOVE_SELECTED_USER
+    }
 }

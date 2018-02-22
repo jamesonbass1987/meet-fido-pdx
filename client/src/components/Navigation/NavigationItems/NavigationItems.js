@@ -25,6 +25,7 @@ const navigationItems = props => {
             key={i + navButton.content}
             as={navButton.as ? navButton.as : null}
             href={navButton.href ? navButton.href : null}
+            to={navButton.to ? navButton.to : null}
         >{navButton.content}</Button>
     ))
 

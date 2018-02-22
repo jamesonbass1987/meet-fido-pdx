@@ -19,7 +19,7 @@ const asyncParks = asyncComponent(() => {
 });
 
 const asyncUsers = asyncComponent(() => {
-  return import('./containers/UsersSubLayout/UsersSubLayout');
+  return import('./containers/UsersRouter/UsersRouter');
 });
 
 class App extends Component {
@@ -28,9 +28,15 @@ class App extends Component {
     this.props.authCheckState();
   }
 
-  render() {
+  componentWillUpdate(){
+    this.props.authCheckState();
 
-    const authToken = localStorage.getItem('token')
+    if(this.props.isAuthenticated || !this.props.currentUserId){
+      this.props.fetchCurrentUser();
+    }
+  }
+
+  render() {
 
     let routes = (<Switch>
                     <Route path="/" exact component={Home} />
@@ -50,21 +56,14 @@ class App extends Component {
 
     return (
         <Layout>
-          <Switch>
-            <Route path="/dogs" component={asyncDogs} />
-            <Route path="/parks" component={asyncParks} />
-            <Route path="/users" component={asyncUsers} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/" exact component={Home} />
-            <Redirect to="/" />
-          </Switch>
+          {routes}
         </Layout>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  currentUserId: state.user.currentUserId,
+  currentUserId: state.auth.currentUserId,
   isAuthenticated: state.auth.token
 })
 

@@ -6,12 +6,13 @@ import Users from '../Users/Users';
 
 
 import { Container } from 'semantic-ui-react';
-import classes from './UsersSubLayout.css';
+import classes from './UsersRouter.css';
 
 const usersSubLayout = ({ match }) => {
     return (
         <Container fluid className={classes.Container}>
             <Switch>
+                <Route path={`${match.url}/me`} exact component={UsersShow} />
                 <Route path={`${match.url}/:userId`} component={UsersShow} />
                 <Route path={match.url} exact component={Users} />
             </Switch>

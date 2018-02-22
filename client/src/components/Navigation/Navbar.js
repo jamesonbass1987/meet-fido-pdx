@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { handleLogout, updateSignUpState, updateAuthenticatingState } from '../../store/actions/index';
 
@@ -50,8 +51,8 @@ class Navbar extends Component {
                     {
                         color: 'red',
                         content: 'Log Out',
-                        as: 'a',
-                        href: '/logout'
+                        as: Link,
+                        to: '/logout'
                     }
                 ]
             navLinks = [
@@ -75,11 +76,11 @@ class Navbar extends Component {
                         content: 'View Users',
                         link: "/users",
                     },
-                    // {
-                    //     name: 'myProfile',
-                    //     content: 'My Profile',
-                    //     link: `/users/me`,
-                    // }
+                    {
+                        name: 'myProfile',
+                        content: 'My Profile',
+                        link: `/users/me`,
+                    }
                 ]
         }
 
@@ -100,7 +101,7 @@ class Navbar extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token,
-        currentUserId: state.user.currentUserId
+        currentUserId: state.auth.currentUserId
     };
 };
 

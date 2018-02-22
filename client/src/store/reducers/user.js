@@ -5,7 +5,6 @@ const initialState = {
     users: [],
     loading: false,
     selectedUser: null,
-    currentUserId: null,
     userFilter: {
         searchQuery: '',
         selectedPark: ''
@@ -75,20 +74,11 @@ const resetUserFilter = (state, action) => {
     })
 }
 
-const fetchCurrentUserStart = state => {
-    return updateObject(state, { loading: true });
-};
-
-const fetchCurrentUserSuccess = (state, action) => {
+const removeSelectedUser = (state) => {
     return updateObject(state, {
-        currentUserId: action.payload.user_id,
-        loading: false
-    });
-};
-
-const fetchCurrentUserFail = state => {
-    return updateObject(state, { loading: false });
-};
+        selectedUser: null
+    })
+}
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -103,9 +93,8 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.DELETE_USER_START: return deleteUserStart(state);
         case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
         case actionTypes.DELETE_USER_FAIL: return deleteUserFail(state);
-        case actionTypes.FETCH_CURRENT_USER_START: return fetchCurrentUserStart(state);
-        case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
-        case actionTypes.FETCH_CURRENT_USER_FAIL: return fetchCurrentUserFail(state);
+        case actionTypes.REMOVE_SELECTED_USER: return removeSelectedUser(state);
+
         default: return state
     }
 }
