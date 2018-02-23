@@ -18,7 +18,8 @@ class Parks extends Component {
   state = {
     showModal: false,
     showInfoWindow: false,
-    hasAddedParks: false
+    hasAddedParks: false,
+    showParks: true
   }
 
   componentWillMount(){
@@ -68,7 +69,7 @@ class Parks extends Component {
           currentFilter={this.props.parkFilter}
           hasAddedParks={this.handleParkAdded}
         />
-    }
+    } 
 
     return (
       <Container className={classes.Container}>
