@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal } from 'semantic-ui-react';
 
 const modal = props => {
+    console.log('opening modal', props.show)
     return (
         <Modal 
             open={props.show} 

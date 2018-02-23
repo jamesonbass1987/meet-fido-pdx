@@ -10,16 +10,18 @@ import { Container } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import AdminControls from '../../components/AdminControls/AdminControls'
+import Modal from '../../components/UI/Modal/Modal';
 
 class UsersShow extends Component {
 
     state = {
         deleteClicked: false,
-        isUpdating: false
+        isUpdating: false,
+        showModal: false
     }
 
     componentWillMount(){
-        let id = this.props.match.params.userId || this.props.currentUserId
+        let id = this.props.match.params.userId || this.props.currentUser
         this.props.fetchUser(id);
     }
 
@@ -30,11 +32,13 @@ class UsersShow extends Component {
 
     componentWillUpdate(nextProps, nextState){
         if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating){
-            let id = nextProps.match.params.userId || nextProps.currentUserId
+            let id = nextProps.match.params.userId || nextProps.currentUser
             this.props.removeSelectedUser();
             this.props.fetchUser(id);
         }
     }
+
+    handleModalToggle = () => (this.setState({showModal: !this.state.showModal}))
 
     show = () => this.setState({ deleteClicked: true })
     
@@ -42,11 +46,11 @@ class UsersShow extends Component {
 
     handleConfirm = () => {
         this.setState({ deleteClicked: false })
-        this.props.deleteUser(this.props.currentUserId)
+        this.props.deleteUser(this.props.currentUser)
         this.props.history.push("/logout")
     }
 
-    handleParkRemoval = (parkId) => {
+    handleParkAddRemove = (parkId) => {
         this.props.updateUser(this.props.selectedUser, 'parksList', parkId)
         this.props.removeSelectedUser();
         this.setState({isUpdating: true})
@@ -54,20 +58,29 @@ class UsersShow extends Component {
 
     render() {
 
-
         let adminControls;
-        if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUserId){
+        let profileModal;
+        if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser){
             adminControls = <AdminControls 
-                                currentUserId={this.props.currentUserId} 
+                                currentUser={this.props.currentUser} 
                                 selectedUser={this.props.selectedUser} 
                                 show={this.show}
                                 open={this.state.deleteClicked}
                                 handleConfirm={this.handleConfirm}
                                 handleCancel={this.handleCancel}
-                                message="Delete My Profile"
-                                color='red'
+                                showModal={this.state.showModal}
+                                toggleModal={this.handleModalToggle}
                                 fluid    
                             />
+
+            profileModal = <Modal
+                                handleClose={this.handleModalToggle}
+                                show={this.state.showModal}
+                                header="Edit Profile"
+                            >
+                                
+                            </Modal>
+
         }
 
         let userProfile = <Spinner />
@@ -75,15 +88,20 @@ class UsersShow extends Component {
             userProfile = <UserProfile
                 user={this.props.selectedUser}
                 loading={this.props.loading}
-                removePark={this.handleParkRemoval}
+                addRemovePark={this.handleParkAddRemove}
+                currentUser={this.props.currentUser}
                 isProfileOwner={!!adminControls}
             />
         };
+
+
+
 
         return (
             <Container>
                 {userProfile}
                 {adminControls}
+                {profileModal}
             </Container>
         );
     }
@@ -92,7 +110,7 @@ class UsersShow extends Component {
 const mapStateToProps = state => ({
     selectedUser: state.user.selectedUser,
     loading: state.user.loading,
-    currentUserId: state.auth.currentUserId
+    currentUser: state.auth.currentUser
 })
 
 const mapDispatchToProps = dispatch => (

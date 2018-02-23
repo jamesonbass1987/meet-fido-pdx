@@ -13,8 +13,10 @@ class Api::V1::AuthenticationController < ApiController
   def authed_user 
     user_id = JsonWebToken.decode(params[:token])[:user_id]
 
+    user = User.find_by(id: user_id)
+
     if user_id
-      render json: {user_id: user_id}, status: 200
+      render json: user, serializer: UserSerializer
     else
       render json: { error: "Resource not found." }, status: 404
     end

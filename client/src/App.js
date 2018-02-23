@@ -26,12 +26,13 @@ class App extends Component {
 
   componentDidMount() {
     this.props.authCheckState();
+    this.props.fetchCurrentUser();
   }
 
   componentWillUpdate(){
     this.props.authCheckState();
 
-    if(this.props.isAuthenticated || !this.props.currentUserId){
+    if(this.props.isAuthenticated && !this.props.currentUser){
       this.props.fetchCurrentUser();
     }
   }
@@ -63,7 +64,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUserId: state.auth.currentUserId,
+  currentUser: state.auth.currentUser,
   isAuthenticated: state.auth.token
 })
 

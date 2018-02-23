@@ -8,7 +8,7 @@ const initialState = {
     loading: false,
     error: null,
     token: null,
-    currentUserId: null,
+    currentUser: null,
 }
 
 const updateAuthenticatingState = state => {
@@ -59,7 +59,7 @@ const userSignUpFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-    return updateObject(state, { token: null, currentUserId: null });
+    return updateObject(state, { token: null, currentUser: null });
 };
 
 const fetchCurrentUserStart = state => {
@@ -68,7 +68,7 @@ const fetchCurrentUserStart = state => {
 
 const fetchCurrentUserSuccess = (state, action) => {
     return updateObject(state, {
-        currentUserId: action.payload.user_id,
+        currentUser: action.payload,
         loading: false
     });
 };

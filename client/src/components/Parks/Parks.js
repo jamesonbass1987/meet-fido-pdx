@@ -14,11 +14,9 @@ const parks = props => {
     } else {
         parksArray = props.parks
     }
-
-
     
     const parksList = parksArray.map(park => (
-        <Park key={park.id} park={park} removePark={props.removePark} isProfileOwner={props.isProfileOwner} />
+        <Park key={park.id} park={park} addRemovePark={props.addRemovePark} currentUser={props.currentUser} />
     ))
 
     return (

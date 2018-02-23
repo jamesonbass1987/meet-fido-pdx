@@ -1,11 +1,21 @@
 import React from 'react';
 
-import { Segment, } from 'semantic-ui-react';
-import ConfirmableButton from '../UI/ConfirmableButton/ConfirmableButton'
+import { Segment, Button} from 'semantic-ui-react';
+import ConfirmableButton from '../UI/ConfirmableButton/ConfirmableButton';
+
+import classes from './AdminControls.css';
 
 const adminControls = props => {
     return (
         <Segment>
+            <Button
+                onClick={props.toggleModal}
+                color="yellow"
+                fluid={props.fluid}
+                content="Edit Profile"
+                className={classes.Button}
+            />
+
             <ConfirmableButton 
                 open={props.open}
                 handleShow={props.show}
@@ -13,9 +23,9 @@ const adminControls = props => {
                 confirmButton="Let's do it"
                 handleCancel={props.handleCancel}
                 handleConfirm={props.handleConfirm}
-                color={props.color}
+                color="red"
                 fluid={props.fluid}
-                message={props.message}
+                message="Delete My Profile"
             />
         </Segment>
     );

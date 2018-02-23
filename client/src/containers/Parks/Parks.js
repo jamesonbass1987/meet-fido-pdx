@@ -54,6 +54,7 @@ class Parks extends Component {
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
           currentFilter={this.props.parkFilter}
+          currentUser={this.props.currentUser}
         />
     }
 
@@ -86,11 +87,13 @@ class Parks extends Component {
 
 const mapStateToProps = state => {
   const { parks, loading, selectedPark, parkFilter } = state.park;
+  const { currentUser } = state.auth;
   return {
     parks,
     loading,
     selectedPark,
-    parkFilter
+    parkFilter,
+    currentUser
   }
 }
 

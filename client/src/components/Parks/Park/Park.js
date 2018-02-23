@@ -8,45 +8,39 @@ const park = props => {
     const hours = `${props.park.hours_open} A.M. to ${props.park.hours_close}`
 
     let userPopups;
-    let parkVisitors;
-    if (props.park.users){
-        userPopups = props.park.users.map(user => {
-            const popupHeader = <Popup.Header>
-                <Image src={user.profile_image_url} verticalAlign='middle' circular />
-            </Popup.Header>
+    userPopups = props.park.users.map(user => {
+        const popupHeader = <Popup.Header>
+            <Image src={user.profile_image_url} verticalAlign='middle' circular />
+        </Popup.Header>
 
-            return <Popup
-                key={user.username}
-                trigger={<Image src={user.profile_image_url} avatar />}
-                header={popupHeader}
-                content={user.username}
-                className={classes.Popup}
-            />
-        })
-
-        parkVisitors = (<React.Fragment>
-                            <strong>Visitors:</strong> {userPopups.length !== 0 ? userPopups : 'None yet. Be the first to visit!'}
-                        </React.Fragment>)
-
-        
-        
-    }
-
-    let removeParkIcon;
-    if (props.isProfileOwner) {
-        removeParkIcon = <Popup
-            trigger={<Icon name="remove" onClick={() => props.removePark(props.park.id)} size="large" color="red" className={classes.ParkCloseIcon} />}
-            content="Remove park from my favorites."
-            basic
+        return <Popup
+            key={user.username}
+            trigger={<Image src={user.profile_image_url} avatar />}
+            header={popupHeader}
+            content={user.username}
+            className={classes.Popup}
         />
-    }
+    })
+    
+    const parkVisitors = (<React.Fragment>
+                            <strong>Visitors:</strong> {userPopups.length !== 0 ? userPopups : 'None yet. Be the first to visit!'}
+                          </React.Fragment>)
 
+    const isUsersPark = props.park.users.some(user => (user.id === props.currentUser.id))
+
+    let parkIcon = <Popup
+        trigger={<Icon  name={isUsersPark ? "remove" : "add circle"} 
+                        onClick={() => props.addRemovePark(props.park.id)} 
+                        size="large" color={isUsersPark ? "red" : "green"}
+                        className={classes.ParkIcon} />}
+        content={isUsersPark ? "Remove park from my favorites." : "Add park to my favorites."}
+        basic />
 
     return (
         <Item className={classes.Content}>
             <Image className={classes.ParkImage} rounded src={props.park.image_url} />
             <Item.Content verticalAlign='middle'>
-                {removeParkIcon}
+                {parkIcon}
                 <Item.Header>{props.park.name} </Item.Header>
                 <Item.Meta>
                     <span>{parkAddress}</span>
