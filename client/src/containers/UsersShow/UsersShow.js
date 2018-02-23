@@ -21,7 +21,8 @@ class UsersShow extends Component {
     }
 
     componentWillMount(){
-        let id = this.props.match.params.userId || this.props.currentUser
+        debugger;
+        let id = this.props.match.params.userId || this.props.currentUser.id
         this.props.fetchUser(id);
     }
 
@@ -32,7 +33,8 @@ class UsersShow extends Component {
 
     componentWillUpdate(nextProps, nextState){
         if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating){
-            let id = nextProps.match.params.userId || nextProps.currentUser
+            debugger;
+            let id = nextProps.match.params.userId || nextProps.currentUser.id
             this.props.removeSelectedUser();
             this.props.fetchUser(id);
         }
@@ -60,7 +62,7 @@ class UsersShow extends Component {
 
         let adminControls;
         let profileModal;
-        if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser){
+        if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser.id){
             adminControls = <AdminControls 
                                 currentUser={this.props.currentUser} 
                                 selectedUser={this.props.selectedUser} 
@@ -93,9 +95,6 @@ class UsersShow extends Component {
                 isProfileOwner={!!adminControls}
             />
         };
-
-
-
 
         return (
             <Container>
