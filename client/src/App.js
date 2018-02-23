@@ -30,8 +30,9 @@ class App extends Component {
   }
 
   componentWillUpdate(){
+    const token = localStorage.getItem('token')
 
-    if(this.props.isAuthenticated && !this.props.currentUser){
+    if(token && !this.props.currentUser){
       this.props.fetchCurrentUser();
     }
   }
@@ -64,8 +65,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
-  isAuthenticated: state.auth.token
+  currentUser: state.user.currentUser
 })
 
 const mapDispatchToProps = dispatch => (

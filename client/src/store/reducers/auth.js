@@ -28,7 +28,7 @@ const authSuccess = (state, action) => {
         token: action.payload.token,
         isAuthenticating: false,
         error: null,
-        loading: false,
+        loading: false
     });
 };
 

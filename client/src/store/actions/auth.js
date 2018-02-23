@@ -53,7 +53,7 @@ export const handleUserLogin = (payload) => {
         axios.post('/authenticate', authData)
             .then(response => {
                 localStorage.setItem('token', response.data.auth_token);
-                dispatch(authSuccess({ token: response.data.auth_token, id: response.data.id }));
+                dispatch(authSuccess({ token: response.data.auth_token }));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));

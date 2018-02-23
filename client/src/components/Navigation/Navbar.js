@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { handleLogout, updateSignUpState, updateAuthenticatingState } from '../../store/actions/index';
+import { handleLogout, updateSignUpState, updateAuthenticatingState, fetchCurrentUser } from '../../store/actions/index';
 
 import { Menu } from 'semantic-ui-react'
 import NavigationItems from './NavigationItems/NavigationItems'
@@ -12,6 +12,15 @@ class Navbar extends Component {
     state = {
         activeItem: window.location.pathname
     }
+
+    componentWillUpdate(){
+        const token = localStorage.getItem('token')
+
+        if (token && !this.props.currentUser) {
+            this.props.fetchCurrentUser();
+        }
+    }
+
 
     handleItemClick = (event, { to } ) => {
         this.setState({
@@ -96,7 +105,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState }, dispatch)
+    bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState, fetchCurrentUser }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
