@@ -10,11 +10,7 @@ import NavigationItems from './NavigationItems/NavigationItems'
 class Navbar extends Component {
 
     state = {
-        activeItem: ''
-    }
-
-    componentDidMount(){
-        this.setActiveItem();
+        activeItem: window.location.pathname
     }
 
     handleItemClick = (event, { to } ) => {
@@ -22,12 +18,6 @@ class Navbar extends Component {
             activeItem: to
         })
     }
-
-    setActiveItem = () => (
-        this.setState({
-            activeItem: window.location.pathname
-        })
-    )
 
     render() {
         let navLinks = []

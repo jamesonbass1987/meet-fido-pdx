@@ -24,7 +24,7 @@ const asyncUsers = asyncComponent(() => {
 
 class App extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.authCheckState();
     this.props.fetchCurrentUser();
   }
