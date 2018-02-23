@@ -23,6 +23,7 @@ class UsersShow extends Component {
     componentWillMount(){
         let id = this.props.match.params.userId || this.props.currentUser.id
         this.props.fetchUser(id);
+        this.props.fetchCurrentUser();
     }
 
 
@@ -48,10 +49,6 @@ class UsersShow extends Component {
         this.setState({ deleteClicked: false })
         this.props.deleteUser(this.props.currentUser)
         this.props.history.push("/logout")
-    }
-
-    handleAddPark = (parkId) => {
-        this.props.updateUser(this.props.currentUser, 'parksList', parkId)
     }
 
     render() {
@@ -86,9 +83,6 @@ class UsersShow extends Component {
             userProfile = <UserProfile
                 user={this.props.selectedUser}
                 loading={this.props.loading}
-                addPark={this.handleAddPark}
-                currentUser={this.props.currentUser}
-                isProfileOwner={!!adminControls}
             />
         };
 

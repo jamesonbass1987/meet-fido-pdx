@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
 import { bindActionCreators } from 'redux'
-import { fetchPark, updateUser } from '../../../store/actions/index';
+import { fetchPark, updateUser, fetchCurrentUser } from '../../../store/actions/index';
 
 class Park extends Component {
 
@@ -12,6 +12,7 @@ class Park extends Component {
     }
 
     componentWillMount(){
+        debugger;
         if (this.props.currentUser.parks.find(park => (park.id === this.props.park.id))){
             this.setState({
                 showAddParkBtn: false
@@ -55,6 +56,8 @@ class Park extends Component {
         const parkVisitors = (<React.Fragment>
             <strong>Visitors:</strong> {userPopups.length !== 0 ? userPopups : 'None yet. Be the first to visit!'}
         </React.Fragment>)
+
+        debugger;
 
         let parkIcon = null;
         if (this.state.showAddParkBtn) {
@@ -103,7 +106,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ updateUser }, dispatch)
+    bindActionCreators({ updateUser, fetchCurrentUser }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Park)
