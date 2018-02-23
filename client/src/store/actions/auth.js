@@ -15,6 +15,7 @@ export const authSuccess = payload => {
 };
 
 export const authFail = (error) => {
+    debugger;
     return {
         type: actionTypes.AUTH_FAIL,
         error
@@ -109,8 +110,12 @@ export const handleUserSignUp = payload => {
                 dispatch(handleUserLogin(userData))
             })
             .catch(err => {
-                console.log(err)
-                dispatch(userSignUpFail(err.response.data.error));
+                const errors = [];
+                for(let errMsgKey in err.response.data.error){
+                    errors.push(`${errMsgKey.split('_').join(" ")} ${err.response.data.error[errMsgKey]}`)
+                }
+
+                dispatch(userSignUpFail(errors));
             });
     };
 }

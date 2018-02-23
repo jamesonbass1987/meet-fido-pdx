@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Image, Segment, List } from 'semantic-ui-react';
 import { handleUserSignUp, fetchNeighborhoods } from '../../store/actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -99,11 +99,11 @@ class SignUpForm extends Component {
 
     handleFormSubmission( event ) {
         const userInfo = {
-            username: this.state.formData.username,
-            password: this.state.formData.password,
-            password_confirmation: this.state.formData.password_confirmation,
-            email: this.state.formData.email,
-            neighborhood_id: this.state.formData.neighborhood_id
+            username: this.state.formData.username.value,
+            password: this.state.formData.password.value,
+            password_confirmation: this.state.formData.password_confirmation.value,
+            email: this.state.formData.email.value,
+            neighborhood_id: this.state.formData.neighborhood_id.value
         }
 
         this.props.handleUserSignUp(userInfo);
@@ -113,9 +113,10 @@ class SignUpForm extends Component {
 
         let errorMessage = null;
         if (this.props.error) {
-            debugger;
+            const formErrors = this.props.error.map(error => <List.Item content={error} />)
+
             errorMessage = (
-                <p style={{ color: "red", textTransform: 'capitalize' }}>{this.props.error.user_authentication}</p>
+                <List style={{ color: "red", textTransform: 'capitalize' }}>{formErrors}</List>
             );
         }
 
@@ -142,6 +143,7 @@ class SignUpForm extends Component {
                         </Header>
                     <Form onSubmit={() => this.handleFormSubmission()} size='large'>
                         <Segment stacked>
+                            {errorMessage}
                             <Form.Input
                                 fluid
                                 icon='user'
@@ -198,7 +200,8 @@ class SignUpForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    neighborhoods: state.neighborhood.neighborhoods
+    neighborhoods: state.neighborhood.neighborhoods,
+    error: state.auth.error
 })
 
 

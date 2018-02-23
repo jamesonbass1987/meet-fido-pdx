@@ -8,10 +8,10 @@ class User < ApplicationRecord
     has_many :user_parks
     has_many :parks, through: :user_parks
 
-    validates :username, presence: true
+    validates :username, presence: true, uniqueness: true
     validates :password, length: { minimum: 6,
     wrong_length: "Password must be at least 6 characters." }, allow_nil: true
-    validates :email, presence: true
+    validates :email, presence: true, uniqueness: true
     validates :neighborhood_id, presence: true
 
     accepts_nested_attributes_for :parks

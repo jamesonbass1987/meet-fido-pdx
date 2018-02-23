@@ -10,9 +10,9 @@ class Api::V1::UsersController < ApiController
     user = User.new(user_params)
 
     if user.save
-      render status: 200
+      render status: 200, serializer: nil
     else
-      render json: { message: user.errors }, status: 400
+      render json: { error: user.errors.messages }.to_json, status: 409
     end
   end
 
@@ -29,7 +29,7 @@ class Api::V1::UsersController < ApiController
     if @user.update(user_params)
       render json: @user, status: 204
     else
-      render json: { message: @user.errors }, status: 400
+      render json: { message: @user.errors }.to_json, status: 400
     end
   end
 
