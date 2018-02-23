@@ -212,7 +212,6 @@ export const updateUser = (user, attribute, value) => {
                         neighborhood_id: user.neighborhood.id,
                         park_ids: user.parks.map(park => (park.id)),
                     }
-
     if (attribute === 'parksList') {
         updatedUser.park_ids = updateParks(updatedUser.park_ids, value)
     }
@@ -229,10 +228,6 @@ export const updateUser = (user, attribute, value) => {
     }
 }
 
-const updateParks = (parkIds, value) => {
-    const returnArr = [...parkIds]
-    returnArr.some(id => (id === value)) ? 
-        returnArr.filter(id => (id !== value)) :
-        returnArr.push(value)
-    return returnArr
-}
+const updateParks = (parkIds, value) => (
+   parkIds.some(id => (id === value)) ? parkIds.filter(id => (id !== value)) : [...parkIds, value]
+)

@@ -26,15 +26,13 @@ class UsersShow extends Component {
         this.props.fetchCurrentUser();
     }
 
-
     componentWillUnmount(){
         this.props.removeSelectedUser();
     }
 
     componentWillUpdate(nextProps, nextState){
-        if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating){
+        if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating || this.state !== nextState){
             let id = nextProps.match.params.userId || nextProps.currentUser.id
-            this.props.removeSelectedUser();
             this.props.fetchUser(id);
         }
     }

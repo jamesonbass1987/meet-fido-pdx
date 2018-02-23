@@ -8,13 +8,7 @@ import classes from './Parks.css'
 
 const parks = props => {
 
-    let parksArray;
-    if(props.currentFilter){
-        parksArray = parkFilter(props.parks, props.currentFilter);
-    } else {
-        parksArray = props.parks
-    }
-    
+    let parksArray = props.currentFilter ? parkFilter(props.parks, props.currentFilter) : props.parks
     
     let parksList;
     if (parksArray.length !== 0) {

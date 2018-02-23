@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
@@ -8,11 +10,11 @@ import { fetchPark, updateUser, fetchCurrentUser } from '../../../store/actions/
 class Park extends Component {
 
     state = {
-        showAddParkBtn: true
+        showAddParkBtn: true,
+        showParkIcon: this.props.match.path === '/parks'
     }
 
     componentWillMount(){
-        debugger;
         if (this.props.currentUser.parks.find(park => (park.id === this.props.park.id))){
             this.setState({
                 showAddParkBtn: false
@@ -24,12 +26,17 @@ class Park extends Component {
         return this.state !== nextState;
     }
 
-    handleAddPark = () => {
-        this.setState({
-            showAddParkBtn: false,
-        })
-        this.props.hasAddedParks();
+    handleAddRemovePark = () => {
+        if(this.props.hasAddedParks){
+            this.props.hasAddedParks();
+        } 
+        
+        this.setState({ showAddParkBtn: !this.state.showAddParkBtn })
         this.props.updateUser(this.props.currentUser, 'parksList', this.props.park.id);
+    }
+
+    handleParkRemove = () => {
+        this.setState({ showPark: false })
     }
 
     render(){
@@ -57,21 +64,20 @@ class Park extends Component {
             <strong>Visitors:</strong> {userPopups.length !== 0 ? userPopups : 'None yet. Be the first to visit!'}
         </React.Fragment>)
 
-        debugger;
-
-        let parkIcon = null;
-        if (this.state.showAddParkBtn) {
+        let parkIcon;
+        if (this.state.showParkIcon){
             parkIcon = <Popup
-                trigger={<Icon name="add circle"
-                    onClick={this.handleAddPark}
-                    size="large" color="green"
+                trigger={<Icon name={this.state.showAddParkBtn ? "add circle" : "remove circle"}
+                    onClick={this.handleAddRemovePark}
+                    size="large"
+                    color={this.state.showAddParkBtn ? "green" : "red"}
                     className={classes.ParkIcon} />}
-                content="Add park to my favorites."
+                content={this.state.showAddParkBtn ? `Add ${this.props.park.name} to my favorites.` : `Remove ${this.props.park.name} from my favorites`}
                 basic />;
+
         }
 
         return (
-
             <Item className={classes.Content}>
                 <Image className={classes.ParkImage} rounded src={this.props.park.image_url} />
                 <Item.Content verticalAlign='middle'>
@@ -88,7 +94,6 @@ class Park extends Component {
                     </Item.Extra>
                 </Item.Content>
             </Item>
-
         )
     }
    
@@ -109,4 +114,4 @@ const mapDispatchToProps = dispatch => (
     bindActionCreators({ updateUser, fetchCurrentUser }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Park)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Park));
