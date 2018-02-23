@@ -3,6 +3,8 @@ import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
 import { handleUserSignUp, fetchNeighborhoods } from '../../store/actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { updateObject, checkValidity } from '../../shared/utility';
+
 
 import classes from './Signup.css'
 import Icon from '../../assets/images/paw-print.png';
@@ -19,26 +21,80 @@ class SignUpForm extends Component {
         }
     }
 
+    state = {
+        formData: {
+            username: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 5
+                },
+                valid: false,
+                touched: false
+            },
+            email: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            neighborhood_id: {
+                value: '',
+                validation: {
+                    requiredDropdown: true,
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            password_confirmation: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            }
+        }
+    }
+
     componentWillMount(){
         this.props.fetchNeighborhoods()
     }
 
     handleFormInputChange = (event, key) => {
-        this.setState({
-            formData: {
-                ...this.state.formData,
-                [key]: event.target.value
-            }
-        })
+        const updatedFormData = updateObject(this.state.formData, {
+            [key]: updateObject(this.state.formData[key], {
+                value: event.target.value,
+                valid: checkValidity(event.target.value, this.state.formData[key].validation),
+                touched: true
+            })
+        });
+        this.setState({ formData: updatedFormData })
     }
 
     handleFormDropdownChange = (event, { value }) => {
-        this.setState({
-            formData: {
-                ...this.state.formData,
-                neighborhood_id: value
-            }
-        })
+        const updatedFormData = updateObject(this.state.formData, {
+            neighborhood_id: updateObject(this.state.formData.neighborhood_id, {
+                value,
+                valid: checkValidity(value, this.state.formData.neighborhood_id.validation),
+                touched: true
+            })
+        });
+
+        this.setState({ formData: updatedFormData })
     }
 
     handleFormSubmission( event ) {
@@ -54,6 +110,16 @@ class SignUpForm extends Component {
     }
 
     render() {
+
+        let errorMessage = null;
+        if (this.props.error) {
+            debugger;
+            errorMessage = (
+                <p style={{ color: "red", textTransform: 'capitalize' }}>{this.props.error.user_authentication}</p>
+            );
+        }
+
+        let submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
 
         const dropdownItems = this.props.neighborhoods.map(neighborhood => {
             return {
@@ -122,7 +188,7 @@ class SignUpForm extends Component {
                                 options={dropdownItems}
                                 onChange={this.handleFormDropdownChange}
                             />
-                            <Button type="submit" className={classes.SignUpButton} fluid size='large'>Sign Up</Button>
+                            <Button disabled={submitDisabled} type="submit" className={classes.SignUpButton} fluid size='large'>Sign Up</Button>
                         </Segment>
                     </Form>
                 </Grid.Column>

@@ -12,13 +12,6 @@ import Icon from '../../assets/images/paw-print.png';
 
 class LoginForm extends Component {
 
-    // state = {
-    //     formData: {
-    //         username: '',
-    //         password: ''
-    //     }
-    // }
-
     state = {
         formData: {
             username: {
