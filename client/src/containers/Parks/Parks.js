@@ -18,11 +18,17 @@ class Parks extends Component {
   state = {
     showModal: false,
     showInfoWindow: false,
+    hasAddedParks: false
   }
 
   componentWillMount(){
     this.props.fetchParks();
   }
+
+  componentWillUnmount(){
+    this.props.fetchParks();
+  }
+
 
   handleMarkerClick = id => {
     this.props.fetchPark(id)
@@ -35,6 +41,12 @@ class Parks extends Component {
   handleModalClose = () => {
     this.setState({
       showModal: false
+    })
+  }
+
+  handleParkAdded = () => {
+    this.setState({
+      hasAddedParks: true
     })
   }
 
@@ -54,7 +66,7 @@ class Parks extends Component {
           parks={this.props.parks}
           onSearchQueryUpdate={this.onSearchQueryUpdate}
           currentFilter={this.props.parkFilter}
-          currentUser={this.props.currentUser}
+          hasAddedParks={this.handleParkAdded}
         />
     }
 
@@ -87,18 +99,16 @@ class Parks extends Component {
 
 const mapStateToProps = state => {
   const { parks, loading, selectedPark, parkFilter } = state.park;
-  const { currentUser } = state.user;
   return {
     parks,
     loading,
     selectedPark,
-    parkFilter,
-    currentUser
+    parkFilter, 
   }
 }
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({fetchParks, fetchPark}, dispatch)
+  bindActionCreators({ fetchParks, fetchPark }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Parks);

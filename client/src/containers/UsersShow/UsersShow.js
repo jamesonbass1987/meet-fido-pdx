@@ -50,10 +50,8 @@ class UsersShow extends Component {
         this.props.history.push("/logout")
     }
 
-    handleParkAddRemove = (parkId) => {
-        this.setState({ isUpdating: true })
+    handleAddPark = (parkId) => {
         this.props.updateUser(this.props.currentUser, 'parksList', parkId)
-        this.props.removeSelectedUser();
     }
 
     render() {
@@ -88,7 +86,7 @@ class UsersShow extends Component {
             userProfile = <UserProfile
                 user={this.props.selectedUser}
                 loading={this.props.loading}
-                addPark={this.handleParkAddRemove}
+                addPark={this.handleAddPark}
                 currentUser={this.props.currentUser}
                 isProfileOwner={!!adminControls}
             />

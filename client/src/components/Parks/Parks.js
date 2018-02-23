@@ -15,9 +15,13 @@ const parks = props => {
         parksArray = props.parks
     }
     
-    const parksList = parksArray.map(park => (
-        <Park key={park.id} park={park} addPark={props.addPark} currentUser={props.currentUser} />
-    ))
+    
+    let parksList;
+    if (parksArray.length !== 0) {
+        parksList = parksArray.map(park => (
+            <Park key={park.id} park={park} hasAddedParks={props.hasAddedParks} />
+        ))
+    }
 
     return (
         <Item.Group divided>
