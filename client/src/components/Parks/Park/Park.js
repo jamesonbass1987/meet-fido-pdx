@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
 import { bindActionCreators } from 'redux'
-import { fetchPark, updateUser, fetchCurrentUser } from '../../../store/actions/index';
+import { updateUser, fetchCurrentUser } from '../../../store/actions/index';
 
 class Park extends Component {
 

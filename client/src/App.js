@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   componentWillUpdate(){
-    this.props.authCheckState();
 
     if(this.props.isAuthenticated && !this.props.currentUser){
       this.props.fetchCurrentUser();
@@ -38,13 +37,14 @@ class App extends Component {
   }
 
   render() {
-
+    const userToken = localStorage.getItem('token')
+    
     let routes = (<Switch>
                     <Route path="/" exact component={Home} />
                     <Redirect to="/" />
                   </Switch>)
 
-    if (this.props.isAuthenticated){
+    if (userToken){
       routes = <Switch>
                 <Route path="/dogs" component={asyncDogs} />
                 <Route path="/parks" component={asyncParks} />

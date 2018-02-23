@@ -1,16 +1,18 @@
 import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 
 import classes from './Dog.css'
 
 const dog = props => {
 
     const ownerInfo = props.dog.user ? (
-                                        <Card.Content extra>
-                                                <a>
-                                                <Icon name='user' />
-                                                Owner: {props.dog.user.username}
-                                            </a>
+                                        <Card.Content extra>                                    
+                                            <Link 
+                                                to={`/users/${props.dog.user.id}`}
+                                            >
+                                                <Icon name='user' /> Owner: {props.dog.user.username}
+                                            </Link>
                                         </Card.Content>) : 
                                         null
 

@@ -4,7 +4,6 @@ import { Item } from 'semantic-ui-react'
 import Park from './Park/Park'
 
 import { parkFilter } from '../../shared/parkFilter'
-import classes from './Parks.css'
 
 const parks = props => {
 
