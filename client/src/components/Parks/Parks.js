@@ -16,7 +16,7 @@ const parks = props => {
     }
     
     const parksList = parksArray.map(park => (
-        <Park key={park.id} park={park} addRemovePark={props.addRemovePark} currentUser={props.currentUser} />
+        <Park key={park.id} park={park} addPark={props.addPark} currentUser={props.currentUser} />
     ))
 
     return (

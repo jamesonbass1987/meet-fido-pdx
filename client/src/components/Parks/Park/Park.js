@@ -28,13 +28,18 @@ const park = props => {
 
     const isUsersPark = props.park.users.some(user => (user.id === props.currentUser.id))
 
+
     let parkIcon = <Popup
-        trigger={<Icon  name={isUsersPark ? "remove" : "add circle"} 
-                        onClick={() => props.addRemovePark(props.park.id)} 
-                        size="large" color={isUsersPark ? "red" : "green"}
-                        className={classes.ParkIcon} />}
-        content={isUsersPark ? "Remove park from my favorites." : "Add park to my favorites."}
+        trigger={<Icon name="add circle"
+            onClick={() => props.addPark(props.park.id)}
+            size="large" color="green"
+            className={classes.ParkIcon} />}
+        content="Add park to my favorites."
         basic />
+
+    if (props.currentUser.parks.find(park => (park.id === props.park.id))){
+        parkIcon = null;
+    }
 
     return (
         <Item className={classes.Content}>

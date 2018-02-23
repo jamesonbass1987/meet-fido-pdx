@@ -31,7 +31,6 @@ class UsersShow extends Component {
     }
 
     componentWillUpdate(nextProps, nextState){
-        debugger;
         if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating){
             let id = nextProps.match.params.userId || nextProps.currentUser.id
             this.props.removeSelectedUser();
@@ -52,9 +51,9 @@ class UsersShow extends Component {
     }
 
     handleParkAddRemove = (parkId) => {
+        this.setState({ isUpdating: true })
         this.props.updateUser(this.props.currentUser, 'parksList', parkId)
         this.props.removeSelectedUser();
-        this.setState({isUpdating: true})
     }
 
     render() {
@@ -89,7 +88,7 @@ class UsersShow extends Component {
             userProfile = <UserProfile
                 user={this.props.selectedUser}
                 loading={this.props.loading}
-                addRemovePark={this.handleParkAddRemove}
+                addPark={this.handleParkAddRemove}
                 currentUser={this.props.currentUser}
                 isProfileOwner={!!adminControls}
             />
