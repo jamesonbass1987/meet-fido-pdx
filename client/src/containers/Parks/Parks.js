@@ -87,7 +87,7 @@ class Parks extends Component {
 
 const mapStateToProps = state => {
   const { parks, loading, selectedPark, parkFilter } = state.park;
-  const { currentUser } = state.auth;
+  const { currentUser } = state.user;
   return {
     parks,
     loading,

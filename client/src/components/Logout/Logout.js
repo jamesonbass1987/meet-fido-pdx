@@ -3,11 +3,12 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { handleLogout } from '../../store/actions/index';
+import { handleLogout, removeCurrentUser } from '../../store/actions/index';
 
 class Logout extends Component {
     componentDidMount() {
         this.props.handleLogout();
+        this.props.removeCurrentUser();
     }
 
     render() {
@@ -16,7 +17,7 @@ class Logout extends Component {
 }
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ handleLogout }, dispatch)
+    bindActionCreators({ handleLogout, removeCurrentUser }, dispatch)
 );
 
 export default connect(null, mapDispatchToProps)(Logout);

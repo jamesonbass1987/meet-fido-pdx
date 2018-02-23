@@ -64,7 +64,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
+  currentUser: state.user.currentUser,
   isAuthenticated: state.auth.token
 })
 

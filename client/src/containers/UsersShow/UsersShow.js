@@ -21,7 +21,6 @@ class UsersShow extends Component {
     }
 
     componentWillMount(){
-        debugger;
         let id = this.props.match.params.userId || this.props.currentUser.id
         this.props.fetchUser(id);
     }
@@ -32,8 +31,8 @@ class UsersShow extends Component {
     }
 
     componentWillUpdate(nextProps, nextState){
+        debugger;
         if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating){
-            debugger;
             let id = nextProps.match.params.userId || nextProps.currentUser.id
             this.props.removeSelectedUser();
             this.props.fetchUser(id);
@@ -53,7 +52,7 @@ class UsersShow extends Component {
     }
 
     handleParkAddRemove = (parkId) => {
-        this.props.updateUser(this.props.selectedUser, 'parksList', parkId)
+        this.props.updateUser(this.props.currentUser, 'parksList', parkId)
         this.props.removeSelectedUser();
         this.setState({isUpdating: true})
     }
@@ -109,7 +108,7 @@ class UsersShow extends Component {
 const mapStateToProps = state => ({
     selectedUser: state.user.selectedUser,
     loading: state.user.loading,
-    currentUser: state.auth.currentUser
+    currentUser: state.user.currentUser
 })
 
 const mapDispatchToProps = dispatch => (

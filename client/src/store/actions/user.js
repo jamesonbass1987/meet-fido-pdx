@@ -134,6 +134,51 @@ export const removeSelectedUser = () => {
     }
 }
 
+export const removeCurrentUser = () => {
+    return {
+        type: actionTypes.REMOVE_CURRENT_USER
+    }
+}
+
+
+export const fetchCurrentUser = () => {
+    return dispatch => {
+        dispatch(fetchCurrentUserStart());
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch({ type: actionTypes.AUTH_LOGOUT });
+        } else {
+            axios.get(`/authed_user?token=${token}`)
+                .then(response => {
+                    dispatch(fetchCurrentUserSuccess(response.data))
+                })
+                .catch(err => {
+                    dispatch(fetchCurrentUserFail(err.response.data.error));
+                });
+        }
+    }
+}
+
+export const fetchCurrentUserStart = (user) => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_START
+    };
+};
+
+export const fetchCurrentUserFail = (error) => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_FAIL,
+        error
+    };
+};
+
+export const fetchCurrentUserSuccess = payload => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
+        payload
+    };
+};
+
 
 // Update User Parks
 
