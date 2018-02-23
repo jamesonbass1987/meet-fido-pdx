@@ -17,3 +17,7 @@
     margin-bottom: 0;
     margin-top: 3em;
 }
+
+.Invalid {
+    border: red !important
+}
