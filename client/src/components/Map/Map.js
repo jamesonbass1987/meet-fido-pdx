@@ -13,7 +13,7 @@ const mapComponent = withScriptjs(withGoogleMap(props => {
                 position={{lat: parseFloat(park.loc_latitude), lng: parseFloat(park.loc_longitude)}}
                 key={i}
                 clickable
-                onClick={() => props.markerClicked(park.id)}
+                onClick={() => props.markerClicked(park.name)}
                 />
     ))
 

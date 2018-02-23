@@ -51,6 +51,15 @@ const updateParkFilter = (state, action) => {
     })
 }
 
+const resetParkFilter = (state) => {
+    return updateObject(state, {
+        parkFilter: {
+            ...state.parkFilter,
+            searchQuery: ''
+        }
+    })
+}
+
 const parkReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_PARKS_START: return fetchParksStart(state);
@@ -60,6 +69,7 @@ const parkReducer = (state = initialState, action) => {
         case actionTypes.FETCH_PARK_SUCCESS: return fetchParkSuccess(state, action);
         case actionTypes.FETCH_PARK_FAIL: return fetchParkFail(state);
         case actionTypes.UPDATE_PARK_FILTER: return updateParkFilter(state, action);
+        case actionTypes.RESET_PARK_FILTER: return resetParkFilter(state);
         default: return state
     }
 }

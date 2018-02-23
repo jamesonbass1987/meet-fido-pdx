@@ -82,3 +82,9 @@ export const updateParkFilter = (type, value) => {
         payload: { type, value }
     };
 }
+
+export const resetParkFilter = () => {
+    return {
+        type: actionTypes.RESET_PARK_FILTER
+    }
+}

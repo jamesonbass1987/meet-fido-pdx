@@ -9,7 +9,8 @@ export {
 export {
     fetchParks,
     fetchPark,
-    updateParkFilter
+    updateParkFilter,
+    resetParkFilter
 } from './park'
 
 export {

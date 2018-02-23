@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { fetchParks, fetchPark } from '../../store/actions/index';
+import { fetchParks, fetchPark, updateParkFilter } from '../../store/actions/index';
 
 import { Container } from 'semantic-ui-react';
 
@@ -16,10 +16,8 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class Parks extends Component {
 
   state = {
-    showModal: false,
     showInfoWindow: false,
     hasAddedParks: false,
-    showParks: true
   }
 
   componentWillMount(){
@@ -31,18 +29,8 @@ class Parks extends Component {
   }
 
 
-  handleMarkerClick = id => {
-    this.props.fetchPark(id)
-
-    this.setState({
-      showModal: true
-    })
-  }
-
-  handleModalClose = () => {
-    this.setState({
-      showModal: false
-    })
+  handleMarkerClick = parkName => {
+    this.props.updateParkFilter('searchQuery', parkName)
   }
 
   handleParkAdded = () => {
@@ -52,14 +40,6 @@ class Parks extends Component {
   }
 
   render() {
-
-    let parkModal;
-    if (this.props.selectedPark && !this.props.loading && this.state.showModal) {
-      parkModal = <ParkModal 
-                      selectedPark={this.props.selectedPark} 
-                      showModal={this.state.showModal}
-                      handleModalClose={this.handleModalClose} />
-    }
 
     let parks = <Spinner />
     if (!this.props.loading){
@@ -92,7 +72,6 @@ class Parks extends Component {
           filterParams={this.props.parkFilter}
         />
         {parks}
-        {parkModal}
       </Container>
     )
   }
@@ -109,7 +88,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ fetchParks, fetchPark }, dispatch)
+  bindActionCreators({ fetchParks, fetchPark, updateParkFilter }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Parks);

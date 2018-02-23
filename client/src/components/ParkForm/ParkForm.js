@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index';
-import { Form, Input, Checkbox } from 'semantic-ui-react'
+import { Form, Input, Checkbox, Button, Icon } from 'semantic-ui-react'
 
 import classes from './ParkForm.css'
 
@@ -16,6 +16,10 @@ class ParkForm extends Component{
             const value = !this.props.parkFilter[name]
             this.props.onSearchFilterUpdate(name, value)
         }
+    }
+
+    handleFormReset = () => {
+        this.props.resetParkFilter();
     }
 
 
@@ -47,6 +51,17 @@ class ParkForm extends Component{
                     className={classes.FormCheckbox}
                     onChange={this.handleFilterUpdate}
                 />
+                <Button
+                    animated='vertical'
+                    onClick={() => this.handleFormReset()}
+                    color="twitter"
+                    floated="right"
+                    className={classes.Button}
+                ><Button.Content hidden>Reset</Button.Content>
+                    <Button.Content visible>
+                        <Icon name='repeat' />
+                    </Button.Content>
+                </Button>
             </Form>
         )
 
@@ -62,7 +77,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value))
+        onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value)),
+        resetParkFilter: () => dispatch(actions.resetParkFilter())
     }
 }
 
