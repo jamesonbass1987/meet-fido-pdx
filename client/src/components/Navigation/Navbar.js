@@ -20,7 +20,7 @@ class Navbar extends Component {
         }
     }
 
-    componentWillUpdate(){
+    componentWillReceiveProps(nextProps){
         const token = localStorage.getItem('token')
 
         if (token && !this.props.currentUser) {
