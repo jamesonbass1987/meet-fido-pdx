@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux'
-import { fetchUsers } from '../../store/actions/index';
+import { fetchUsers, fetchUser } from '../../store/actions/index';
 
 import { Container } from 'semantic-ui-react';
 
@@ -12,7 +12,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Users extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.fetchUsers();
     }
 
@@ -53,7 +53,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchUsers }, dispatch)
+    bindActionCreators({ fetchUsers, fetchUser }, dispatch)
 );
 
 

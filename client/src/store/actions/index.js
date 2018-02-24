@@ -21,8 +21,7 @@ export {
     deleteUser,
     removeSelectedUser,
     updateUser,
-    fetchCurrentUser,
-    removeCurrentUser
+
 } from './user'
 
 export {
@@ -32,6 +31,8 @@ export {
     handleLogout,
     authCheckState,
     handleUserSignUp,
+    fetchCurrentUser,
+    removeCurrentUser
 } from './auth'
 
 export {

@@ -28,6 +28,12 @@ export const handleLogout = () => {
     };
 };
 
+export const removeCurrentUser = () => {
+    return {
+        type: actionTypes.REMOVE_CURRENT_USER
+    }
+}
+
 
 export const updateAuthenticatingState = () => {
     return {
@@ -52,7 +58,7 @@ export const handleUserLogin = (payload) => {
         axios.post('/authenticate', authData)
             .then(response => {
                 localStorage.setItem('token', response.data.auth_token);
-                dispatch(authSuccess({ token: response.data.auth_token }));
+                dispatch(authSuccess({ token: response.data.auth_token, user: response.data.user }));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));
@@ -120,3 +126,43 @@ export const handleUserSignUp = payload => {
 }
 
 
+
+
+
+export const fetchCurrentUser = () => {
+    return dispatch => {
+        dispatch(fetchCurrentUserStart());
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch({ type: actionTypes.AUTH_LOGOUT });
+        } else {
+            axios.get(`/authed_user?token=${token}`)
+                .then(response => {
+                    dispatch(fetchCurrentUserSuccess(response.data))
+                })
+                .catch(err => {
+                    dispatch(fetchCurrentUserFail(err.response.data.error));
+                });
+        }
+    }
+}
+
+export const fetchCurrentUserStart = (user) => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_START
+    };
+};
+
+export const fetchCurrentUserFail = (error) => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_FAIL,
+        error
+    };
+};
+
+export const fetchCurrentUserSuccess = payload => {
+    return {
+        type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
+        payload
+    };
+};

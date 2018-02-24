@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 
 import { bindActionCreators } from 'redux'
 import { fetchNeighborhoods, updateUser } from '../../store/actions/index';
-import { updateObject, checkValidity } from '../../shared/utility';
 
 import classes from './UserEditForm.css';
 
-import { Dropdown, Segment, Button, Icon, Form, Input, Header, Divider, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, Header, TextArea } from 'semantic-ui-react'
 
 class UserEditForm extends Component {
 
@@ -56,6 +55,7 @@ class UserEditForm extends Component {
         }
 
         this.props.updateUser(this.props.user, 'profileUpdate', userInfo);
+        this.props.handleUpdate()
         this.props.toggleModal();
     }
 
@@ -74,11 +74,10 @@ class UserEditForm extends Component {
                 <Header as='h1'>Edit Profile</Header>
                     <Form.Field 
                         control={TextArea} 
-                        onChange={this.handleFormInputChange} 
+                        onChange={event => this.handleFormInputChange(event, 'bio')} 
                         label='Bio:' 
                         id="bio" 
                         placeholder='Bio...' 
-                        onChange={event => this.handleFormInputChange(event, 'bio')} 
                         value={this.state.formData.bio} />
                     <Form.Dropdown
                         fluid

@@ -102,7 +102,7 @@ class Park extends Component {
 
 const mapStateToProps = state => {
     const { loading } = state.park;
-    const { currentUser } = state.user;
+    const { currentUser } = state.auth;
     return {
         loading,
         currentUser

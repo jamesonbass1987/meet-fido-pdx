@@ -13,6 +13,13 @@ class Navbar extends Component {
         activeItem: window.location.pathname
     }
 
+    componentWillMount() {
+        const token = localStorage.getItem('token')
+        if (token && !this.props.currentUser) {
+            this.props.fetchCurrentUser();
+        }
+    }
+
     componentWillUpdate(){
         const token = localStorage.getItem('token')
 
@@ -45,7 +52,7 @@ class Navbar extends Component {
         ]
 
 
-        if (this.props.isAuthenticated) {
+        if (this.props.isAuthenticated && !this.props.loading) {
             navButtons = [
                     {
                         color: 'red',
@@ -78,19 +85,24 @@ class Navbar extends Component {
                     {
                         name: 'myProfile',
                         content: 'My Profile',
-                        link: `/users/me`,
+                        link: `/users/${this.props.currentUser.id}`,
                     }
                 ]
         }
 
+        let navItems;
+        if(!this.props.loading){
+            navItems = <NavigationItems
+                navLinks={navLinks}
+                navButtons={navButtons}
+                activeItem={this.state.activeItem}
+                clicked={this.handleItemClick}
+            />
+        }
+
         return (
             <Menu stackable>
-                <NavigationItems 
-                    navLinks={navLinks}
-                    navButtons={navButtons}
-                    activeItem={this.state.activeItem}
-                    clicked={this.handleItemClick}
-                    />
+                {navItems}
             </Menu>
         );
     }
@@ -100,7 +112,8 @@ class Navbar extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token,
-        currentUser: state.user.currentUser
+        currentUser: state.auth.currentUser,
+        loading: state.auth.loading
     };
 };
 

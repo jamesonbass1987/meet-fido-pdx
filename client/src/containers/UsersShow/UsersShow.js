@@ -8,7 +8,6 @@ import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateUser
 import { Container, Segment, Header, Divider } from 'semantic-ui-react';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
-import UserProfile from '../../components/UserProfile/UserProfile';
 import AdminControls from '../../components/AdminControls/AdminControls'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
 import UserImage from '../../components/UserImage/UserImage';
@@ -21,42 +20,44 @@ import classes from './UsersShow.css'
 class UsersShow extends Component {
 
     state = {
-        deleteClicked: false,
-        isUpdating: false,
-        showModal: false
+        showDelete: false,
+        showModal: false,
+        isUpdating: false
     }
+
 
     componentWillMount(){
-        let id = this.props.match.params.userId || this.props.currentUser.id
-        this.props.fetchUser(id);
-        this.props.fetchCurrentUser();
+        const id = this.props.match.params.userId
+        this.props.fetchUser(id)
     }
 
-    componentWillUnmount(){
-        this.props.removeSelectedUser();
-    }
-
-    componentWillUpdate(nextProps, nextState){
-        if (this.props.match.path !== nextProps.match.path || this.state.isUpdating !== nextState.isUpdating || this.state !== nextState){
-            let id = nextProps.match.params.userId || nextProps.currentUser.id
-            this.props.fetchUser(id);
+    componentWillReceiveProps(nextProps){
+        if (this.props.match.params.userId !== nextProps.match.params.userId || (this.props.isUpdating && !nextProps.isUpdating)) {
+            const id = nextProps.match.params.userId;
+            this.props.fetchUser(id)
         }
     }
 
-    handleModalToggle = () => (this.setState({showModal: !this.state.showModal}))
+    handleModalToggle = () => {
+        this.setState({showModal: !this.state.showModal})
+    }
 
-    show = () => this.setState({ deleteClicked: true })
+    show = () => this.setState({ showDelete: true })
     
-    handleCancel = () => this.setState({ deleteClicked: false })
+    handleCancel = () => this.setState({ showDelete: false })
 
     handleConfirm = () => {
-        this.setState({ deleteClicked: false })
+        this.setState({ showDelete: false })
         this.props.deleteUser(this.props.currentUser)
         this.props.history.push("/logout")
     }
 
-    render() {
+    handleUpdate = () => {
+        
+    }
 
+    render() {
+        
         let adminControls;
         let profileModal;
         if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser.id){
@@ -64,12 +65,12 @@ class UsersShow extends Component {
                                 currentUser={this.props.currentUser} 
                                 selectedUser={this.props.selectedUser} 
                                 show={this.show}
-                                open={this.state.deleteClicked}
+                                open={this.state.showDelete}
                                 handleConfirm={this.handleConfirm}
                                 handleCancel={this.handleCancel}
                                 showModal={this.state.showModal}
-                                toggleModal={this.handleModalToggle}
-                                fluid    
+                                toggleModal={this.handleModalToggle} 
+                                fluid
                             />
 
             profileModal = <Modal
@@ -78,7 +79,7 @@ class UsersShow extends Component {
                                 header="Edit Profile"
                                 size="fullscreen"
                             >
-                            <UserEditForm user={this.props.currentUser} toggleModal={this.handleModalToggle}/>
+                                <UserEditForm user={this.props.currentUser} handleUpdate={this.handleUpdate} toggleModal={this.handleModalToggle}/>
                             </Modal>
 
         }
@@ -86,7 +87,7 @@ class UsersShow extends Component {
         let userProfile = <Spinner />
         if (!this.props.loading && this.props.selectedUser) {
             const user = this.props.selectedUser;
-            
+
             userProfile = <React.Fragment>
                             <Segment className={classes.ProfileHeaderSection}>
                                 <UserImage src={user.profile_image_url} />
@@ -117,14 +118,9 @@ class UsersShow extends Component {
                                 </Header.Content>
                                 </Header>
                                 <Parks parks={user.parks} />
-                                <Divider />
                             </Segment>  
                         </React.Fragment>
         };
-
-
-
-
 
         return (
             <Container>
@@ -139,7 +135,8 @@ class UsersShow extends Component {
 const mapStateToProps = state => ({
     selectedUser: state.user.selectedUser,
     loading: state.user.loading,
-    currentUser: state.user.currentUser
+    currentUser: state.auth.currentUser,
+    isUpdating: state.user.isUpdating
 })
 
 const mapDispatchToProps = dispatch => (

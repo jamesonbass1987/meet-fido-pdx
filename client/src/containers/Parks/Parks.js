@@ -10,7 +10,6 @@ import classes from './Parks.css';
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading';
 import MapComponent from '../../components/Map/Map';
-import ParkModal from '../../components/ParkModal/ParkModal';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Parks extends Component {

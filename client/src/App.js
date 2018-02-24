@@ -29,14 +29,6 @@ class App extends Component {
     this.props.fetchCurrentUser();
   }
 
-  componentWillUpdate(){
-    const token = localStorage.getItem('token')
-
-    if(token && !this.props.currentUser){
-      this.props.fetchCurrentUser();
-    }
-  }
-
   render() {
     const userToken = localStorage.getItem('token')
 
@@ -66,12 +58,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
-})
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ authCheckState, fetchCurrentUser }, dispatch)
 )
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

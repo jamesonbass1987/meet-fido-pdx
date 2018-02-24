@@ -22,7 +22,6 @@ const fetchNeighborhoodsFail = state => {
     return updateObject(state, { loading: false });
 };
 
-
 const neighborhoodReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_NEIGHBORHOODS_START: return fetchNeighborhoodsStart(state);
