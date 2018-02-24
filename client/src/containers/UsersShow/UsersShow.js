@@ -5,12 +5,15 @@ import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux'
 import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateUser } from '../../store/actions/index';
 
-import { Container } from 'semantic-ui-react';
+import { Container, Segment, Header, Divider } from 'semantic-ui-react';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import AdminControls from '../../components/AdminControls/AdminControls'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
+import UserImage from '../../components/UserImage/UserImage';
+import Dogs from '../../components/Dogs/Dogs';
+import Parks from '../../components/Parks/Parks';
 import Modal from '../../components/UI/Modal/Modal';
 
 import classes from './UsersShow.css'
@@ -82,12 +85,46 @@ class UsersShow extends Component {
 
         let userProfile = <Spinner />
         if (!this.props.loading && this.props.selectedUser) {
-            userProfile = <UserProfile
-                user={this.props.selectedUser}
-                loading={this.props.loading}
-                currentUser={this.props.currentUser}
-            />
+            const user = this.props.selectedUser;
+            
+            userProfile = <React.Fragment>
+                            <Segment className={classes.ProfileHeaderSection}>
+                                <UserImage src={user.profile_image_url} />
+                                <Divider />
+                                <Header className={classes.ProfileHeader} as='h1' size="huge" textAlign="center">
+                                    <Header.Content>
+                                        {user.username}
+                                    </Header.Content>
+                                    <Header.Subheader>
+                                        {user.neighborhood.name}
+                                    </Header.Subheader>
+                                    <Header.Subheader className={classes.ProfileSubHeader}>
+                                        {user.bio}
+                                    </Header.Subheader>
+                                </Header>
+                            </Segment>
+                            <Segment>
+                                <Header as='h2' size="huge" >
+                                    <Header.Content>
+                                        My Dogs:
+                                </Header.Content>
+                                </Header>
+                                <Dogs dogs={user.dogs} />
+                                <Divider />
+                                <Header as='h2' size="huge" >
+                                    <Header.Content>
+                                        Parks I Like:
+                                </Header.Content>
+                                </Header>
+                                <Parks parks={user.parks} />
+                                <Divider />
+                            </Segment>  
+                        </React.Fragment>
         };
+
+
+
+
 
         return (
             <Container>
