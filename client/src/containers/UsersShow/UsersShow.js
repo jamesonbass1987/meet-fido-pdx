@@ -31,16 +31,21 @@ class UsersShow extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if (this.props.match.params.userId !== nextProps.match.params.userId || (this.props.isUpdating && !nextProps.isUpdating && this.props.currentUser.id === this.props.selectedUser.id)) {
+        if  (this.props.match.params.userId !== nextProps.match.params.userId || 
+            (this.props.isUpdating && !nextProps.isUpdating && this.props.currentUser.id === this.props.selectedUser.id) ||
+            this.props.currentUser !== nextProps.currentUser)
+            {
             const id = nextProps.match.params.userId;
             this.props.fetchUser(id)
         }
     }
 
     shouldComponentUpdate(nextProps, nextState){
+        debugger;
         return  this.state !== nextState || 
                 (this.props.loading && !nextProps.loading) || 
-                this.props.selectedUser !== nextProps.selectedUser
+                this.props.selectedUser !== nextProps.selectedUser ||
+                this.props.currentUser !== nextProps.currentUser
     }
 
     componentWillUnmount(){
