@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index';
 import { Dropdown, Segment, Button, Icon } from 'semantic-ui-react'
 
-import classes from './DogsForm.css'
+import classes from './DogsFilterForm.css'
 
 class DogForm extends Component {
 

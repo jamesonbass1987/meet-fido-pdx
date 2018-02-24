@@ -202,7 +202,7 @@ export const updateUserStart = () => {
     };
 };
 
-export const updateUser = (user, attribute, value) => {
+export const updateUser = (user, attribute, updateVals) => {
     let updatedUser = {
                         username: user.username,
                         bio: user.bio,
@@ -213,8 +213,14 @@ export const updateUser = (user, attribute, value) => {
                         park_ids: user.parks.map(park => (park.id)),
                     }
     if (attribute === 'parksList') {
-        updatedUser.park_ids = updateParks(updatedUser.park_ids, value)
+        updatedUser.park_ids = updateParks(updatedUser.park_ids, updateVals)
+    } else if (attribute === 'profileUpdate'){
+        updatedUser = {
+            ...updatedUser,
+            ...updateVals
+        }
     }
+
     return dispatch => {
         dispatch(updateUserStart())
         axios.patch(`/users/${user.id}`, { id: user.id, user: {...updatedUser} })

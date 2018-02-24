@@ -8,6 +8,7 @@ import Parks from '../Parks/Parks';
 
 
 const userProfile = props => {
+
     return (
         <React.Fragment>
             <Segment className={classes.ProfileHeaderSection}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Segment, Divider, Header } from 'semantic-ui-react';
 import Dogs from '../Dogs/Dogs';
-import DogForm from '../DogsForm/DogsForm'
+import DogForm from '../DogsFilterForm/DogsFilterForm'
 import dogFilter from '../../shared/dogFilter'
 
 const dogsComponent = props => {

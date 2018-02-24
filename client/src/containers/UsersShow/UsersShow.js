@@ -10,7 +10,10 @@ import { Container } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import AdminControls from '../../components/AdminControls/AdminControls'
+import UserEditForm from '../../components/UserEditForm/UserEditForm'
 import Modal from '../../components/UI/Modal/Modal';
+
+import classes from './UsersShow.css'
 
 class UsersShow extends Component {
 
@@ -70,8 +73,9 @@ class UsersShow extends Component {
                                 handleClose={this.handleModalToggle}
                                 show={this.state.showModal}
                                 header="Edit Profile"
+                                size="fullscreen"
                             >
-                                
+                            <UserEditForm user={this.props.currentUser} toggleModal={this.handleModalToggle}/>
                             </Modal>
 
         }
@@ -81,6 +85,7 @@ class UsersShow extends Component {
             userProfile = <UserProfile
                 user={this.props.selectedUser}
                 loading={this.props.loading}
+                currentUser={this.props.currentUser}
             />
         };
 

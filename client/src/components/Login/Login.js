@@ -56,7 +56,6 @@ class LoginForm extends Component {
 
         let errorMessage = null;
         if (this.props.error) {
-            debugger;
             errorMessage = (
                 <p style={{color: "red", textTransform: 'capitalize'}}>{this.props.error.user_authentication}</p>
             );

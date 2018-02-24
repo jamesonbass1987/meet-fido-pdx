@@ -15,7 +15,6 @@ export const authSuccess = payload => {
 };
 
 export const authFail = (error) => {
-    debugger;
     return {
         type: actionTypes.AUTH_FAIL,
         error

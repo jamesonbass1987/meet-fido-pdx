@@ -39,6 +39,7 @@ class App extends Component {
 
   render() {
     const userToken = localStorage.getItem('token')
+
     
     let routes = (<Switch>
                     <Route path="/" exact component={Home} />
@@ -46,6 +47,7 @@ class App extends Component {
                   </Switch>)
 
     if (userToken){
+
       routes = <Switch>
                 <Route path="/dogs" component={asyncDogs} />
                 <Route path="/parks" component={asyncParks} />
