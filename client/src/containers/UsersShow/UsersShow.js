@@ -27,6 +27,7 @@ class UsersShow extends Component {
     componentWillMount(){
         const id = this.props.match.params.userId
         this.props.fetchUser(id)
+        this.props.fetchCurrentUser()
     }
 
     componentWillReceiveProps(nextProps){
@@ -40,6 +41,10 @@ class UsersShow extends Component {
         return  this.state !== nextState || 
                 (this.props.loading && !nextProps.loading) || 
                 this.props.selectedUser !== nextProps.selectedUser
+    }
+
+    componentWillUnmount(){
+        this.props.removeSelectedUser()
     }
 
     handleModalToggle = () => {

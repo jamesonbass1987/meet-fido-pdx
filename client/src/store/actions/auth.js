@@ -130,7 +130,6 @@ export const handleUserSignUp = payload => {
 
 
 export const fetchCurrentUser = () => {
-    console.log('fetching current user...')
     return dispatch => {
         dispatch(fetchCurrentUserStart());
         const token = localStorage.getItem('token');

@@ -24,6 +24,22 @@ class Park extends Component {
         })
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        return this.props.selectedUser !== nextProps.selectedUser || this.props !== nextProps || this.state !== nextState
+    }
+
+    componentWillReceiveProps(nextProps){
+        if (this.props.selectedUser !== nextProps.selectedUser){
+            const isHideable = parseInt(nextProps.match.params.userId, 10) === nextProps.currentUser.id 
+            const addBtnShowable = nextProps.park.users.some(user => (user.id === nextProps.currentUser.id))
+
+            this.setState({
+                showAddParkBtn: addBtnShowable ? false : true,
+                hideable: isHideable ? true : false
+            })
+        }
+    }
+
 
     handleAddRemovePark = () => {
         this.setState({ 

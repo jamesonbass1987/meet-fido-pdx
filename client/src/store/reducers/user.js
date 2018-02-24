@@ -32,7 +32,6 @@ const fetchUserStart = state => {
 };
 
 const fetchUserSuccess = (state, action) => {
-    console.log('fetched new user with properties:', action.user)
     return updateObject(state, {
         selectedUser: action.user,
         loading: false
