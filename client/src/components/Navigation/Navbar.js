@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { handleLogout, updateSignUpState, updateAuthenticatingState, fetchCurrentUser } from '../../store/actions/index';
 
@@ -10,7 +10,7 @@ import NavigationItems from './NavigationItems/NavigationItems'
 class Navbar extends Component {
 
     state = {
-        activeItem: window.location.pathname
+        activeItem: this.props.location.pathname
     }
 
     componentWillMount() {
@@ -122,4 +122,4 @@ const mapDispatchToProps = dispatch => (
     bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState, fetchCurrentUser }, dispatch)
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

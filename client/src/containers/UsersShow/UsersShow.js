@@ -41,7 +41,6 @@ class UsersShow extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        debugger;
         return  this.state !== nextState || 
                 (this.props.loading && !nextProps.loading) || 
                 this.props.selectedUser !== nextProps.selectedUser ||

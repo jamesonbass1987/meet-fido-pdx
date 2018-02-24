@@ -20,12 +20,12 @@ class Users extends Component {
 
         let users = <Spinner />
 
-        if (!this.props.loading) {
+        if (!this.props.loading && this.props.currentUser) {
             users = <UsersComponent 
-                        users={this.props.users} 
+                        users={this.props.users.filter(user => user.id !== this.props.currentUser.id)} 
                         loading={this.props.loading} 
                         currentFilter={this.props.currentFilter} 
-                        parkFilter={this.props.parkFilter} 
+                        parkFilter={this.props.parkFilter}
                     />
         }
 
@@ -49,7 +49,8 @@ const mapStateToProps = state => ({
     users: state.user.users,
     loading: state.user.loading,
     currentFilter: state.user.userFilter,
-    parkFilter: state.park.parkFilter
+    parkFilter: state.park.parkFilter,
+    currentUser: state.auth.currentUser
 })
 
 const mapDispatchToProps = dispatch => (
