@@ -15,8 +15,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class Parks extends Component {
 
   state = {
-    showInfoWindow: false,
-    hasAddedParks: false,
+    showInfoWindow: false
   }
 
   componentWillMount(){
@@ -27,15 +26,8 @@ class Parks extends Component {
     this.props.fetchParks();
   }
 
-
   handleMarkerClick = parkName => {
     this.props.updateParkFilter('searchQuery', parkName)
-  }
-
-  handleParkAdded = () => {
-    this.setState({
-      hasAddedParks: true
-    })
   }
 
   render() {

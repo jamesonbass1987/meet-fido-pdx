@@ -81,6 +81,23 @@ const removeCurrentUser = state => {
     return updateObject(state, { currentUser: null })
 }
 
+const updateCurrentUserStart = state => {
+    return updateObject(state, { loading: true, isUpdating: true });
+};
+
+const updateCurrentUserSuccess = (state) => {
+    return updateObject(state, {
+        error: null,
+        loading: false,
+        isUpdating: false,
+    });
+};
+
+const updateCurrentUserFail = state => {
+    return updateObject(state, { loading: false, isUpdating: false });
+}
+
+
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.UPDATE_AUTHENTICATING_STATE: return updateAuthenticatingState(state);
@@ -96,6 +113,9 @@ export const authReducer = (state = initialState, action) => {
         case actionTypes.FETCH_CURRENT_USER_START: return fetchCurrentUserStart(state);
         case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
         case actionTypes.FETCH_CURRENT_USER_FAIL: return fetchCurrentUserFail(state);
+        case actionTypes.UPDATE_CURRENT_USER_START: return updateCurrentUserStart(state);
+        case actionTypes.UPDATE_CURRENT_USER_SUCCESS: return updateCurrentUserSuccess(state);
+        case actionTypes.UPDATE_CURRENT_USER_FAIL: return updateCurrentUserFail(state);
         default: return state
     }
 }

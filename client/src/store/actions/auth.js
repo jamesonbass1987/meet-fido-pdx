@@ -130,6 +130,7 @@ export const handleUserSignUp = payload => {
 
 
 export const fetchCurrentUser = () => {
+    console.log('fetching current user...')
     return dispatch => {
         dispatch(fetchCurrentUserStart());
         const token = localStorage.getItem('token');
@@ -166,3 +167,62 @@ export const fetchCurrentUserSuccess = payload => {
         payload
     };
 };
+
+// Update Current User Data
+
+export const updateCurrentUserSuccess = user => {
+    return {
+        type: actionTypes.UPDATE_CURRENT_USER_SUCCESS,
+        user
+    };
+};
+
+export const updateCurrentUserFail = (error) => {
+    return {
+        type: actionTypes.UPDATE_CURRENT_USER_FAIL,
+        error: error
+    };
+};
+
+export const updateCurrentUserStart = () => {
+    return {
+        type: actionTypes.UPDATE_CURRENT_USER_START
+    };
+};
+
+export const updateCurrentUser = (user, attribute, updateVals) => {
+
+    let updatedUser = {
+        username: user.username,
+        bio: user.bio,
+        email: user.email,
+        profile_image_url: user.profile_image_url,
+        dog_ids: user.dogs.map(dog => (dog.id)),
+        neighborhood_id: user.neighborhood.id,
+        park_ids: user.parks.map(park => (park.id)),
+    }
+    if (attribute === 'parksList') {
+        updatedUser.park_ids = updateParks(updatedUser.park_ids, updateVals)
+    } else if (attribute === 'profileUpdate') {
+        updatedUser = {
+            ...updatedUser,
+            ...updateVals
+        }
+    }
+
+    return dispatch => {
+        dispatch(updateCurrentUserStart())
+        axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
+            .then(resp => {
+                dispatch(fetchCurrentUser())
+                dispatch(updateCurrentUserSuccess(resp));
+            })
+            .catch(err => {
+                dispatch(updateCurrentUserFail(err));
+            })
+    }
+}
+
+const updateParks = (parkIds, value) => {
+    return parkIds.some(id => (id === value)) ? parkIds.filter(id => (id !== value)) : [...parkIds, value];
+}

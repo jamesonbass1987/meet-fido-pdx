@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
 import { bindActionCreators } from 'redux'
-import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateUser } from '../../store/actions/index';
+import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser } from '../../store/actions/index';
 
 import { Container, Segment, Header, Divider } from 'semantic-ui-react';
 
@@ -21,10 +21,8 @@ class UsersShow extends Component {
 
     state = {
         showDelete: false,
-        showModal: false,
-        isUpdating: false
+        showModal: false
     }
-
 
     componentWillMount(){
         const id = this.props.match.params.userId
@@ -32,10 +30,16 @@ class UsersShow extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if (this.props.match.params.userId !== nextProps.match.params.userId || (this.props.isUpdating && !nextProps.isUpdating)) {
+        if (this.props.match.params.userId !== nextProps.match.params.userId || (this.props.isUpdating && !nextProps.isUpdating && this.props.currentUser.id === this.props.selectedUser.id)) {
             const id = nextProps.match.params.userId;
             this.props.fetchUser(id)
         }
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        return  this.state !== nextState || 
+                (this.props.loading && !nextProps.loading) || 
+                this.props.selectedUser !== nextProps.selectedUser
     }
 
     handleModalToggle = () => {
@@ -52,9 +56,6 @@ class UsersShow extends Component {
         this.props.history.push("/logout")
     }
 
-    handleUpdate = () => {
-        
-    }
 
     render() {
         
@@ -79,7 +80,7 @@ class UsersShow extends Component {
                                 header="Edit Profile"
                                 size="fullscreen"
                             >
-                                <UserEditForm user={this.props.currentUser} handleUpdate={this.handleUpdate} toggleModal={this.handleModalToggle}/>
+                                <UserEditForm user={this.props.currentUser} toggleModal={this.handleModalToggle}/>
                             </Modal>
 
         }
@@ -140,7 +141,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateUser }, dispatch)
+    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser }, dispatch)
 );
 
 

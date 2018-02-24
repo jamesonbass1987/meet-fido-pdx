@@ -28,6 +28,10 @@ class Navbar extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        return this.props.currentUser !== nextProps.currentUser || this.state.activeItem !== nextState.activeItem
+    }
+
 
     handleItemClick = (event, { to } ) => {
         this.setState({
@@ -90,15 +94,12 @@ class Navbar extends Component {
                 ]
         }
 
-        let navItems;
-        if(!this.props.loading){
-            navItems = <NavigationItems
+        let navItems = <NavigationItems
                 navLinks={navLinks}
                 navButtons={navButtons}
                 activeItem={this.state.activeItem}
                 clicked={this.handleItemClick}
             />
-        }
 
         return (
             <Menu stackable>

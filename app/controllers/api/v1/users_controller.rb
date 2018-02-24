@@ -27,7 +27,7 @@ class Api::V1::UsersController < ApiController
 
   def update
     if @user.update(user_params)
-      render json: @user, status: 204
+      render status: 204
     else
       render json: { message: @user.errors }.to_json, status: 400
     end

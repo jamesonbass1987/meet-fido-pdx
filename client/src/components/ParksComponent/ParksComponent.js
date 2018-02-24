@@ -19,7 +19,6 @@ const parksComponent = props => (
         <Parks 
             parks={props.parks}
             currentFilter={props.currentFilter}
-            hasAddedParks={props.hasAddedParks}
         />
     </Segment>
 )

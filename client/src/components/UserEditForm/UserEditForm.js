@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import { bindActionCreators } from 'redux'
-import { fetchNeighborhoods, updateUser } from '../../store/actions/index';
+import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
 
 import classes from './UserEditForm.css';
 
@@ -54,8 +54,7 @@ class UserEditForm extends Component {
             neighborhood_id: this.state.formData.neighborhood_id
         }
 
-        this.props.updateUser(this.props.user, 'profileUpdate', userInfo);
-        this.props.handleUpdate()
+        this.props.updateCurrentUser(this.props.user, 'profileUpdate', userInfo);
         this.props.toggleModal();
     }
 
@@ -118,7 +117,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchNeighborhoods, updateUser }, dispatch)
+    bindActionCreators({ fetchNeighborhoods, updateCurrentUser }, dispatch)
 )
 
 

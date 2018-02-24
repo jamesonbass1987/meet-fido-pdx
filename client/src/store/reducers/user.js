@@ -82,25 +82,6 @@ const removeSelectedUser = (state) => {
     })
 }
 
-const updateUserStart = state => {
-    return updateObject(state, { loading: true, isUpdating: true });
-};
-
-const updateUserSuccess = (state, action) => {
-    return updateObject(state, {
-        error: null,
-        loading: false,
-        isUpdating: false
-    });
-};
-
-const updateUserFail = state => {
-    return updateObject(state, { loading: false, isUpdating: false });
-}
-
-
-
-
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_USERS_START: return fetchUsersStart(state);
@@ -115,10 +96,6 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
         case actionTypes.DELETE_USER_FAIL: return deleteUserFail(state);
         case actionTypes.REMOVE_SELECTED_USER: return removeSelectedUser(state);
-        case actionTypes.UPDATE_USER_START: return updateUserStart(state);
-        case actionTypes.UPDATE_USER_SUCCESS: return updateUserSuccess(state);
-        case actionTypes.UPDATE_USER_FAIL: return updateUserFail(state);
-
         default: return state
     }
 }

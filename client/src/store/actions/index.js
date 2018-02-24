@@ -20,7 +20,7 @@ export {
     resetUserFilter,
     deleteUser,
     removeSelectedUser,
-    updateUser,
+
 
 } from './user'
 
@@ -32,7 +32,8 @@ export {
     authCheckState,
     handleUserSignUp,
     fetchCurrentUser,
-    removeCurrentUser
+    removeCurrentUser,
+    updateCurrentUser,
 } from './auth'
 
 export {

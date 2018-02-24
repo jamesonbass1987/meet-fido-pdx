@@ -12,7 +12,7 @@ const parks = props => {
     let parksList;
     if (parksArray.length !== 0) {
         parksList = parksArray.map(park => (
-            <Park key={park.id} park={park} hasAddedParks={props.hasAddedParks} />
+            <Park key={park.id} park={park} />
         ))
     }
 
