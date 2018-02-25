@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index';
 import { Form, Input, Checkbox, Button, Icon } from 'semantic-ui-react'
 
-import classes from './ParkForm.css'
+import classes from './ParkFilterForm.css'
 
-class ParkForm extends Component{
+class ParkFilterForm extends Component{
 
 
     handleFilterUpdate = (event) => {
@@ -82,4 +82,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ParkForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ParkFilterForm)
