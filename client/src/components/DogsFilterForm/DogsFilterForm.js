@@ -5,7 +5,7 @@ import { Dropdown, Segment, Button, Icon } from 'semantic-ui-react'
 
 import classes from './DogsFilterForm.css'
 
-class DogForm extends Component {
+class DogFilterForm extends Component {
 
     componentWillMount(){
         if (this.props.breeds.length === 0){
@@ -120,4 +120,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DogForm)
+export default connect(mapStateToProps, mapDispatchToProps)(DogFilterForm)

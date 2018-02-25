@@ -1,12 +1,12 @@
 import React from 'react';
 import { Segment, Divider } from 'semantic-ui-react';
-import ParkForm from '../ParkForm/ParkForm';
+import ParkFilterForm from '../ParkFilterForm/ParkFilterForm';
 import Parks from '../Parks/Parks';
 import classes from './ParksComponent.css';
 
 const parksComponent = props => (
     <Segment className={classes.ParksContent}>
-        <ParkForm
+        <ParkFilterForm
             handleInputChanged={props.handleInputChanged}
             searchText={props.searchText}
             onChecked={props.onChecked}
