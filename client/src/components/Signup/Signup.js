@@ -13,16 +13,6 @@ class SignUpForm extends Component {
 
     state = {
         formData: {
-            email: '',
-            username: '',
-            password: '',
-            password_confirmation: '',
-            neighborhood_id: null
-        }
-    }
-
-    state = {
-        formData: {
             username: {
                 value: '',
                 validation: {
