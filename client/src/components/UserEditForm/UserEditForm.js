@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { bindActionCreators } from 'redux'
 import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
+import { updateObject, checkValidity } from '../../shared/utility';
 
 import classes from './UserEditForm.css';
 
@@ -12,10 +13,41 @@ class UserEditForm extends Component {
 
     state = {
         formData: {
-            bio: '',
-            neighborhood_id: '',
-            password: '',
-            password_confirmation: ''
+            bio: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 5
+                },
+                valid: false,
+                touched: false
+            },
+            neighborhood_id: {
+                value: '',
+                validation: {
+                    requiredDropdown: true,
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                value: '',
+                validation: {
+                    required: false,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            password_confirmation: {
+                value: '',
+                validation: {
+                    required: false,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            }
         }
     }
 
@@ -24,38 +56,41 @@ class UserEditForm extends Component {
 
         this.setState({
             formData: {
-                bio: this.props.user.bio,
-                neighborhood_id: this.props.user.neighborhood.id,
+                ...this.state.formData,
+                bio: {
+                    ...this.state.formData.bio,
+                    value: this.props.user.bio
+                },
+                neighborhood_id: {
+                    ...this.state.formData.neighborhood_id,
+                    value: this.props.user.neighborhood.id
+                }
             }
         });
     }
 
-    handleFormInputChange = (event, key) => {
-        this.setState({
-            formData: {
-                ...this.state.formData,
-                [key]: event.target.value
-            }
-        })
-    }
+    handleFormInputChange = (e, { value, id }) => {
+        const updatedFormData = updateObject(this.state.formData, {
+            [id]: updateObject(this.state.formData[id], {
+                value,
+                valid: checkValidity(e.target.value, this.state.formData[id].validation),
+                touched: true
+            })
+        });
 
-    handleFormDropdownChange = (event, { value }) => {
-        this.setState({ formData: { 
-                            ...this.state.formData,
-                            neighborhood_id: value 
-                        }})
+        this.setState({ formData: updatedFormData })
     }
 
     handleFormSubmission(event) {
         const userInfo = {
-            bio: this.state.formData.bio,
-            password: this.state.formData.password,
-            password_confirmation: this.state.formData.password_confirmation,
-            neighborhood_id: this.state.formData.neighborhood_id
+            bio: this.state.formData.bio.value,
+            password: this.state.formData.password.value,
+            password_confirmation: this.state.formData.password_confirmation.value,
+            neighborhood_id: this.state.formData.neighborhood_id.value
         }
 
         this.props.updateCurrentUser(this.props.user, 'profileUpdate', userInfo);
-        this.props.toggleModal();
+        this.props.toggleModal('userForm');
     }
 
     render() {
@@ -73,18 +108,18 @@ class UserEditForm extends Component {
                 <Header as='h1'>Edit Profile</Header>
                     <Form.Field 
                         control={TextArea} 
-                        onChange={event => this.handleFormInputChange(event, 'bio')} 
+                        onChange={this.handleFormInputChange} 
                         label='Bio:' 
                         id="bio" 
                         placeholder='Bio...' 
-                        value={this.state.formData.bio} />
+                        value={this.state.formData.bio.value} />
                     <Form.Dropdown
                         fluid
                         selection
-                        id='neighborhood'
+                        id='neighborhood_id'
                         options={dropdownItems}
-                        onChange={this.handleFormDropdownChange}
-                        defaultValue={this.state.formData.neighborhood_id}
+                        onChange={this.handleFormInputChange}
+                        defaultValue={this.state.formData.neighborhood_id.value}
                     />
                 <Header as='h3'>Update Password</Header>
                     <Form.Field 
@@ -92,14 +127,16 @@ class UserEditForm extends Component {
                         id="password" 
                         type="password" 
                         label='New Password'
-                        onChange={event => this.handleFormInputChange(event, 'password')} 
+                        onChange={this.handleFormInputChange}
+                        value={this.state.formData.password.value}
                         placeholder='Enter New Password...'/>
                     <Form.Field 
                         control={Input} 
                         id="password_confirmation" 
                         type="password" 
                         label='Confirm New Password' 
-                        onChange={event => this.handleFormInputChange(event, 'password_confirmation')} 
+                        onChange={this.handleFormInputChange}
+                        value={this.state.formData.password_confirmation.value}
                         placeholder='Confirm New Password...' />
                 <Button 
                     type="submit" 
