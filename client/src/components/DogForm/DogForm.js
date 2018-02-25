@@ -29,7 +29,7 @@ class DogForm extends Component {
                 valid: false,
                 touched: false
             },
-            age: {
+            age_id: {
                 value: '',
                 validation: {
                     requiredDropdown: true,
@@ -45,7 +45,7 @@ class DogForm extends Component {
                 valid: false,
                 touched: false
             },
-            breed: {
+            breed_id: {
                 value: '',
                 validation: {
                     requiredDropdown: true,
@@ -53,7 +53,7 @@ class DogForm extends Component {
                 valid: false,
                 touched: false
             }, 
-            size: {
+            size_id: {
                 value: '',
                 validation: {
                     requiredDropdown: true,
@@ -85,7 +85,7 @@ class DogForm extends Component {
         const updatedFormData = updateObject(this.state.formData, {
             [id]: updateObject(this.state.formData[id], {
                 value,
-                valid: checkValidity(e.target.value, this.state.formData[id].validation),
+                valid: checkValidity(value, this.state.formData[id].validation),
                 touched: true
             })
         });
@@ -94,43 +94,45 @@ class DogForm extends Component {
     }
 
     handleFormSubmission(event) {
-        const { name, image_url, description, sex, size, age, breed } = this.state.formData
+        const { name, profile_image_url, description, sex, size_id, age_id, breed_id } = this.state.formData
         const dogInfo = {
             name: name.value,
             description: description.value,
-            image_url: image_url.value,
+            profile_image_url: profile_image_url.value,
             sex: sex.value,
-            size: size.value,
-            age: age.value,
-            breed: breed.value
+            size_id: size_id.value,
+            age_id: age_id.value,
+            breed_id: breed_id.value,
+            id: this.props.dogId,
+            user_id: this.props.currentUser.id
         }
 
-        this.props.updateCurrentUser(this.props.user, 'addEditDog', dogInfo);
-        this.props.toggleModal();
+        this.props.addEditDog(dogInfo, 'createDog');
+        this.props.toggleModal('dogForm');
     }
 
     render() {
 
         const breedsDropdownItems = this.props.breeds.map((breed, i) => {
             return {
-                text: breed,
-                value: breed,
+                text: breed.name,
+                value: breed.id,
                 key: i + breed
             }
         })
 
         const sizesDropdownItems = this.props.sizes.map((size, i) => {
             return {
-                text: size,
-                value: size,
+                text: size.name,
+                value: size.id,
                 key: i + size
             }
         })
 
         const agesDropdownItems = this.props.ages.map((age, i) => {
             return {
-                value: age,
-                text: age,
+                value: age.id,
+                text: age.name,
                 key: i + age
             }
         })
@@ -141,7 +143,7 @@ class DogForm extends Component {
                             ]
 
         const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
-        
+
         return (
             <Form className={classes.DogForm} onSubmit={() => this.handleFormSubmission()}>
                 <Header as='h1'>{this.props.headerTitle}</Header>
@@ -187,8 +189,8 @@ class DogForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={breedsDropdownItems}
-                    defaultValue={this.state.formData.breed.value}
-                    id='breed'
+                    defaultValue={this.state.formData.breed_id.value}
+                    id='breed_id'
                 />
                 <Dropdown
                     placeholder='Age'
@@ -197,8 +199,8 @@ class DogForm extends Component {
                     selection
                     options={agesDropdownItems}
                     onChange={this.handleFormInputChange}
-                    defaultValue={this.state.formData.age.value}
-                    id="age"
+                    defaultValue={this.state.formData.age_id.value}
+                    id="age_id"
                 />
                 <Dropdown
                     placeholder='Size'
@@ -207,8 +209,8 @@ class DogForm extends Component {
                     selection
                     options={sizesDropdownItems}
                     onChange={this.handleFormInputChange}
-                    value={this.state.formData.size.value}
-                    id="size"
+                    value={this.state.formData.size_id.value}
+                    id="size_id"
                 />
                 <Button
                     type="submit"
@@ -227,7 +229,8 @@ const mapStateToProps = state => {
         dogFilter: state.dog.currentFilter,
         ages: state.dog.attributes.ages,
         breeds: state.dog.attributes.breeds,
-        sizes: state.dog.attributes.sizes
+        sizes: state.dog.attributes.sizes,
+        currentUser: state.auth.currentUser
     }
 }
 
@@ -236,7 +239,8 @@ const mapDispatchToProps = dispatch => {
         onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value)),
         onFetchAttribute: (attribute) => dispatch(actions.fetchDogAttribute(attribute)),
         onDogFilterUpdate: (attribute, value) => dispatch(actions.updateDogFilter(attribute, value)),
-        onFormReset: () => dispatch(actions.resetDogFilter())
+        onFormReset: () => dispatch(actions.resetDogFilter()),
+        addEditDog: (dog, action) => dispatch(actions.addEditDog(dog, action))
     }
 }
 

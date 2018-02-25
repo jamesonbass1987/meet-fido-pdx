@@ -1,4 +1,4 @@
-import axios from 'axios';
+const isUrl = require('is-url')
 
 export const updateObject = (oldObject, updatedProperties) => {
     return {
@@ -30,13 +30,14 @@ export const checkValidity = (value, rules) => {
     }
 
     if (rules.isEmail) {
-        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        const pattern = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
         isValid = pattern.test(value) && isValid
     }
 
     if (rules.requiredURL) {
-        const pattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-        isValid = pattern.test(value) && isValid
+        let urlVal;
+        urlVal = value.includes('http') ? value : 'http://' + value
+        isValid = isUrl(urlVal) && isValid
     }
 
     return isValid;

@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import * as actions from './index';
 import axios from '../../shared/axios-api';
 
 // DOG INDEX ACTIONS
@@ -106,7 +107,7 @@ export const fetchDogAttribute = attribute => {
         dispatch(fetchDogAttributeStart());
         axios.get(`/${attribute}`)
             .then(res => {
-                const fetchedAttributeList = res.data.map(obj => (obj.name))
+                const fetchedAttributeList = res.data.map(obj => (obj))
                 dispatch(fetchDogAttributeSuccess(fetchedAttributeList, attribute));
             })
             .catch(err => {
@@ -129,3 +130,41 @@ export const resetDogFilter = () => {
         type: actionTypes.RESET_DOG_FILTER
     }
 }
+
+// Create/Edit Dog Functions
+
+export const addEditDogSuccess = () => {
+    return {
+        type: actionTypes.CREATE_EDIT_DOG_SUCCESS,
+    };
+};
+
+export const addEditDogFail = (error) => {
+    return {
+        type: actionTypes.CREATE_EDIT_DOG_FAIL,
+        error
+    };
+};
+
+export const addEditDogStart = () => {
+    return {
+        type: actionTypes.CREATE_EDIT_DOG_START
+    };
+};
+
+export const addEditDog = (dog, action) => {
+
+    const url = action = 'createDog' ? '/dogs' : `/dogs/${dog.id}`
+
+    return dispatch => {
+        dispatch(addEditDogStart());
+        axios.post(url, { dog })
+            .then(res => {
+                dispatch(addEditDogSuccess())
+                dispatch(actions.fetchUser(dog.user_id))
+            })
+            .catch(err => {
+                dispatch(addEditDogFail(err))
+            });
+    };
+};

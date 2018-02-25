@@ -109,7 +109,7 @@ class UsersShow extends Component {
                                 size="fullscreen"
                                 type="dogForm"
                             >
-                                <DogForm headerTitle="Add New Dog" />
+                                <DogForm headerTitle="Add New Dog" toggleModal={this.handleModalToggle} />
                             </Modal>
 
         }

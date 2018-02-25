@@ -33,24 +33,24 @@ class DogFilterForm extends Component {
 
         const breedsDropdownItems = this.props.breeds.map( (breed, i) => {
             return {
-                text: breed,
-                value: breed,
+                text: breed.name,
+                value: breed.name,
                 key: i + breed
                 }
         })
 
         const sizesDropdownItems = this.props.sizes.map( (size, i)  => {
             return {
-                text: size,
-                value: size,
+                text: size.name,
+                value: size.name,
                 key: i + size
             }
         })
 
         const agesDropdownItems = this.props.ages.map( (age, i) => {
             return {
-                value: age,
-                text: age,
+                value: age.name,
+                text: age.name,
                 key: i + age
             }
         })

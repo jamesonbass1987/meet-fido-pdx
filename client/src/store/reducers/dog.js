@@ -84,6 +84,19 @@ const resetDogFilter = state => {
     })
 }
 
+
+const addEditDogStart = state => {
+    return updateObject(state, { loading: true });
+};
+
+const addEditDogSuccess = (state, action) => {
+    return updateObject(state, { loading: false });
+};
+
+const addEditDogFail = state => {
+    return updateObject(state, { loading: false });
+};
+
 const dogReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_DOGS_START: return fetchDogsStart(state);
@@ -97,6 +110,9 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.FETCH_DOG_ATTRIBUTE_FAIL: return fetchDogAttributeFail(state);
         case actionTypes.UPDATE_DOG_FILTER: return updateDogFilter(state, action);
         case actionTypes.RESET_DOG_FILTER: return resetDogFilter(state);
+        case actionTypes.CREATE_EDIT_DOG_START: return addEditDogStart(state);
+        case actionTypes.CREATE_EDIT_DOG_SUCCESS: return addEditDogSuccess(state, action);
+        case actionTypes.CREATE_EDIT_DOG_FAIL: return addEditDogFail(state);
         default: return state
     }
 }

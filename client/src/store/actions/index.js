@@ -3,7 +3,8 @@ export {
     fetchDog,
     fetchDogAttribute,
     updateDogFilter,
-    resetDogFilter
+    resetDogFilter,
+    addEditDog
 } from './dog'
 
 export {

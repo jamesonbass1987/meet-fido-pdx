@@ -6,7 +6,9 @@ class Api::V1::DogsController < ApiController
   end
 
   def create
+
     dog = Dog.new(dog_params)
+
     if dog.save
       render json: dog, status: 200
     else
@@ -40,7 +42,7 @@ class Api::V1::DogsController < ApiController
 
   private
     def dog_params
-      params.permit(:name, :user_id, :breed_id, :age_id, :size_id, :description, dog_images_attributes:[:image_url, :image_alt])
+      params.require(:dog).permit(:name, :user_id, :breed_id, :sex, :age_id, :size_id, :description, :profile_image_url)
     end
 
     def set_dog
