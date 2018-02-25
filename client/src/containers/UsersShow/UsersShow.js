@@ -5,11 +5,12 @@ import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux'
 import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser } from '../../store/actions/index';
 
-import { Container, Segment, Header, Divider } from 'semantic-ui-react';
+import { Container, Segment, Header, Divider, Button, Popup } from 'semantic-ui-react';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import AdminControls from '../../components/AdminControls/AdminControls'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
+import DogForm from '../../components/DogForm/DogForm'
 import UserImage from '../../components/UserImage/UserImage';
 import Dogs from '../../components/Dogs/Dogs';
 import Parks from '../../components/Parks/Parks';
@@ -21,7 +22,10 @@ class UsersShow extends Component {
 
     state = {
         showDelete: false,
-        showModal: false
+        showModal: {
+                userForm: false,
+                dogForm: false
+            }
     }
 
     componentWillMount(){
@@ -51,8 +55,12 @@ class UsersShow extends Component {
         this.props.removeSelectedUser()
     }
 
-    handleModalToggle = () => {
-        this.setState({showModal: !this.state.showModal})
+    handleModalToggle = (type) => {
+        this.setState({showModal: {
+                                ...this.state.showModal,
+                                [type]: !this.state.showModal[type]
+                            }
+                        })
     }
 
     show = () => this.setState({ showDelete: true })
@@ -69,7 +77,8 @@ class UsersShow extends Component {
     render() {
         
         let adminControls;
-        let profileModal;
+        let userFormModal;
+        let dogFormModal;
         if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser.id){
             adminControls = <AdminControls 
                                 currentUser={this.props.currentUser} 
@@ -83,13 +92,24 @@ class UsersShow extends Component {
                                 fluid
                             />
 
-            profileModal = <Modal
+            userFormModal = <Modal
                                 handleClose={this.handleModalToggle}
-                                show={this.state.showModal}
+                                show={this.state.showModal.userForm}
                                 header="Edit Profile"
                                 size="fullscreen"
+                                type="userForm"
                             >
                                 <UserEditForm user={this.props.currentUser} toggleModal={this.handleModalToggle}/>
+                            </Modal>
+
+            dogFormModal = <Modal
+                                handleClose={this.handleModalToggle}
+                                show={this.state.showModal.dogForm}
+                                header="Edit Profile"
+                                size="fullscreen"
+                                type="dogForm"
+                            >
+                                <DogForm headerTitle="Add New Dog" />
                             </Modal>
 
         }
@@ -118,8 +138,13 @@ class UsersShow extends Component {
                                 <Header as='h2' size="huge" >
                                     <Header.Content>
                                         My Dogs:
-                                </Header.Content>
+                                    </Header.Content>
                                 </Header>
+                                <Popup
+                                    trigger={<Button color="blue" className={classes.CreateDogBtn} onClick={() => this.handleModalToggle('dogForm')} icon='add' />}
+                                    content="Add a new dog to your account."
+                                    size="small"
+                                />
                                 <Dogs dogs={user.dogs} />
                                 <Divider />
                                 <Header as='h2' size="huge" >
@@ -136,7 +161,8 @@ class UsersShow extends Component {
             <Container>
                 {userProfile}
                 {adminControls}
-                {profileModal}
+                {userFormModal}
+                {dogFormModal}
             </Container>
         );
     }

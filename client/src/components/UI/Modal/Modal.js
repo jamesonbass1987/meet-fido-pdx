@@ -6,7 +6,7 @@ const modal = props => {
         <Modal 
             open={props.show} 
             closeIcon 
-            onClose={props.handleClose}
+            onClose={() => props.handleClose(props.type)}
             basic={props.basic}
             > {props.children} </Modal>
     )

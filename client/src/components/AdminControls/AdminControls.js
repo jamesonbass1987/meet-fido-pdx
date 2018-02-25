@@ -9,7 +9,7 @@ const adminControls = props => {
     return (
         <Segment>
             <Button
-                onClick={props.toggleModal}
+                onClick={() => props.toggleModal('userForm')}
                 color="yellow"
                 fluid={props.fluid}
                 content="Edit Profile"
