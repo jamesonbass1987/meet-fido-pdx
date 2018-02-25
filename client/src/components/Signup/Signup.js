@@ -110,7 +110,7 @@ class SignUpForm extends Component {
             );
         }
 
-        let submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
+        const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
 
         const dropdownItems = this.props.neighborhoods.map(neighborhood => {
             return {
