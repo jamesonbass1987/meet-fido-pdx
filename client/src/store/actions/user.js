@@ -3,12 +3,12 @@ import axios from '../../shared/axios-api';
 
 // USER SHARED ACTIONS
 
-export const fetchUserAssetStart = () => ({
-    type: actionTypes.FETCH_USER_ASSET_START
+export const userActionStart = () => ({
+    type: actionTypes.USER_ACTION_START
 });
 
-export const fetchUserAssetFail = error => ({
-    type: actionTypes.FETCH_USER_ASSET_FAIL,
+export const userActionFail = error => ({
+    type: actionTypes.USER_ACTION_FAIL,
     error
 });
 
@@ -16,14 +16,14 @@ export const fetchUserAssetFail = error => ({
 
 export const fetchUsers = () => {
     return dispatch => {
-        dispatch(fetchUserAssetStart());
+        dispatch(userActionStart());
         axios.get('/users')
             .then(res => {
                 const fetchedUsers = [...res.data];
                 dispatch(fetchUsersSuccess(fetchedUsers));
             })
             .catch(err => {
-                dispatch(fetchUserAssetFail(err));
+                dispatch(userActionFail(err));
             });
     };
 };
@@ -37,14 +37,14 @@ export const fetchUsersSuccess = users => ({
 
 export const fetchUser = id => {
     return dispatch => {
-        dispatch(fetchUserAssetStart());
+        dispatch(userActionStart());
         axios.get(`/users/${id}`)
             .then(res => {
                 const fetchedUser = res.data;
                 dispatch(fetchUserSuccess(fetchedUser));
             })
             .catch(err => {
-                dispatch(fetchUserAssetFail(err));
+                dispatch(userActionFail(err));
             });
     };
 };
@@ -58,13 +58,13 @@ export const fetchUserSuccess = user => ({
 
 export const deleteUser = id => {
     return dispatch => {
-         dispatch(fetchUserAssetStart())
+         dispatch(userActionStart())
          axios.delete(`/users/${id}`)
             .then(resp => {
                 dispatch(deleteUserSuccess());
             })
             .catch(err => {
-                dispatch(fetchUserAssetFail(err));
+                dispatch(userActionFail(err));
             })
     }
 }

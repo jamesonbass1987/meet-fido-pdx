@@ -12,8 +12,8 @@ const initialState = {
     isUpdating: false
 }
 
-const fetchUserAssetStart = state => (updateObject(state, { loading: true }));
-const fetchUserAssetFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
+const userActionStart = state => (updateObject(state, { loading: true }));
+const userActionFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
 
 const fetchUserSuccess = (state, action) => (
     updateObject(state, {
@@ -61,8 +61,8 @@ const resetUserFilter = (state, action) => (
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_USER_ASSET_START: return fetchUserAssetStart(state);
-        case actionTypes.FETCH_USER_ASSET_FAIL: return fetchUserAssetFail(state, action);
+        case actionTypes.USER_ACTION_START: return userActionStart(state);
+        case actionTypes.USER_ACTION_FAIL: return userActionFail(state, action);
         case actionTypes.FETCH_USER_SUCCESS: return fetchUserSuccess(state, action);
         case actionTypes.FETCH_USERS_SUCCESS: return fetchUsersSuccess(state, action);
         case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
