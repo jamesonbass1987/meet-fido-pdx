@@ -2,67 +2,38 @@ import * as actionTypes from './actionTypes';
 import * as actions from './index';
 import axios from '../../shared/axios-api';
 
+
+// DOG SHARED ACTIONS
+
+export const fetchDogAssetStart = () => ({ type: actionTypes.FETCH_DOG_ASSET_START });
+export const fetchDogAssetFail = (error) => ({ type: actionTypes.FETCH_DOG_ASSET_FAIL, error });
+
 // DOG INDEX ACTIONS
-
-export const fetchDogsSuccess = (dogs) => {
-    return {
-        type: actionTypes.FETCH_DOGS_SUCCESS,
-        dogs: dogs
-    };
-};
-
-export const fetchDogsFail = (error) => {
-    return {
-        type: actionTypes.FETCH_DOGS_FAIL,
-        error: error
-    };
-};
-
-export const fetchDogsStart = () => {
-    return {
-        type: actionTypes.FETCH_DOGS_START
-    };
-};
 
 export const fetchDogs = () => {
     return dispatch => {
-        dispatch(fetchDogsStart());
+        dispatch(fetchDogAssetStart());
         axios.get('/dogs')
             .then(res => {
                 const fetchedDogs = [...res.data];
                 dispatch(fetchDogsSuccess(fetchedDogs));
             })
             .catch(err => {
-                dispatch(fetchDogsFail(err));
+                dispatch(fetchDogAssetFail(err));
             });
     };
 };
 
+export const fetchDogsSuccess = dogs => ({
+    type: actionTypes.FETCH_DOGS_SUCCESS,
+    dogs
+});
+
 // DOG SHOW ACTIONS
-
-export const fetchDogSuccess = (dog) => {
-    return {
-        type: actionTypes.FETCH_DOG_SUCCESS,
-        dog
-    };
-};
-
-export const fetchDogFail = (error) => {
-    return {
-        type: actionTypes.FETCH_DOG_FAIL,
-        error
-    };
-};
-
-export const fetchDogStart = () => {
-    return {
-        type: actionTypes.FETCH_DOG_START
-    };
-};
 
 export const fetchDog = id => {
     return dispatch => {
-        dispatch(fetchDogsStart());
+        dispatch(fetchDogAssetStart());
         const token = localStorage.getItem('token');
 
         axios.get(`/dogs/${id}`, {
@@ -73,146 +44,103 @@ export const fetchDog = id => {
                 dispatch(fetchDogSuccess(fetchedDog));
             })
             .catch(err => {
-                dispatch(fetchDogFail(err));
+                dispatch(fetchDogAssetFail(err));
             });
     };
 };
 
+export const fetchDogSuccess = dog => ({
+    type: actionTypes.FETCH_DOG_SUCCESS,
+    dog
+});
 
 //DOG ATTRIBUTE INDEX ACTIONS
 
-export const fetchDogAttributeSuccess = (attributes, attribute) => {
-    return {
-        type: actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS,
-        attributes,
-        attribute
-    };
-};
-
-export const fetchDogAttributeFail = (error) => {
-    return {
-        type: actionTypes.FETCH_DOG_ATTRIBUTE_FAIL,
-        error
-    };
-};
-
-export const fetchDogAttributeStart = () => {
-    return {
-        type: actionTypes.FETCH_DOG_ATTRIBUTE_START
-    };
-};
-
 export const fetchDogAttribute = attribute => {
     return dispatch => {
-        dispatch(fetchDogAttributeStart());
+        dispatch(fetchDogAssetStart());
         axios.get(`/${attribute}`)
             .then(res => {
                 const fetchedAttributeList = res.data.map(obj => (obj))
                 dispatch(fetchDogAttributeSuccess(fetchedAttributeList, attribute));
             })
             .catch(err => {
-                dispatch(fetchDogAttributeFail(err));
+                dispatch(fetchDogAssetFail(err));
             });
     };
 };
 
-// Dog filter functions
+export const fetchDogAttributeSuccess = (attributes, attribute) => ({
+    type: actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS,
+    attributes,
+    attribute
+});
 
-export const updateDogFilter = (type, value) => {
-    return {
-        type: actionTypes.UPDATE_DOG_FILTER,
-        payload: { type, value }
+// DOG FILTER ACTIONS
+
+export const updateDogFilter = (type, value) => ({
+    type: actionTypes.UPDATE_DOG_FILTER,
+    payload: { type, value }
+});
+
+export const resetDogFilter = () => ({
+    type: actionTypes.RESET_DOG_FILTER
+})
+
+// DOG CREATE/EDIT ACTIONS
+
+export const addEditDog = (dog, action) => (
+    action === 'createDog' ? createDog(dog) : editDog(dog)
+);
+
+const createDog = dog => {
+    return dispatch => {
+        dispatch(fetchDogAssetStart());
+        axios.post('/dogs', { dog })
+            .then(res => {
+                dispatch(addEditDogSuccess())
+                dispatch(actions.fetchUser(dog.user_id))
+            })
+            .catch(err => {
+                dispatch(fetchDogAssetFail(err))
+            });
     };
 }
 
-export const resetDogFilter = () => {
-    return {
-        type: actionTypes.RESET_DOG_FILTER
-    }
+const editDog = dog => {
+    return dispatch => {
+        dispatch(fetchDogAssetStart());
+        axios.patch(`/dogs/${dog.id}`, { dog })
+            .then(res => {
+                dispatch(addEditDogSuccess())
+                dispatch(actions.fetchUser(dog.user_id))
+            })
+            .catch(err => {
+                dispatch(fetchDogAssetFail(err))
+            });
+    };
 }
 
-// Create/Edit Dog Functions
+export const addEditDogSuccess = () => ({
+    type: actionTypes.CREATE_EDIT_DOG_SUCCESS
+});
 
-export const addEditDogSuccess = () => {
-    return {
-        type: actionTypes.CREATE_EDIT_DOG_SUCCESS,
-    };
-};
-
-export const addEditDogFail = (error) => {
-    return {
-        type: actionTypes.CREATE_EDIT_DOG_FAIL,
-        error
-    };
-};
-
-export const addEditDogStart = () => {
-    return {
-        type: actionTypes.CREATE_EDIT_DOG_START
-    };
-};
-
-export const addEditDog = (dog, action) => {
-
-    if (action === 'createDog'){
-        return dispatch => {
-            dispatch(addEditDogStart());
-            axios.post('/dogs', { dog })
-                .then(res => {
-                    dispatch(addEditDogSuccess())
-                    dispatch(actions.fetchUser(dog.user_id))
-                })
-                .catch(err => {
-                    dispatch(addEditDogFail(err))
-                });
-        };
-    } else {
-        return dispatch => {
-            dispatch(addEditDogStart());
-            axios.patch(`/dogs/${dog.id}`, { dog })
-                .then(res => {
-                    dispatch(addEditDogSuccess())
-                    dispatch(actions.fetchUser(dog.user_id))
-                })
-                .catch(err => {
-                    dispatch(addEditDogFail(err))
-                });
-        };
-    }
-
-
-};
-
-
-export const deleteDogSuccess = () => {
-    return {
-        type: actionTypes.DELETE_DOG_SUCCESS,
-    };
-};
-
-export const deleteDogFail = (error) => {
-    return {
-        type: actionTypes.DELETE_DOG_FAIL,
-        error
-    };
-};
-
-export const deleteDogStart = () => {
-    return {
-        type: actionTypes.DELETE_DOG_START
-    };
-};
+// DOG DELETE ACTIONS
 
 export const deleteDog = (id) => {
     return dispatch => {
-        dispatch(deleteDogStart());
+        dispatch(fetchDogAssetStart());
         axios.delete(`/dogs/${id}`)
             .then(res => {
                 dispatch(deleteDogSuccess())
                 dispatch(actions.fetchCurrentUser())
             })
             .catch(err => {
-                dispatch(deleteDogFail(err))
+                dispatch(fetchDogAssetFail(err))
             });
     };
 };
+
+export const deleteDogSuccess = () => ({
+    type: actionTypes.DELETE_DOG_SUCCESS,
+});
