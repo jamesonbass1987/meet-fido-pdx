@@ -7,9 +7,9 @@ const initialState = {
     loading: false
 }
 
-const fetchNeighborhoodAssetStart = state => (updateObject(state, { loading: true }));
+const neighborhoodActionStart = state => (updateObject(state, { loading: true }));
 
-const fetchNeighborhoodAssetFail = (state, action) => (updateObject(state, { loading: false, error: action.error}));
+const neighborhoodActionFail = (state, action) => (updateObject(state, { loading: false, error: action.error}));
 
 const fetchNeighborhoodsSuccess = (state, action) => (
     updateObject(state, {
@@ -20,8 +20,8 @@ const fetchNeighborhoodsSuccess = (state, action) => (
 
 const neighborhoodReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_NEIGHBORHOOD_ASSET_START: return fetchNeighborhoodAssetStart(state);
-        case actionTypes.FETCH_NEIGHBORHOOD_ASSET_FAIL: return fetchNeighborhoodAssetFail(state, action);
+        case actionTypes.NEIGHBORHOOD_ACTION_START: return neighborhoodActionStart(state);
+        case actionTypes.NEIGHBORHOOD_ACTION_FAIL: return neighborhoodActionFail(state, action);
         case actionTypes.FETCH_NEIGHBORHOODS_SUCCESS: return fetchNeighborhoodsSuccess(state, action);
         default: return state
     }

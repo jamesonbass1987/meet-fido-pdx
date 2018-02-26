@@ -3,12 +3,12 @@ import axios from '../../shared/axios-api';
 
 // NEIGHBORHOOD SHARED ACTIONS
 
-export const fetchNeighborhoodAssetStart = () => ({
-    type: actionTypes.FETCH_NEIGHBORHOOD_ASSET_START
+export const neighborhoodActionStart = () => ({
+    type: actionTypes.NEIGHBORHOOD_ACTION_START
 })
 
-export const fetchNeighborhoodAssetFail = error => ({
-    type: actionTypes.FETCH_NEIGHBORHOOD_ASSET_FAIL,
+export const neighborhoodActionFail = error => ({
+    type: actionTypes.NEIGHBORHOOD_ACTION_FAIL,
     error
 })
 
@@ -21,14 +21,14 @@ export const fetchNeighborhoodsSuccess = neighborhoods => ({
 
 export const fetchNeighborhoods = () => {
     return dispatch => {
-        dispatch(fetchNeighborhoodAssetStart());
+        dispatch(neighborhoodActionStart());
         axios.get('/neighborhoods')
             .then(res => {
                 const fetchedNeighborhoods = [...res.data];
                 dispatch(fetchNeighborhoodsSuccess(fetchedNeighborhoods));
             })
             .catch(err => {
-                dispatch(fetchNeighborhoodAssetFail(err));
+                dispatch(neighborhoodActionFail(err));
             });
     };
 };
