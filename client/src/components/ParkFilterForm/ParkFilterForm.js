@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../../store/actions/index';
+import { bindActionCreators } from 'redux';
+import { updateParkFilter, resetParkFilter } from '../../store/actions/index';
+
 import { Form, Input, Checkbox, Button, Icon } from 'semantic-ui-react'
 
 import classes from './ParkFilterForm.css'
@@ -10,11 +12,11 @@ class ParkFilterForm extends Component{
 
     handleFilterUpdate = (event) => {
         if (event.target.name === 'searchQuery'){
-            this.props.onSearchFilterUpdate(event.target.name, event.target.value)
+            this.props.updateParkFilter(event.target.name, event.target.value)
         } else {
             const name = event.target.id
             const value = !this.props.parkFilter[name]
-            this.props.onSearchFilterUpdate(name, value)
+            this.props.updateParkFilter(name, value)
         }
     }
 
@@ -70,16 +72,12 @@ class ParkFilterForm extends Component{
 }
 
 const mapStateToProps = state => {
-    return {
-        parkFilter: state.park.parkFilter
-    }
+    const { parkFilter } = state.park;
+    return { parkFilter }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value)),
-        resetParkFilter: () => dispatch(actions.resetParkFilter())
-    }
-}
+const mapDispatchToProps = dispatch => (
+    bindActionCreators( { updateParkFilter, resetParkFilter }, dispatch)
+)
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkFilterForm)
