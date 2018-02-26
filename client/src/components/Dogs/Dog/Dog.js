@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image, Button } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
 
+import { deleteDog } from '../../../store/actions/index';
+
+import { Card, Icon, Image, Button } from 'semantic-ui-react';
 import Modal from '../../UI/Modal/Modal';
 import DogForm from '../../DogForm/DogForm';
-import classes from './Dog.css'
 import ConfirmableButton from '../../UI/ConfirmableButton/ConfirmableButton'
+
+import classes from './Dog.css'
 
 class Dog extends Component {
 
@@ -92,13 +95,13 @@ class Dog extends Component {
     }    
 };
 
-const mapStateToProps = state => ({
-    currentUser: state.auth.currentUser
-})
+const mapStateToProps = state => {
+    const { currentUser } = state.auth
+    return { currentUser }
+}
 
-const mapDispatchToProps = dispatch => ({
-    deleteDog: (dogId) => dispatch(actions.deleteDog(dogId))
-})
-
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ deleteDog }, dispatch)
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dog)
