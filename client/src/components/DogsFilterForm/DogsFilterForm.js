@@ -101,8 +101,12 @@ const mapStateToProps = state => {
     return { currentFilter, attributes };
 };
 
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ fetchDogAttribute, updateDogFilter, resetDogFilter }, dispatch);
-};
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ fetchDogAttribute, 
+                         updateDogFilter, 
+                         resetDogFilter }, 
+                         dispatch )
+);
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(DogFilterForm);
