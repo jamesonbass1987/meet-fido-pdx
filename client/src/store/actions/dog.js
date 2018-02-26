@@ -5,21 +5,21 @@ import axios from '../../shared/axios-api';
 
 // DOG SHARED ACTIONS
 
-export const fetchDogAssetStart = () => ({ type: actionTypes.FETCH_DOG_ASSET_START });
-export const fetchDogAssetFail = (error) => ({ type: actionTypes.FETCH_DOG_ASSET_FAIL, error });
+export const dogActionStart = () => ({ type: actionTypes.DOG_ACTION_START });
+export const dogActionFail = (error) => ({ type: actionTypes.DOG_ACTION_FAIL, error });
 
 // DOG INDEX ACTIONS
 
 export const fetchDogs = () => {
     return dispatch => {
-        dispatch(fetchDogAssetStart());
+        dispatch(dogActionStart());
         axios.get('/dogs')
             .then(res => {
                 const fetchedDogs = [...res.data];
                 dispatch(fetchDogsSuccess(fetchedDogs));
             })
             .catch(err => {
-                dispatch(fetchDogAssetFail(err));
+                dispatch(dogActionFail(err));
             });
     };
 };
@@ -33,7 +33,7 @@ export const fetchDogsSuccess = dogs => ({
 
 export const fetchDog = id => {
     return dispatch => {
-        dispatch(fetchDogAssetStart());
+        dispatch(dogActionStart());
         const token = localStorage.getItem('token');
 
         axios.get(`/dogs/${id}`, {
@@ -44,7 +44,7 @@ export const fetchDog = id => {
                 dispatch(fetchDogSuccess(fetchedDog));
             })
             .catch(err => {
-                dispatch(fetchDogAssetFail(err));
+                dispatch(dogActionFail(err));
             });
     };
 };
@@ -58,14 +58,14 @@ export const fetchDogSuccess = dog => ({
 
 export const fetchDogAttribute = attribute => {
     return dispatch => {
-        dispatch(fetchDogAssetStart());
+        dispatch(dogActionStart());
         axios.get(`/${attribute}`)
             .then(res => {
                 const fetchedAttributeList = res.data.map(obj => (obj))
                 dispatch(fetchDogAttributeSuccess(fetchedAttributeList, attribute));
             })
             .catch(err => {
-                dispatch(fetchDogAssetFail(err));
+                dispatch(dogActionFail(err));
             });
     };
 };
@@ -95,28 +95,28 @@ export const addEditDog = (dog, action) => (
 
 const createDog = dog => {
     return dispatch => {
-        dispatch(fetchDogAssetStart());
+        dispatch(dogActionStart());
         axios.post('/dogs', { dog })
             .then(res => {
                 dispatch(addEditDogSuccess())
                 dispatch(actions.fetchUser(dog.user_id))
             })
             .catch(err => {
-                dispatch(fetchDogAssetFail(err))
+                dispatch(dogActionFail(err))
             });
     };
 }
 
 const editDog = dog => {
     return dispatch => {
-        dispatch(fetchDogAssetStart());
+        dispatch(dogActionStart());
         axios.patch(`/dogs/${dog.id}`, { dog })
             .then(res => {
                 dispatch(addEditDogSuccess())
                 dispatch(actions.fetchUser(dog.user_id))
             })
             .catch(err => {
-                dispatch(fetchDogAssetFail(err))
+                dispatch(dogActionFail(err))
             });
     };
 }
@@ -129,14 +129,14 @@ export const addEditDogSuccess = () => ({
 
 export const deleteDog = (id) => {
     return dispatch => {
-        dispatch(fetchDogAssetStart());
+        dispatch(dogActionStart());
         axios.delete(`/dogs/${id}`)
             .then(res => {
                 dispatch(deleteDogSuccess())
                 dispatch(actions.fetchCurrentUser())
             })
             .catch(err => {
-                dispatch(fetchDogAssetFail(err))
+                dispatch(dogActionFail(err))
             });
     };
 };

@@ -18,8 +18,8 @@ const initialState = {
     }
 }
 
-const fetchDogAssetStart = state => (updateObject(state, { loading: true }));
-const fetchDogAssetFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
+const dogActionStart = state => (updateObject(state, { loading: true }));
+const dogActionFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
 
 const fetchDogSuccess = (state, action) => (
     updateObject(state, {
@@ -74,8 +74,8 @@ const resetDogFilter = state => (
 
 const dogReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_DOG_ASSET_START: return fetchDogAssetStart(state);
-        case actionTypes.FETCH_DOG_ASSET_FAIL: return fetchDogAssetFail(state, action);
+        case actionTypes.DOG_ACTION_START: return dogActionStart(state);
+        case actionTypes.DOG_ACTION_FAIL: return dogActionFail(state, action);
         case actionTypes.FETCH_DOGS_SUCCESS: return fetchDogsSuccess(state, action);
         case actionTypes.FETCH_DOG_SUCCESS: return fetchDogSuccess(state, action);
         case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogAttributeSuccess(state, action);
