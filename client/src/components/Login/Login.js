@@ -110,9 +110,10 @@ class LoginForm extends Component {
     }
 
 }
-const mapStateToProps = (state) => ({
-    error: state.auth.error
-})
+const mapStateToProps = (state) => {
+    const { error } = state.auth
+    return { error }
+};
 
 
 const mapDispatchToProps = dispatch => (
