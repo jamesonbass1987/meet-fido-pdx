@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateAuthenticatingState, updateSignUpState } from '../../store/actions/index';
@@ -14,25 +14,27 @@ import MainHeading from '../../components/MainHeading/MainHeading';
 
 import DogParkVideo from '../../assets/videos/dog-park-homepage.mp4';
 
-const home = props => {
+class Home extends Component {
+
+    render(){
 
         let headingContent = <MainHeading />; 
 
-        if (props.isSigningUp) {
+        if (this.props.isSigningUp) {
 
             headingContent = <Modal
-                show={props.isSigningUp}
-                handleClose={props.updateSignUpState}
+                show={this.props.isSigningUp}
+                handleClose={this.props.updateSignUpState}
                 basic
             >
                 <SignupForm />
             </Modal>
         }
 
-        if (props.isAuthenticating){
+        if (this.props.isAuthenticating){
             headingContent =  <Modal 
-                                show={props.isAuthenticating}
-                                handleClose={props.updateAuthenticatingState}
+                                show={this.props.isAuthenticating}
+                                handleClose={this.props.updateAuthenticatingState}
                                 basic
                                 >
                                 <LoginForm />
@@ -50,6 +52,7 @@ const home = props => {
             </Container>
 
         );
+    }
 }
 
 const mapStateToProps = state => {
@@ -64,7 +67,7 @@ const mapDispatchToProps = dispatch => (
     bindActionCreators({ updateAuthenticatingState, updateSignUpState }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
 
 
