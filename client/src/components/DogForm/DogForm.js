@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../store/actions/index';
 import { fetchDogAttribute, addEditDog } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 import classes from './DogForm.css'
-import { Button, Form, Input, Header, TextArea, Dropdown, Image, Label } from 'semantic-ui-react'
+import { Button, Form, Input, Header, TextArea, Dropdown } from 'semantic-ui-react'
 
 class DogForm extends Component {
 

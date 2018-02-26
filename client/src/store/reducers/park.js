@@ -16,25 +16,6 @@ const parkActionStart = state => updateObject(state, { loading: true })
 
 const parkActionFail = (state, action) => updateObject(state, { loading: true, error: action.error })
 
-const fetchParksStart = state => {
-    return updateObject(state, { loading: true });
-};
-
-const fetchParksSuccess = (state, action) => (
-    updateObject(state, {
-        parks: action.parks,
-        loading: false,
-    })
-);
-
-const fetchParksFail = state => (
-    updateObject(state, { loading: false })
-);
-
-const fetchParkStart = state => (
-    updateObject(state, { loading: true })
-);
-
 const fetchParkSuccess = (state, action) => (
     updateObject(state, {
         selectedPark: action.park,
@@ -42,8 +23,11 @@ const fetchParkSuccess = (state, action) => (
     })
 );
 
-const fetchParkFail = state => (
-    updateObject(state, { loading: false })
+const fetchParksSuccess = (state, action) => (
+    updateObject(state, {
+        parks: action.parks,
+        loading: false,
+    })
 );
 
 const updateParkFilter = (state, action) => (
