@@ -57,7 +57,7 @@ class DogFilterForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={breedsDropdownItems}
-                    value={this.props.currentFilter.breed.name}
+                    value={this.props.currentFilter.breed}
                     id='breed'
                 />
                 <Dropdown
@@ -67,7 +67,7 @@ class DogFilterForm extends Component {
                     selection
                     options={agesDropdownItems}
                     onChange={this.handleFilterUpdate.bind(this)}
-                    value={this.props.currentFilter.age.name}
+                    value={this.props.currentFilter.age}
                     id='age'
                 />
                 <Dropdown
@@ -77,7 +77,7 @@ class DogFilterForm extends Component {
                     selection
                     options={sizesDropdownItems}
                     onChange={this.handleFilterUpdate.bind(this)}
-                    value={this.props.currentFilter.size.name}
+                    value={this.props.currentFilter.size}
                     id='size'
                 />
                 <Button 
