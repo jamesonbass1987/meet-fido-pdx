@@ -15,12 +15,8 @@ class UsersForm extends Component {
         }
     }
 
-    handleFilterUpdate = (event, { value }) => {
-        if (event.target.name === 'searchQuery') {
-            this.props.onSearchFilterUpdate(event.target.name, event.target.value)
-        } else {
-            this.props.onSearchFilterUpdate('selectedPark', value)
-        }
+    handleFilterUpdate = (event, { value, id }) => {
+        this.props.onSearchFilterUpdate(id, value)
     }
 
     render() {
@@ -36,13 +32,13 @@ class UsersForm extends Component {
         return (
             <Form className={classes.UsersForm} size="large">
                 <Input
-                    name="searchQuery"
                     fluid
                     icon='search'
                     placeholder='Search for users by name...'
                     value={this.props.searchQuery}
                     onChange={this.handleFilterUpdate}
                     className={classes.InputDropdowns}
+                    id='searchQuery'
                 />
                 <Dropdown
                     placeholder='Filter by the park a user visits...'
@@ -53,6 +49,7 @@ class UsersForm extends Component {
                     onChange={this.handleFilterUpdate}
                     className={classes.InputDropdowns}
                     value={this.props.selectedPark}
+                    id='selectedPark'
                 />
                 <Button
                     animated='vertical'
@@ -74,7 +71,7 @@ class UsersForm extends Component {
 const mapStateToProps = state => ({
     parks: state.park.parks,
     searchQuery: state.user.userFilter.searchQuery,
-    selectedParknpm : state.user.userFilter.selectedPark
+    selectedPark: state.user.userFilter.selectedPark
 })
 
 const mapDispatchToProps = dispatch => ({

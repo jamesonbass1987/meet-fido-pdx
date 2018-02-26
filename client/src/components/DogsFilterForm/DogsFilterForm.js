@@ -16,7 +16,6 @@ class DogFilterForm extends Component {
     }
 
     handleFilterUpdate = (event, { value, id }) => {
-        console.log(value, id)
         this.props.onDogFilterUpdate(id, value)
     }
 
