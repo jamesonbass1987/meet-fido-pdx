@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-
-import classes from './UsersForm.css';
+import { bindActionCreators } from 'redux';
+import { fetchParks, updateUserFilter, resetUserFilter }  from '../../store/actions/index';
 
 import { Form, Dropdown, Input, Button, Icon } from 'semantic-ui-react';
+
+import classes from './UsersForm.css';
 
 class UsersForm extends Component {
 
@@ -16,7 +17,7 @@ class UsersForm extends Component {
     }
 
     handleFilterUpdate = (event, { value, id }) => {
-        this.props.onSearchFilterUpdate(id, value)
+        this.props.updateUserFilter(id, value)
     }
 
     render() {
@@ -53,7 +54,7 @@ class UsersForm extends Component {
                 />
                 <Button
                     animated='vertical'
-                    onClick={() => this.props.onFormReset()}
+                    onClick={() => this.props.resetUserFilter()}
                     color="twitter"
                     floated="right"
                     className={classes.Button}
@@ -68,16 +69,14 @@ class UsersForm extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    parks: state.park.parks,
-    searchQuery: state.user.userFilter.searchQuery,
-    selectedPark: state.user.userFilter.selectedPark
-})
+const mapStateToProps = state => {
+    const { parks } = state.park;
+    const { searchQuery, selectedPark } = state.user.userFilter;
+    return { parks, searchQuery, selectedPark };
+};
 
-const mapDispatchToProps = dispatch => ({
-    fetchParks: () => dispatch(actions.fetchParks()),
-    onSearchFilterUpdate: (type, value) => dispatch(actions.updateUserFilter(type, value)),
-    onFormReset: () => dispatch(actions.resetUserFilter())
-})
+const mapDispatchToProps = dispatch => (
+    bindActionCreators( { fetchParks, updateUserFilter, resetUserFilter }, dispatch)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersForm)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersForm);
