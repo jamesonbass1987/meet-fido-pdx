@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { handleLogout, updateSignUpState, updateAuthenticatingState, fetchCurrentUser } from '../../store/actions/index';
 
 import { Menu } from 'semantic-ui-react'
-import NavigationItems from './NavigationItems/NavigationItems'
+import NavigationItems from '../../components/NavigationItems/NavigationItems'
 
 class Navbar extends Component {
 

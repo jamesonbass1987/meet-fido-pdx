@@ -1,5 +1,5 @@
 import React from 'react';
-import User from './User/User';
+import User from '../User/User';
 import Spinner from '../UI/Spinner/Spinner';
 
 import { Item } from 'semantic-ui-react';

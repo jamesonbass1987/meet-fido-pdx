@@ -3,7 +3,7 @@ import { Image, Popup, Item, Label } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 import classes from './User.css'
-import UserImage from '../../UserImage/UserImage'
+import UserImage from '../UserImage/UserImage'
 
 
 const user = props => {

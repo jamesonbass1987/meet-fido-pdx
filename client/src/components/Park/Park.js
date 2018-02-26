@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
 import { bindActionCreators } from 'redux'
-import { updateCurrentUser, fetchCurrentUser } from '../../../store/actions/index';
+import { updateCurrentUser, fetchCurrentUser } from '../../store/actions/index';
 
 class Park extends Component {
 

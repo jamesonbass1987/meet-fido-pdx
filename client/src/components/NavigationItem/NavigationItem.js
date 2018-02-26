@@ -5,7 +5,6 @@ import { Menu } from 'semantic-ui-react'
 import classes from './NavigationItem.css'
 
 const navigationItem = props => (
-
         <Menu.Item
             as={ Link } 
             active={props.activeItem === props.link}

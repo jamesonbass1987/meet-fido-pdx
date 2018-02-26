@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchDogs } from '../../store/actions/index';
 
-import classes from './Dogs.css'
+import classes from './DogsIndex.css'
 
 import { Container } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading'
 import DogsComponent from '../../components/DogsComponent/DogsComponent'
 
-class Dogs extends Component {
+class DogsIndex extends Component {
 
     componentDidMount() {
         this.props.fetchDogs();
@@ -49,4 +49,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ fetchDogs }, dispatch)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dogs)
+export default connect(mapStateToProps, mapDispatchToProps)(DogsIndex)

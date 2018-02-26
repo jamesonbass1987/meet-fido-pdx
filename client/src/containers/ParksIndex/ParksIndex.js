@@ -5,14 +5,14 @@ import { fetchParks, fetchPark, updateParkFilter } from '../../store/actions/ind
 
 import { Container } from 'semantic-ui-react';
 
-import classes from './Parks.css';
+import classes from './ParksIndex.css';
 
 import ParksComponent from '../../components/ParksComponent/ParksComponent';
 import PageHeading from '../../components/PageHeading/PageHeading';
 import MapComponent from '../../components/Map/Map';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class Parks extends Component {
+class ParksIndex extends Component {
 
   state = {
     showInfoWindow: false
@@ -82,4 +82,4 @@ const mapDispatchToProps = dispatch => (
   bindActionCreators({ fetchParks, fetchPark, updateParkFilter }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Parks);
+export default connect(mapStateToProps, mapDispatchToProps)(ParksIndex);

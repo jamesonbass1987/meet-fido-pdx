@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Card } from 'semantic-ui-react'
-import Dog from './Dog/Dog'
+import Dog from '../Dog/Dog'
 import Spinner from '../UI/Spinner/Spinner'
 
 

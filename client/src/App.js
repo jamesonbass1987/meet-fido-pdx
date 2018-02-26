@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import asyncComponent from './hoc/asyncComponent/asyncComponent';
-
 import { fetchCurrentUser, authCheckState } from './store/actions/index'
+
+import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
 import Logout from './components/Logout/Logout';
 
 const asyncDogs = asyncComponent(() => {
-  return import('./containers/Dogs/Dogs');
+  return import('./containers/DogsIndex/DogsIndex');
 });
 
 const asyncParks = asyncComponent(() => {
-  return import('./containers/Parks/Parks');
+  return import('./containers/ParksIndex/ParksIndex');
 });
 
 const asyncUsers = asyncComponent(() => {

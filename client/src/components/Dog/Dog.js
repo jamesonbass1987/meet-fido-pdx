@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { deleteDog } from '../../../store/actions/index';
+import { deleteDog } from '../../store/actions/index';
 
 import { Card, Icon, Image, Button } from 'semantic-ui-react';
-import Modal from '../../UI/Modal/Modal';
-import DogForm from '../../DogForm/DogForm';
-import ConfirmableButton from '../../UI/ConfirmableButton/ConfirmableButton'
+import Modal from '../UI/Modal/Modal';
+import DogForm from '../DogForm/DogForm';
+import ConfirmableButton from '../UI/ConfirmableButton/ConfirmableButton'
 
 import classes from './Dog.css'
 

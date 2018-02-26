@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { bindActionCreators } from 'redux'
 import { fetchUsers, fetchUser } from '../../store/actions/index';
 
-import { Container } from 'semantic-ui-react';
-
 import PageHeading from '../../components/PageHeading/PageHeading';
 import UsersComponent from '../../components/UsersComponent/UsersComponent';
+
+import { Container } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class Users extends Component {
+import classes from './UsersIndex.css';
+
+class UsersIndex extends Component {
 
     componentWillMount() {
         this.props.fetchUsers();
@@ -30,7 +31,7 @@ class Users extends Component {
         }
 
         return (
-            <Container>
+            <Container className={classes.Container} >
                 <PageHeading
                     as="h1"
                     textAlignment="center"
@@ -62,4 +63,4 @@ const mapDispatchToProps = dispatch => (
 );
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersIndex)
