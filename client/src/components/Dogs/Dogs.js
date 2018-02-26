@@ -11,7 +11,7 @@ const dogs = props => {
     
     if (!props.loading) {
         const dogNodeList = props.dogs.map(dog => (
-            <Dog key={dog.name + dog.id} dog={dog} />
+            <Dog isEditable={props.isEditable} key={dog.name + dog.id} dog={dog} />
         ))
         
         dogs = <Card.Group 

@@ -15,7 +15,7 @@ class Api::V1::AuthenticationController < ApiController
 
     user = User.find_by(id: user_id)
 
-    if user_id
+    if user
       render json: user, serializer: UserSerializer
     else
       render json: { error: "Resource not found." }, status: 404

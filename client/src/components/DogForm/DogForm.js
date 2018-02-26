@@ -68,8 +68,10 @@ class DogForm extends Component {
                 },
                 valid: false,
                 touched: false
-            },
-        }
+            }
+        },
+        dogId: this.props.dogId,
+        userId: this.props.currentUser.id
     }
 
     componentWillMount() {
@@ -77,6 +79,56 @@ class DogForm extends Component {
             this.props.onFetchAttribute("ages")
             this.props.onFetchAttribute("breeds")
             this.props.onFetchAttribute("sizes")
+        }
+
+        if (this.props.type === 'editDog'){
+            this.setState({
+                formData:{
+                    ...this.state.formData,
+                    name: {
+                        ...this.state.formData.name,
+                        value: this.props.dog.name,
+                        touched: true,
+                        valid: true
+                    },
+                    description: {
+                        ...this.state.formData.description,
+                        value: this.props.dog.description,
+                        touched: true,
+                        valid: true
+                    },
+                    age_id: {
+                        ...this.state.formData.age_id,
+                        value: this.props.dog.age.id,
+                        touched: true,
+                        valid: true
+                    },
+                    sex: {
+                        ...this.state.formData.sex,
+                        value: this.props.dog.sex,
+                        touched: true,
+                        valid: true
+                    },
+                    breed_id: {
+                        ...this.state.formData.breed_id,
+                        value: this.props.dog.breed.id,
+                        touched: true,
+                        valid: true
+                    },
+                    size_id: {
+                        ...this.state.formData.size_id,
+                        value: this.props.dog.size.id,
+                        touched: true,
+                        valid: true
+                    },
+                    profile_image_url: {
+                        ...this.state.formData.profile_image_url,
+                        value: this.props.dog.profile_image_url,
+                        touched: true,
+                        valid: true
+                    }
+                }
+            })
         }
     }
 
@@ -103,11 +155,15 @@ class DogForm extends Component {
             size_id: size_id.value,
             age_id: age_id.value,
             breed_id: breed_id.value,
-            id: this.props.dogId,
-            user_id: this.props.currentUser.id
+            id: this.state.dogId,
+            user_id: this.state.userId
         }
 
-        this.props.addEditDog(dogInfo, 'createDog');
+        const formType = this.props.type
+
+        debugger;
+
+        this.props.addEditDog(dogInfo, formType);
         this.props.toggleModal('dogForm');
     }
 
@@ -144,6 +200,8 @@ class DogForm extends Component {
 
         const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
 
+        console.log(this.state)
+
         return (
             <Form className={classes.DogForm} onSubmit={() => this.handleFormSubmission()}>
                 <Header as='h1'>{this.props.headerTitle}</Header>
@@ -153,6 +211,7 @@ class DogForm extends Component {
                     type="text"
                     label='Name:'
                     onChange={this.handleFormInputChange}
+                    value={this.state.formData.name.value}
                     placeholder='Enter your dogs name...' />
                 <Form.Field
                     control={Input}
@@ -160,6 +219,7 @@ class DogForm extends Component {
                     type="text"
                     label='Image URL:'
                     onChange={this.handleFormInputChange}
+                    value={this.state.formData.profile_image_url.value}
                     placeholder='Please enter an image url...' />
                 <Form.Field
                     control={TextArea}

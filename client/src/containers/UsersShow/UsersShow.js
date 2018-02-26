@@ -109,7 +109,7 @@ class UsersShow extends Component {
                                 size="fullscreen"
                                 type="dogForm"
                             >
-                                <DogForm headerTitle="Add New Dog" toggleModal={this.handleModalToggle} />
+                                <DogForm headerTitle="Add New Dog" type="createDog" toggleModal={this.handleModalToggle} />
                             </Modal>
 
         }
@@ -145,7 +145,7 @@ class UsersShow extends Component {
                                     content="Add a new dog to your account."
                                     size="small"
                                 />
-                                <Dogs dogs={user.dogs} />
+                                <Dogs isEditable dogs={user.dogs} />
                                 <Divider />
                                 <Header as='h2' size="huge" >
                                     <Header.Content>

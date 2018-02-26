@@ -154,17 +154,31 @@ export const addEditDogStart = () => {
 
 export const addEditDog = (dog, action) => {
 
-    const url = action = 'createDog' ? '/dogs' : `/dogs/${dog.id}`
+    if (action === 'createDog'){
+        return dispatch => {
+            dispatch(addEditDogStart());
+            axios.post('/dogs', { dog })
+                .then(res => {
+                    dispatch(addEditDogSuccess())
+                    dispatch(actions.fetchUser(dog.user_id))
+                })
+                .catch(err => {
+                    dispatch(addEditDogFail(err))
+                });
+        };
+    } else {
+        return dispatch => {
+            dispatch(addEditDogStart());
+            axios.patch(`/dogs/${dog.id}`, { dog })
+                .then(res => {
+                    dispatch(addEditDogSuccess())
+                    dispatch(actions.fetchUser(dog.user_id))
+                })
+                .catch(err => {
+                    dispatch(addEditDogFail(err))
+                });
+        };
+    }
 
-    return dispatch => {
-        dispatch(addEditDogStart());
-        axios.post(url, { dog })
-            .then(res => {
-                dispatch(addEditDogSuccess())
-                dispatch(actions.fetchUser(dog.user_id))
-            })
-            .catch(err => {
-                dispatch(addEditDogFail(err))
-            });
-    };
+
 };

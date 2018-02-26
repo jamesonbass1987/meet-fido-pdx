@@ -1,3 +1,3 @@
 class UserDogSerializer < ActiveModel::Serializer
-   attributes :id, :name, :breed, :age, :size, :description, :profile_image_url, :dog_images
+   attributes :id, :name, :breed, :age, :size, :sex, :description, :profile_image_url, :user_id
 end
