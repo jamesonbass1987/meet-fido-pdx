@@ -10,17 +10,24 @@ const initialState = {
     currentUser: null,
 }
 
-const updateAuthenticatingState = state => {
-    return updateObject(state, {isAuthenticating: !state.isAuthenticating})
-}
+const authActionStart = state => (
+    updateObject(state, { loading: true }) 
+);
 
-const updateSignUpState = state => {
-    return updateObject(state, { isSigningUp: !state.isSigningUp })
-}
+const authActionFail = (state, action) => (
+    updateObject(state, {
+        error: action.error,
+        loading: false
+    })
+);
 
-const authStart = (state, action) => {
-    return updateObject(state, { error: null, loading: true });
-};
+const updateAuthenticatingState = state => (
+    updateObject(state, {isAuthenticating: !state.isAuthenticating})
+);
+
+const updateSignUpState = state => (
+    updateObject(state, { isSigningUp: !state.isSigningUp })
+);
 
 const authSuccess = (state, action) => {
     return updateObject(state, {
@@ -32,17 +39,6 @@ const authSuccess = (state, action) => {
     });
 };
 
-const authFail = (state, action) => {
-    return updateObject(state, {
-        error: action.error,
-        loading: false
-    });
-};
-
-const userSignUpStart = (state, action) => {
-    return updateObject(state, { error: null, loading: true });
-};
-
 const userSignUpSuccess = state => {
     return updateObject(state, {
         isSigningUp: false,
@@ -51,71 +47,38 @@ const userSignUpSuccess = state => {
     });
 };
 
-const userSignUpFail = (state, action) => {
-    return updateObject(state, {
-        error: action.error,
-        loading: false
-    });
-};
-
 const authLogout = (state, action) => {
     return updateObject(state, { token: null });
 };
 
-const fetchCurrentUserStart = state => {
-    return updateObject(state, { loading: true });
-};
-
-const fetchCurrentUserSuccess = (state, action) => {
-    return updateObject(state, {
+const fetchCurrentUserSuccess = (state, action) => (
+    updateObject(state, {
         currentUser: action.payload,
         loading: false
-    });
-};
+    })
+);
 
-const fetchCurrentUserFail = state => {
-    return updateObject(state, { loading: false });
-};
-
-const removeCurrentUser = state => {
-    return updateObject(state, { currentUser: null })
-}
-
-const updateCurrentUserStart = state => {
-    return updateObject(state, { loading: true, isUpdating: true });
-};
-
-const updateCurrentUserSuccess = (state) => {
-    return updateObject(state, {
+const updateCurrentUserSuccess = (state) => (
+    updateObject(state, {
         error: null,
-        loading: false,
-        isUpdating: false,
-    });
-};
+        loading: false
+    })
+);
 
-const updateCurrentUserFail = state => {
-    return updateObject(state, { loading: false, isUpdating: false });
-}
-
+const removeCurrentUser = state => (updateObject(state, { currentUser: null }));
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.AUTH_ACTION_START: return authActionStart(state);
+        case actionTypes.AUTH_ACTION_FAIL: return authActionFail(state, action);
         case actionTypes.UPDATE_AUTHENTICATING_STATE: return updateAuthenticatingState(state);
         case actionTypes.UPDATE_SIGN_UP_STATE: return updateSignUpState(state);
-        case actionTypes.AUTH_START: return authStart(state, action);
         case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
-        case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
-        case actionTypes.USER_SIGN_UP_START: return userSignUpStart(state, action);       
-        case actionTypes.USER_SIGN_UP_FAIL: return userSignUpFail(state, action);
         case actionTypes.USER_SIGN_UP_SUCCESS: return userSignUpSuccess(state);
         case actionTypes.REMOVE_CURRENT_USER: return removeCurrentUser(state);
-        case actionTypes.FETCH_CURRENT_USER_START: return fetchCurrentUserStart(state);
         case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
-        case actionTypes.FETCH_CURRENT_USER_FAIL: return fetchCurrentUserFail(state);
-        case actionTypes.UPDATE_CURRENT_USER_START: return updateCurrentUserStart(state);
         case actionTypes.UPDATE_CURRENT_USER_SUCCESS: return updateCurrentUserSuccess(state);
-        case actionTypes.UPDATE_CURRENT_USER_FAIL: return updateCurrentUserFail(state);
         default: return state
     }
 }

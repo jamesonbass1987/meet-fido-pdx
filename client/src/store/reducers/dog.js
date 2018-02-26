@@ -19,7 +19,7 @@ const initialState = {
 }
 
 const fetchDogAssetStart = state => (updateObject(state, { loading: true }));
-const fetchDogAssetFail = (state, error) => (updateObject(state, { loading: false }));
+const fetchDogAssetFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
 
 const fetchDogSuccess = (state, action) => (
     updateObject(state, {
