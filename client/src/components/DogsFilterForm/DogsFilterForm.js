@@ -15,18 +15,9 @@ class DogFilterForm extends Component {
         }
     }
 
-    handleFilterUpdate = (event, { value }) => {
-        let attribute;
-
-        if (this.props.ages.includes(value)){
-            attribute = 'age'
-        } else if (this.props.sizes.includes(value)){
-            attribute = 'size'
-        } else {
-            attribute = 'breed'
-        }
-
-        this.props.onDogFilterUpdate(attribute, value)
+    handleFilterUpdate = (event, { value, id }) => {
+        console.log(value, id)
+        this.props.onDogFilterUpdate(id, value)
     }
 
     render() {
@@ -65,7 +56,8 @@ class DogFilterForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={breedsDropdownItems}
-                    value={this.props.dogFilter.breed}
+                    value={this.props.dogFilter.breed.name}
+                    id='breed'
                 />
                 <Dropdown
                     placeholder='Age'
@@ -74,7 +66,8 @@ class DogFilterForm extends Component {
                     selection
                     options={agesDropdownItems}
                     onChange={this.handleFilterUpdate.bind(this)}
-                    value={this.props.dogFilter.age}
+                    value={this.props.dogFilter.age.name}
+                    id='age'
                 />
                 <Dropdown
                     placeholder='Size'
@@ -83,7 +76,8 @@ class DogFilterForm extends Component {
                     selection
                     options={sizesDropdownItems}
                     onChange={this.handleFilterUpdate.bind(this)}
-                    value={this.props.dogFilter.size}
+                    value={this.props.dogFilter.size.name}
+                    id='size'
                 />
                 <Button 
                     animated='vertical'
