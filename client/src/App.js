@@ -30,15 +30,13 @@ class App extends Component {
   }
 
   render() {
-    const userToken = localStorage.getItem('token')
-
     
     let routes = (<Switch>
                     <Route path="/" exact component={Home} />
                     <Redirect to="/" />
                   </Switch>)
 
-    if (userToken){
+    if (this.props.isAuthenticated){
 
       routes = <Switch>
                 <Route path="/dogs" component={asyncDogs} />
@@ -58,9 +56,13 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  const isAuthenticated = !!state.auth.token
+  return { isAuthenticated };
+}
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ authCheckState, fetchCurrentUser }, dispatch)
 )
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

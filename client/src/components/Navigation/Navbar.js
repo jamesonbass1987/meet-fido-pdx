@@ -110,7 +110,8 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => {
-    const { isAuthenticated, currentUser, loading } = state.auth;
+    const { currentUser, loading } = state.auth;
+    const isAuthenticated = !!state.auth.token;
     return { isAuthenticated, currentUser, loading };
 };
 
