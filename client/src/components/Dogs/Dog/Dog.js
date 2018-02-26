@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { Card, Icon, Image, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 import Modal from '../../UI/Modal/Modal';
 import DogForm from '../../DogForm/DogForm';
 import classes from './Dog.css'
+import ConfirmableButton from '../../UI/ConfirmableButton/ConfirmableButton'
 
 class Dog extends Component {
 
     state = {
         showModal: false,
-        showEditBtn: this.props.dog.user_id === this.props.currentUser.id && this.props.isEditable
+        showEditBtn: this.props.dog.user_id === this.props.currentUser.id && this.props.isEditable,
+        showDelete: false
     }
 
     toggleModal = () => {
@@ -20,10 +23,16 @@ class Dog extends Component {
         })
     }
 
-    
-    render(){
+    show = () => this.setState({ showDelete: true })
 
-        
+    handleCancel = () => this.setState({ showDelete: false })
+
+    handleConfirm = () => {
+        this.setState({ showDelete: false })
+        this.props.deleteDog(this.props.dog.id)
+    }
+
+    render(){
 
         const ownerInfo = this.props.dog.user ? (
             <Card.Content extra>
@@ -38,7 +47,20 @@ class Dog extends Component {
         let ownerControls;
 
         if (this.state.showEditBtn){
-            ownerControls = <Button onClick={this.toggleModal} color="blue" >Edit</Button>
+            ownerControls = (<React.Fragment>
+                                <Button onClick={this.toggleModal} color="blue" >Edit</Button>
+                                <ConfirmableButton
+                                    open={this.state.showDelete}
+                                    handleShow={this.show}
+                                    cancelButton='Never mind'
+                                    confirmButton="Let's do it"
+                                    handleCancel={this.handleCancel}
+                                    handleConfirm={this.handleConfirm}
+                                    color="red"
+                                    fluid
+                                    message="Delete"
+                                />
+                            </React.Fragment>)
         }
 
         let dogModal = <Modal
@@ -74,5 +96,9 @@ const mapStateToProps = state => ({
     currentUser: state.auth.currentUser
 })
 
+const mapDispatchToProps = dispatch => ({
+    deleteDog: (dogId) => dispatch(actions.deleteDog(dogId))
+})
 
-export default connect(mapStateToProps)(Dog)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dog)

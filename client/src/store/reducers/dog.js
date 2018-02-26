@@ -97,6 +97,19 @@ const addEditDogFail = state => {
     return updateObject(state, { loading: false });
 };
 
+const deleteDogStart = state => {
+    return updateObject(state, { loading: true });
+};
+
+const deleteDogSuccess = (state, action) => {
+    return updateObject(state, { loading: false });
+};
+
+const deleteDogFail = state => {
+    return updateObject(state, { loading: false });
+};
+
+
 const dogReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_DOGS_START: return fetchDogsStart(state);
@@ -113,6 +126,9 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.CREATE_EDIT_DOG_START: return addEditDogStart(state);
         case actionTypes.CREATE_EDIT_DOG_SUCCESS: return addEditDogSuccess(state, action);
         case actionTypes.CREATE_EDIT_DOG_FAIL: return addEditDogFail(state);
+        case actionTypes.DELETE_DOG_START: return deleteDogStart(state);
+        case actionTypes.DELETE_DOG_SUCCESS: return deleteDogSuccess(state);
+        case actionTypes.DELETE_DOG_FAIL: return deleteDogFail(state);
         default: return state
     }
 }

@@ -182,3 +182,37 @@ export const addEditDog = (dog, action) => {
 
 
 };
+
+
+export const deleteDogSuccess = () => {
+    return {
+        type: actionTypes.DELETE_DOG_SUCCESS,
+    };
+};
+
+export const deleteDogFail = (error) => {
+    return {
+        type: actionTypes.DELETE_DOG_FAIL,
+        error
+    };
+};
+
+export const deleteDogStart = () => {
+    return {
+        type: actionTypes.DELETE_DOG_START
+    };
+};
+
+export const deleteDog = (id) => {
+    return dispatch => {
+        dispatch(deleteDogStart());
+        axios.delete(`/dogs/${id}`)
+            .then(res => {
+                dispatch(deleteDogSuccess())
+                dispatch(actions.fetchCurrentUser())
+            })
+            .catch(err => {
+                dispatch(deleteDogFail(err))
+            });
+    };
+};
