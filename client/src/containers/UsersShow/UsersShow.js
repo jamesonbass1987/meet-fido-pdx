@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-
 import { bindActionCreators } from 'redux'
 import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser } from '../../store/actions/index';
 
@@ -168,16 +167,17 @@ class UsersShow extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    selectedUser: state.user.selectedUser,
-    loading: state.user.loading,
-    currentUser: state.auth.currentUser,
-    isUpdating: state.user.isUpdating
-})
+const mapStateToProps = state => {
+    const { selectedUser, loading, isUpdating } = state.user;
+    const { currentUser } = state.auth;
+    return { selectedUser,
+             loading, 
+             isUpdating,
+             currentUser }
+};
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser }, dispatch)
 );
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersShow))

@@ -24,7 +24,7 @@ class Users extends Component {
             users = <UsersComponent 
                         users={this.props.users.filter(user => user.id !== this.props.currentUser.id)} 
                         loading={this.props.loading} 
-                        currentFilter={this.props.currentFilter} 
+                        currentFilter={this.props.userFilter} 
                         parkFilter={this.props.parkFilter}
                     />
         }
@@ -45,13 +45,17 @@ class Users extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    users: state.user.users,
-    loading: state.user.loading,
-    currentFilter: state.user.userFilter,
-    parkFilter: state.park.parkFilter,
-    currentUser: state.auth.currentUser
-})
+const mapStateToProps = state => {
+    const { users, loading, userFilter } = state.user;
+    const { parkFilter } = state.park;
+    const { currentUser } = state.auth;
+
+    return { users, 
+             loading, 
+             userFilter,
+             parkFilter,
+             currentUser };
+};
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ fetchUsers, fetchUser }, dispatch)
