@@ -12,9 +12,9 @@ const initialState = {
     }
 }
 
-const fetchParkAssetStart = state => updateObject(state, { loading: true })
+const parkActionStart = state => updateObject(state, { loading: true })
 
-const fetchParkAssetFail = (state, action) => updateObject(state, { loading: true, error: action.error })
+const parkActionFail = (state, action) => updateObject(state, { loading: true, error: action.error })
 
 const fetchParksStart = state => {
     return updateObject(state, { loading: true });
@@ -66,8 +66,8 @@ const resetParkFilter = state => (
 
 const parkReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_PARK_ASSET_START: return fetchParkAssetStart(state);
-        case actionTypes.FETCH_PARK_ASSET_FAIL: return fetchParkAssetFail(state, action);
+        case actionTypes.PARK_ACTION_START: return parkActionStart(state);
+        case actionTypes.PARK_ACTION_FAIL: return parkActionFail(state, action);
         case actionTypes.FETCH_PARKS_SUCCESS: return fetchParksSuccess(state, action);
         case actionTypes.FETCH_PARK_SUCCESS: return fetchParkSuccess(state, action);
         case actionTypes.UPDATE_PARK_FILTER: return updateParkFilter(state, action);

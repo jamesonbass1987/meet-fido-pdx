@@ -3,13 +3,13 @@ import axios from '../../shared/axios-api';
 
 // PARK SHARED ACTIONS
 
-export const fetchParkAssetFail = error => ({
-    type: actionTypes.FETCH_PARK_ASSET_FAIL,
+export const parkActionFail = error => ({
+    type: actionTypes.PARK_ACTION_FAIL,
     error
 })
 
-export const fetchParkAssetStart = () => ({
-    type: actionTypes.FETCH_PARK_ASSET_START
+export const parkActionStart = () => ({
+    type: actionTypes.PARK_ACTION_START
 })
 
 // PARK INDEX ACTIONS
@@ -21,14 +21,14 @@ export const fetchParksSuccess = parks => ({
 
 export const fetchParks = () => {
     return dispatch => {
-        dispatch(fetchParkAssetStart());
+        dispatch(parkActionStart());
         axios.get('/parks')
             .then(res => {
                 const fetchedParks = [...res.data];
                 dispatch(fetchParksSuccess(fetchedParks));
             })
             .catch(err => {
-                dispatch(fetchParkAssetFail(err));
+                dispatch(parkActionFail(err));
             });
     };
 };
@@ -42,14 +42,14 @@ export const fetchParkSuccess = park => ({
 
 export const fetchPark = id => {
     return dispatch => {
-        dispatch(fetchParkAssetStart());
+        dispatch(parkActionStart());
         axios.get(`/parks/${id}`)
             .then(res => {
                 const fetchedPark = res.data;
                 dispatch(fetchParkSuccess(fetchedPark));
             })
             .catch(err => {
-                dispatch(fetchParkAssetFail(err));
+                dispatch(parkActionFail(err));
             });
     };
 };
