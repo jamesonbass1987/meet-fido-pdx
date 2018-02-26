@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
 import { bindActionCreators } from 'redux'
 import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-import classes from './UserEditForm.css';
-
 import { Button, Form, Input, Header, TextArea } from 'semantic-ui-react'
+
+import classes from './UserEditForm.css';
 
 class UserEditForm extends Component {
 
@@ -149,13 +148,13 @@ class UserEditForm extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    neighborhoods: state.neighborhood.neighborhoods
-})
+const mapStateToProps = (state, ownProps) => {
+    const { neighborhoods } = state.neighborhood;
+    return { neighborhoods };
+};
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ fetchNeighborhoods, updateCurrentUser }, dispatch)
 )
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserEditForm)
