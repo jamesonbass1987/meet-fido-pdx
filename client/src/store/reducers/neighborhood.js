@@ -7,26 +7,22 @@ const initialState = {
     loading: false
 }
 
-const fetchNeighborhoodsStart = state => {
-    return updateObject(state, { loading: true });
-};
+const fetchNeighborhoodAssetStart = state => (updateObject(state, { loading: true }));
 
-const fetchNeighborhoodsSuccess = (state, action) => {
-    return updateObject(state, {
+const fetchNeighborhoodAssetFail = (state, action) => (updateObject(state, { loading: false, error: action.error}));
+
+const fetchNeighborhoodsSuccess = (state, action) => (
+    updateObject(state, {
         neighborhoods: action.neighborhoods,
         loading: false,
-    });
-};
-
-const fetchNeighborhoodsFail = state => {
-    return updateObject(state, { loading: false });
-};
+    })
+);
 
 const neighborhoodReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_NEIGHBORHOODS_START: return fetchNeighborhoodsStart(state);
+        case actionTypes.FETCH_NEIGHBORHOOD_ASSET_START: return fetchNeighborhoodAssetStart(state);
+        case actionTypes.FETCH_NEIGHBORHOOD_ASSET_FAIL: return fetchNeighborhoodAssetFail(state, action);
         case actionTypes.FETCH_NEIGHBORHOODS_SUCCESS: return fetchNeighborhoodsSuccess(state, action);
-        case actionTypes.FETCH_NEIGHBORHOODS_FAIL: return fetchNeighborhoodsFail(state);
         default: return state
     }
 }
