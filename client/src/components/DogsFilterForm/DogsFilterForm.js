@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchDogAttribute, updateDogFilter, resetDogFilter } from '../../store/actions/index';
 
 import { Dropdown, Segment, Button, Icon } from 'semantic-ui-react'
 
-import classes from './DogsFilterForm.css'
-
+import classes from './DogsFilterForm.css';
 class DogFilterForm extends Component {
 
     componentWillMount(){
@@ -98,13 +97,12 @@ class DogFilterForm extends Component {
 }
 
 const mapStateToProps = state => {
-    const { currentFilter, attributes } = state.dog
-    return { currentFilter, attributes }
-}
-
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ fetchDogAttribute, updateDogFilter, resetDogFilter }, dispatch)
+    const { currentFilter, attributes } = state.dog;
+    return { currentFilter, attributes };
 };
 
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ fetchDogAttribute, updateDogFilter, resetDogFilter }, dispatch);
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DogFilterForm)
+export default connect(mapStateToProps, mapDispatchToProps)(DogFilterForm);
