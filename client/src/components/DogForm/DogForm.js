@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
+import { bindActionCreators } from 'redux'
 import * as actions from '../../store/actions/index';
-import classes from './DogForm.css'
+import { fetchDogAttribute, addEditDog } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
+import classes from './DogForm.css'
 import { Button, Form, Input, Header, TextArea, Dropdown, Image, Label } from 'semantic-ui-react'
 
 class DogForm extends Component {
@@ -75,10 +76,10 @@ class DogForm extends Component {
     }
 
     componentWillMount() {
-        if (this.props.breeds.length === 0) {
-            this.props.onFetchAttribute("ages")
-            this.props.onFetchAttribute("breeds")
-            this.props.onFetchAttribute("sizes")
+        if (this.props.attributes.breeds.length === 0) {
+            this.props.fetchDogAttribute("ages")
+            this.props.fetchDogAttribute("breeds")
+            this.props.fetchDogAttribute("sizes")
         }
 
         if (this.props.type === 'editDog'){
@@ -161,15 +162,13 @@ class DogForm extends Component {
 
         const formType = this.props.type
 
-        debugger;
-
         this.props.addEditDog(dogInfo, formType);
         this.props.toggleModal('dogForm');
     }
 
     render() {
 
-        const breedsDropdownItems = this.props.breeds.map((breed, i) => {
+        const breedsDropdownItems = this.props.attributes.breeds.map((breed, i) => {
             return {
                 text: breed.name,
                 value: breed.id,
@@ -177,7 +176,7 @@ class DogForm extends Component {
             }
         })
 
-        const sizesDropdownItems = this.props.sizes.map((size, i) => {
+        const sizesDropdownItems = this.props.attributes.sizes.map((size, i) => {
             return {
                 text: size.name,
                 value: size.id,
@@ -185,7 +184,7 @@ class DogForm extends Component {
             }
         })
 
-        const agesDropdownItems = this.props.ages.map((age, i) => {
+        const agesDropdownItems = this.props.attributes.ages.map((age, i) => {
             return {
                 value: age.id,
                 text: age.name,
@@ -199,8 +198,6 @@ class DogForm extends Component {
                             ]
 
         const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
-
-        console.log(this.state)
 
         return (
             <Form className={classes.DogForm} onSubmit={() => this.handleFormSubmission()}>
@@ -285,23 +282,17 @@ class DogForm extends Component {
 }
 
 const mapStateToProps = state => {
+    const { currentFilter, attributes } = state.dog
+    const { currentUser } = state.auth
     return {
-        dogFilter: state.dog.currentFilter,
-        ages: state.dog.attributes.ages,
-        breeds: state.dog.attributes.breeds,
-        sizes: state.dog.attributes.sizes,
-        currentUser: state.auth.currentUser
+        currentFilter,
+        attributes,
+        currentUser
     }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onSearchFilterUpdate: (type, value) => dispatch(actions.updateParkFilter(type, value)),
-        onFetchAttribute: (attribute) => dispatch(actions.fetchDogAttribute(attribute)),
-        onDogFilterUpdate: (attribute, value) => dispatch(actions.updateDogFilter(attribute, value)),
-        onFormReset: () => dispatch(actions.resetDogFilter()),
-        addEditDog: (dog, action) => dispatch(actions.addEditDog(dog, action))
-    }
-}
+    return bindActionCreators({ fetchDogAttribute, addEditDog }, dispatch)
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DogForm)
