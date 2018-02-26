@@ -96,12 +96,10 @@ class Dog extends Component {
 };
 
 const mapStateToProps = state => {
-    const { currentUser } = state.auth
-    return { currentUser }
-}
-
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ deleteDog }, dispatch)
+    const { currentUser } = state.auth;
+    return { currentUser };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dog)
+const mapDispatchToProps = dispatch => ( bindActionCreators({ deleteDog }, dispatch) );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dog);
