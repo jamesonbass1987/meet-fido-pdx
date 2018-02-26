@@ -20,49 +20,49 @@ const fetchParksStart = state => {
     return updateObject(state, { loading: true });
 };
 
-const fetchParksSuccess = (state, action) => {
-    return updateObject(state, {
+const fetchParksSuccess = (state, action) => (
+    updateObject(state, {
         parks: action.parks,
         loading: false,
-    });
-};
+    })
+);
 
-const fetchParksFail = state => {
-    return updateObject(state, { loading: false });
-};
+const fetchParksFail = state => (
+    updateObject(state, { loading: false })
+);
 
-const fetchParkStart = state => {
-    return updateObject(state, { loading: true });
-};
+const fetchParkStart = state => (
+    updateObject(state, { loading: true })
+);
 
-const fetchParkSuccess = (state, action) => {
-    return updateObject(state, {
+const fetchParkSuccess = (state, action) => (
+    updateObject(state, {
         selectedPark: action.park,
         loading: false
-    });
-};
+    })
+);
 
-const fetchParkFail = state => {
-    return updateObject(state, { loading: false });
-};
+const fetchParkFail = state => (
+    updateObject(state, { loading: false })
+);
 
-const updateParkFilter = (state, action) => {
-    return updateObject(state, {
+const updateParkFilter = (state, action) => (
+    updateObject(state, {
         parkFilter: {
             ...state.parkFilter,
             [action.payload.type]: action.payload.value
         }
     })
-}
+);
 
-const resetParkFilter = (state) => {
-    return updateObject(state, {
+const resetParkFilter = state => (
+    updateObject(state, {
         parkFilter: {
             ...state.parkFilter,
             searchQuery: ''
         }
     })
-}
+);
 
 const parkReducer = (state = initialState, action) => {
     switch (action.type) {
