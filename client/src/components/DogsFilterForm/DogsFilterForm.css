@@ -1,17 +1,8 @@
 .InputContainer {
-    height: 200px !important;
+    height: 190px;
     margin-bottom: 20px !important;
-}
-
-.InputDropdowns {
-    margin-bottom: 5px !important;
-}
-
-.InputDropdowns:last-child {
-    margin-bottom: 0px !important;
 }
 
 .Button {
     width: 80px;
-    margin-top: 5px !important;
 }

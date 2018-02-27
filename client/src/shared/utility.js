@@ -42,3 +42,12 @@ export const checkValidity = (value, rules) => {
 
     return isValid;
 }
+
+export const mapDropdownItems = items => (
+    items.map((item, i) => ({
+            text: item.name,
+            value: item.name,
+            key: i + item.name
+        })
+    )
+);

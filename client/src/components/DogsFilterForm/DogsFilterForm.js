@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchDogAttribute, updateDogFilter, resetDogFilter } from '../../store/actions/index';
+import { mapDropdownItems } from '../../shared/utility';
 
-import { Dropdown, Segment, Button, Icon } from 'semantic-ui-react'
+import { Form, Button, Icon } from 'semantic-ui-react'
+import ResetButton from '../UI/Buttons/Button/Button'
+import Dropdown from '../UI/FormElements/Dropdown/Dropdown'
 
 import classes from './DogsFilterForm.css';
 class DogFilterForm extends Component {
@@ -22,35 +25,15 @@ class DogFilterForm extends Component {
 
     render() {
 
-        const breedsDropdownItems = this.props.attributes.breeds.map( (breed, i) => {
-            return {
-                text: breed.name,
-                value: breed.name,
-                key: i + breed
-                }
-        })
-
-        const sizesDropdownItems = this.props.attributes.sizes.map( (size, i)  => {
-            return {
-                text: size.name,
-                value: size.name,
-                key: i + size
-            }
-        })
-
-        const agesDropdownItems = this.props.attributes.ages.map( (age, i) => {
-            return {
-                value: age.name,
-                text: age.name,
-                key: i + age
-            }
-        })
+        const breedsDropdownItems = mapDropdownItems(this.props.attributes.breeds);
+        const sizesDropdownItems = mapDropdownItems(this.props.attributes.sizes);
+        const agesDropdownItems = mapDropdownItems(this.props.attributes.ages);
 
         return (
-            <Segment className={classes.InputContainer}>
+            <Form className={classes.InputContainer}>
                 <Dropdown
                     placeholder='Breed'
-                    onChange={this.handleFilterUpdate.bind(this)}
+                    onChange={this.handleFilterUpdate}
                     fluid
                     search
                     className={classes.InputDropdowns}
@@ -65,7 +48,7 @@ class DogFilterForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={agesDropdownItems}
-                    onChange={this.handleFilterUpdate.bind(this)}
+                    onChange={this.handleFilterUpdate}
                     value={this.props.currentFilter.age}
                     id='age'
                 />
@@ -75,23 +58,25 @@ class DogFilterForm extends Component {
                     className={classes.InputDropdowns}
                     selection
                     options={sizesDropdownItems}
-                    onChange={this.handleFilterUpdate.bind(this)}
+                    onChange={this.handleFilterUpdate}
                     value={this.props.currentFilter.size}
                     id='size'
                 />
-                <Button 
+                <ResetButton
                     animated='vertical'
-                    onClick={() => this.props.resetDogFilter()}
+                    onClick={this.props.resetDogFilter}
                     color="twitter"
+                    size="large"
                     floated="right"
                     className={classes.Button}
-                >
-                    <Button.Content hidden>Reset</Button.Content>
-                    <Button.Content visible>
-                        <Icon name='repeat' />
-                    </Button.Content>
-                </Button>
-            </Segment>
+                    content={(
+                        <React.Fragment>
+                            <Button.Content hidden>Reset</Button.Content>
+                            <Button.Content visible content={<Icon name='repeat' />} />
+                        </React.Fragment>
+                    )}
+                />
+            </Form>
         );
     }
 }
