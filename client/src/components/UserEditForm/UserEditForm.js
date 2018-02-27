@@ -5,6 +5,8 @@ import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index
 import { updateObject, checkValidity } from '../../shared/utility';
 
 import { Button, Form, Input, Header, TextArea } from 'semantic-ui-react'
+import InputField from '../UI/Forms/Input/Input';
+import DropdownField from '../UI/Forms/Dropdown/Dropdown';
 
 import classes from './UserEditForm.css';
 
@@ -105,35 +107,37 @@ class UserEditForm extends Component {
         return (
             <Form className={classes.EditForm} onSubmit={() => this.handleFormSubmission()}>
                 <Header as='h1'>Edit Profile</Header>
-                    <Form.Field 
+                    <InputField
                         control={TextArea} 
                         onChange={this.handleFormInputChange} 
                         label='Bio:' 
                         id="bio" 
-                        placeholder='Bio...' 
+                        placeholder='Bio...'
+                        type="text" 
                         value={this.state.formData.bio.value} />
-                    <Form.Dropdown
+                    <DropdownField
                         fluid
                         selection
                         id='neighborhood_id'
+                        label="Neighborhood:"
                         options={dropdownItems}
                         onChange={this.handleFormInputChange}
                         defaultValue={this.state.formData.neighborhood_id.value}
                     />
                 <Header as='h3'>Update Password</Header>
-                    <Form.Field 
+                    <InputField
                         control={Input} 
                         id="password" 
                         type="password" 
-                        label='New Password'
+                        label='New Password:'
                         onChange={this.handleFormInputChange}
                         value={this.state.formData.password.value}
                         placeholder='Enter New Password...'/>
-                    <Form.Field 
+                    <InputField
                         control={Input} 
                         id="password_confirmation" 
                         type="password" 
-                        label='Confirm New Password' 
+                        label='Confirm New Password:' 
                         onChange={this.handleFormInputChange}
                         value={this.state.formData.password_confirmation.value}
                         placeholder='Confirm New Password...' />
