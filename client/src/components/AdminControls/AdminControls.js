@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Segment, Button} from 'semantic-ui-react';
-import ConfirmableButton from '../UI/ConfirmableButton/ConfirmableButton';
+import ConfirmableButton from '../UI/Buttons/ConfirmableButton/ConfirmableButton';
 
 import classes from './AdminControls.css';
 

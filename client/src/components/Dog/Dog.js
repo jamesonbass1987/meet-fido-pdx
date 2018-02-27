@@ -8,7 +8,7 @@ import { deleteDog } from '../../store/actions/index';
 import { Card, Icon, Image, Button } from 'semantic-ui-react';
 import Modal from '../UI/Modal/Modal';
 import DogForm from '../DogForm/DogForm';
-import ConfirmableButton from '../UI/ConfirmableButton/ConfirmableButton'
+import ConfirmableButton from '../UI/Buttons/ConfirmableButton/ConfirmableButton'
 
 import classes from './Dog.css'
 

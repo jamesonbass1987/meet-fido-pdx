@@ -4,9 +4,11 @@ import { bindActionCreators } from 'redux'
 import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-import { Button, Form, Header } from 'semantic-ui-react'
-import InputField from '../UI/Forms/Input/Input';
-import DropdownField from '../UI/Forms/Dropdown/Dropdown';
+import { Form } from 'semantic-ui-react';
+import InputField from '../UI/FormElements/Input/Input';
+import DropdownField from '../UI/FormElements/Dropdown/Dropdown';
+import Header from '../UI/Header/Header';
+import Button from '../UI/Buttons/Button/Button';
 
 import classes from './UserEditForm.css';
 
@@ -106,7 +108,7 @@ class UserEditForm extends Component {
 
         return (
             <Form className={classes.EditForm} onSubmit={() => this.handleFormSubmission()}>
-                <Header as='h1'>Edit Profile</Header>
+                <Header as='h1' content="Edit Profile:" />
                     <InputField
                         control="textArea"
                         onChange={this.handleFormInputChange} 
@@ -124,7 +126,7 @@ class UserEditForm extends Component {
                         onChange={this.handleFormInputChange}
                         defaultValue={this.state.formData.neighborhood_id.value}
                     />
-                <Header as='h3'>Update Password</Header>
+                <Header as='h3' content="Update Password:" />
                     <InputField
                         control="input"
                         id="password" 
@@ -146,7 +148,8 @@ class UserEditForm extends Component {
                     fluid 
                     size='large'
                     color='blue'
-                    >Update Profile</Button>
+                    content="Update Profile"
+                    />
             </Form>
         );
     }
