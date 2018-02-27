@@ -15,13 +15,11 @@ import classes from './UsersIndex.css';
 
 class UsersIndex extends Component {
 
-    componentWillMount() {
-        this.props.fetchUsers();
-    }
-
+    componentWillMount = () => this.props.fetchUsers();
+    
     render(){
 
-        let users = <Spinner />
+        let users = <Spinner />;
         if (!this.props.loading && this.props.currentUser) {
             users = <Segment>
                         <UsersForm />
@@ -32,8 +30,8 @@ class UsersIndex extends Component {
                             parkFilter={this.props.parkFilter} 
                             loading={this.props.loading} 
                         />
-                    </Segment>
-        }
+                    </Segment>;
+        };
 
         return (
             <Container className={classes.Container}>
@@ -48,8 +46,8 @@ class UsersIndex extends Component {
                 {users}
             </Container>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
     const { users, loading, userFilter } = state.user;
@@ -68,4 +66,4 @@ const mapDispatchToProps = dispatch => (
 );
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersIndex)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersIndex);

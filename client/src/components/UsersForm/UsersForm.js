@@ -13,15 +13,13 @@ import classes from './UsersForm.css';
 
 class UsersForm extends Component {
 
-    componentWillMount(){
+    componentWillMount = () => {
         if (this.props.parks.length === 0){
             this.props.fetchParks();
         }
     }
 
-    handleFilterUpdate = (event, { value, id }) => {
-        this.props.updateUserFilter(id, value)
-    }
+    handleFilterUpdate = (event, { value, id }) => this.props.updateUserFilter(id, value);
 
     render() {
 

@@ -17,9 +17,7 @@ class ParkFilterForm extends Component{
         this.props.updateParkFilter(id, formVal);
     };
 
-    handleFormReset = () => {
-        this.props.resetParkFilter();
-    };
+    handleFormReset = () => this.props.resetParkFilter();
 
     render(){
         return (

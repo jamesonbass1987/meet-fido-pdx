@@ -19,9 +19,7 @@ class DogFilterForm extends Component {
         };
     };
 
-    handleFilterUpdate = (event, { value, id }) => {
-        this.props.updateDogFilter(id, value)
-    };
+    handleFilterUpdate = (event, { value, id }) => this.props.updateDogFilter(id, value);
 
     render() {
         return (

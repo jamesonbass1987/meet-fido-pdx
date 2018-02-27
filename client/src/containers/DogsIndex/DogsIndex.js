@@ -15,13 +15,11 @@ import classes from './DogsIndex.css';
 
 class DogsIndex extends Component {
 
-    componentDidMount() {
-        this.props.fetchDogs();
-    }
+    componentDidMount = () => this.props.fetchDogs();
 
     render() {
 
-        let dogs = <Spinner />
+        let dogs = <Spinner />;
         if (!this.props.loading) {
             dogs = <Segment>
                         <Header
@@ -37,7 +35,7 @@ class DogsIndex extends Component {
                             loading={this.props.loading} 
                         />
                     </Segment>
-        } 
+        };
 
 
         return (
@@ -52,9 +50,9 @@ class DogsIndex extends Component {
                     subheadingText="Find the perfect playtime pal for you best friend." />
                 {dogs}
             </Container>
-        )
-    }
-}
+        );
+    };
+};
 
 const mapStateToProps = state => {
     const { dogs, loading, selectedDog, currentFilter } = state.dog
@@ -63,10 +61,11 @@ const mapStateToProps = state => {
         loading,
         selectedDog,
         currentFilter
-    }
-}
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ fetchDogs }, dispatch)
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DogsIndex)
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ fetchDogs }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DogsIndex);

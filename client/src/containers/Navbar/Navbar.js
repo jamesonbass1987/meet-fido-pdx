@@ -34,12 +34,7 @@ class Navbar extends Component {
         this.props.currentUser !== nextProps.currentUser || this.state.activeItem !== nextState.activeItem
     );
 
-
-    handleItemClick = (event, { to } ) => {
-        this.setState({
-            activeItem: to
-        });
-    };
+    handleItemClick = (event, { to } ) => this.setState({ activeItem: to });
 
     render() {
         let navLinks = [];

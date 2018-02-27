@@ -66,9 +66,7 @@ class SignUpForm extends Component {
         }
     };
 
-    componentWillMount = () => {
-        this.props.fetchNeighborhoods();
-    };
+    componentWillMount = () => this.props.fetchNeighborhoods();
 
     handleFormInputChange = (e, { value, id }) => {
         const updatedFormData = updateObject(this.state.formData, {

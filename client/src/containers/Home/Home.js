@@ -28,18 +28,18 @@ class Home extends Component {
                 basic
             >
                 <SignupForm />
-            </Modal>
-        }
+            </Modal>;
+        };
 
         if (this.props.isAuthenticating){
             headingContent =  <Modal 
                                 show={this.props.isAuthenticating}
                                 handleClose={this.props.updateAuthenticatingState}
                                 basic
-                                >
+                              >   
                                 <LoginForm />
-                            </Modal>
-        }
+                              </Modal>;
+        };
 
         return (
             <Container text className={classes.Heading}>
@@ -50,24 +50,23 @@ class Home extends Component {
                 <div className={classes.BackgroundOverlay} />
                 {headingContent}
             </Container>
-
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
     const { isAuthenticating, isSigningUp } = state.auth;
     return {
         isAuthenticating,
         isSigningUp
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ updateAuthenticatingState, updateSignUpState }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 
 

@@ -47,9 +47,7 @@ class UsersShow extends Component {
         this.props.currentUser !== nextProps.currentUser
     );
 
-    componentWillUnmount = () => {
-        this.props.removeSelectedUser();
-    };
+    componentWillUnmount = () => this.props.removeSelectedUser();
 
     handleModalToggle = type => {
         this.setState({showModal: {
@@ -86,7 +84,7 @@ class UsersShow extends Component {
                                 showModal={this.state.showModal}
                                 toggleModal={this.handleModalToggle} 
                                 fluid
-                            />
+                            />;
 
             userFormModal = <Modal
                                 handleClose={this.handleModalToggle}
@@ -96,7 +94,7 @@ class UsersShow extends Component {
                                 type="userForm"
                             >
                                 <UserEditForm user={this.props.currentUser} toggleModal={this.handleModalToggle}/>
-                            </Modal>
+                            </Modal>;
 
             dogFormModal = <Modal
                                 handleClose={this.handleModalToggle}
@@ -106,9 +104,9 @@ class UsersShow extends Component {
                                 type="dogForm"
                             >
                                 <DogForm headerTitle="Add New Dog" type="createDog" toggleModal={this.handleModalToggle} />
-                            </Modal>
+                            </Modal>;
 
-        }
+        };
 
         let userProfile = <Spinner />;
         if (!this.props.loading && this.props.selectedUser) {

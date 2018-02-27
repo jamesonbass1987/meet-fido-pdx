@@ -19,21 +19,16 @@ class ParksIndex extends Component {
     showInfoWindow: false
   }
 
-  componentWillMount(){
-    this.props.fetchParks();
-  }
+  componentWillMount = () => this.props.fetchParks();
 
-  componentWillUnmount(){
-    this.props.fetchParks();
-  }
+  componentWillUnmount = () => this.props.fetchParks();
 
-  handleMarkerClick = parkName => {
-    this.props.updateParkFilter('searchQuery', parkName)
-  }
+  handleMarkerClick = parkName => this.props.updateParkFilter('searchQuery', parkName);
 
   render() {
 
-    let parks = <Spinner />
+    let parks = <Spinner />;
+
     if (!this.props.loading){
       parks = <Segment className={classes.ParksContent}>
                 <ParkFilterForm onSearchQueryUpdate={this.props.updateParkFilter} />
@@ -42,8 +37,8 @@ class ParksIndex extends Component {
                   parks={this.props.parks}
                   currentFilter={this.props.parkFilter}
                 />
-              </Segment>
-    } 
+              </Segment>;
+    }; 
 
     return (
       <Container className={classes.Container}>
@@ -67,17 +62,17 @@ class ParksIndex extends Component {
         />
         {parks}
       </Container>
-    )
+    );
   };
 };
 
 const mapStateToProps = state => {
   const { parks, loading, selectedPark, parkFilter } = state.park;
   return {
-    parks,
-    loading,
-    selectedPark,
-    parkFilter, 
+      parks,
+      loading,
+      selectedPark,
+      parkFilter, 
   };
 };
 
