@@ -11,6 +11,7 @@ const button = props => (
         animated={props.animated}
         floated={props.floated}
         onClick={props.onClick}
+        disabled={props.disabled}
     >{props.children}</Button>
 );
 
