@@ -67,14 +67,20 @@ class Dog extends Component {
         }
 
         let dogModal = <Modal
-                handleClose={this.toggleModal}
-                show={this.state.showModal}
-                header="Edit Profile"
-                size="fullscreen"
-                type="dogForm"
-            >
-                <DogForm type="editDog" headerTitle="Edit Dog" dog={this.props.dog} dogId={this.props.dog.id} toggleModal={this.toggleModal} />
-            </Modal>
+                            handleClose={this.toggleModal}
+                            show={this.state.showModal}
+                            header="Edit Profile"
+                            size="fullscreen"
+                            type="dogForm"  
+                        >
+                            <DogForm
+                                type="editDog"
+                                headerTitle="Edit Dog"
+                                dog={this.props.dog}
+                                dogId={this.props.dog.id}
+                                toggleModal={this.toggleModal}
+                            />
+                        </Modal>
 
 
         return(

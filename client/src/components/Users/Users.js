@@ -8,20 +8,20 @@ import { userFilter } from '../../shared/filters';
 
 const users = props => {
 
-    let usersList = <Spinner />
+    let usersList = <Spinner />;
 
     if (!props.loading) {
         const usersArray = userFilter(props.users, props.currentFilter);
         usersList = usersArray.map(user => (
             <User key={user.username} user={user} />
-        ))
-    }
+        ));
+    };
 
     return (
         <Item.Group divided>
             {usersList}
         </Item.Group>
     );
-}
+};
 
-export default users
+export default users;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image, Popup, Item, Label } from 'semantic-ui-react'
+import { Image, Popup, Item, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import classes from './User.css'
-import UserImage from '../UserImage/UserImage'
+import classes from './User.css';
+import UserImage from '../UserImage/UserImage';
 
 
 const user = props => {
@@ -13,7 +13,7 @@ const user = props => {
         const popupHeader = <Popup.Header>
                                 <Image src={dog.profile_image_url} verticalAlign='middle' circular /> <br />
                                 {dog.name}
-                            </Popup.Header>
+                            </Popup.Header>;
         
         return <Popup
             key={dog.name + dog.id}
@@ -21,12 +21,12 @@ const user = props => {
             header={popupHeader}
             className={classes.Popup}
             content={dog.description}
-        />
-    })
+        />;
+    });
 
     const parksList = props.user.parks.map((park, i) => (
         <Label key={park.id + i} size="small" content={park.name} />
-    ))
+    ));
     
     const userProfileLink = `/users/${props.user.id}`;
 

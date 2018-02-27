@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 import { mapDropdownItems } from '../../shared/utility';
@@ -53,7 +53,7 @@ class UserEditForm extends Component {
                 touched: false
             }
         }
-    }
+    };
 
     componentWillMount(){
         this.props.fetchNeighborhoods();
@@ -71,7 +71,7 @@ class UserEditForm extends Component {
                 }
             }
         });
-    }
+    };
 
     handleFormInputChange = (e, { value, id }) => {
         const updatedFormData = updateObject(this.state.formData, {
@@ -82,8 +82,8 @@ class UserEditForm extends Component {
             })
         });
 
-        this.setState({ formData: updatedFormData })
-    }
+        this.setState({ formData: updatedFormData });
+    };
 
     handleFormSubmission(event) {
         const userInfo = {
@@ -91,11 +91,11 @@ class UserEditForm extends Component {
             password: this.state.formData.password.value,
             password_confirmation: this.state.formData.password_confirmation.value,
             neighborhood_id: this.state.formData.neighborhood_id.value
-        }
+        };
 
         this.props.updateCurrentUser(this.props.user, 'profileUpdate', userInfo);
         this.props.toggleModal('userForm');
-    }
+    };
 
     render() {
         return (
@@ -144,8 +144,8 @@ class UserEditForm extends Component {
                     />
             </Form>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = (state, ownProps) => {
     const { neighborhoods } = state.neighborhood;
@@ -154,6 +154,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ fetchNeighborhoods, updateCurrentUser }, dispatch)
-)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserEditForm)
+export default connect(mapStateToProps, mapDispatchToProps)(UserEditForm);
