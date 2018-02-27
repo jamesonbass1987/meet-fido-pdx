@@ -1,6 +1,6 @@
 .UsersForm {
-    height: 150px !important;
-    margin-bottom: 20px !important;
+    height: 155px !important;
+    margin-bottom: 0px !important;
 }
 
 .InputDropdowns {
@@ -13,5 +13,4 @@
 
 .Button {
     width: 80px;
-    margin-top: 5px !important;
 }

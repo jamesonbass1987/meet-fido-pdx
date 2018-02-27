@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchParks, updateUserFilter, resetUserFilter }  from '../../store/actions/index';
 
-import { Form, Dropdown, Input, Button, Icon } from 'semantic-ui-react';
+import { Form, Button, Icon } from 'semantic-ui-react';
+import InputField from '../UI/FormElements/Input/Input';
+import Dropdown from '../UI/FormElements/Dropdown/Dropdown';
+import ResetButton from '../UI/Buttons/Button/Button';
 
 import classes from './UsersForm.css';
 
 class UsersForm extends Component {
 
     componentWillMount(){
-
         if (this.props.parks.length === 0){
             this.props.fetchParks();
         }
@@ -32,8 +34,10 @@ class UsersForm extends Component {
 
         return (
             <Form className={classes.UsersForm} size="large">
-                <Input
+                <InputField
                     fluid
+                    type="text"
+                    control="input"
                     icon='search'
                     placeholder='Search for users by name...'
                     value={this.props.searchQuery}
@@ -52,18 +56,19 @@ class UsersForm extends Component {
                     value={this.props.selectedPark}
                     id='selectedPark'
                 />
-                <Button
+                <ResetButton
                     animated='vertical'
                     onClick={() => this.props.resetUserFilter()}
                     color="twitter"
                     floated="right"
                     className={classes.Button}
-                >
-                    <Button.Content hidden>Reset</Button.Content>
-                    <Button.Content visible>
-                        <Icon name='repeat' />
-                    </Button.Content>
-                </Button>
+                    content={(
+                        <React.Fragment>
+                            <Button.Content hidden>Reset</Button.Content>
+                            <Button.Content visible content={<Icon name='repeat' />} />
+                        </React.Fragment>
+                    )}
+                />
             </Form>
         );
     }

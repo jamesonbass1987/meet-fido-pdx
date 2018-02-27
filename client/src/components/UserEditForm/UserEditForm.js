@@ -76,7 +76,7 @@ class UserEditForm extends Component {
         const updatedFormData = updateObject(this.state.formData, {
             [id]: updateObject(this.state.formData[id], {
                 value,
-                valid: checkValidity(e.target.value, this.state.formData[id].validation),
+                valid: checkValidity(value, this.state.formData[id].validation),
                 touched: true
             })
         });

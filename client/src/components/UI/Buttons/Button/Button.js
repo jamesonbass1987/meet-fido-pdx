@@ -8,7 +8,10 @@ const button = props => (
         content={props.content}
         size={props.size}
         color={props.color}
-    />
+        animated={props.animated}
+        floated={props.floated}
+        onClick={props.onClick}
+    >{props.children}</Button>
 );
 
 export default button;
