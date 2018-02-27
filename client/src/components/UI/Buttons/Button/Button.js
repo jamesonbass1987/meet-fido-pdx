@@ -7,6 +7,7 @@ const button = props => (
         fluid={props.fluid}
         content={props.content}
         size={props.size}
+        icon={props.icon}
         color={props.color}
         animated={props.animated}
         floated={props.floated}

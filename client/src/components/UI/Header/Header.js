@@ -5,7 +5,7 @@ const header = props => (
     <Header 
         as={props.as} 
         textAlign={props.textAlign}
-        content={props.content || props.children}
+        content={props.content}
     />
 );
 

@@ -1,6 +1,6 @@
-export const dogFilter = (dogs, filterParams) => {
+export const dogFilter = (dogs, filterParams = {}) => {
     let filterDogsArray = [...dogs]
-    debugger;
+
     if (filterParams.age) {
         filterDogsArray = filterDogsArray.filter(dog => (dog.age.id === filterParams.age))
     }
@@ -16,7 +16,7 @@ export const dogFilter = (dogs, filterParams) => {
     return filterDogsArray;
 }
 
-export const parkFilter = (parks, filterParams) => {
+export const parkFilter = (parks, filterParams = {}) => {
     let filterParksArray = [...parks]
 
     if (filterParams.fencedPark || filterParams.unfencedPark) {
@@ -29,7 +29,7 @@ export const parkFilter = (parks, filterParams) => {
     }
 }
 
-export const userFilter = (users, filterParams) => {
+export const userFilter = (users, filterParams = {}) => {
     let filterUsersArray = [...users]
 
     if (filterParams.searchQuery) {
