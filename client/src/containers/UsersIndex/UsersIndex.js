@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchUsers, fetchUser } from '../../store/actions/index';
 
-import PageHeading from '../../components/PageHeading/PageHeading';
-import UsersComponent from '../../components/UsersComponent/UsersComponent';
 
-import { Container } from 'semantic-ui-react';
+
+import { Container, Segment, Divider } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import PageHeading from '../../components/PageHeading/PageHeading';
+import UsersForm from '../../components/UsersForm/UsersForm'
+import Users from '../../components/Users/Users'
 
 import classes from './UsersIndex.css';
 
@@ -20,18 +22,21 @@ class UsersIndex extends Component {
     render(){
 
         let users = <Spinner />
-
         if (!this.props.loading && this.props.currentUser) {
-            users = <UsersComponent 
-                        users={this.props.users.filter(user => user.id !== this.props.currentUser.id)} 
-                        loading={this.props.loading} 
-                        currentFilter={this.props.userFilter} 
-                        parkFilter={this.props.parkFilter}
-                    />
+            users = <Segment>
+                        <UsersForm />
+                        <Divider />
+                        <Users 
+                            users={this.props.users.filter(user => user.id !== this.props.currentUser.id)} 
+                            currentFilter={this.props.userFilter} 
+                            parkFilter={this.props.parkFilter} 
+                            loading={this.props.loading} 
+                        />
+                    </Segment>
         }
 
         return (
-            <Container className={classes.Container} >
+            <Container className={classes.Container}>
                 <PageHeading
                     as="h1"
                     textAlignment="center"
