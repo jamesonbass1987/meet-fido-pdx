@@ -1,17 +1,32 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react'
-import classes from './Input.css';
+import { Form, Input, TextArea  } from 'semantic-ui-react'
 
-const input = props => (
-    <Form.Field
-        control={props.control}
-        id={props.id}
-        type={props.type}
-        label={props.label}
-        onChange={props.onChange}
-        value={props.value}
-        placeholder={props.placeholder}
-    />
-);
+const input = props => {
+
+    let controlType;
+
+    switch (props.control) {
+        case 'textArea':
+            controlType = TextArea 
+            break
+        case 'input':
+            controlType = Input
+            break
+        default: 
+            controlType = Input
+    }
+
+    return (
+        <Form.Field
+            control={controlType}
+            id={props.id}
+            type={props.type}
+            label={props.label}
+            onChange={props.onChange}
+            value={props.value}
+            placeholder={props.placeholder}
+        />
+    )
+};
 
 export default input;

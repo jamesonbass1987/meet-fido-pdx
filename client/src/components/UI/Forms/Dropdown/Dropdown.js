@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react'
-import classes from './Dropdown.css';
 
 const dropdown = props => (
     <Form.Dropdown

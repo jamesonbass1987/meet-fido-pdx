@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-import { Button, Form, Input, Header, TextArea } from 'semantic-ui-react'
+import { Button, Form, Header } from 'semantic-ui-react'
 import InputField from '../UI/Forms/Input/Input';
 import DropdownField from '../UI/Forms/Dropdown/Dropdown';
 
@@ -108,7 +108,7 @@ class UserEditForm extends Component {
             <Form className={classes.EditForm} onSubmit={() => this.handleFormSubmission()}>
                 <Header as='h1'>Edit Profile</Header>
                     <InputField
-                        control={TextArea} 
+                        control="textArea"
                         onChange={this.handleFormInputChange} 
                         label='Bio:' 
                         id="bio" 
@@ -126,7 +126,7 @@ class UserEditForm extends Component {
                     />
                 <Header as='h3'>Update Password</Header>
                     <InputField
-                        control={Input} 
+                        control="input"
                         id="password" 
                         type="password" 
                         label='New Password:'
@@ -134,7 +134,7 @@ class UserEditForm extends Component {
                         value={this.state.formData.password.value}
                         placeholder='Enter New Password...'/>
                     <InputField
-                        control={Input} 
+                        control="input"
                         id="password_confirmation" 
                         type="password" 
                         label='Confirm New Password:' 
