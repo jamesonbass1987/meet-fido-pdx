@@ -57,8 +57,12 @@ class Park extends Component {
 
         const userPopups = this.props.park.users.map(user => {
             const popupHeader = <Popup.Header>
-                <Image src={user.profile_image_url} verticalAlign='middle' circular />
-            </Popup.Header>;
+                                    <Image 
+                                        src={user.profile_image_url} 
+                                        verticalAlign='middle' 
+                                        circular 
+                                    />
+                                </Popup.Header>;
 
             return <Popup
                 key={user.username}
@@ -71,13 +75,16 @@ class Park extends Component {
 
 
         const parkIcon = <Popup
-                trigger={<Icon name={this.state.showAddParkBtn ? "add circle" : "remove circle"}
-                    onClick={() => this.handleAddRemovePark()}
-                    size="large"
-                    color={this.state.showAddParkBtn ? "green" : "red"}
-                    className={classes.ParkIcon} />}
-                content={this.state.showAddParkBtn ? `Add ${this.props.park.name} to my favorites.` : `Remove ${this.props.park.name} from my favorites`}
-                basic />;
+                            trigger={<Icon 
+                                        name={this.state.showAddParkBtn ? "add circle" : "remove circle"}
+                                        onClick={() => this.handleAddRemovePark()}
+                                        size="large"
+                                        color={this.state.showAddParkBtn ? "green" : "red"}
+                                        className={classes.ParkIcon} 
+                                    />}
+                            content={this.state.showAddParkBtn ? `Add ${this.props.park.name} to my favorites.` : `Remove ${this.props.park.name} from my favorites`}
+                            basic 
+                        />;
 
         let park = <Item className={classes.Content}>
                         <Image className={classes.ParkImage} rounded src={this.props.park.image_url} />
