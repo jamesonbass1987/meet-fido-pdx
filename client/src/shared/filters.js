@@ -1,16 +1,16 @@
 export const dogFilter = (dogs, filterParams) => {
     let filterDogsArray = [...dogs]
-
+    debugger;
     if (filterParams.age) {
-        filterDogsArray = filterDogsArray.filter(dog => (dog.age.name === filterParams.age))
+        filterDogsArray = filterDogsArray.filter(dog => (dog.age.id === filterParams.age))
     }
 
     if (filterParams.size) {
-        filterDogsArray = filterDogsArray.filter(dog => (dog.size.name === filterParams.size))
+        filterDogsArray = filterDogsArray.filter(dog => (dog.size.id === filterParams.size))
     }
 
     if (filterParams.breed) {
-        filterDogsArray = filterDogsArray.filter(dog => (dog.breed.name === filterParams.breed))
+        filterDogsArray = filterDogsArray.filter(dog => (dog.breed.id === filterParams.breed))
     }
 
     return filterDogsArray;
