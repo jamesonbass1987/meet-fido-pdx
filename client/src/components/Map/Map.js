@@ -1,6 +1,6 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import { parkFilter } from '../../shared/parkFilter'
+import { parkFilter } from '../../shared/filters'
 
 // import classes from './Map.css'
 

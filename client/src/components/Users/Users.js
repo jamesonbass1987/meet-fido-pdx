@@ -4,7 +4,7 @@ import Spinner from '../UI/Spinner/Spinner';
 
 import { Item } from 'semantic-ui-react';
 
-import { userFilter } from '../../shared/userFilter';
+import { userFilter } from '../../shared/filters';
 
 const users = props => {
 
