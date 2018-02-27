@@ -1,6 +1,6 @@
 import React from 'react';
 
-import pawPrintLogo from '../../assets/images/paw-print.png'
+import pawPrintLogo from '../../../assets/images/paw-print.png'
 import classes from './Logo.css';
 
 const logo = props => (

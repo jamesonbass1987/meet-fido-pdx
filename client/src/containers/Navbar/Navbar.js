@@ -10,7 +10,7 @@ import NavigationItems from '../../components/NavigationItems/NavigationItems'
 class Navbar extends Component {
 
     state = {
-        activeItem: this.props.location.pathname
+        activeItem: ''
     }
 
     componentWillMount() {
@@ -18,6 +18,8 @@ class Navbar extends Component {
         if (token && !this.props.currentUser) {
             this.props.fetchCurrentUser();
         }
+
+        this.setState({ activeitem: this.props.location.pathname })
     }
 
     componentWillReceiveProps(nextProps){

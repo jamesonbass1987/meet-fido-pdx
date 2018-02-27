@@ -3,7 +3,7 @@ import { Menu, MenuItem, Button } from 'semantic-ui-react';
 import classes from './NavigationItems.css';
 
 import NavigationItem from '../NavigationItem/NavigationItem';
-import Logo from '../../UI/Logo/Logo'
+import Logo from '../UI/Logo/Logo'
 
 const navigationItems = props => {
 

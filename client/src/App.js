@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, withRouter, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCurrentUser, authCheckState } from './store/actions/index'
 
-import asyncComponent from './hoc/asyncComponent/asyncComponent';
-
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
 import Logout from './components/Logout/Logout';
-
-const asyncDogs = asyncComponent(() => {
-  return import('./containers/DogsIndex/DogsIndex');
-});
-
-const asyncParks = asyncComponent(() => {
-  return import('./containers/ParksIndex/ParksIndex');
-});
-
-const asyncUsers = asyncComponent(() => {
-  return import('./containers/UsersRouter/UsersRouter');
-});
+import DogsIndex from './containers/DogsIndex/DogsIndex';
+import ParksIndex from './containers/ParksIndex/ParksIndex';
+import UsersRouter from './containers/UsersRouter/UsersRouter';
 
 class App extends Component {
 
@@ -30,27 +19,25 @@ class App extends Component {
   }
 
   render() {
-    
-    let routes = (<Switch>
-                    <Route path="/" exact component={Home} />
-                    <Redirect to="/" />
-                  </Switch>)
 
-    if (this.props.isAuthenticated){
-
-      routes = <Switch>
-                <Route path="/dogs" component={asyncDogs} />
-                <Route path="/parks" component={asyncParks} />
-                <Route path="/users" component={asyncUsers} />
-                <Route path="/logout" component={Logout} />
-                <Route path="/" exact component={Home} />
-                <Redirect to="/" />
-              </Switch>
-    }
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        this.props.isAuthenticated
+          ? <Component {...props} />
+          : <Redirect to='/' />
+      )} />
+    );
 
     return (
         <Layout>
-          {routes}
+          <Switch>
+            <PrivateRoute path='/dogs' component={DogsIndex} />
+            <PrivateRoute path='/parks' component={ParksIndex} />
+            <PrivateRoute path='/users' component={UsersRouter} />
+            <PrivateRoute path='/logout' component={Logout} />
+            <Route path="/" exact component={Home} />
+            <Redirect to='/' />
+          </Switch>
         </Layout>
     );
   }
