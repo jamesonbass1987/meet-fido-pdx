@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchParks, fetchPark, updateParkFilter } from '../../store/actions/index';
 
-import { Container } from 'semantic-ui-react';
-
-import classes from './ParksIndex.css';
-
-import ParksComponent from '../../components/ParksComponent/ParksComponent';
+import { Container, Segment, Divider } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading';
 import MapComponent from '../../components/Map/Map';
 import Spinner from '../../components/UI/Spinner/Spinner';
+
+import ParkFilterForm from '../../components/ParkFilterForm/ParkFilterForm';
+import Parks from '../../components/Parks/Parks';
+
+import classes from './ParksIndex.css';
 
 class ParksIndex extends Component {
 
@@ -34,12 +35,14 @@ class ParksIndex extends Component {
 
     let parks = <Spinner />
     if (!this.props.loading){
-      parks = <ParksComponent
-          parks={this.props.parks}
-          onSearchQueryUpdate={this.onSearchQueryUpdate}
-          currentFilter={this.props.parkFilter}
-          hasAddedParks={this.handleParkAdded}
-        />
+      parks = <Segment className={classes.ParksContent}>
+                <ParkFilterForm onSearchQueryUpdate={this.props.updateParkFilter} />
+                <Divider />
+                <Parks
+                  parks={this.props.parks}
+                  currentFilter={this.props.parkFilter}
+                />
+              </Segment>
     } 
 
     return (
@@ -65,8 +68,8 @@ class ParksIndex extends Component {
         {parks}
       </Container>
     )
-  }
-}
+  };
+};
 
 const mapStateToProps = state => {
   const { parks, loading, selectedPark, parkFilter } = state.park;
@@ -75,8 +78,8 @@ const mapStateToProps = state => {
     loading,
     selectedPark,
     parkFilter, 
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({ fetchParks, fetchPark, updateParkFilter }, dispatch)
