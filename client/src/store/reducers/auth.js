@@ -30,7 +30,6 @@ const updateSignUpState = state => (
 );
 
 const authSuccess = (state, action) => {
-
     return updateObject(state, {
         token: action.payload.token,
         currentUser: action.payload.user ? action.payload.user : state.currentUser,
