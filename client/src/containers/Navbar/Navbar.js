@@ -11,38 +11,38 @@ class Navbar extends Component {
 
     state = {
         activeItem: ''
-    }
+    };
 
-    componentWillMount() {
-        const token = localStorage.getItem('token')
+    componentWillMount = () => {
+        const token = localStorage.getItem('token');
         if (token && !this.props.currentUser) {
             this.props.fetchCurrentUser();
-        }
+        };
 
-        this.setState({ activeitem: this.props.location.pathname })
-    }
+        this.setState({ activeitem: this.props.location.pathname });
+    };
 
-    componentWillReceiveProps(nextProps){
-        const token = localStorage.getItem('token')
+    componentWillReceiveProps = nextProps => {
+        const token = localStorage.getItem('token');
 
         if (token && !this.props.currentUser) {
             this.props.fetchCurrentUser();
-        }
-    }
+        };
+    };
 
-    shouldComponentUpdate(nextProps, nextState){
-        return this.props.currentUser !== nextProps.currentUser || this.state.activeItem !== nextState.activeItem
-    }
+    shouldComponentUpdate = (nextProps, nextState) => (
+        this.props.currentUser !== nextProps.currentUser || this.state.activeItem !== nextState.activeItem
+    );
 
 
     handleItemClick = (event, { to } ) => {
         this.setState({
             activeItem: to
-        })
-    }
+        });
+    };
 
     render() {
-        let navLinks = []
+        let navLinks = [];
 
         let navButtons = [
             {
@@ -55,7 +55,7 @@ class Navbar extends Component {
                 content: 'Sign Up',
                 clicked: this.props.updateSignUpState
             }
-        ]
+        ];
 
 
         if (this.props.isAuthenticated && !this.props.loading) {
@@ -66,7 +66,7 @@ class Navbar extends Component {
                         as: Link,
                         to: '/logout'
                     }
-                ]
+                ];
             navLinks = [
                      {
                         name: 'home',
@@ -94,9 +94,9 @@ class Navbar extends Component {
                         link: `/users/${this.props.currentUser.id}`,
                     }
                 ]
-        }
+        };
 
-        let navItems = <NavigationItems
+        const navItems = <NavigationItems
                 navLinks={navLinks}
                 navButtons={navButtons}
                 activeItem={this.state.activeItem}
@@ -108,8 +108,8 @@ class Navbar extends Component {
                 {navItems}
             </Menu>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
     const { currentUser, loading } = state.auth;
@@ -119,6 +119,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ handleLogout, updateSignUpState, updateAuthenticatingState, fetchCurrentUser }, dispatch)
-)
+);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
