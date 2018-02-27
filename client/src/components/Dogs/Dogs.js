@@ -1,24 +1,19 @@
 import React from 'react'
-
-import { Card } from 'semantic-ui-react'
+import { dogFilter } from '../../shared/filters'
 import Dog from '../Dog/Dog'
-import Spinner from '../UI/Spinner/Spinner'
-
+import { Card } from 'semantic-ui-react'
 
 const dogs = props => {
-
-    let dogs = <Spinner />
+    const dogsList = dogFilter(props.dogs, props.currentFilter)
+    const dogNodeList = dogsList.map(dog => (
+        <Dog isEditable={props.isEditable} key={dog.name + dog.id} dog={dog} />
+    ))
     
-    if (!props.loading) {
-        const dogNodeList = props.dogs.map(dog => (
-            <Dog isEditable={props.isEditable} key={dog.name + dog.id} dog={dog} />
-        ))
-        
-        dogs = <Card.Group 
-            itemsPerRow={4}
-            doubling
-        >{dogNodeList}</Card.Group>
-    }
+    const dogs = <Card.Group 
+                    itemsPerRow={4}
+                    doubling
+                    content={dogNodeList}
+                />
 
     return dogs
 }

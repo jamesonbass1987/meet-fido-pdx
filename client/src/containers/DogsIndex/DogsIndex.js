@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchDogs } from '../../store/actions/index';
 
-import classes from './DogsIndex.css'
+import PageHeading from '../../components/PageHeading/PageHeading';
+import Dogs from '../../components/Dogs/Dogs';
+import DogForm from '../../components/DogsFilterForm/DogsFilterForm'
 
-import { Container } from 'semantic-ui-react';
-import PageHeading from '../../components/PageHeading/PageHeading'
-import DogsComponent from '../../components/DogsComponent/DogsComponent'
+import { Container, Segment, Divider } from 'semantic-ui-react';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import Header from '../../components/UI/Header/Header';
+
+import classes from './DogsIndex.css';
 
 class DogsIndex extends Component {
 
@@ -16,6 +20,26 @@ class DogsIndex extends Component {
     }
 
     render() {
+
+        let dogs = <Spinner />
+        if (!this.props.loading) {
+            dogs = <Segment>
+                        <Header
+                            as='h3'
+                            textAlign='center'
+                            content='Use the menu to search for the perfect furry friend!'
+                        />
+                        <DogForm />
+                        <Divider />
+                        <Dogs 
+                            dogs={this.props.dogs} 
+                            currentFilter={this.props.currentFilter} 
+                            loading={this.props.loading} 
+                        />
+                    </Segment>
+        } 
+
+
         return (
             <Container className={classes.Container}>
                 <PageHeading
@@ -26,11 +50,7 @@ class DogsIndex extends Component {
                     type="icon"
                     headingText="Search For Dogs"
                     subheadingText="Find the perfect playtime pal for you best friend." />
-                <DogsComponent 
-                    dogs={this.props.dogs} 
-                    loading={this.props.loading} 
-                    filterParams={this.props.currentFilter} 
-                />
+                {dogs}
             </Container>
         )
     }

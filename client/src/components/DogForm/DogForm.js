@@ -9,7 +9,6 @@ import classes from './DogForm.css'
 import { Form } from 'semantic-ui-react'
 
 import Header from '../UI/Header/Header';
-import ResetButton from '../UI/Buttons/Button/Button';
 import Input from '../UI/FormElements/Input/Input';
 import Dropdown from '../UI/FormElements/Dropdown/Dropdown';
 import Button from '../UI/Buttons/Button/Button';
