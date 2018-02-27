@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 import { Form, Image } from 'semantic-ui-react';
+
 import Icon from '../../assets/images/paw-print.png';
 import FormErrors from '../FormErrors/FormErrors';
 import Header from '../UI/Header/Header';

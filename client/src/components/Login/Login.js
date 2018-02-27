@@ -4,11 +4,15 @@ import { bindActionCreators } from 'redux';
 import { handleUserLogin } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-import { Button, Form, Grid, Header, Image, Segment, Input } from 'semantic-ui-react';
+import { Form, Image } from 'semantic-ui-react';
 
-import classes from './Login.css'
+import FormErrors from '../FormErrors/FormErrors';
+import Header from '../UI/Header/Header';
+import Input from '../UI/FormElements/Input/Input';
+import Button from '../UI/Buttons/Button/Button';
 import Icon from '../../assets/images/paw-print.png';
 
+import classes from './Login.css'
 
 class LoginForm extends Component {
 
@@ -34,11 +38,11 @@ class LoginForm extends Component {
         }
     }
 
-    handleFormInputChange = (event, key) => {
+    handleFormInputChange = (e, { value, id }) => {
         const updatedFormData = updateObject(this.state.formData, {
-            [key]: updateObject(this.state.formData[key], {
-                value: event.target.value,
-                valid: checkValidity(event.target.value, this.state.formData[key].validation),
+            [id]: updateObject(this.state.formData[id], {
+                value,
+                valid: checkValidity(value, this.state.formData[id].validation),
                 touched: true
             })
         });
@@ -56,60 +60,61 @@ class LoginForm extends Component {
 
         let errorMessage = null;
         if (this.props.error) {
-            errorMessage = (
-                <p style={{color: "red", textTransform: 'capitalize'}}>{this.props.error.user_authentication}</p>
-            );
+            errorMessage = <FormErrors content={this.props.error} />
         }
 
         let submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid )
 
-
         return (
-            <Grid
-                textAlign='center'
-                className={classes.LoginForm}
-                verticalAlign='middle'
-            >
-                <Grid.Column className={classes.LoginGridColumn}>
-                    <Header as='h2' className={classes.LoginHeading} textAlign='center'>
-                        <Image src={Icon} />
-                        {' '}Log-in to your account
-                        </Header>
-                    <Form size='large' onSubmit={() => this.handleFormSubmit()}>
-                        <Segment stacked>
-                            {errorMessage}
-                            <Form.Field
-                                fluid
-                                icon='user'
-                                iconPosition='left'
-                                control={ Input }
-                                placeholder='Username'
-                                id='username'
-                                value={this.state.username}
-                                onChange={event => this.handleFormInputChange(event, 'username')}
-                                className={this.state.formData.username.touched && !this.state.formData.username.valid ? classes.Invalid : null }
-                            />
-                            <Form.Field
-                                fluid
-                                icon='lock'
-                                iconPosition='left'
-                                placeholder='Password'
-                                control={Input}
-                                id='password'
-                                type='password'
-                                value={this.state.password}
-                                onChange={event => this.handleFormInputChange(event, 'password')}
-                            />
-
-                            <Button disabled={submitDisabled} className={classes.LoginButton} fluid size='large'>Login</Button>
-                        </Segment>
-                    </Form>
-                </Grid.Column>
-            </Grid>
-        );
-    }
+                <Form size='large' className={classes.Form} onSubmit={this.handleFormSubmit}>
+                    <Image
+                        centered
+                        src={Icon}
+                        className={classes.HeaderIcon}
+                    />
+                    <Header
+                        as='h2'
+                        className={classes.SignUpHeading}
+                        textAlign='center'
+                        content="Log In To Your Account" />
+                    {errorMessage}
+                    <Input
+                        fluid
+                        icon='user'
+                        iconPosition='left'
+                        control='input'
+                        placeholder='Username'
+                        id='username'
+                        control="input"
+                        type="text"
+                        value={this.state.formData.username.value}
+                        onChange={this.handleFormInputChange}
+                    />
+                    <Input
+                        fluid
+                        icon='lock'
+                        iconPosition='left'
+                        placeholder='Password'
+                        control="input"
+                        id='password'
+                        type='password'
+                        value={this.state.formData.password.value}
+                        onChange={this.handleFormInputChange}
+                    />
+                    <Button 
+                        disabled={submitDisabled} 
+                        className={classes.LoginButton} 
+                        fluid 
+                        size='large'
+                        content="Log In" 
+                        color="blue"
+                    />
+                </Form>
+            );
+        }
 
 }
+
 const mapStateToProps = (state) => {
     const { error } = state.auth
     return { error }
