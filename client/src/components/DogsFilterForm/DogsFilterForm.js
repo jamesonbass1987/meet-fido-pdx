@@ -24,11 +24,6 @@ class DogFilterForm extends Component {
     }
 
     render() {
-
-        const breedsDropdownItems = mapDropdownItems(this.props.attributes.breeds);
-        const sizesDropdownItems = mapDropdownItems(this.props.attributes.sizes);
-        const agesDropdownItems = mapDropdownItems(this.props.attributes.ages);
-
         return (
             <Form className={classes.InputContainer}>
                 <Dropdown
@@ -38,7 +33,7 @@ class DogFilterForm extends Component {
                     search
                     className={classes.InputDropdowns}
                     selection
-                    options={breedsDropdownItems}
+                    options={mapDropdownItems(this.props.attributes.breeds)}
                     value={this.props.currentFilter.breed}
                     id='breed'
                 />
@@ -47,7 +42,7 @@ class DogFilterForm extends Component {
                     fluid
                     className={classes.InputDropdowns}
                     selection
-                    options={agesDropdownItems}
+                    options={mapDropdownItems(this.props.attributes.ages)}
                     onChange={this.handleFilterUpdate}
                     value={this.props.currentFilter.age}
                     id='age'
@@ -57,7 +52,7 @@ class DogFilterForm extends Component {
                     fluid
                     className={classes.InputDropdowns}
                     selection
-                    options={sizesDropdownItems}
+                    options={mapDropdownItems(this.props.attributes.sizes)}
                     onChange={this.handleFilterUpdate}
                     value={this.props.currentFilter.size}
                     id='size'

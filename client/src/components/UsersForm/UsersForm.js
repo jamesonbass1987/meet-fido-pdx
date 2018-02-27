@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchParks, updateUserFilter, resetUserFilter }  from '../../store/actions/index';
+import { mapDropdownItems } from '../../shared/utility';
 
 import { Form, Button, Icon } from 'semantic-ui-react';
 import InputField from '../UI/FormElements/Input/Input';
@@ -24,13 +25,7 @@ class UsersForm extends Component {
 
     render() {
 
-        const parksDropdownItems = this.props.parks.map((park, i) => {
-            return {
-                text: park.name,
-                value: park.name,
-                key: i + park.name
-            }
-        })
+        const parksDropdownItems = mapDropdownItems(this.props.parks);
 
         return (
             <Form className={classes.UsersForm} size="large">

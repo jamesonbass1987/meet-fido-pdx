@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
+import { mapDropdownItems } from '../../shared/utility';
 
 import { Form } from 'semantic-ui-react';
 import InputField from '../UI/FormElements/Input/Input';
@@ -97,15 +98,6 @@ class UserEditForm extends Component {
     }
 
     render() {
-
-        const dropdownItems = this.props.neighborhoods.map(neighborhood => {
-            return {
-                text: neighborhood.name,
-                value: neighborhood.id,
-                key: neighborhood.name + neighborhood.id
-            }
-        })
-
         return (
             <Form className={classes.EditForm} onSubmit={() => this.handleFormSubmission()}>
                 <Header as='h1' content="Edit Profile:" />
@@ -122,7 +114,7 @@ class UserEditForm extends Component {
                         selection
                         id='neighborhood_id'
                         label="Neighborhood:"
-                        options={dropdownItems}
+                        options={mapDropdownItems(this.props.neighborhoods)}
                         onChange={this.handleFormInputChange}
                         defaultValue={this.state.formData.neighborhood_id.value}
                     />
