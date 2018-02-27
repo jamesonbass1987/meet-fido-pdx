@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, TextArea  } from 'semantic-ui-react'
+import { Form, Input, TextArea  } from 'semantic-ui-react';
 
 const input = props => {
 
@@ -14,7 +14,7 @@ const input = props => {
             break
         default: 
             controlType = Input
-    }
+    };
 
     return (
         <Form.Field
@@ -28,7 +28,7 @@ const input = props => {
             value={props.value}
             placeholder={props.placeholder}
         />
-    )
+    );
 };
 
 export default input;

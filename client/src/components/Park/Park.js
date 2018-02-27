@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { updateCurrentUser, fetchCurrentUser } from '../../store/actions/index';
 
 class Park extends Component {
@@ -12,54 +12,53 @@ class Park extends Component {
         showAddParkBtn: true,
         hideable: false,
         showPark: true
-    }
+    };
 
-    componentWillMount(){
-        const isHideable = !!this.props.selectedUser && parseInt(this.props.match.params.userId, 10) === this.props.currentUser.id 
-        const addBtnShowable = this.props.park.users.some(user => (user.id === this.props.currentUser.id))
+    componentWillMount = () => {
+        const isHideable = !!this.props.selectedUser && parseInt(this.props.match.params.userId, 10) === this.props.currentUser.id;
+        const addBtnShowable = this.props.park.users.some(user => (user.id === this.props.currentUser.id));
 
         this.setState({
             showAddParkBtn: addBtnShowable ? false : true,
             hideable:  isHideable ? true : false
-        })
-    }
+        });
+    };
 
-    shouldComponentUpdate(nextProps, nextState){
-        return this.props.selectedUser !== nextProps.selectedUser || this.props !== nextProps || this.state !== nextState
-    }
+    shouldComponentUpdate = (nextProps, nextState) => (
+        this.props.selectedUser !== nextProps.selectedUser || this.props !== nextProps || this.state !== nextState
+    );
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps = nextProps => {
         if (this.props.selectedUser !== nextProps.selectedUser){
             const isHideable = parseInt(nextProps.match.params.userId, 10) === nextProps.currentUser.id 
-            const addBtnShowable = nextProps.park.users.some(user => (user.id === nextProps.currentUser.id))
+            const addBtnShowable = nextProps.park.users.some(user => (user.id === nextProps.currentUser.id));
 
             this.setState({
                 showAddParkBtn: addBtnShowable ? false : true,
                 hideable: isHideable ? true : false
-            })
-        }
-    }
-
+            });
+        };
+    };
 
     handleAddRemovePark = () => {
         this.setState({ 
             showAddParkBtn: !this.state.showAddParkBtn,
             showPark: this.state.hideable ? false : true 
-        })
+        });
 
         this.props.updateCurrentUser(this.props.currentUser, 'parksList', this.props.park.id);
     }
 
     render(){
 
-        const isFenced = this.props.park.fenced ? "Fenced" : "Open Off Leash Area"
-        const parkAddress = !this.props.park.address_2 ? `${this.props.park.address_1}` : `${this.props.park.address_1} and ${this.props.park.address_2}`
-        const hours = `${this.props.park.hours_open} A.M. to ${this.props.park.hours_close}`
+        const isFenced = this.props.park.fenced ? "Fenced" : "Open Off Leash Area";
+        const parkAddress = !this.props.park.address_2 ? `${this.props.park.address_1}` : `${this.props.park.address_1} and ${this.props.park.address_2}`;
+        const hours = `${this.props.park.hours_open} A.M. to ${this.props.park.hours_close}`;
 
         const userPopups = this.props.park.users.map(user => {
             const popupHeader = <Popup.Header>
                 <Image src={user.profile_image_url} verticalAlign='middle' circular />
-            </Popup.Header>
+            </Popup.Header>;
 
             return <Popup
                 key={user.username}
@@ -67,8 +66,8 @@ class Park extends Component {
                 header={popupHeader}
                 content={user.username}
                 className={classes.Popup}
-            />
-        })
+            />;
+        });
 
 
         const parkIcon = <Popup
@@ -97,13 +96,10 @@ class Park extends Component {
                         </Item.Content>
                     </Item>
 
-        park = this.state.hideable && !this.state.showPark ? <div></div> : park
+        park = this.state.hideable && !this.state.showPark ? <div></div> : park;
 
         return park;
-    }
-   
-
-
+    };
 };
 
 const mapStateToProps = state => {
@@ -114,8 +110,8 @@ const mapStateToProps = state => {
         loading,
         currentUser,
         selectedUser
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ updateCurrentUser, fetchCurrentUser }, dispatch)

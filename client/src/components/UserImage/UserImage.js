@@ -9,6 +9,6 @@ const userImage = props => (
         size={props.size ? props.size : null}
         className={classes.UserImage}
     />
-)
+);
 
 export default userImage;

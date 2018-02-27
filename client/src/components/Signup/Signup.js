@@ -13,7 +13,7 @@ import Button from '../UI/Buttons/Button/Button';
 import Input from '../UI/FormElements/Input/Input';
 import Dropdown from '../UI/FormElements/Dropdown/Dropdown';
 
-import classes from './Signup.css'
+import classes from './Signup.css';
 
 class SignUpForm extends Component {
 
@@ -64,11 +64,11 @@ class SignUpForm extends Component {
                 touched: false
             }
         }
-    }
+    };
 
-    componentWillMount(){
-        this.props.fetchNeighborhoods()
-    }
+    componentWillMount = () => {
+        this.props.fetchNeighborhoods();
+    };
 
     handleFormInputChange = (e, { value, id }) => {
         const updatedFormData = updateObject(this.state.formData, {
@@ -78,29 +78,29 @@ class SignUpForm extends Component {
                 touched: true
             })
         });
-        this.setState({ formData: updatedFormData })
-    }
+        this.setState({ formData: updatedFormData });
+    };
 
-    handleFormSubmission() {
+    handleFormSubmission = () => {
         const userInfo = {
             username: this.state.formData.username.value,
             password: this.state.formData.password.value,
             password_confirmation: this.state.formData.password_confirmation.value,
             email: this.state.formData.email.value,
             neighborhood_id: this.state.formData.neighborhood_id.value
-        }
+        };
 
         this.props.handleUserSignUp(userInfo);
-    }
+    };
 
     render() {
 
         let errorMessage;
         if (this.props.error) {
             errorMessage = <FormErrors content={this.props.error} />
-        }
+        };
 
-        const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
+        const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid);
 
         const dropdownItems = this.props.neighborhoods.map(neighborhood => ({
                 text: neighborhood.name,
@@ -180,8 +180,8 @@ class SignUpForm extends Component {
                     />
             </Form>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
     const { neighborhoods } = state.neighborhood;
