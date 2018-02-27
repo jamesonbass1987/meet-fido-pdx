@@ -6,15 +6,15 @@ import { bindActionCreators } from 'redux';
 import { handleLogout, removeCurrentUser } from '../../store/actions/index';
 
 class Logout extends Component {
-    componentDidMount() {
+    componentDidMount = () => {
         this.props.handleLogout();
         this.props.removeCurrentUser();
-    }
+    };
 
     render() {
         return <Redirect to="/" />;
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ handleLogout, removeCurrentUser }, dispatch)

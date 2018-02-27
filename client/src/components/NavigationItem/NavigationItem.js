@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react';
 
-import classes from './NavigationItem.css'
+import classes from './NavigationItem.css';
 
 const navigationItem = props => (
         <Menu.Item
@@ -17,6 +17,6 @@ const navigationItem = props => (
             key={props.link}
             >
         </Menu.Item>
-)
+);
 
-export default navigationItem
+export default navigationItem;

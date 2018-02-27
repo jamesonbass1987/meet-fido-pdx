@@ -12,7 +12,7 @@ import Input from '../UI/FormElements/Input/Input';
 import Button from '../UI/Buttons/Button/Button';
 import Icon from '../../assets/images/paw-print.png';
 
-import classes from './Login.css'
+import classes from './Login.css';
 
 class LoginForm extends Component {
 
@@ -36,7 +36,7 @@ class LoginForm extends Component {
                 touched: false
             }
         }
-    }
+    };
 
     handleFormInputChange = (e, { value, id }) => {
         const updatedFormData = updateObject(this.state.formData, {
@@ -46,24 +46,24 @@ class LoginForm extends Component {
                 touched: true
             })
         });
-        this.setState({ formData: updatedFormData })
-    }
+        this.setState({ formData: updatedFormData });
+    };
 
     handleFormSubmit = () => {
         const username = this.state.formData.username.value;
         const password = this.state.formData.password.value;
 
-        this.props.handleUserLogin({username, password})
-    }
+        this.props.handleUserLogin({username, password});
+    };
 
     render() {
 
         let errorMessage = null;
         if (this.props.error) {
             errorMessage = <FormErrors content={this.props.error} />
-        }
+        };
 
-        let submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid )
+        let submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid );
 
         return (
                 <Form size='large' className={classes.Form} onSubmit={this.handleFormSubmit}>
@@ -110,9 +110,8 @@ class LoginForm extends Component {
                     />
                 </Form>
             );
-        }
-
-}
+        };
+};
 
 const mapStateToProps = (state) => {
     const { error } = state.auth
@@ -122,6 +121,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({ handleUserLogin }, dispatch)
-)
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

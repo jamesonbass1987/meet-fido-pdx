@@ -3,7 +3,7 @@ import { Menu, MenuItem, Button } from 'semantic-ui-react';
 import classes from './NavigationItems.css';
 
 import NavigationItem from '../NavigationItem/NavigationItem';
-import Logo from '../UI/Logo/Logo'
+import Logo from '../UI/Logo/Logo';
 
 const navigationItems = props => {
 
@@ -15,7 +15,7 @@ const navigationItems = props => {
             link={navItem.link}
             key={navItem.name}
         />
-    ))
+    ));
 
     const navButtons = props.navButtons.map((navButton, i) => (
         <Button
@@ -27,7 +27,7 @@ const navigationItems = props => {
             href={navButton.href ? navButton.href : null}
             to={navButton.to ? navButton.to : null}
         >{navButton.content}</Button>
-    ))
+    ));
 
     return (
         <Menu
@@ -42,7 +42,7 @@ const navigationItems = props => {
                 { navButtons }
             </MenuItem>
         </Menu>
-    )
-}
+    );
+};
 
-export default navigationItems
+export default navigationItems;

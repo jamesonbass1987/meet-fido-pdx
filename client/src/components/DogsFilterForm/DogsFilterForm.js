@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { fetchDogAttribute, updateDogFilter, resetDogFilter } from '../../store/actions/index';
 import { mapDropdownItems } from '../../shared/utility';
 
-import { Form, Button, Icon } from 'semantic-ui-react'
-import ResetButton from '../UI/Buttons/Button/Button'
-import Dropdown from '../UI/FormElements/Dropdown/Dropdown'
+import { Form, Button, Icon } from 'semantic-ui-react';
+import ResetButton from '../UI/Buttons/Button/Button';
+import Dropdown from '../UI/FormElements/Dropdown/Dropdown';
 
 import classes from './DogsFilterForm.css';
 class DogFilterForm extends Component {
 
-    componentWillMount(){
+    componentWillMount = () => {
         if (this.props.attributes.breeds.length === 0){
             this.props.fetchDogAttribute("ages")
             this.props.fetchDogAttribute("breeds")
             this.props.fetchDogAttribute("sizes")
-        }
-    }
+        };
+    };
 
     handleFilterUpdate = (event, { value, id }) => {
         this.props.updateDogFilter(id, value)
-    }
+    };
 
     render() {
         return (

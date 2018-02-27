@@ -6,7 +6,7 @@ import { parkFilter } from '../../shared/filters'
 
 const mapComponent = withScriptjs(withGoogleMap(props => {
 
-    const parks = parkFilter(props.content, props.filterParams)
+    const parks = parkFilter(props.content, props.filterParams);
     
     const contentMarkerList = parks.map((park, i) => (
             <Marker
@@ -14,8 +14,8 @@ const mapComponent = withScriptjs(withGoogleMap(props => {
                 key={i}
                 clickable
                 onClick={() => props.markerClicked(park.name)}
-                />
-    ))
+            />
+    ));
 
     return (
         <div>
@@ -23,12 +23,13 @@ const mapComponent = withScriptjs(withGoogleMap(props => {
                 defaultZoom={11}
                 defaultCenter={{ lat: 45.523062, lng: -122.676482 }}
                 googleMapURL={props.googleMapURL}
-        >
+            >
                 {contentMarkerList}
             </GoogleMap>
         </div>
-    )}
-))
+        )}
+    )
+);
 
 export default mapComponent;
 

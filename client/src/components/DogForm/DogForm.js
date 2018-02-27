@@ -5,8 +5,8 @@ import { fetchDogAttribute, addEditDog } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 import { mapDropdownItems } from '../../shared/utility';
 
-import classes from './DogForm.css'
-import { Form } from 'semantic-ui-react'
+import classes from './DogForm.css';
+import { Form } from 'semantic-ui-react';
 
 import Header from '../UI/Header/Header';
 import Input from '../UI/FormElements/Input/Input';
@@ -78,14 +78,14 @@ class DogForm extends Component {
         },
         dogId: this.props.dogId,
         userId: this.props.currentUser.id
-    }
+    };
 
-    componentWillMount() {
+    componentWillMount = () => {
         if (this.props.attributes.breeds.length === 0) {
             this.props.fetchDogAttribute("ages")
             this.props.fetchDogAttribute("breeds")
             this.props.fetchDogAttribute("sizes")
-        }
+        };
 
         if (this.props.type === 'editDog'){
             this.setState({
@@ -134,8 +134,8 @@ class DogForm extends Component {
                         valid: true
                     }
                 }
-            })
-        }
+            });
+        };
     };
 
     handleFormInputChange = (e, { value, id }) => {
@@ -146,11 +146,18 @@ class DogForm extends Component {
                 touched: true
             })
         });
-        this.setState({ formData: updatedFormData })
+
+        this.setState({ formData: updatedFormData });
     }
 
     handleFormSubmission() {
-        const { name, profile_image_url, description, sex, size_id, age_id, breed_id } = this.state.formData;
+        const { name, 
+                profile_image_url, 
+                description, 
+                sex, 
+                size_id, 
+                age_id, 
+                breed_id } = this.state.formData;
 
         const dogInfo = {
             name: name.value,
@@ -175,9 +182,9 @@ class DogForm extends Component {
         const sexesDropdownItems = [
             { value: 'Male', text: 'Male' },
             { value: 'Female', text: 'Female' } 
-        ]
+        ];
                                 
-        const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
+        const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid);
 
         return (
             <Form className={classes.DogForm} onSubmit={() => this.handleFormSubmission()}>
@@ -259,21 +266,21 @@ class DogForm extends Component {
                 />
             </Form>
         );
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
-    const { currentFilter, attributes } = state.dog
-    const { currentUser } = state.auth
+    const { currentFilter, attributes } = state.dog;
+    const { currentUser } = state.auth;
     return {
         currentFilter,
         attributes,
         currentUser
-    }
-}
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({ fetchDogAttribute, addEditDog }, dispatch)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DogForm)
+export default connect(mapStateToProps, mapDispatchToProps)(DogForm);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,9 +8,9 @@ import { deleteDog } from '../../store/actions/index';
 import { Card, Icon, Image, Button } from 'semantic-ui-react';
 import Modal from '../UI/Modal/Modal';
 import DogForm from '../DogForm/DogForm';
-import ConfirmableButton from '../UI/Buttons/ConfirmableButton/ConfirmableButton'
+import ConfirmableButton from '../UI/Buttons/ConfirmableButton/ConfirmableButton';
 
-import classes from './Dog.css'
+import classes from './Dog.css';
 
 class Dog extends Component {
 
@@ -18,22 +18,18 @@ class Dog extends Component {
         showModal: false,
         showEditBtn: this.props.dog.user_id === this.props.currentUser.id && this.props.isEditable,
         showDelete: false
-    }
+    };
 
-    toggleModal = () => {
-        this.setState({
-            showModal: !this.state.showModal
-        })
-    }
+    toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
-    show = () => this.setState({ showDelete: true })
+    show = () => this.setState({ showDelete: true });
 
-    handleCancel = () => this.setState({ showDelete: false })
+    handleCancel = () => this.setState({ showDelete: false });
 
     handleConfirm = () => {
-        this.setState({ showDelete: false })
-        this.props.deleteDog(this.props.dog.id)
-    }
+        this.setState({ showDelete: false });
+        this.props.deleteDog(this.props.dog.id);
+    };
 
     render(){
 
@@ -45,12 +41,12 @@ class Dog extends Component {
                     <Icon name='user' /> Owner: {this.props.dog.user.username}
                 </Link>
             </Card.Content>) :
-            null
+            null;
 
         let ownerControls;
 
         if (this.state.showEditBtn){
-            ownerControls = (<React.Fragment>
+            ownerControls = <React.Fragment>
                                 <Button onClick={this.toggleModal} color="blue" >Edit</Button>
                                 <ConfirmableButton
                                     open={this.state.showDelete}
@@ -63,8 +59,8 @@ class Dog extends Component {
                                     fluid
                                     message="Delete"
                                 />
-                            </React.Fragment>)
-        }
+                            </React.Fragment>;
+        };
 
         let dogModal = <Modal
                             handleClose={this.toggleModal}
@@ -80,10 +76,9 @@ class Dog extends Component {
                                 dogId={this.props.dog.id}
                                 toggleModal={this.toggleModal}
                             />
-                        </Modal>
+                        </Modal>;
 
-
-        return(
+        return (
             <Card id={this.props.id} className={classes.Dog}>
                 <Image centered src={this.props.dog.profile_image_url} />
                 <Card.Content>
@@ -98,7 +93,7 @@ class Dog extends Component {
                 {dogModal}
             </Card>
         );
-    }    
+    };    
 };
 
 const mapStateToProps = state => {

@@ -3,7 +3,7 @@ import { List } from 'semantic-ui-react';
 
 
 const formErrors = props => {
-    const formErrors = props.error.map(error => <List.Item content={error} />)
+    const formErrors = props.error.map(error => <List.Item content={error} />);
 
     return (
         <List 
