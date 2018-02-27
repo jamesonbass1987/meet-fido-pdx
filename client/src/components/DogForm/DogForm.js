@@ -188,7 +188,7 @@ class DogForm extends Component {
 
         return (
             <Form className={classes.DogForm} onSubmit={() => this.handleFormSubmission()}>
-                <Header as='h1'>{this.props.headerTitle}</Header>
+                <Header as='h1' content={this.props.headerTitle} />
                 <Input
                     control='input'
                     id="name"
@@ -215,6 +215,7 @@ class DogForm extends Component {
                     value={this.state.formData.description.value} />
                 <Dropdown
                     placeholder='Sex'
+                    label="Sex:"
                     onChange={this.handleFormInputChange}
                     fluid
                     search
@@ -226,6 +227,7 @@ class DogForm extends Component {
                 />
                 <Dropdown
                     placeholder='Breed'
+                    label="Breed:"
                     onChange={this.handleFormInputChange}
                     fluid
                     search
@@ -237,6 +239,7 @@ class DogForm extends Component {
                 />
                 <Dropdown
                     placeholder='Age'
+                    label="Age:"
                     fluid
                     className={classes.InputDropdowns}
                     selection
@@ -247,6 +250,7 @@ class DogForm extends Component {
                 />
                 <Dropdown
                     placeholder='Size'
+                    label="Size:"
                     fluid
                     className={classes.InputDropdowns}
                     selection
