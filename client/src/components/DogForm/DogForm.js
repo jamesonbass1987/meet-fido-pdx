@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchDogAttribute, addEditDog } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
+import { mapDropdownItems } from '../../shared/utility';
 
 import classes from './DogForm.css'
-import { Button, Form, Input, Header, TextArea, Dropdown } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
+
+import Header from '../UI/Header/Header';
+import ResetButton from '../UI/Buttons/Button/Button';
+import Input from '../UI/FormElements/Input/Input';
+import Dropdown from '../UI/FormElements/Dropdown/Dropdown';
+import Button from '../UI/Buttons/Button/Button';
 
 class DogForm extends Component {
 
@@ -130,10 +137,9 @@ class DogForm extends Component {
                 }
             })
         }
-    }
+    };
 
     handleFormInputChange = (e, { value, id }) => {
-
         const updatedFormData = updateObject(this.state.formData, {
             [id]: updateObject(this.state.formData[id], {
                 value,
@@ -141,12 +147,12 @@ class DogForm extends Component {
                 touched: true
             })
         });
-        
         this.setState({ formData: updatedFormData })
     }
 
-    handleFormSubmission(event) {
-        const { name, profile_image_url, description, sex, size_id, age_id, breed_id } = this.state.formData
+    handleFormSubmission() {
+        const { name, profile_image_url, description, sex, size_id, age_id, breed_id } = this.state.formData;
+
         const dogInfo = {
             name: name.value,
             description: description.value,
@@ -157,9 +163,9 @@ class DogForm extends Component {
             breed_id: breed_id.value,
             id: this.state.dogId,
             user_id: this.state.userId
-        }
+        };
 
-        const formType = this.props.type
+        const formType = this.props.type;
 
         this.props.addEditDog(dogInfo, formType);
         this.props.toggleModal('dogForm');
@@ -167,58 +173,34 @@ class DogForm extends Component {
 
     render() {
 
-        const breedsDropdownItems = this.props.attributes.breeds.map((breed, i) => {
-            return {
-                text: breed.name,
-                value: breed.id,
-                key: i + breed
-            }
-        })
-
-        const sizesDropdownItems = this.props.attributes.sizes.map((size, i) => {
-            return {
-                text: size.name,
-                value: size.id,
-                key: i + size
-            }
-        })
-
-        const agesDropdownItems = this.props.attributes.ages.map((age, i) => {
-            return {
-                value: age.id,
-                text: age.name,
-                key: i + age
-            }
-        })
-
         const sexesDropdownItems = [
-                                {value: 'Male', text: 'Male'}, 
-                                {value: 'Female', text: 'Female'}
-                            ]
-
+            { value: 'Male', text: 'Male' },
+            { value: 'Female', text: 'Female' } 
+        ]
+                                
         const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid)
 
         return (
             <Form className={classes.DogForm} onSubmit={() => this.handleFormSubmission()}>
                 <Header as='h1'>{this.props.headerTitle}</Header>
-                <Form.Field
-                    control={Input}
+                <Input
+                    control='input'
                     id="name"
                     type="text"
                     label='Name:'
                     onChange={this.handleFormInputChange}
                     value={this.state.formData.name.value}
                     placeholder='Enter your dogs name...' />
-                <Form.Field
-                    control={Input}
+                <Input
+                    control='input'
                     id="profile_image_url"
                     type="text"
                     label='Image URL:'
                     onChange={this.handleFormInputChange}
                     value={this.state.formData.profile_image_url.value}
                     placeholder='Please enter an image url...' />
-                <Form.Field
-                    control={TextArea}
+                <Input
+                    control='textArea'
                     onChange={this.handleFormInputChange}
                     label='About your dog:'
                     type='text'
@@ -236,7 +218,6 @@ class DogForm extends Component {
                     defaultValue={this.state.formData.sex.value}
                     id='sex'
                 />
-
                 <Dropdown
                     placeholder='Breed'
                     onChange={this.handleFormInputChange}
@@ -244,7 +225,7 @@ class DogForm extends Component {
                     search
                     className={classes.InputDropdowns}
                     selection
-                    options={breedsDropdownItems}
+                    options={mapDropdownItems(this.props.attributes.breeds)}
                     defaultValue={this.state.formData.breed_id.value}
                     id='breed_id'
                 />
@@ -253,7 +234,7 @@ class DogForm extends Component {
                     fluid
                     className={classes.InputDropdowns}
                     selection
-                    options={agesDropdownItems}
+                    options={mapDropdownItems(this.props.attributes.ages)}
                     onChange={this.handleFormInputChange}
                     defaultValue={this.state.formData.age_id.value}
                     id="age_id"
@@ -263,8 +244,9 @@ class DogForm extends Component {
                     fluid
                     className={classes.InputDropdowns}
                     selection
-                    options={sizesDropdownItems}
+                    options={mapDropdownItems(this.props.attributes.sizes)}
                     onChange={this.handleFormInputChange}
+                    defaultValue={this.state.formData.size_id.value}
                     value={this.state.formData.size_id.value}
                     id="size_id"
                 />
@@ -274,7 +256,8 @@ class DogForm extends Component {
                     size='large'
                     color='blue'
                     disabled={submitDisabled}
-                >Submit</Button>
+                    content="Submit"
+                />
             </Form>
         );
     }
