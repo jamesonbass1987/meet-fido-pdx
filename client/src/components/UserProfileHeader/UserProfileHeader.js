@@ -9,21 +9,21 @@ const userProfileHeader = props => (
     <Segment className={classes.ProfileHeaderSection}>
         <UserImage src={props.user.profile_image_url} />
         <Divider />
-        <UserHeader 
+        <Header 
             className={classes.ProfileHeader} 
             as='h1' 
             size="huge" 
             textAlign="center" 
-            content={props.user.username}
         >
-            <Header.Subheader 
-                content={props.user.neighborhood.name} 
+            {props.user.username}
+            <Header.Subheader
+                content={props.user.neighborhood.name}
             />
-            <Header.Subheader 
+            <Header.Subheader
                 className={classes.ProfileSubHeader}
                 content={props.user.bio}
             />
-        </UserHeader>
+        </Header>
     </Segment>
 );
 
