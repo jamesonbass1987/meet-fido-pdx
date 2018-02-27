@@ -85,7 +85,6 @@ class LoginForm extends Component {
                         control='input'
                         placeholder='Username'
                         id='username'
-                        control="input"
                         type="text"
                         value={this.state.formData.username.value}
                         onChange={this.handleFormInputChange}

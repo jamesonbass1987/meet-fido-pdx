@@ -3,72 +3,70 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { updateParkFilter, resetParkFilter } from '../../store/actions/index';
 
-import { Form, Input, Checkbox, Button, Icon } from 'semantic-ui-react'
+import { Form, Icon, Button } from 'semantic-ui-react'
+import Checkbox from '../UI/FormElements/Checkbox/Checkbox';
+import Input from '../UI/FormElements/Input/Input';
+import ResetButton from '../UI/Buttons/Button/Button'
 
 import classes from './ParkFilterForm.css'
 
 class ParkFilterForm extends Component{
 
-
-    handleFilterUpdate = (event) => {
-        if (event.target.name === 'searchQuery'){
-            this.props.updateParkFilter(event.target.name, event.target.value)
-        } else {
-            const name = event.target.id
-            const value = !this.props.parkFilter[name]
-            this.props.updateParkFilter(name, value)
-        }
+    handleFilterUpdate = (event, { id, value }) => {
+        const formVal = id !== 'searchQuery' ? !this.props.parkFilter[id] : value;
+        this.props.updateParkFilter(id, formVal);
     }
 
     handleFormReset = () => {
         this.props.resetParkFilter();
     }
 
-
     render(){
         return (
             <Form size="large" className={classes.Form}>
                 <Input
                     className={classes.FormInput}
-                    name="searchQuery"
+                    id="searchQuery"
+                    type="text"
                     fluid
                     icon='search'
                     placeholder='Search for parks by name...'
                     value={this.props.parkFilter.searchQuery}
                     onChange={this.handleFilterUpdate}
                 />
-                <Checkbox
-                    toggle
-                    id="fencedPark"
-                    defaultChecked={this.props.parkFilter.fencedPark}
-                    label="Fenced"
-                    className={classes.FormCheckbox}
-                    onChange={this.handleFilterUpdate}
-                />
-                <Checkbox
-                    toggle
-                    id="unfencedPark"
-                    defaultChecked={this.props.parkFilter.unfencedPark}
-                    label="Open Off Leash Areas"
-                    className={classes.FormCheckbox}
-                    onChange={this.handleFilterUpdate}
-                />
-                <Button
-                    animated='vertical'
-                    onClick={() => this.handleFormReset()}
-                    color="twitter"
-                    floated="right"
-                    className={classes.Button}
-                ><Button.Content hidden>Reset</Button.Content>
-                    <Button.Content visible>
-                        <Icon name='repeat' />
-                    </Button.Content>
-                </Button>
+                <Form.Group width="16" inline className={classes.Inputs}>
+                    <Checkbox
+                        toggle
+                        floated
+                        id="fencedPark"
+                        defaultChecked={this.props.parkFilter.fencedPark}
+                        label="Fenced"
+                        onChange={this.handleFilterUpdate}
+                    />
+                    <Checkbox
+                        toggle
+                        id="unfencedPark"
+                        defaultChecked={this.props.parkFilter.unfencedPark}
+                        label="Open Off Leash Areas"
+                        onChange={this.handleFilterUpdate}
+                    />
+                    <ResetButton
+                        animated='vertical'
+                        onClick={this.handleFormReset}
+                        color="twitter"
+                        size="large"
+                        className={classes.Button}
+                        content={(
+                            <React.Fragment>
+                                <Button.Content hidden>Reset</Button.Content>
+                                <Button.Content visible content={<Icon name='repeat' />} />
+                            </React.Fragment>
+                        )}
+                    />
+                </Form.Group>
             </Form>
         )
-
     }
-    
 }
 
 const mapStateToProps = state => {
