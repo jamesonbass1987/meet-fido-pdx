@@ -114,7 +114,7 @@ export const updateSignUpState = () => ({
 
 export const fetchCurrentUser = () => {
     return dispatch => {
-        dispatch(authActionStart());
+        // dispatch(authActionStart());
         const token = localStorage.getItem('token');
         if (!token) {
             dispatch({ type: actionTypes.AUTH_LOGOUT });
@@ -161,11 +161,12 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
     };
 
     return dispatch => {
-        dispatch(authActionStart())
+        // dispatch(authActionStart())
+        debugger;
         axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
             .then(resp => {
-                dispatch(fetchCurrentUser())
-                dispatch(updateCurrentUserSuccess(resp));
+                dispatch(fetchCurrentUser());
+                dispatch(updateCurrentUserSuccess());
             })
             .catch(err => {
                 dispatch(authActionFail(err));
@@ -179,7 +180,6 @@ const updateParks = (parkIds, value) => (
                                     [...parkIds, value]
 );
 
-export const updateCurrentUserSuccess = user => ({
-        type: actionTypes.UPDATE_CURRENT_USER_SUCCESS,
-        user
+export const updateCurrentUserSuccess = () => ({
+        type: actionTypes.UPDATE_CURRENT_USER_SUCCESS
 });

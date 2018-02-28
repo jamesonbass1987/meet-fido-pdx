@@ -4,15 +4,19 @@ import { connect } from 'react-redux';
 import { Image, Item, Popup, Icon } from 'semantic-ui-react';
 import classes from './Park.css';
 import { bindActionCreators } from 'redux';
-import { updateCurrentUser, fetchCurrentUser } from '../../store/actions/index';
+import { updateCurrentUser } from '../../store/actions/index';
 
 class Park extends Component {
 
-    state = {
-        showAddParkBtn: true,
-        hideable: false,
-        showPark: true
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showAddParkBtn: true,
+            hideable: false,
+            showPark: true
+        };
+    }
 
     componentWillMount = () => {
         const isHideable = !!this.props.selectedUser && parseInt(this.props.match.params.userId, 10) === this.props.currentUser.id;
@@ -24,20 +28,18 @@ class Park extends Component {
         });
     };
 
-    shouldComponentUpdate = (nextProps, nextState) => (
-        this.props !== nextProps || this.state !== nextState
-    );
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state !== nextState;
+    };
 
     componentWillReceiveProps = nextProps => {
-        if (this.props.selectedUser !== nextProps.selectedUser){
-            const isHideable = parseInt(nextProps.match.params.userId, 10) === nextProps.currentUser.id 
-            const addBtnShowable = nextProps.park.users.some(user => (user.id === nextProps.currentUser.id));
+        const isHideable = parseInt(nextProps.match.params.userId, 10) === nextProps.currentUser.id 
+        const addBtnShowable = nextProps.park.users.some(user => (user.id === nextProps.currentUser.id));
 
-            this.setState({
-                showAddParkBtn: addBtnShowable ? false : true,
-                hideable: isHideable ? true : false
-            });
-        };
+        this.setState({
+            showAddParkBtn: addBtnShowable ? false : true,
+            hideable: isHideable ? true : false
+        });
     };
 
     handleAddRemovePark = () => {
@@ -121,7 +123,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ updateCurrentUser, fetchCurrentUser }, dispatch)
+    bindActionCreators({ updateCurrentUser }, dispatch)
 );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Park));

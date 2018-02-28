@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux'
-import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser } from '../../store/actions/index';
+import { fetchUser, deleteUser, removeSelectedUser, fetchCurrentUser, updateCurrentUser } from '../../store/actions/index';
 
 import AdminControls from '../../components/AdminControls/AdminControls'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
@@ -10,41 +10,35 @@ import DogForm from '../../components/DogForm/DogForm'
 import UserProfileHeader from '../../components/UserProfileHeader/UserProfileHeader'
 import UserProfileContent from '../../components/UserProfileContent/UserProfileContent'
 
-import { Container } from 'semantic-ui-react';
+import { Container, Popup, Button } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Modal from '../../components/UI/Modal/Modal';
 
+import classes from './UsersShow.css';
+
 class UsersShow extends Component {
 
-    state = {
-        showDelete: false,
-        showModal: {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            showDelete: false,
+            showModal: {
                 userForm: false,
                 dogForm: false
             }
-    };
-
-    componentWillMount = () =>{
-        const id = this.props.match.params.userId;
-        this.props.fetchUser(id);
-    };
-
-    componentWillReceiveProps = nextProps => {
-        if (this.props.match.params.userId !== nextProps.match.params.userId ||
-            (this.props.isUpdating && !nextProps.isUpdating && this.props.currentUser.id === this.props.selectedUser.id)){
-            const id = nextProps.match.params.userId;
-            this.props.fetchUser(id);
         };
-    };
-
-    componentWillUnmount(){
-        console.log('unmounting component   ')
-        this.props.removeSelectedUser();
+     
     }
 
-    shouldComponentUpdate = (nextProps, nextState) => (
-        this.props.selectedUser !== nextProps.selectedUser
-    );
+    componentWillMount(){
+        const id = this.props.match.params.userId;
+        this.props.fetchUser(id);
+    }
+
+    componentWillUnmount() {
+        this.props.removeSelectedUser();
+    }
 
     handleModalToggle = type => {
         this.setState({showModal: {
@@ -70,6 +64,7 @@ class UsersShow extends Component {
         let adminControls;
         let userFormModal;
         let dogFormModal;
+        let addDogBtn
         if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser.id){
             adminControls = <AdminControls 
                                 currentUser={this.props.currentUser} 
@@ -103,6 +98,17 @@ class UsersShow extends Component {
                                 <DogForm headerTitle="Add New Dog" type="createDog" toggleModal={this.handleModalToggle} />
                             </Modal>;
 
+            addDogBtn = <Popup
+                            trigger={<Button
+                                color="blue"
+                                className={classes.CreateDogBtn}
+                                onClick={() => this.handleModalToggle('dogForm')}
+                                icon='add'
+                            />}
+                            content="Add a new dog to your account."
+                            size="small"
+                        />
+
         };
 
         let userProfile = <Spinner />;
@@ -114,12 +120,13 @@ class UsersShow extends Component {
                             <UserProfileContent 
                                 user={user} 
                                 handleModalToggle={this.handleModalToggle} 
+                                addBtn={addDogBtn}
                             />
                         </React.Fragment>;
         };
 
         return (
-            <Container>
+            <Container className={classes.Container} >
                 {userProfile}
                 {adminControls}
                 {userFormModal}
@@ -135,11 +142,12 @@ const mapStateToProps = state => {
     return { selectedUser,
              loading, 
              isUpdating,
-             currentUser };
+             currentUser,
+            };
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser }, dispatch)
+    bindActionCreators({ fetchUser, deleteUser, removeSelectedUser, fetchCurrentUser, updateCurrentUser }, dispatch)
 );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersShow));

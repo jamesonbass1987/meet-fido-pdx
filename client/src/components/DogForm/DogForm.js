@@ -257,7 +257,6 @@ class DogForm extends Component {
                     options={mapDropdownItems(this.props.attributes.sizes)}
                     onChange={this.handleFormInputChange}
                     defaultValue={this.state.formData.size_id.value}
-                    value={this.state.formData.size_id.value}
                     id="size_id"
                 />
                 <Button

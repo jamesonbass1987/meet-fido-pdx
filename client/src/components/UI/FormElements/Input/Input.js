@@ -21,7 +21,6 @@ const input = props => {
             control={controlType}
             id={props.id}
             icon={props.icon}
-            iconPosition={props.iconPosition}
             type={props.type}
             label={props.label}
             onChange={props.onChange}
