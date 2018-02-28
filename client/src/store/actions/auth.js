@@ -28,7 +28,6 @@ export const handleUserLogin = (payload) => {
                 dispatch(authSuccess({ token: response.data.auth_token, user: response.data.user }));
             })
             .catch(err => {
-                debugger;
                 dispatch(authActionFail(err.response.data.error.user_authentication));
             });
     };
@@ -98,6 +97,7 @@ export const handleUserSignUp = payload => {
                 dispatch(handleUserLogin(userData));
             })
             .catch(err => {
+                debugger;
                 const errors = [];
                 for(let errMsgKey in err.response.data.error){
                     errors.push(`${errMsgKey.split('_').join(" ")} ${err.response.data.error[errMsgKey]}`);

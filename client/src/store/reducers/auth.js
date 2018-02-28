@@ -15,7 +15,6 @@ const authActionStart = state => (
 );
 
 const authActionFail = (state, action) => {
-    debugger;
     return updateObject(state, {
         error: action.error,
         loading: false
@@ -23,11 +22,11 @@ const authActionFail = (state, action) => {
 }
 
 const updateAuthenticatingState = state => (
-    updateObject(state, {isAuthenticating: !state.isAuthenticating})
+    updateObject(state, {isAuthenticating: !state.isAuthenticating, error: null})
 );
 
 const updateSignUpState = state => (
-    updateObject(state, { isSigningUp: !state.isSigningUp })
+    updateObject(state, { isSigningUp: !state.isSigningUp, error: null })
 );
 
 const authSuccess = (state, action) => {

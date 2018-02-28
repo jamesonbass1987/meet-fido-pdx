@@ -95,7 +95,7 @@ class SignUpForm extends Component {
 
         let errorMessage;
         if (this.props.error) {
-            errorMessage = <FormErrors content={this.props.error} />
+            errorMessage = <FormErrors error={this.props.error} />
         };
 
         const submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid);
