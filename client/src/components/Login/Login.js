@@ -60,7 +60,7 @@ class LoginForm extends Component {
 
         let errorMessage = null;
         if (this.props.error) {
-            errorMessage = <FormErrors content={this.props.error} />
+            errorMessage = <FormErrors error={this.props.error} />
         };
 
         let submitDisabled = Object.values(this.state.formData).some(inputField => !inputField.valid );
@@ -114,8 +114,8 @@ class LoginForm extends Component {
 };
 
 const mapStateToProps = (state) => {
-    const { error } = state.auth
-    return { error }
+    const { error } = state.auth;
+    return { error };
 };
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Segment, Divider, Header } from 'semantic-ui-react';
-import UserHeader from '../UI/Header/Header';
 import UserImage from '../UserImage/UserImage';
 import classes from './UserProfileHeader.css';
 

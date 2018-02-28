@@ -8,7 +8,7 @@ export const authActionStart = () => ({
 });
 
 export const authActionFail = error => ({
-    type: actionTypes.AUTH_ACTION_START,
+    type: actionTypes.AUTH_ACTION_FAIL,
     error
 });
 
@@ -28,7 +28,8 @@ export const handleUserLogin = (payload) => {
                 dispatch(authSuccess({ token: response.data.auth_token, user: response.data.user }));
             })
             .catch(err => {
-                dispatch(authActionFail(err.response.data.error));
+                debugger;
+                dispatch(authActionFail(err.response.data.error.user_authentication));
             });
     };
 }
@@ -39,7 +40,14 @@ export const authCheckState = () => {
         if (!token) {
             dispatch(handleLogout());
         } else {
-            dispatch(authSuccess({ token }));
+            axios.get(`/authed_user?token=${token}`)
+                .then(response => {
+                    dispatch(authSuccess({ token, user: response.data }))
+                })
+                .catch(err => {
+                    dispatch(authActionFail(err.response.data.error));
+                });
+            
         };
     };
 };

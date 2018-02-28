@@ -26,7 +26,7 @@ export const parkFilter = (parks, filterParams = {}) => {
         ));
     } else {
         return [];
-    };
+    }
 };
 
 export const userFilter = (users, filterParams = {}) => {

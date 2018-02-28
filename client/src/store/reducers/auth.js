@@ -14,12 +14,13 @@ const authActionStart = state => (
     updateObject(state, { loading: true }) 
 );
 
-const authActionFail = (state, action) => (
-    updateObject(state, {
+const authActionFail = (state, action) => {
+    debugger;
+    return updateObject(state, {
         error: action.error,
         loading: false
     })
-);
+}
 
 const updateAuthenticatingState = state => (
     updateObject(state, {isAuthenticating: !state.isAuthenticating})
