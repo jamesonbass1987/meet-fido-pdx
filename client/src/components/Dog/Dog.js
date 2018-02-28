@@ -14,10 +14,14 @@ import classes from './Dog.css';
 
 class Dog extends Component {
 
-    state = {
-        showModal: false,
-        showEditBtn: this.props.dog.user_id === this.props.currentUser.id && this.props.isEditable,
-        showDelete: false
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showModal: false,
+            showEditBtn: this.props.dog.user_id === this.props.currentUser.id && this.props.isEditable,
+            showDelete: false
+        };
     };
 
     toggleModal = () => this.setState({ showModal: !this.state.showModal });

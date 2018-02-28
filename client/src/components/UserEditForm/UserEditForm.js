@@ -15,45 +15,50 @@ import classes from './UserEditForm.css';
 
 class UserEditForm extends Component {
 
-    state = {
-        formData: {
-            bio: {
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 5
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            formData: {
+                bio: {
+                    value: '',
+                    validation: {
+                        required: true,
+                        minLength: 5
+                    },
+                    valid: false,
+                    touched: false
                 },
-                valid: false,
-                touched: false
-            },
-            neighborhood_id: {
-                value: '',
-                validation: {
-                    requiredDropdown: true,
+                neighborhood_id: {
+                    value: '',
+                    validation: {
+                        requiredDropdown: true,
+                    },
+                    valid: false,
+                    touched: false
                 },
-                valid: false,
-                touched: false
-            },
-            password: {
-                value: '',
-                validation: {
-                    required: false,
-                    minLength: 6
+                password: {
+                    value: '',
+                    validation: {
+                        required: false,
+                        minLength: 6
+                    },
+                    valid: false,
+                    touched: false
                 },
-                valid: false,
-                touched: false
-            },
-            password_confirmation: {
-                value: '',
-                validation: {
-                    required: false,
-                    minLength: 6
-                },
-                valid: false,
-                touched: false
+                password_confirmation: {
+                    value: '',
+                    validation: {
+                        required: false,
+                        minLength: 6
+                    },
+                    valid: false,
+                    touched: false
+                }
             }
-        }
+        };
     };
+
 
     componentWillMount(){
         this.props.fetchNeighborhoods();

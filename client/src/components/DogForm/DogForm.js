@@ -15,69 +15,73 @@ import Button from '../UI/Buttons/Button/Button';
 
 class DogForm extends Component {
 
-    state = {
-        formData: {
-            name: {
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 1
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            formData: {
+                name: {
+                    value: '',
+                    validation: {
+                        required: true,
+                        minLength: 1
+                    },
+                    valid: false,
+                    touched: false
                 },
-                valid: false,
-                touched: false
+                description: {
+                    value: '',
+                    validation: {
+                        required: true,
+                        minLength: 1
+                    },
+                    valid: false,
+                    touched: false
+                },
+                age_id: {
+                    value: '',
+                    validation: {
+                        requiredDropdown: true,
+                    },
+                    valid: false,
+                    touched: false
+                },
+                sex: {
+                    value: '',
+                    validation: {
+                        requiredDropdown: true,
+                    },
+                    valid: false,
+                    touched: false
+                },
+                breed_id: {
+                    value: '',
+                    validation: {
+                        requiredDropdown: true,
+                    },
+                    valid: false,
+                    touched: false
+                }, 
+                size_id: {
+                    value: '',
+                    validation: {
+                        requiredDropdown: true,
+                    },
+                    valid: false,
+                    touched: false
+                },
+                profile_image_url: {
+                    value: '',
+                    validation: {
+                        requiredURL: true,
+                    },
+                    valid: false,
+                    touched: false
+                }
             },
-            description: {
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 1
-                },
-                valid: false,
-                touched: false
-            },
-            age_id: {
-                value: '',
-                validation: {
-                    requiredDropdown: true,
-                },
-                valid: false,
-                touched: false
-            },
-            sex: {
-                value: '',
-                validation: {
-                    requiredDropdown: true,
-                },
-                valid: false,
-                touched: false
-            },
-            breed_id: {
-                value: '',
-                validation: {
-                    requiredDropdown: true,
-                },
-                valid: false,
-                touched: false
-            }, 
-            size_id: {
-                value: '',
-                validation: {
-                    requiredDropdown: true,
-                },
-                valid: false,
-                touched: false
-            },
-            profile_image_url: {
-                value: '',
-                validation: {
-                    requiredURL: true,
-                },
-                valid: false,
-                touched: false
-            }
-        },
-        dogId: this.props.dogId,
-        userId: this.props.currentUser.id
+            dogId: this.props.dogId,
+            userId: this.props.currentUser.id
+        };
     };
 
     componentWillMount = () => {

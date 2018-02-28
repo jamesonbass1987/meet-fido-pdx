@@ -15,10 +15,14 @@ import classes from './ParksIndex.css';
 
 class ParksIndex extends Component {
 
-  state = {
-    showInfoWindow: false
-  }
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      showInfoWindow: false
+    };
+  };
+ 
   componentWillMount = () => this.props.fetchParks();
 
   componentWillUnmount = () => this.props.fetchParks();

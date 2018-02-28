@@ -16,7 +16,10 @@ import classes from './Login.css';
 
 class LoginForm extends Component {
 
-    state = {
+    constructor(props) {
+        super(props);
+
+        this.state = {
         formData: {
             username: {
                 value: '',
@@ -34,8 +37,9 @@ class LoginForm extends Component {
                 },
                 valid: false,
                 touched: false
+                }
             }
-        }
+        };
     };
 
     handleFormInputChange = (e, { value, id }) => {
