@@ -40,7 +40,7 @@ export const userFilter = (users, filterParams = {}) => {
 
     if (filterParams.selectedPark) {
         filterUsersArray = filterUsersArray.filter(user => {
-            return user.parks.some(park => park.name === filterParams.selectedPark)
+            return user.parks.some(park => park.id === filterParams.selectedPark)
         })
     };
 
