@@ -9,32 +9,25 @@ import NavigationItems from '../../components/NavigationItems/NavigationItems'
 
 class Navbar extends Component {
 
-    state = {
-        activeItem: ''
-    };
-
     componentWillMount = () => {
         const token = localStorage.getItem('token');
         if (token && !this.props.currentUser) {
             this.props.fetchCurrentUser();
         };
-
-        this.setState({ activeitem: this.props.location.pathname });
     };
 
-    componentWillReceiveProps = nextProps => {
+    componentWillReceiveProps = (nextProps, nextState) => {
         const token = localStorage.getItem('token');
 
         if (token && !this.props.currentUser) {
             this.props.fetchCurrentUser();
         };
+
     };
 
-    shouldComponentUpdate = (nextProps, nextState) => (
-        this.props.currentUser !== nextProps.currentUser || this.state.activeItem !== nextState.activeItem
+    shouldComponentUpdate = nextProps => (
+        this.props.currentUser !== nextProps.currentUser
     );
-
-    handleItemClick = (event, { to } ) => this.setState({ activeItem: to });
 
     render() {
         let navLinks = [];
@@ -94,7 +87,6 @@ class Navbar extends Component {
         const navItems = <NavigationItems
                 navLinks={navLinks}
                 navButtons={navButtons}
-                activeItem={this.state.activeItem}
                 clicked={this.handleItemClick}
             />
 
