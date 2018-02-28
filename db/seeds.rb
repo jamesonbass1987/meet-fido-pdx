@@ -531,9 +531,6 @@ description: 'Pats heckin angery woofer heck bork h*ck snoot, bork you are doing
 
 
 
-
-
-
 User.create(username: 'jamesonbass', email:'jameson@email.com', password: 'password', profile_image_url: 'https://i.imgur.com/gsUiwCM.jpg', neighborhood: Neighborhood.all[rand(0...Neighborhood.all.length)],
 bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut odio consequat dolor blandit congue. Pellentesque sit amet posuere nibh. Nunc dapibus mauris felis, sit amet luctus velit maximus nec.")
 
