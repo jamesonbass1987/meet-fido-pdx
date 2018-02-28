@@ -16,7 +16,6 @@ class Navbar extends Component {
     componentWillMount = () => {
         const token = localStorage.getItem('token');
         if (token && !this.props.currentUser) {
-            console.log('fetching current user')
             this.props.fetchCurrentUser();
         };
 
