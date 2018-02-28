@@ -1,5 +1,4 @@
 class Api::V1::AuthenticationController < ApiController
-  skip_before_action :authenticate_request
 
   def authenticate
     command = AuthenticateUser.call(params[:username], params[:password])
