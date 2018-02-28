@@ -97,7 +97,6 @@ export const handleUserSignUp = payload => {
                 dispatch(handleUserLogin(userData));
             })
             .catch(err => {
-                debugger;
                 const errors = [];
                 for(let errMsgKey in err.response.data.error){
                     errors.push(`${errMsgKey.split('_').join(" ")} ${err.response.data.error[errMsgKey]}`);
