@@ -25,7 +25,7 @@ class Park extends Component {
     };
 
     shouldComponentUpdate = (nextProps, nextState) => (
-        this.props.selectedUser !== nextProps.selectedUser || this.props !== nextProps || this.state !== nextState
+        this.props !== nextProps || this.state !== nextState
     );
 
     componentWillReceiveProps = nextProps => {

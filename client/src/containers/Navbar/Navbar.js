@@ -9,29 +9,21 @@ import NavigationItems from '../../components/NavigationItems/NavigationItems'
 
 class Navbar extends Component {
 
-    componentWillMount = () => {
-        const token = localStorage.getItem('token');
-        if (token && !this.props.currentUser) {
-            this.props.fetchCurrentUser();
-        };
-    };
-
     componentWillReceiveProps = (nextProps, nextState) => {
-        const token = localStorage.getItem('token');
-
-        if (token && !this.props.currentUser) {
+        
+        if (this.props.isAuthenticated && !this.props.currentUser) {
             this.props.fetchCurrentUser();
         };
 
     };
 
-    shouldComponentUpdate = nextProps => (
-        this.props.currentUser !== nextProps.currentUser
-    );
+    shouldComponentUpdate = nextProps => {
+        return this.props.currentUser !== nextProps.currentUser
+    };
 
     render() {
         let navLinks = [];
-
+        
         let navButtons = [
             {
                 color: 'red',
@@ -100,7 +92,7 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
     const { currentUser, loading } = state.auth;
-    const isAuthenticated = !!state.auth.token;
+    const isAuthenticated = state.auth.token;
     return { isAuthenticated, currentUser, loading };
 };
 

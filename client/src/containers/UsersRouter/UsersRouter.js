@@ -4,10 +4,10 @@ import { Route, Switch } from 'react-router-dom';
 import UsersShow from '../UsersShow/UsersShow';
 import UsersIndex from '../UsersIndex/UsersIndex';
 
-const usersRouter = ({ match }) => (
+const usersRouter = () => (
     <Switch>
         <Route path='/users/:userId' component={UsersShow} />
-        <Route path={match.url} exact component={UsersIndex} />
+        <Route path='/users' exact component={UsersIndex} />
     </Switch>
 );
 

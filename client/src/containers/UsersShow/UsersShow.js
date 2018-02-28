@@ -27,27 +27,24 @@ class UsersShow extends Component {
     componentWillMount = () =>{
         const id = this.props.match.params.userId;
         this.props.fetchUser(id);
-        this.props.fetchCurrentUser();
     };
 
     componentWillReceiveProps = nextProps => {
-        if  (this.props.match.params.userId !== nextProps.match.params.userId || 
-            (this.props.isUpdating && !nextProps.isUpdating && this.props.currentUser.id === this.props.selectedUser.id) ||
-            this.props.currentUser !== nextProps.currentUser)
-            {
+        if (this.props.match.params.userId !== nextProps.match.params.userId ||
+            (this.props.isUpdating && !nextProps.isUpdating && this.props.currentUser.id === this.props.selectedUser.id)){
             const id = nextProps.match.params.userId;
             this.props.fetchUser(id);
         };
     };
 
-    shouldComponentUpdate = (nextProps, nextState) => (
-        this.state !== nextState || 
-        (this.props.loading && !nextProps.loading) || 
-        this.props.selectedUser !== nextProps.selectedUser ||
-        this.props.currentUser !== nextProps.currentUser
-    );
+    componentWillUnmount(){
+        console.log('unmounting component   ')
+        this.props.removeSelectedUser();
+    }
 
-    componentWillUnmount = () => this.props.removeSelectedUser();
+    shouldComponentUpdate = (nextProps, nextState) => (
+        this.props.selectedUser !== nextProps.selectedUser
+    );
 
     handleModalToggle = type => {
         this.setState({showModal: {
