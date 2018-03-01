@@ -9,14 +9,6 @@ import NavigationItems from '../../components/NavigationItems/NavigationItems'
 
 class Navbar extends Component {
 
-    componentWillReceiveProps = (nextProps, nextState) => {
-        
-        if (this.props.isAuthenticated && !this.props.currentUser) {
-            this.props.fetchCurrentUser();
-        };
-
-    };
-
     shouldComponentUpdate = nextProps => {
         return this.props.currentUser !== nextProps.currentUser
     };
@@ -76,11 +68,15 @@ class Navbar extends Component {
                 ]
         };
 
-        const navItems = <NavigationItems
+        let navItems;
+        
+        if (!this.props.loading) {
+            navItems = <NavigationItems
                 navLinks={navLinks}
                 navButtons={navButtons}
                 clicked={this.handleItemClick}
             />
+        }
 
         return (
             <Menu stackable>

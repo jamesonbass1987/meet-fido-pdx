@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux'
-import { fetchUser, deleteUser, removeSelectedUser, fetchCurrentUser, updateCurrentUser } from '../../store/actions/index';
+import { fetchUser, deleteUser, fetchCurrentUser, updateCurrentUser } from '../../store/actions/index';
 
 import AdminControls from '../../components/AdminControls/AdminControls'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
@@ -36,8 +36,12 @@ class UsersShow extends Component {
         this.props.fetchUser(id);
     }
 
-    componentWillUnmount() {
-        this.props.removeSelectedUser();
+    shouldComponentUpdate(nextProps, nextState){
+        return this.state !== nextState || !nextProps.loading || this.props.selectedUser !== nextProps.selectedUser
+    }
+
+    componentWillReceiveProps(nextProps, nextState){
+
     }
 
     handleModalToggle = type => {
@@ -112,7 +116,7 @@ class UsersShow extends Component {
         };
 
         let userProfile = <Spinner />;
-        if (!this.props.loading && this.props.selectedUser) {
+        if (this.props.selectedUser) {
             const user = this.props.selectedUser;
 
             userProfile = <React.Fragment>
@@ -147,7 +151,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchUser, deleteUser, removeSelectedUser, fetchCurrentUser, updateCurrentUser }, dispatch)
+    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, updateCurrentUser }, dispatch)
 );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersShow));

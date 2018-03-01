@@ -33,27 +33,6 @@ export const fetchParks = () => {
     };
 };
 
-// PARK SHOW ACTIONS
-
-export const fetchParkSuccess = park => ({
-    type: actionTypes.FETCH_PARK_SUCCESS,
-    park
-});
-
-export const fetchPark = id => {
-    return dispatch => {
-        dispatch(parkActionStart());
-        axios.get(`/parks/${id}`)
-            .then(res => {
-                const fetchedPark = res.data;
-                dispatch(fetchParkSuccess(fetchedPark));
-            })
-            .catch(err => {
-                dispatch(parkActionFail(err));
-            });
-    };
-};
-
 // PARK FILTER ACTIONS
 
 export const updateParkFilter = (type, value) => ({

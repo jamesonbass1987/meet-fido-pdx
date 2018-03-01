@@ -4,7 +4,6 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     parks: [],
     loading: false,
-    selectedPark: null,
     parkFilter: {
         searchQuery: '',
         fencedPark: true,
@@ -15,13 +14,6 @@ const initialState = {
 const parkActionStart = state => updateObject(state, { loading: true })
 
 const parkActionFail = (state, action) => updateObject(state, { loading: true, error: action.error })
-
-const fetchParkSuccess = (state, action) => (
-    updateObject(state, {
-        selectedPark: action.park,
-        loading: false
-    })
-);
 
 const fetchParksSuccess = (state, action) => (
     updateObject(state, {
@@ -53,7 +45,6 @@ const parkReducer = (state = initialState, action) => {
         case actionTypes.PARK_ACTION_START: return parkActionStart(state);
         case actionTypes.PARK_ACTION_FAIL: return parkActionFail(state, action);
         case actionTypes.FETCH_PARKS_SUCCESS: return fetchParksSuccess(state, action);
-        case actionTypes.FETCH_PARK_SUCCESS: return fetchParkSuccess(state, action);
         case actionTypes.UPDATE_PARK_FILTER: return updateParkFilter(state, action);
         case actionTypes.RESET_PARK_FILTER: return resetParkFilter(state);
         default: return state

@@ -40,8 +40,7 @@ export const fetchUser = id => {
         dispatch(userActionStart());
         axios.get(`/users/${id}`)
             .then(res => {
-                const fetchedUser = res.data;
-                dispatch(fetchUserSuccess(fetchedUser));
+                dispatch(fetchUserSuccess(res.data));
             })
             .catch(err => {
                 dispatch(userActionFail(err));
@@ -85,7 +84,7 @@ export const resetUserFilter = (type, value) => ({
     type: actionTypes.RESET_USER_FILTER
 });
 
-export const removeSelectedUser = () => ({
-    type: actionTypes.REMOVE_SELECTED_USER
-});
+// export const removeSelectedUser = () => ({
+//     type: actionTypes.REMOVE_SELECTED_USER
+// });
 

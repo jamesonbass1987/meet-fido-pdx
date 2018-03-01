@@ -29,31 +29,6 @@ export const fetchDogsSuccess = dogs => ({
     dogs
 });
 
-// DOG SHOW ACTIONS
-
-export const fetchDog = id => {
-    return dispatch => {
-        dispatch(dogActionStart());
-        const token = localStorage.getItem('token');
-
-        axios.get(`/dogs/${id}`, {
-            headers: { Authorization: "Bearer " + token }
-        })
-            .then(res => {
-                const fetchedDog = res.data.dog;
-                dispatch(fetchDogSuccess(fetchedDog));
-            })
-            .catch(err => {
-                dispatch(dogActionFail(err));
-            });
-    };
-};
-
-export const fetchDogSuccess = dog => ({
-    type: actionTypes.FETCH_DOG_SUCCESS,
-    dog
-});
-
 //DOG ATTRIBUTE INDEX ACTIONS
 
 export const fetchDogAttribute = attribute => {
@@ -133,7 +108,6 @@ export const deleteDog = (id) => {
         axios.delete(`/dogs/${id}`)
             .then(res => {
                 dispatch(deleteDogSuccess())
-                dispatch(actions.fetchCurrentUser())
             })
             .catch(err => {
                 dispatch(dogActionFail(err))

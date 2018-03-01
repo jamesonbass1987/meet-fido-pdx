@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApiController
   def show
 
     if @user
-      render json: @user, status: 200
+      render json: @user, include: "**", status: 200
     else
       render json: { message: "Resource not found." }, status: 404
     end

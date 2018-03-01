@@ -44,6 +44,7 @@ export const authCheckState = () => {
                     dispatch(authSuccess({ token, user: response.data }))
                 })
                 .catch(err => {
+                    debugger;
                     dispatch(authActionFail(err.response.data.error));
                 });
             
@@ -114,18 +115,18 @@ export const updateSignUpState = () => ({
 
 export const fetchCurrentUser = () => {
     return dispatch => {
-        // dispatch(authActionStart());
         const token = localStorage.getItem('token');
         if (!token) {
             dispatch({ type: actionTypes.AUTH_LOGOUT });
         } else {
+            dispatch(authActionStart())
             axios.get(`/authed_user?token=${token}`)
                 .then(response => {
                     dispatch(fetchCurrentUserSuccess(response.data))
                 })
                 .catch(err => {
-                    dispatch(authActionFail(err.response.data.error));
-                });
+                    dispatch(authActionFail(err.response.data.error))
+                })
         };
     };
 };
@@ -140,7 +141,7 @@ export const fetchCurrentUserSuccess = payload => {
 // UPDATE USER ACTIONS
 
 export const updateCurrentUser = (user, attribute, updateVals) => {
-
+    console.log(user, attribute, updateVals)
     let updatedUser = {
         username: user.username,
         bio: user.bio,
@@ -161,15 +162,13 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
     };
 
     return dispatch => {
-        // dispatch(authActionStart())
-        debugger;
+        dispatch(authActionStart())
         axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
             .then(resp => {
-                dispatch(fetchCurrentUser());
-                dispatch(updateCurrentUserSuccess());
+                dispatch(updateCurrentUserSuccess())
             })
             .catch(err => {
-                dispatch(authActionFail(err));
+                dispatch(authActionFail(err.response.data.error))
             })
     }
 }

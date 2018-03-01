@@ -13,14 +13,14 @@ const initialState = {
 }
 
 const userActionStart = state => (updateObject(state, { loading: true }));
-const userActionFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
+const userActionFail = state => (updateObject(state, { loading: false }));
 
-const fetchUserSuccess = (state, action) => (
-    updateObject(state, {
+const fetchUserSuccess = (state, action) => {
+    return updateObject(state, {
         selectedUser: action.user,
         loading: false
     })
-);
+};
 
 const fetchUsersSuccess = (state, action) => (
     updateObject(state, {
@@ -35,11 +35,11 @@ const deleteUserSuccess = (state, action) => (
     })
 );
 
-const removeSelectedUser = state => (
-    updateObject(state, {
-        selectedUser: null
-    })
-);
+// const removeSelectedUser = state => (
+//     updateObject(state, {
+//         selectedUser: null
+//     })
+// );
 
 const updateUserFilter = (state, action) => (
     updateObject(state, {
@@ -66,7 +66,7 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.FETCH_USER_SUCCESS: return fetchUserSuccess(state, action);
         case actionTypes.FETCH_USERS_SUCCESS: return fetchUsersSuccess(state, action);
         case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
-        case actionTypes.REMOVE_SELECTED_USER: return removeSelectedUser(state);
+        // case actionTypes.REMOVE_SELECTED_USER: return removeSelectedUser(state);
         case actionTypes.UPDATE_USER_FILTER: return updateUserFilter(state, action);
         case actionTypes.RESET_USER_FILTER: return resetUserFilter(state, action);
         default: return state

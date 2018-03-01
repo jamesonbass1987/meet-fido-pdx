@@ -1,10 +1,10 @@
-const isUrl = require('is-url')
+const isUrl = require('is-url');
 
 export const updateObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,
         ...updatedProperties
-    };
+    }
 };
 
 export const checkValidity = (value, rules) => {

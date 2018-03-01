@@ -21,13 +21,6 @@ const initialState = {
 const dogActionStart = state => (updateObject(state, { loading: true }));
 const dogActionFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
 
-const fetchDogSuccess = (state, action) => (
-    updateObject(state, {
-        selectedDog: action.dog,
-        loading: false
-    })
-);
-
 const fetchDogsSuccess = (state, action) => (
     updateObject(state, {
         dogs: action.dogs,
@@ -77,7 +70,6 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.DOG_ACTION_START: return dogActionStart(state);
         case actionTypes.DOG_ACTION_FAIL: return dogActionFail(state, action);
         case actionTypes.FETCH_DOGS_SUCCESS: return fetchDogsSuccess(state, action);
-        case actionTypes.FETCH_DOG_SUCCESS: return fetchDogSuccess(state, action);
         case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogAttributeSuccess(state, action);
         case actionTypes.CREATE_EDIT_DOG_SUCCESS: return addEditDogSuccess(state, action);
         case actionTypes.DELETE_DOG_SUCCESS: return deleteDogSuccess(state);

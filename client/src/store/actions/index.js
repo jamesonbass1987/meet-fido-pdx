@@ -1,6 +1,5 @@
 export {
     fetchDogs,
-    fetchDog,
     fetchDogAttribute,
     updateDogFilter,
     resetDogFilter,
@@ -10,7 +9,6 @@ export {
 
 export {
     fetchParks,
-    fetchPark,
     updateParkFilter,
     resetParkFilter
 } from './park'
@@ -21,7 +19,7 @@ export {
     updateUserFilter,
     resetUserFilter,
     deleteUser,
-    removeSelectedUser,
+    // removeSelectedUser,
 
 
 } from './user'

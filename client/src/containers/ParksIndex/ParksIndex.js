@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { fetchParks, fetchPark, updateParkFilter } from '../../store/actions/index';
+import { fetchParks, updateParkFilter } from '../../store/actions/index';
 
 import { Container, Segment, Divider } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading';
@@ -14,18 +14,8 @@ import Parks from '../../components/Parks/Parks';
 import classes from './ParksIndex.css';
 
 class ParksIndex extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showInfoWindow: false
-    };
-  };
  
   componentWillMount = () => this.props.fetchParks();
-
-  componentWillUnmount = () => this.props.fetchParks();
 
   handleMarkerClick = parkName => this.props.updateParkFilter('searchQuery', parkName);
 
@@ -71,17 +61,16 @@ class ParksIndex extends Component {
 };
 
 const mapStateToProps = state => {
-  const { parks, loading, selectedPark, parkFilter } = state.park;
+  const { parks, loading, parkFilter } = state.park;
   return {
       parks,
       loading,
-      selectedPark,
-      parkFilter, 
+      parkFilter
   };
 };
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ fetchParks, fetchPark, updateParkFilter }, dispatch)
+  bindActionCreators({ fetchParks, updateParkFilter }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParksIndex);
