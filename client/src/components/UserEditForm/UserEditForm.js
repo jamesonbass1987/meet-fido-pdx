@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchNeighborhoods, updateCurrentUser } from '../../store/actions/index';
+import { fetchNeighborhoods, updateCurrentUser, fetchUser } from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 import { mapDropdownItems } from '../../shared/utility';
 
@@ -158,7 +158,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchNeighborhoods, updateCurrentUser }, dispatch)
+    bindActionCreators({ fetchNeighborhoods, updateCurrentUser, fetchUser }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserEditForm);

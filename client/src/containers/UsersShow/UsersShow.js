@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux'
-import { fetchUser, deleteUser, fetchCurrentUser, updateCurrentUser } from '../../store/actions/index';
+import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser } from '../../store/actions/index';
 
 import AdminControls from '../../components/AdminControls/AdminControls'
 import UserEditForm from '../../components/UserEditForm/UserEditForm'
@@ -37,11 +37,14 @@ class UsersShow extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        return this.state !== nextState || !nextProps.loading || this.props.selectedUser !== nextProps.selectedUser
+        return this.state !== nextState || 
+                (this.props.loading && !nextProps.loading) || 
+                this.props.selectedUser !== nextProps.selectedUser ||
+                this.props.currentUser !== nextProps.currentUser
     }
 
-    componentWillReceiveProps(nextProps, nextState){
-
+    componentWillUnmount(){
+        this.props.removeSelectedUser();
     }
 
     handleModalToggle = type => {
@@ -116,11 +119,21 @@ class UsersShow extends Component {
         };
 
         let userProfile = <Spinner />;
-        if (this.props.selectedUser) {
+        if (this.props.selectedUser && !this.props.loading) {
             const user = this.props.selectedUser;
 
+            let contactButton;
+            if (this.props.selectedUser.id !== this.props.currentUser.id){
+                contactButton = <Button content='Contact'
+                    as='a'
+                    href={`mailto:${user.email}`}
+                    color="blue"
+                />
+            }
+            
+
             userProfile = <React.Fragment>
-                            <UserProfileHeader user={user} />
+                            <UserProfileHeader user={user} button={contactButton} />
                             <UserProfileContent 
                                 user={user} 
                                 handleModalToggle={this.handleModalToggle} 
@@ -151,7 +164,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ fetchUser, deleteUser, fetchCurrentUser, updateCurrentUser }, dispatch)
+    bindActionCreators({ fetchUser, deleteUser, removeSelectedUser, fetchCurrentUser, updateCurrentUser }, dispatch)
 );
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UsersShow));

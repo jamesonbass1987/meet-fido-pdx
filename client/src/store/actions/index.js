@@ -19,7 +19,7 @@ export {
     updateUserFilter,
     resetUserFilter,
     deleteUser,
-    // removeSelectedUser,
+    removeSelectedUser,
 
 
 } from './user'

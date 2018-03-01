@@ -3,6 +3,8 @@ import { Button } from 'semantic-ui-react';
 
 const button = props => (
     <Button 
+        as={props.as}
+        href={props.href}
         type={props.type}
         fluid={props.fluid}
         content={props.content}

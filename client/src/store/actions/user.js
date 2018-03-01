@@ -84,7 +84,7 @@ export const resetUserFilter = (type, value) => ({
     type: actionTypes.RESET_USER_FILTER
 });
 
-// export const removeSelectedUser = () => ({
-//     type: actionTypes.REMOVE_SELECTED_USER
-// });
+export const removeSelectedUser = () => ({
+    type: actionTypes.REMOVE_SELECTED_USER
+});
 

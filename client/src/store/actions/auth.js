@@ -1,5 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../shared/axios-api';
+import * as actions from './index';
+
 
 // SHARED AUTH ACTIONS
 
@@ -141,7 +143,6 @@ export const fetchCurrentUserSuccess = payload => {
 // UPDATE USER ACTIONS
 
 export const updateCurrentUser = (user, attribute, updateVals) => {
-    console.log(user, attribute, updateVals)
     let updatedUser = {
         username: user.username,
         bio: user.bio,
@@ -166,6 +167,11 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
         axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
             .then(resp => {
                 dispatch(updateCurrentUserSuccess())
+
+                if(attribute === 'profileUpdate'){
+                    dispatch(actions.fetchUser(user.id));
+                    dispatch(fetchCurrentUser());
+                }
             })
             .catch(err => {
                 dispatch(authActionFail(err.response.data.error))
