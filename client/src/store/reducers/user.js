@@ -10,7 +10,7 @@ const initialState = {
         selectedPark: ''
     },
     isUpdating: false
-}
+};
 
 const userActionStart = state => (updateObject(state, { loading: true }));
 const userActionFail = state => (updateObject(state, { loading: false }));
@@ -29,7 +29,7 @@ const fetchUsersSuccess = (state, action) => (
     })
 );
 
-const deleteUserSuccess = (state, action) => (
+const deleteUserSuccess = state => (
     updateObject(state, {
         loading: false,
     })
@@ -50,7 +50,7 @@ const updateUserFilter = (state, action) => (
     })
 );
 
-const resetUserFilter = (state, action) => (
+const resetUserFilter = state => (
     updateObject(state, {
         userFilter: {
             searchQuery: '',
@@ -68,9 +68,9 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
         case actionTypes.REMOVE_SELECTED_USER: return removeSelectedUser(state);
         case actionTypes.UPDATE_USER_FILTER: return updateUserFilter(state, action);
-        case actionTypes.RESET_USER_FILTER: return resetUserFilter(state, action);
-        default: return state
-    }
-}
+        case actionTypes.RESET_USER_FILTER: return resetUserFilter(state);
+        default: return state;
+    };
+};
 
 export default userReducer;
