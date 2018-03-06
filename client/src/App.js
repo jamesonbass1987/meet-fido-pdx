@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { authCheckState } from './store/actions/index'
+import { authCheckState } from './store/actions/index';
 
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
@@ -15,7 +15,7 @@ class App extends Component {
 
   componentWillMount() {
     this.props.authCheckState();
-  }
+  };
 
   render() {
 
