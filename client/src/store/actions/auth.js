@@ -16,13 +16,13 @@ export const authActionFail = error => ({
 
 // AUTHENTICATION ACTIONS
 
-export const handleUserLogin = (payload) => {
+export const handleUserLogin = payload => {
     return dispatch => {
         dispatch(authActionStart());
         const authData = {
                 username: payload.username,
                 password: payload.password
-            }
+            };
         
         axios.post('/authenticate', authData)
             .then(response => {
@@ -46,7 +46,6 @@ export const authCheckState = () => {
                     dispatch(authSuccess({ token, user: response.data }))
                 })
                 .catch(err => {
-                    debugger;
                     dispatch(authActionFail(err.response.data.error));
                 });
             
@@ -133,12 +132,10 @@ export const fetchCurrentUser = () => {
     };
 };
 
-export const fetchCurrentUserSuccess = payload => {
-    return {
-        type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
-        payload
-    };
-};
+export const fetchCurrentUserSuccess = payload => ({
+    type: actionTypes.FETCH_CURRENT_USER_SUCCESS,
+    payload
+});
 
 // UPDATE USER ACTIONS
 
@@ -163,10 +160,10 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
     };
 
     return dispatch => {
-        dispatch(authActionStart())
+        dispatch(authActionStart());
         axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
             .then(resp => {
-                dispatch(updateCurrentUserSuccess())
+                dispatch(updateCurrentUserSuccess());
 
                 if(attribute === 'profileUpdate'){
                     dispatch(actions.fetchUser(user.id));
@@ -175,9 +172,9 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
             })
             .catch(err => {
                 dispatch(authActionFail(err.response.data.error))
-            })
-    }
-}
+            });
+    };
+};
 
 const updateParks = (parkIds, value) => (
     parkIds.some(id => (id === value)) ? 
