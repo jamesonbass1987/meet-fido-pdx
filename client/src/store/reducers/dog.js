@@ -37,11 +37,11 @@ const fetchDogAttributeSuccess = (state, action) => (
     })
 );
 
-const addEditDogSuccess = (state, action) => (
+const addEditDogSuccess = state => (
     updateObject(state, { loading: false })
 );
 
-const deleteDogSuccess = (state, action) => (
+const deleteDogSuccess = state => (
     updateObject(state, { loading: false })
 );
 
@@ -70,7 +70,7 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.DOG_ACTION_FAIL: return dogActionFail(state, action);
         case actionTypes.FETCH_DOGS_SUCCESS: return fetchDogsSuccess(state, action);
         case actionTypes.FETCH_DOG_ATTRIBUTE_SUCCESS: return fetchDogAttributeSuccess(state, action);
-        case actionTypes.CREATE_EDIT_DOG_SUCCESS: return addEditDogSuccess(state, action);
+        case actionTypes.CREATE_EDIT_DOG_SUCCESS: return addEditDogSuccess(state);
         case actionTypes.DELETE_DOG_SUCCESS: return deleteDogSuccess(state);
         case actionTypes.UPDATE_DOG_FILTER: return updateDogFilter(state, action);
         case actionTypes.RESET_DOG_FILTER: return resetDogFilter(state);
