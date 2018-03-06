@@ -27,7 +27,7 @@ export const handleUserLogin = payload => {
         axios.post('/authenticate', authData)
             .then(response => {
                 localStorage.setItem('token', response.data.auth_token);
-                dispatch(authSuccess({ token: response.data.auth_token, user: response.data.user }));
+                dispatch(authSuccess({ token: response.data.auth_token, user: response.data }));
             })
             .catch(err => {
                 dispatch(authActionFail(err.response.data.error.user_authentication));
@@ -140,7 +140,6 @@ export const fetchCurrentUserSuccess = payload => ({
 // UPDATE USER ACTIONS
 
 export const updateCurrentUser = (user, attribute, updateVals) => {
-    debugger;
     let updatedUser = {
         username: user.username,
         bio: user.bio,

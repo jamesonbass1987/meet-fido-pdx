@@ -19,8 +19,8 @@ class Park extends Component {
     }
 
     componentWillMount() {
-        const isHideable = parseInt(this.props.match.params.userId, 10) === this.props.currentUser.id
-        const containsUser = this.props.park.users.some(user => (user.id === this.props.currentUser.id))
+        const isHideable = parseInt(this.props.match.params.userId, 10) === this.props.currentUser.id;
+        const containsUser = this.props.park.users.some(user => (user.id === this.props.currentUser.id));
         
         this.setState({
             hasCurrentUser: containsUser,
@@ -28,9 +28,7 @@ class Park extends Component {
         })
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return  this.state !== nextState
-    }
+    shouldComponentUpdate = (nextProps, nextState) => this.state !== nextState;
 
     handleAddRemovePark = () => {
         this.setState({
@@ -112,7 +110,7 @@ class Park extends Component {
 
 const mapStateToProps = state => {
     const { currentUser } = state.auth;
-    const { selectedUser } = state.user
+    const { selectedUser } = state.user;
     return {
         currentUser,
         selectedUser
