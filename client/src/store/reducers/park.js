@@ -9,11 +9,11 @@ const initialState = {
         fencedPark: true,
         unfencedPark: true
     }
-}
+};
 
-const parkActionStart = state => updateObject(state, { loading: true })
+const parkActionStart = state => updateObject(state, { loading: true });
 
-const parkActionFail = (state, action) => updateObject(state, { loading: true, error: action.error })
+const parkActionFail = (state, action) => updateObject(state, { loading: true, error: action.error });
 
 const fetchParksSuccess = (state, action) => (
     updateObject(state, {
