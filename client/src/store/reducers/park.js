@@ -49,6 +49,6 @@ const parkReducer = (state = initialState, action) => {
         case actionTypes.RESET_PARK_FILTER: return resetParkFilter(state);
         default: return state
     }
-}
+};
 
 export default parkReducer;

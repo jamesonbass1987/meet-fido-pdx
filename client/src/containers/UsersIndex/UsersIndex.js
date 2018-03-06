@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { fetchUsers, fetchUser } from '../../store/actions/index';
 
 
@@ -8,8 +8,8 @@ import { fetchUsers, fetchUser } from '../../store/actions/index';
 import { Container, Segment, Divider } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import PageHeading from '../../components/PageHeading/PageHeading';
-import UsersForm from '../../components/UsersForm/UsersForm'
-import Users from '../../components/Users/Users'
+import UsersForm from '../../components/UsersForm/UsersForm';
+import Users from '../../components/Users/Users';
 
 import classes from './UsersIndex.css';
 

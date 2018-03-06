@@ -111,7 +111,7 @@ class Park extends Component {
 };
 
 const mapStateToProps = state => {
-    const { currentUser, loading } = state.auth;
+    const { currentUser } = state.auth;
     const { selectedUser } = state.user
     return {
         currentUser,

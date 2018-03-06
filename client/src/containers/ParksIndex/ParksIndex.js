@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { fetchParks, updateParkFilter } from '../../store/actions/index';
 
 import { Container, Segment, Divider } from 'semantic-ui-react';

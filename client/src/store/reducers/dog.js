@@ -75,7 +75,7 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.UPDATE_DOG_FILTER: return updateDogFilter(state, action);
         case actionTypes.RESET_DOG_FILTER: return resetDogFilter(state);
         default: return state;
-    };
+    }
 };
 
 export default dogReducer;

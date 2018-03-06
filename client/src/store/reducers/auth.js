@@ -72,7 +72,7 @@ export const authReducer = (state = initialState, action) => {
         case actionTypes.REMOVE_CURRENT_USER: return removeCurrentUser(state);
         case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
         default: return state;
-    };
+    }
 };
 
 export default authReducer;

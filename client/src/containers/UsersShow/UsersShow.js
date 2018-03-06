@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { fetchUser, deleteUser, fetchCurrentUser, removeSelectedUser, updateCurrentUser } from '../../store/actions/index';
 
-import AdminControls from '../../components/AdminControls/AdminControls'
-import UserEditForm from '../../components/UserEditForm/UserEditForm'
-import DogForm from '../../components/DogForm/DogForm'
-import UserProfileHeader from '../../components/UserProfileHeader/UserProfileHeader'
-import UserProfileContent from '../../components/UserProfileContent/UserProfileContent'
+import AdminControls from '../../components/AdminControls/AdminControls';
+import UserEditForm from '../../components/UserEditForm/UserEditForm';
+import DogForm from '../../components/DogForm/DogForm';
+import UserProfileHeader from '../../components/UserProfileHeader/UserProfileHeader';
+import UserProfileContent from '../../components/UserProfileContent/UserProfileContent';
 
 import { Container, Popup, Button } from 'semantic-ui-react';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -28,24 +28,23 @@ class UsersShow extends Component {
                 dogForm: false
             }
         };
-     
-    }
+    };
 
     componentWillMount(){
         const id = this.props.match.params.userId;
         this.props.fetchUser(id);
-    }
+    };
 
     shouldComponentUpdate(nextProps, nextState){
         return this.state !== nextState || 
                 (this.props.loading && !nextProps.loading) || 
                 this.props.selectedUser !== nextProps.selectedUser ||
                 this.props.currentUser !== nextProps.currentUser
-    }
+    };
 
     componentWillUnmount(){
         this.props.removeSelectedUser();
-    }
+    };
 
     handleModalToggle = type => {
         this.setState({showModal: {
@@ -71,7 +70,7 @@ class UsersShow extends Component {
         let adminControls;
         let userFormModal;
         let dogFormModal;
-        let addDogBtn
+        let addDogBtn;
         if (this.props.selectedUser && this.props.selectedUser.id === this.props.currentUser.id){
             adminControls = <AdminControls 
                                 currentUser={this.props.currentUser} 

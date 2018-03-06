@@ -70,7 +70,7 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.UPDATE_USER_FILTER: return updateUserFilter(state, action);
         case actionTypes.RESET_USER_FILTER: return resetUserFilter(state);
         default: return state;
-    };
+    }
 };
 
 export default userReducer;
