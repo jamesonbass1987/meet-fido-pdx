@@ -8,18 +8,18 @@ const initialState = {
     error: null,
     token: null,
     currentUser: null,
-}
+};
 
 const authActionStart = state => (
     updateObject(state, { loading: true }) 
 );
 
-const authActionFail = (state, action) => {
-    return updateObject(state, {
+const authActionFail = (state, action) => (
+    updateObject(state, {
         error: action.error,
         loading: false
     })
-}
+);
 
 const updateAuthenticatingState = state => (
     updateObject(state, {isAuthenticating: !state.isAuthenticating, error: null})
@@ -29,34 +29,34 @@ const updateSignUpState = state => (
     updateObject(state, { isSigningUp: !state.isSigningUp, error: null })
 );
 
-const authSuccess = (state, action) => {
-    return updateObject(state, {
+const authSuccess = (state, action) => (
+    updateObject(state, {
         token: action.payload.token,
         currentUser: action.payload.user,
         isAuthenticating: false,
         error: null,
         loading: false
-    });
-};
+    })
+);
 
-const userSignUpSuccess = state => {
-    return updateObject(state, {
+const userSignUpSuccess = state => (
+    updateObject(state, {
         isSigningUp: false,
         error: null,
         loading: false
-    });
-};
+    })
+);
 
-const authLogout = (state, action) => {
-    return updateObject(state, { token: null });
-};
+const authLogout = state => (
+    updateObject(state, { token: null })
+);
 
-const fetchCurrentUserSuccess = (state, action) => {
-    return updateObject(state, {
+const fetchCurrentUserSuccess = (state, action) => (
+    updateObject(state, {
         currentUser: action.payload,
         loading: false
     })
-};
+);
 
 const removeCurrentUser = state => (updateObject(state, { currentUser: null }));
 
@@ -71,8 +71,8 @@ export const authReducer = (state = initialState, action) => {
         case actionTypes.USER_SIGN_UP_SUCCESS: return userSignUpSuccess(state);
         case actionTypes.REMOVE_CURRENT_USER: return removeCurrentUser(state);
         case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
-        default: return state
-    }
-}
+        default: return state;
+    };
+};
 
 export default authReducer;
