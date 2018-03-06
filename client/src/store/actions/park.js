@@ -6,18 +6,18 @@ import axios from '../../shared/axios-api';
 export const parkActionFail = error => ({
     type: actionTypes.PARK_ACTION_FAIL,
     error
-})
+});
 
 export const parkActionStart = () => ({
     type: actionTypes.PARK_ACTION_START
-})
+});
 
 // PARK INDEX ACTIONS
 
 export const fetchParksSuccess = parks => ({
     type: actionTypes.FETCH_PARKS_SUCCESS,
     parks
-})
+});
 
 export const fetchParks = () => {
     return dispatch => {

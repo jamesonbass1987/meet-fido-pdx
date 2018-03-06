@@ -5,12 +5,12 @@ import axios from '../../shared/axios-api';
 
 export const neighborhoodActionStart = () => ({
     type: actionTypes.NEIGHBORHOOD_ACTION_START
-})
+});
 
 export const neighborhoodActionFail = error => ({
     type: actionTypes.NEIGHBORHOOD_ACTION_FAIL,
     error
-})
+});
 
 // NEIGHBORHOOD INDEX ACTIONS
 

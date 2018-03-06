@@ -5,13 +5,13 @@ export {
     resetDogFilter,
     addEditDog,
     deleteDog
-} from './dog'
+} from './dog';
 
 export {
     fetchParks,
     updateParkFilter,
     resetParkFilter
-} from './park'
+} from './park';
 
 export {
     fetchUsers,
@@ -20,9 +20,7 @@ export {
     resetUserFilter,
     deleteUser,
     removeSelectedUser,
-
-
-} from './user'
+} from './user';
 
 export {
     updateAuthenticatingState,
@@ -34,8 +32,8 @@ export {
     fetchCurrentUser,
     removeCurrentUser,
     updateCurrentUser,
-} from './auth'
+} from './auth';
 
 export {
     fetchNeighborhoods
-} from './neighborhood'
+} from './neighborhood';

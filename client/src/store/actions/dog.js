@@ -36,7 +36,7 @@ export const fetchDogAttribute = attribute => {
         dispatch(dogActionStart());
         axios.get(`/${attribute}`)
             .then(res => {
-                const fetchedAttributeList = res.data.map(obj => (obj))
+                const fetchedAttributeList = res.data.map(obj => (obj));
                 dispatch(fetchDogAttributeSuccess(fetchedAttributeList, attribute));
             })
             .catch(err => {
@@ -60,7 +60,7 @@ export const updateDogFilter = (type, value) => ({
 
 export const resetDogFilter = () => ({
     type: actionTypes.RESET_DOG_FILTER
-})
+});
 
 // DOG CREATE/EDIT ACTIONS
 
@@ -80,21 +80,21 @@ const createDog = dog => {
                 dispatch(dogActionFail(err))
             });
     };
-}
+};
 
 const editDog = dog => {
     return dispatch => {
         dispatch(dogActionStart());
         axios.patch(`/dogs/${dog.id}`, { dog })
             .then(res => {
-                dispatch(addEditDogSuccess())
-                dispatch(actions.fetchUser(dog.user_id))
+                dispatch(addEditDogSuccess());
+                dispatch(actions.fetchUser(dog.user_id));
             })
             .catch(err => {
-                dispatch(dogActionFail(err))
+                dispatch(dogActionFail(err));
             });
     };
-}
+};
 
 export const addEditDogSuccess = () => ({
     type: actionTypes.CREATE_EDIT_DOG_SUCCESS
@@ -116,5 +116,5 @@ export const deleteDog = (id) => {
 };
 
 export const deleteDogSuccess = () => ({
-    type: actionTypes.DELETE_DOG_SUCCESS,
+    type: actionTypes.DELETE_DOG_SUCCESS
 });
