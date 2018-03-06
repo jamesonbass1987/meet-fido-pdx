@@ -1,11 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
-
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
     neighborhoods: [],
     loading: false
-}
+};
 
 const neighborhoodActionStart = state => (updateObject(state, { loading: true }));
 
@@ -23,8 +22,8 @@ const neighborhoodReducer = (state = initialState, action) => {
         case actionTypes.NEIGHBORHOOD_ACTION_START: return neighborhoodActionStart(state);
         case actionTypes.NEIGHBORHOOD_ACTION_FAIL: return neighborhoodActionFail(state, action);
         case actionTypes.FETCH_NEIGHBORHOODS_SUCCESS: return fetchNeighborhoodsSuccess(state, action);
-        default: return state
-    }
-}
+        default: return state;
+    };
+};
 
 export default neighborhoodReducer;
