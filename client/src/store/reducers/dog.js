@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
@@ -16,7 +15,7 @@ const initialState = {
         size: '',
         breed: '' 
     }
-}
+};
 
 const dogActionStart = state => (updateObject(state, { loading: true }));
 const dogActionFail = (state, action) => (updateObject(state, { loading: false, error: action.error }));
@@ -75,8 +74,8 @@ const dogReducer = (state = initialState, action) => {
         case actionTypes.DELETE_DOG_SUCCESS: return deleteDogSuccess(state);
         case actionTypes.UPDATE_DOG_FILTER: return updateDogFilter(state, action);
         case actionTypes.RESET_DOG_FILTER: return resetDogFilter(state);
-        default: return state
-    }
-}
+        default: return state;
+    };
+};
 
 export default dogReducer;
