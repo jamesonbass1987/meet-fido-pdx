@@ -28,7 +28,7 @@ class Park extends Component {
         })
     }
 
-    shouldComponentUpdate = (nextProps, nextState) => this.state !== nextState;
+    shouldComponentUpdate = (nextProps, nextState) => this.state !== nextState || this.props.currentUser.parks !== nextProps.currentUser.parks;
 
     handleAddRemovePark = () => {
         this.setState({

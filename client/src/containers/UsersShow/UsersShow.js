@@ -33,6 +33,7 @@ class UsersShow extends Component {
     componentWillMount(){
         const id = this.props.match.params.userId;
         this.props.fetchUser(id);
+        this.props.fetchCurrentUser();
     };
 
     shouldComponentUpdate(nextProps, nextState){
@@ -154,7 +155,7 @@ class UsersShow extends Component {
 
 const mapStateToProps = state => {
     const { selectedUser, loading, isUpdating } = state.user;
-    const { currentUser } = state.auth;
+    const { currentUser, fetchCurrentUser } = state.auth;
     return { selectedUser,
              loading, 
              isUpdating,

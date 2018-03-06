@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchParks, updateParkFilter } from '../../store/actions/index';
+import { fetchParks, updateParkFilter, fetchCurrentUser } from '../../store/actions/index';
 
 import { Container, Segment, Divider } from 'semantic-ui-react';
 import PageHeading from '../../components/PageHeading/PageHeading';
@@ -62,10 +62,12 @@ class ParksIndex extends Component {
 
 const mapStateToProps = state => {
   const { parks, loading, parkFilter } = state.park;
+  const { fetchCurrentUser } = state.auth;
   return {
       parks,
       loading,
-      parkFilter
+      parkFilter,
+      fetchCurrentUser
   };
 };
 

@@ -140,6 +140,8 @@ export const fetchCurrentUserSuccess = payload => ({
 // UPDATE USER ACTIONS
 
 export const updateCurrentUser = (user, attribute, updateVals) => {
+    debugger;
+
     let updatedUser = {
         username: user.username,
         bio: user.bio,
