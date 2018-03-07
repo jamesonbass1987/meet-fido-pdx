@@ -29,7 +29,7 @@ export const handleUserLogin = payload => {
                 const token = response.data.auth_token;
                 const user = response.data;
                 delete user.auth_token;
-                debugger;
+
                 localStorage.setItem('token', token);
                 dispatch(authSuccess({ token, user }));
             })
@@ -97,7 +97,7 @@ export const handleUserSignUp = payload => {
             neighborhood_id: payload.neighborhood_id
         };
 
-        axios.post('/users', { user: userData, headers: { 'Authorization': localStorage.getItem('token') } })
+        axios.post('/users', { user: userData })
             .then(response => {
                 dispatch(userSignUpSuccess());
                 dispatch(handleUserLogin(userData));
@@ -125,7 +125,7 @@ export const fetchCurrentUser = () => {
             dispatch({ type: actionTypes.AUTH_LOGOUT });
         } else {
             dispatch(authActionStart())
-            axios.get(`/authed_user?token=${token}`, { headers: { 'Authorization': localStorage.getItem('token') } })
+            axios.get(`/authed_user?token=${token}`)
                 .then(response => {
                     delete response.data.auth_token
                     dispatch(fetchCurrentUserSuccess(response.data))
@@ -167,7 +167,7 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
 
     return dispatch => {
         dispatch(authActionStart());
-        axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser }, headers: { 'Authorization': localStorage.getItem('token') } })
+        axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
             .then(resp => {
                 dispatch(updateCurrentUserSuccess());
                 dispatch(fetchCurrentUser());
@@ -196,7 +196,7 @@ export const updateCurrentUserSuccess = () => ({
 export const deleteUser = id => {
     return dispatch => {
         dispatch(authActionStart());
-        axios.delete(`/users/${id}`, { headers: { 'Authorization': localStorage.getItem('token') } } )
+        axios.delete(`/users/${id}`)
             .then(resp => {
                 dispatch(deleteUserSuccess());
             })
