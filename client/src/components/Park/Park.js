@@ -37,7 +37,6 @@ class Park extends Component {
         });
 
         this.props.updateCurrentUser(this.props.currentUser, 'parksList', this.props.park.id);
-        this.props.fetchCurrentUser();
     }
 
     render() {

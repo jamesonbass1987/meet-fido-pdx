@@ -165,10 +165,9 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
         axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
             .then(resp => {
                 dispatch(updateCurrentUserSuccess());
-
+                dispatch(fetchCurrentUser());
                 if(attribute === 'profileUpdate'){
                     dispatch(actions.fetchUser(user.id));
-                    dispatch(fetchCurrentUser());
                 }
             })
             .catch(err => {
