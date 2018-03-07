@@ -108,6 +108,7 @@ export const deleteDog = (id) => {
         axios.delete(`/dogs/${id}`)
             .then(res => {
                 dispatch(deleteDogSuccess())
+                dispatch(actions.fetchCurrentUser());
             })
             .catch(err => {
                 dispatch(dogActionFail(err))

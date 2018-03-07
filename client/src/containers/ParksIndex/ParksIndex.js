@@ -15,7 +15,10 @@ import classes from './ParksIndex.css';
 
 class ParksIndex extends Component {
  
-  componentWillMount = () => this.props.fetchParks();
+  componentWillMount = () => {
+    this.props.fetchCurrentUser();
+    this.props.fetchParks();
+  }
 
   handleMarkerClick = parkName => this.props.updateParkFilter('searchQuery', parkName);
 
@@ -62,17 +65,15 @@ class ParksIndex extends Component {
 
 const mapStateToProps = state => {
   const { parks, loading, parkFilter } = state.park;
-  const { fetchCurrentUser } = state.auth;
   return {
       parks,
       loading,
-      parkFilter,
-      fetchCurrentUser
+      parkFilter
   };
 };
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({ fetchParks, updateParkFilter }, dispatch)
+  bindActionCreators({ fetchParks, updateParkFilter, fetchCurrentUser }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParksIndex);

@@ -160,6 +160,7 @@ const mapStateToProps = state => {
              loading, 
              isUpdating,
              currentUser,
+             fetchCurrentUser
             };
 };
 

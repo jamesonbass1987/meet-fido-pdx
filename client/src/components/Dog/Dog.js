@@ -20,7 +20,8 @@ class Dog extends Component {
         this.state = {
             showModal: false,
             showEditBtn: this.props.dog.user_id === this.props.currentUser.id && this.props.isEditable,
-            showDelete: false
+            showDelete: false,
+            isHidden: false
         };
     };
 
@@ -31,7 +32,7 @@ class Dog extends Component {
     handleCancel = () => this.setState({ showDelete: false });
 
     handleConfirm = () => {
-        this.setState({ showDelete: false });
+        this.setState({ showDelete: false, isHidden: true });
         this.props.deleteDog(this.props.dog.id);
     };
 
@@ -82,21 +83,23 @@ class Dog extends Component {
                             />
                         </Modal>;
 
-        return (
-            <Card id={this.props.id} className={classes.Dog}>
-                <Image centered src={this.props.dog.profile_image_url} />
-                <Card.Content>
-                    <Card.Header>{this.props.dog.name}</Card.Header>
-                    <Card.Meta>{this.props.dog.breed.name} | {this.props.dog.age.name} | {this.props.dog.sex} | {this.props.dog.size.name} </Card.Meta>
-                    <Card.Description>
-                        <p>{this.props.dog.description}</p>
-                    </Card.Description>
-                </Card.Content>
-                {ownerInfo}
-                {ownerControls}
-                {dogModal}
-            </Card>
-        );
+        let dog = <Card id={this.props.id} className={classes.Dog}>
+                    <Image centered src={this.props.dog.profile_image_url} />
+                    <Card.Content>
+                        <Card.Header>{this.props.dog.name}</Card.Header>
+                        <Card.Meta>{this.props.dog.breed.name} | {this.props.dog.age.name} | {this.props.dog.sex} | {this.props.dog.size.name} </Card.Meta>
+                        <Card.Description>
+                            <p>{this.props.dog.description}</p>
+                        </Card.Description>
+                    </Card.Content>
+                    {ownerInfo}
+                    {ownerControls}
+                    {dogModal}
+                </Card>
+
+        dog = this.state.isHidden ? <div></div> : dog;
+
+        return dog;
     };    
 };
 
