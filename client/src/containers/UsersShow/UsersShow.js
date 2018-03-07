@@ -36,6 +36,13 @@ class UsersShow extends Component {
         this.props.fetchCurrentUser();
     };
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state !== nextState ||
+            (this.props.loading && !nextProps.loading) ||
+            this.props.selectedUser !== nextProps.selectedUser ||
+            this.props.currentUser !== nextProps.currentUser
+    };
+
     componentWillUnmount(){
         this.props.removeSelectedUser();
     };
