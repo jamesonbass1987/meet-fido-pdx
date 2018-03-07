@@ -9,8 +9,6 @@ import NavigationItems from '../../components/NavigationItems/NavigationItems'
 
 class Navbar extends Component {
 
-    shouldComponentUpdate = nextProps => this.props.currentUser !== nextProps.currentUser;
-
     render() {
         let navLinks = [];
         

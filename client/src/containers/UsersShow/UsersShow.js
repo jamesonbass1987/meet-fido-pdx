@@ -61,7 +61,7 @@ class UsersShow extends Component {
 
     handleConfirm = () => {
         this.setState({ showDelete: false });
-        this.props.deleteUser(this.props.currentUser);
+        this.props.deleteUser(this.props.currentUser.id);
         this.props.history.push("/logout");
     };
 

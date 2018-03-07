@@ -18,7 +18,6 @@ export {
     fetchUser,
     updateUserFilter,
     resetUserFilter,
-    deleteUser,
     removeSelectedUser,
 } from './user';
 
@@ -32,6 +31,7 @@ export {
     fetchCurrentUser,
     removeCurrentUser,
     updateCurrentUser,
+    deleteUser
 } from './auth';
 
 export {

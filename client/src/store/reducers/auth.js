@@ -58,6 +58,14 @@ const fetchCurrentUserSuccess = (state, action) => (
     })
 );
 
+const deleteUserSuccess = state => (
+    updateObject(state, {
+        loading: false,
+        currentUser: null,
+        token: null
+    })
+);
+
 const removeCurrentUser = state => (updateObject(state, { currentUser: null }));
 
 export const authReducer = (state = initialState, action) => {
@@ -70,6 +78,7 @@ export const authReducer = (state = initialState, action) => {
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.USER_SIGN_UP_SUCCESS: return userSignUpSuccess(state);
         case actionTypes.REMOVE_CURRENT_USER: return removeCurrentUser(state);
+        case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
         case actionTypes.FETCH_CURRENT_USER_SUCCESS: return fetchCurrentUserSuccess(state, action);
         default: return state;
     }

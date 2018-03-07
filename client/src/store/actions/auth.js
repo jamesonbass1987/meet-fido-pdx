@@ -26,8 +26,12 @@ export const handleUserLogin = payload => {
         
         axios.post('/authenticate', authData)
             .then(response => {
-                localStorage.setItem('token', response.data.auth_token);
-                dispatch(authSuccess({ token: response.data.auth_token, user: response.data }));
+                const token = response.data.auth_token;
+                const user = response.data;
+                delete user.auth_token;
+                debugger;
+                localStorage.setItem('token', token);
+                dispatch(authSuccess({ token, user }));
             })
             .catch(err => {
                 dispatch(authActionFail(err.response.data.error.user_authentication));
@@ -123,6 +127,7 @@ export const fetchCurrentUser = () => {
             dispatch(authActionStart())
             axios.get(`/authed_user?token=${token}`)
                 .then(response => {
+                    delete response.data.auth_token
                     dispatch(fetchCurrentUserSuccess(response.data))
                 })
                 .catch(err => {
@@ -184,4 +189,24 @@ const updateParks = (parkIds, value) => (
 
 export const updateCurrentUserSuccess = () => ({
         type: actionTypes.UPDATE_CURRENT_USER_SUCCESS
+});
+
+// DELETE USER ACTIONS
+
+export const deleteUser = id => {
+    return dispatch => {
+        dispatch(authActionStart());
+        axios.delete(`/users/${id}`)
+            .then(resp => {
+                localStorage.removeItem('token');
+                dispatch(deleteUserSuccess());
+            })
+            .catch(err => {
+                dispatch(authActionFail(err));
+            });
+    };
+};
+
+export const deleteUserSuccess = () => ({
+    type: actionTypes.DELETE_USER_SUCCESS
 });

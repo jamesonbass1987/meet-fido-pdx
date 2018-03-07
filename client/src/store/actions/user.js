@@ -53,25 +53,6 @@ export const fetchUserSuccess = user => ({
     user
 });
 
-// USER DELETE ACTIONS
-
-export const deleteUser = id => {
-    return dispatch => {
-         dispatch(userActionStart());
-         axios.delete(`/users/${id}`)
-            .then(resp => {
-                dispatch(deleteUserSuccess());
-            })
-            .catch(err => {
-                dispatch(userActionFail(err));
-            });
-    };
-};
-
-export const deleteUserSuccess = () => ({
-    type: actionTypes.DELETE_USER_SUCCESS
-});
-
 
 // USER FILTER FUNCTIONS
 

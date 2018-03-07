@@ -29,12 +29,6 @@ const fetchUsersSuccess = (state, action) => (
     })
 );
 
-const deleteUserSuccess = state => (
-    updateObject(state, {
-        loading: false,
-    })
-);
-
 const removeSelectedUser = state => (
     updateObject(state, {
         selectedUser: null
@@ -65,7 +59,6 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.USER_ACTION_FAIL: return userActionFail(state, action);
         case actionTypes.FETCH_USER_SUCCESS: return fetchUserSuccess(state, action);
         case actionTypes.FETCH_USERS_SUCCESS: return fetchUsersSuccess(state, action);
-        case actionTypes.DELETE_USER_SUCCESS: return deleteUserSuccess(state);
         case actionTypes.REMOVE_SELECTED_USER: return removeSelectedUser(state);
         case actionTypes.UPDATE_USER_FILTER: return updateUserFilter(state, action);
         case actionTypes.RESET_USER_FILTER: return resetUserFilter(state);

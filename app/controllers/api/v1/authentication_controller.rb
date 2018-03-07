@@ -4,7 +4,7 @@ class Api::V1::AuthenticationController < ApiController
     command = AuthenticateUser.call(params[:username], params[:password])
     
     if command.success?
-      render json: command.result[:user], serializer: UserSerializer, auth_token: command.result[:auth_token]
+      render json: command.result[:user], serializer: UserAuthenticationSerializer, auth_token: command.result[:auth_token]
     else
       render json: { error: command.errors }, :status => 404
     end
