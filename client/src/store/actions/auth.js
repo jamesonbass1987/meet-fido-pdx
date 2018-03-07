@@ -97,7 +97,7 @@ export const handleUserSignUp = payload => {
             neighborhood_id: payload.neighborhood_id
         };
 
-        axios.post('/users', { user: userData})
+        axios.post('/users', { user: userData, headers: { 'Authorization': localStorage.getItem('token') } })
             .then(response => {
                 dispatch(userSignUpSuccess());
                 dispatch(handleUserLogin(userData));
@@ -125,7 +125,7 @@ export const fetchCurrentUser = () => {
             dispatch({ type: actionTypes.AUTH_LOGOUT });
         } else {
             dispatch(authActionStart())
-            axios.get(`/authed_user?token=${token}`)
+            axios.get(`/authed_user?token=${token}`, { headers: { 'Authorization': localStorage.getItem('token') } })
                 .then(response => {
                     delete response.data.auth_token
                     dispatch(fetchCurrentUserSuccess(response.data))
@@ -167,7 +167,7 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
 
     return dispatch => {
         dispatch(authActionStart());
-        axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
+        axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser }, headers: { 'Authorization': localStorage.getItem('token') } })
             .then(resp => {
                 dispatch(updateCurrentUserSuccess());
                 dispatch(fetchCurrentUser());
@@ -196,9 +196,8 @@ export const updateCurrentUserSuccess = () => ({
 export const deleteUser = id => {
     return dispatch => {
         dispatch(authActionStart());
-        axios.delete(`/users/${id}`)
+        axios.delete(`/users/${id}`, { headers: { 'Authorization': localStorage.getItem('token') } } )
             .then(resp => {
-                localStorage.removeItem('token');
                 dispatch(deleteUserSuccess());
             })
             .catch(err => {
