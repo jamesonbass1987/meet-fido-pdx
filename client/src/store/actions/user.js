@@ -17,14 +17,15 @@ export const userActionFail = error => ({
 export const fetchUsers = () => {
     return dispatch => {
         dispatch(userActionStart());
-        axios.get('/users')
-            .then(res => {
-                const fetchedUsers = [...res.data];
-                dispatch(fetchUsersSuccess(fetchedUsers));
-            })
-            .catch(err => {
-                dispatch(userActionFail(err));
-            });
+        axios
+          .get("/api/v1/users")
+          .then(res => {
+            const fetchedUsers = [...res.data];
+            dispatch(fetchUsersSuccess(fetchedUsers));
+          })
+          .catch(err => {
+            dispatch(userActionFail(err));
+          });
     };
 };
 
@@ -38,7 +39,7 @@ export const fetchUsersSuccess = users => ({
 export const fetchUser = id => {
     return dispatch => {
         dispatch(userActionStart());
-        axios.get(`/users/${id}`)
+        axios.get(`/api/v1/users/${id}`)
             .then(res => {
                 dispatch(fetchUserSuccess(res.data));
             })

@@ -24,18 +24,19 @@ export const handleUserLogin = payload => {
                 password: payload.password
             };
         
-        axios.post('/authenticate', authData)
-            .then(response => {
-                const token = response.data.auth_token;
-                const user = response.data;
-                delete user.auth_token;
+        axios
+          .post("/api/v1/authenticate", authData)
+          .then(response => {
+            const token = response.data.auth_token;
+            const user = response.data;
+            delete user.auth_token;
 
-                localStorage.setItem('token', token);
-                dispatch(authSuccess({ token, user }));
-            })
-            .catch(err => {
-                dispatch(authActionFail(err.response.data.error.user_authentication));
-            });
+            localStorage.setItem("token", token);
+            dispatch(authSuccess({ token, user }));
+          })
+          .catch(err => {
+            dispatch(authActionFail(err.response.data.error.user_authentication));
+          });
     };
 }
 
@@ -45,13 +46,17 @@ export const authCheckState = () => {
         if (!token) {
             dispatch(handleLogout());
         } else {
-            axios.get(`/authed_user?token=${token}`)
-                .then(response => {
-                    dispatch(authSuccess({ token, user: response.data }))
-                })
-                .catch(err => {
-                    dispatch(authActionFail(err.response.data.error));
-                });
+            axios
+              .get(`/api/v1/authed_user?token=${token}`)
+              .then(response => {
+                dispatch(authSuccess({
+                    token,
+                    user: response.data
+                  }));
+              })
+              .catch(err => {
+                dispatch(authActionFail(err.response.data.error));
+              });
             
         };
     };
@@ -97,18 +102,21 @@ export const handleUserSignUp = payload => {
             neighborhood_id: payload.neighborhood_id
         };
 
-        axios.post('/users', { user: userData })
-            .then(response => {
-                dispatch(userSignUpSuccess());
-                dispatch(handleUserLogin(userData));
-            })
-            .catch(err => {
-                const errors = [];
-                for(let errMsgKey in err.response.data.error){
-                    errors.push(`${errMsgKey.split('_').join(" ")} ${err.response.data.error[errMsgKey]}`);
-                }
-                dispatch(authActionFail(errors));
-            });
+        axios
+          .post("/api/v1/users", { user: userData })
+          .then(response => {
+            dispatch(userSignUpSuccess());
+            dispatch(handleUserLogin(userData));
+          })
+          .catch(err => {
+            const errors = [];
+            for (let errMsgKey in err.response.data.error) {
+              errors.push(`${errMsgKey
+                  .split("_")
+                  .join(" ")} ${err.response.data.error[errMsgKey]}`);
+            }
+            dispatch(authActionFail(errors));
+          });
     };
 };
 
@@ -125,14 +133,15 @@ export const fetchCurrentUser = () => {
             dispatch({ type: actionTypes.AUTH_LOGOUT });
         } else {
             dispatch(authActionStart())
-            axios.get(`/authed_user?token=${token}`)
-                .then(response => {
-                    delete response.data.auth_token
-                    dispatch(fetchCurrentUserSuccess(response.data))
-                })
-                .catch(err => {
-                    dispatch(authActionFail(err.response.data.error))
-                })
+            axios
+              .get(`/api/v1/authed_user?token=${token}`)
+              .then(response => {
+                delete response.data.auth_token;
+                dispatch(fetchCurrentUserSuccess(response.data));
+              })
+              .catch(err => {
+                dispatch(authActionFail(err.response.data.error));
+              });
         };
     };
 };
@@ -167,17 +176,21 @@ export const updateCurrentUser = (user, attribute, updateVals) => {
 
     return dispatch => {
         dispatch(authActionStart());
-        axios.patch(`/users/${user.id}`, { id: user.id, user: { ...updatedUser } })
-            .then(resp => {
-                dispatch(updateCurrentUserSuccess());
-                dispatch(fetchCurrentUser());
-                if(attribute === 'profileUpdate'){
-                    dispatch(actions.fetchUser(user.id));
-                }
-            })
-            .catch(err => {
-                dispatch(authActionFail(err.response.data.error))
-            });
+        axios
+          .patch(`/api/v1/users/${user.id}`, {
+            id: user.id,
+            user: { ...updatedUser }
+          })
+          .then(resp => {
+            dispatch(updateCurrentUserSuccess());
+            dispatch(fetchCurrentUser());
+            if (attribute === "profileUpdate") {
+              dispatch(actions.fetchUser(user.id));
+            }
+          })
+          .catch(err => {
+            dispatch(authActionFail(err.response.data.error));
+          });
     };
 };
 
@@ -196,13 +209,14 @@ export const updateCurrentUserSuccess = () => ({
 export const deleteUser = id => {
     return dispatch => {
         dispatch(authActionStart());
-        axios.delete(`/users/${id}`)
-            .then(resp => {
-                dispatch(deleteUserSuccess());
-            })
-            .catch(err => {
-                dispatch(authActionFail(err));
-            });
+        axios
+          .delete(`/api/v1/users/${id}`)
+          .then(resp => {
+            dispatch(deleteUserSuccess());
+          })
+          .catch(err => {
+            dispatch(authActionFail(err));
+          });
     };
 };
 

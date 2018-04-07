@@ -22,14 +22,15 @@ export const fetchParksSuccess = parks => ({
 export const fetchParks = () => {
     return dispatch => {
         dispatch(parkActionStart());
-        axios.get('/parks')
-            .then(res => {
-                const fetchedParks = [...res.data];
-                dispatch(fetchParksSuccess(fetchedParks));
-            })
-            .catch(err => {
-                dispatch(parkActionFail(err));
-            });
+        axios
+          .get("/api/v1/parks")
+          .then(res => {
+            const fetchedParks = [...res.data];
+            dispatch(fetchParksSuccess(fetchedParks));
+          })
+          .catch(err => {
+            dispatch(parkActionFail(err));
+          });
     };
 };
 

@@ -22,13 +22,14 @@ export const fetchNeighborhoodsSuccess = neighborhoods => ({
 export const fetchNeighborhoods = () => {
     return dispatch => {
         dispatch(neighborhoodActionStart());
-        axios.get('/neighborhoods')
-            .then(res => {
-                const fetchedNeighborhoods = [...res.data];
-                dispatch(fetchNeighborhoodsSuccess(fetchedNeighborhoods));
-            })
-            .catch(err => {
-                dispatch(neighborhoodActionFail(err));
-            });
+        axios
+          .get("/api/v1/neighborhoods")
+          .then(res => {
+            const fetchedNeighborhoods = [...res.data];
+            dispatch(fetchNeighborhoodsSuccess(fetchedNeighborhoods));
+          })
+          .catch(err => {
+            dispatch(neighborhoodActionFail(err));
+          });
     };
 };
